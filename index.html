@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VanzaLabs — Інженерна студія | MVP, автоматизація, продукти</title>
+  <meta name="description" content="VanzaLabs — команда з України. Розробляємо MVP, автоматизуємо бізнес-процеси та допомагаємо стартапам запускати продукти. Від ідеї до релізу.">
+
+  <meta property="og:title" content="VanzaLabs — Інженерна студія">
+  <meta property="og:description" content="MVP, автоматизація та продуктова розробка. Команда з України.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vanzalabs.io">
+  <meta property="og:image" content="https://vanzalabs.io/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="vanzalabs_avatar_square_black.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
+              400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d',
+              800: '#166534', 900: '#14532d',
+            },
+            accent: {
+              500: '#4f46e5', 600: '#4338ca', 700: '#3730a3'
+            },
+            dark: { 900: '#0B0C10', 800: '#111827', 700: '#1f2937' }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          boxShadow: {
+            'glow': '0 0 40px rgba(34, 197, 94, 0.12)',
+            'card': '0 4px 24px rgba(0,0,0,0.05)',
+            'card-hover': '0 16px 48px rgba(0,0,0,0.08)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .gradient-text {
+      background: linear-gradient(135deg, #16a34a 0%, #22c55e 40%, #0d9488 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-bg {
+      background:
+        radial-gradient(ellipse 80% 50% at 70% 20%, rgba(34, 197, 94, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 90% 60%, rgba(79, 70, 229, 0.04) 0%, transparent 40%),
+        #ffffff;
+    }
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+      background: #22c55e; transition: width 0.25s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .service-card, .principle-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover, .principle-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); }
+    .status-dot { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .mobile-menu { 
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.35s ease, opacity 0.25s ease;
+    }
+    .mobile-menu.open { 
+      max-height: 400px;
+      opacity: 1;
+    }
+
+    .faq-item { border: 1px solid #f3f4f6; transition: border-color 0.3s; }
+    .faq-item.open { border-color: #bbf7d0; }
+    .faq-answer { 
+      max-height: 0; 
+      overflow: hidden; 
+      transition: max-height 0.4s ease, padding 0.3s ease; 
+    }
+    .faq-item.open .faq-answer { 
+      max-height: 500px; 
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    .tech-marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+    .tech-marquee::before,
+    .tech-marquee::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .tech-marquee::before {
+      left: 0;
+      background: linear-gradient(to right, #f9fafb, transparent);
+    }
+    .tech-marquee::after {
+      right: 0;
+      background: linear-gradient(to left, #f9fafb, transparent);
+    }
+    .tech-track {
+      display: inline-flex;
+      animation: marquee 30s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .tech-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0 1.5rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #16a34a;
+      opacity: 0.7;
+      transition: opacity 0.25s;
+    }
+    .tech-item:hover {
+      opacity: 1;
+    }
+
+    .form-gradient { background: linear-gradient(135deg, #059669 0%, #0d9488 40%, #4f46e5 100%); }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "VanzaLabs",
+    "url": "https://vanzalabs.io",
+    "description": "Інженерна студія з України. Розробка MVP, автоматизація бізнесу, продуктова розробка.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "UA"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "contact@vanzalabs.io",
+      "contactType": "sales"
+    }
+  }
+  </script>
+<base target="_blank">
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+       <a href="#" class="flex items-center gap-2.5" title="VanzaLabs — на головну">
+  <img src="vanzalabs_logo_black_text.png" alt="vanzalabs" class="h-4 w-auto">
+</a>
+        <nav class="hidden lg:flex items-center gap-7">
+          <a href="#about" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Про нас</a>
+          <a href="#services" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Послуги</a>
+          <a href="#principles" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Принципи</a>
+          <a href="#process" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Процес</a>
+          <a href="#faq" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Питання</a>
+        </nav>
+        <div class="hidden lg:flex items-center gap-4">
+          <span class="text-xs text-gray-400" title="English version — coming soon">EN soon →</span>
+          <a href="#contact" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition shadow-sm">
+            Обговорити проєкт
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+        <button id="menuBtn" class="lg:hidden p-2 text-gray-600" aria-label="Відкрити меню">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+      <div id="mobileMenu" class="mobile-menu lg:hidden border-t border-gray-100">
+        <div class="py-4 space-y-3">
+          <a href="#about" class="block text-sm font-medium text-gray-700 py-1">Про нас</a>
+          <a href="#services" class="block text-sm font-medium text-gray-700 py-1">Послуги</a>
+          <a href="#principles" class="block text-sm font-medium text-gray-700 py-1">Принципи</a>
+          <a href="#process" class="block text-sm font-medium text-gray-700 py-1">Процес</a>
+          <a href="#faq" class="block text-sm font-medium text-gray-700 py-1">Питання</a>
+          <a href="#contact" class="inline-flex items-center gap-2 bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg mt-2">Обговорити проєкт →</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero-bg relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-20 lg:pt-24 lg:pb-28">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-500 status-dot"></span>
+            Приймаємо нові проєкти
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-gray-900 mb-6">
+            Ми створюємо<br>
+            <span class="gradient-text">цифрові продукти,</span><br>
+            що рухають<br>
+            бізнес вперед
+          </h1>
+          <p class="text-gray-600 text-base lg:text-lg leading-relaxed max-w-lg mb-4">
+            Інженерна студія з України. Розробляємо MVP та вебпродукти, автоматизуємо бізнес-процеси та допомагаємо стартапам і бізнесам масштабуватися.
+          </p>
+          <p class="text-gray-500 text-sm mb-8">Від ідеї до стабільного рішення — ми поруч на кожному етапі.</p>
+          <div class="flex flex-wrap gap-3 mb-8">
+            <a href="#contact" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3.5 rounded-lg transition shadow-md hover:shadow-lg">
+              Розповісти про задачу
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="#services" class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-semibold px-6 py-3.5 rounded-lg border border-gray-200 transition">
+              Наші послуги
+            </a>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-500">
+            <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Безкоштовна консультація 30 хв</span>
+            <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Фіксована ціна або Time & Material</span>
+          </div>
+        </div>
+
+        <div class="relative flex justify-center lg:justify-end">
+          <div class="relative w-full max-w-md">
+            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-card">
+              <div class="flex items-center gap-2 mb-6">
+                <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                <div class="ml-auto text-[10px] text-gray-400 font-mono">vanza@labs: ~/project</div>
+              </div>
+              <div class="space-y-2.5 font-mono text-xs sm:text-sm">
+                <div class="flex gap-3"><span class="text-brand-600">$</span><span class="text-gray-700">git clone idea.git</span></div>
+                <div class="flex gap-3"><span class="text-brand-600">$</span><span class="text-gray-700">cd idea && npm run discover</span></div>
+                <div class="pl-6 text-gray-500">→ Аналізуємо бізнес-задачу...</div>
+                <div class="pl-6 text-gray-500">→ Проєктуємо архітектуру...</div>
+                <div class="pl-6 text-gray-500">→ Пишемо перший спринт...</div>
+                <div class="flex gap-3"><span class="text-brand-600">$</span><span class="text-gray-700">npm run deploy</span></div>
+                <div class="pl-6 text-brand-600 font-semibold">✓ MVP live in 8 weeks</div>
+              </div>
+              <div class="mt-5 pt-4 border-t border-gray-200 flex items-center justify-between">
+                <div class="flex -space-x-2">
+                  <div class="w-8 h-8 rounded-full bg-brand-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-brand-700">FE</div>
+                  <div class="w-8 h-8 rounded-full bg-accent-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-accent-700">BE</div>
+                  <div class="w-8 h-8 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-gray-600">Dev</div>
+                </div>
+                <span class="text-[10px] text-gray-400 font-mono">2 founders + network</span>
+              </div>
+            </div>
+            <div class="mt-4 flex justify-end">
+              <div class="bg-white rounded-xl px-4 py-3 shadow-lg border border-gray-100 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-gray-900">Відкритий код</p>
+                  <p class="text-[10px] text-gray-500">З першого дня у вашому репозиторії</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="text-3xl sm:text-4xl font-extrabold text-brand-400 mb-1">24</p>
+          <p class="text-sm text-gray-400">години на відповідь</p>
+        </div>
+        <div>
+          <p class="text-3xl sm:text-4xl font-extrabold text-brand-400 mb-1">100%</p>
+          <p class="text-sm text-gray-400">відкритий код з 1 дня</p>
+        </div>
+        <div>
+          <p class="text-3xl sm:text-4xl font-extrabold text-brand-400 mb-1">3–12</p>
+          <p class="text-sm text-gray-400">тижнів до MVP</p>
+        </div>
+        <div>
+          <p class="text-3xl sm:text-4xl font-extrabold text-brand-400 mb-1">0</p>
+          <p class="text-sm text-gray-400">посередників у комунікації</p>
+        </div>
+      </div>
+    </div>
+    
+
+  </section>
+
+  <section id="about" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div>
+          <p class="text-brand-600 text-xs font-semibold tracking-widest uppercase mb-3">Про нас</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
+            Чому ми створили<br><span class="text-brand-600">VanzaLabs</span>
+          </h2>
+          <div class="space-y-4 text-gray-600 leading-relaxed">
+            <p>
+              Ми — два інженери, які роками працювали на різних проєктах і бачили одну й ту саму проблему: <strong>клієнти не отримують те, за що платять</strong>. Затягування термінів, приховані комісії, код, який ніхто не може підтримати.
+            </p>
+            <p>
+              Тому ми створили VanzaLabs. Назва походить від італійського <em>avanzare</em> — «рухатися вперед». Ми рухаємо ваш бізнес вперед, розуміючи, навіщо це потрібно.
+            </p>
+            <p>
+              Зараз нас двоє, але за спиною — мережа перевірених розробників, з якими ми співпрацювали роками. Це дає нам гнучкість: від невеликого MVP до повноцінної команди під продукт.
+            </p>
+          </div>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-brand-50 flex items-center justify-center">
+              <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900">Україна</p>
+              <p class="text-xs text-gray-500">Працюємо з клієнтами по всьому світу</p>
+            </div>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-brand-100 border-2 border-white shadow-sm flex items-center justify-center mb-3 overflow-hidden">
+              <img src="founder1.jpg" alt="Ігор" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-xl font-bold text-brand-700\'>Р</span>';">
+            </div>
+            <p class="font-bold text-gray-900 mb-0.5">Ігор</p>
+            <p class="text-xs font-bold text-gray-400 mb-3">ЗАСНОВНИК</p>
+            <div class="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <p class="font-bold text-gray-900 mb-1">Product & Marketing</p>
+            <p class="text-sm text-gray-500">Реклама, digital-маркетинг, продуктовий менеджмент. Знає, як знайти клієнта для продукту та вивести його на ринок. Розуміє бізнес ізсередини.</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-accent-100 border-2 border-white shadow-sm flex items-center justify-center mb-3 overflow-hidden">
+              <img src="founder2.jpg" alt="Руслан" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-xl font-bold text-accent-700\'>B</span>';">
+            </div>
+            <p class="font-bold text-gray-900 mb-0.5">Руслан</p>
+            <p class="text-xs font-bold text-gray-400 mb-3">ЗАСНОВНИК</p>
+            <div class="w-12 h-12 rounded-xl bg-accent-50 flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+            </div>
+            <p class="font-bold text-gray-900 mb-1">Product & Strategy</p>
+            <p class="text-sm text-gray-500">Аналітик, аудитор, проджект-менеджер. Вів проєкти в державних установах, вигравав державні гранти та запускав стартапи.</p>
+          </div>
+          <div class="sm:col-span-2 bg-gradient-to-br from-brand-50 to-accent-50 rounded-2xl p-6 border border-brand-100">
+            <p class="text-sm font-semibold text-gray-900 mb-2">Наша мережа</p>
+            <p class="text-sm text-gray-600">За потреби залучаємо перевірених розробників: React/Next, Python, DevOps, Mobile, UI/UX. Всі — з попереднім досвідом спільної роботи. Ніяких «підборів з нуля» та сюрпризів для клієнта.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-20 lg:py-28 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <p class="text-brand-600 text-xs font-semibold tracking-widest uppercase mb-3">Послуги</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Що ми робимо</h2>
+        <p class="text-gray-500 text-sm max-w-lg mx-auto">Три моделі співпраці. Обирайте ту, що відповідає вашому етапу.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div class="service-card bg-white border border-gray-100 rounded-2xl p-6 lg:p-8 shadow-card flex flex-col">
+          <div class="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <p class="text-brand-600 text-xs font-bold tracking-wider mb-2">01 / Розробка продуктів</p>
+          <h3 class="text-lg font-bold text-gray-900 mb-3">MVP та продукти під ключ</h3>
+          <p class="text-gray-500 text-sm leading-relaxed mb-5 flex-grow">Від ідеї до робочого продукту. Підходить для стартапів, які треба швидко перевірити гіпотезу, та бізнесів, що запускають новий напрям.</p>
+          <ul class="space-y-2 mb-5 text-sm text-gray-600">
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Discovery + технічне завдання</li>
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> UI/UX + розробка + QA</li>
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Запуск і post-launch підтримка</li>
+          </ul>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">MVP</span>
+              <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">SaaS</span>
+              <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">Web</span>
+            </div>
+            <span class="text-sm font-bold text-brand-600 whitespace-nowrap">інд. оцінка</span>
+          </div>
+        </div>
+        <div class="service-card bg-white border border-gray-100 rounded-2xl p-6 lg:p-8 shadow-card flex flex-col">
+          <div class="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <p class="text-brand-600 text-xs font-bold tracking-wider mb-2">02 / Автоматизація та AI</p>
+          <h3 class="text-lg font-bold text-gray-900 mb-3">Автоматизація та AI-рішення</h3>
+          <p class="text-gray-500 text-sm leading-relaxed mb-5 flex-grow">Менше ручної роботи, більше швидкості. Інтегруємо системи, впроваджуємо чат-ботів, RAG та агентів, які реально економлять час і гроші.</p>
+          <ul class="space-y-2 mb-5 text-sm text-gray-600">
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Інтеграції CRM / ERP / API</li>
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Чат-боти, RAG, AI-агенти</li>
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Дашборди та аналітика</li>
+          </ul>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">Automation</span>
+              <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">AI</span>
+            </div>
+            <span class="text-sm font-bold text-brand-600 whitespace-nowrap">інд. оцінка</span>
+          </div>
+        </div>
+        <div class="service-card bg-white border border-gray-100 rounded-2xl p-6 lg:p-8 shadow-card flex flex-col">
+          <div class="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <p class="text-brand-600 text-xs font-bold tracking-wider mb-2">03 / Команда під проєкт</p>
+          <h3 class="text-lg font-bold text-gray-900 mb-3">Команда під ваш продукт</h3>
+          <p class="text-gray-500 text-sm leading-relaxed mb-5 flex-grow">Формуємо віддалену команду, яка стає продовженням вашого бізнесу. Підбираємо під стек і домен, не «всіх підряд».</p>
+          <ul class="space-y-2 mb-5 text-sm text-gray-600">
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Підбір під стек і домен</li>
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Повна прозорість процесів</li>
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Масштабування вгору/вниз</li>
+          </ul>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">Dedicated</span>
+              <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">Scalable</span>
+            </div>
+            <span class="text-sm font-bold text-brand-600 whitespace-nowrap">інд. оцінка</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="principles" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <p class="text-brand-600 text-xs font-semibold tracking-widest uppercase mb-3">Принципи</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Як ми працюємо</h2>
+        <p class="text-gray-500 text-sm max-w-lg mx-auto">Те, що можемо гарантувати кожному клієнту.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <article class="principle-card bg-gray-50 rounded-2xl p-6 lg:p-8 border border-gray-100">
+          <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-5 shadow-sm">
+            <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Бізнес-задача перш за все</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">Починаємо не з коду, а з розуміння: навіщо це потрібно, хто користувач, яка метрика успіху. Якщо фіча не вирішує задачу — скажемо «ні».</p>
+        </article>
+        <article class="principle-card bg-gray-50 rounded-2xl p-6 lg:p-8 border border-gray-100">
+          <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-5 shadow-sm">
+            <svg class="w-6 h-6 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Код, який можна підтримувати</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">Чиста архітектура, документація, тести. Не залишаємо «чорних скриньок». Ваш наступний розробник скаже «дякую».</p>
+        </article>
+        <article class="principle-card bg-gray-50 rounded-2xl p-6 lg:p-8 border border-gray-100">
+          <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-5 shadow-sm">
+            <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Повна прозорість</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">Доступ до репозиторію з 1 дня. Щотижневі демо. Жодних прихованих годин. Scope узгоджуємо до старту.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach" class="py-20 lg:py-28 bg-dark-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-14 max-w-2xl">
+        <p class="text-brand-400 text-xs font-semibold tracking-widest uppercase mb-3">Чому ми</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">
+          Технічний партнер,<br>
+          <span class="text-gray-400">а не просто виконавець</span>
+        </h2>
+        <p class="text-gray-400 mt-4 text-sm leading-relaxed">Беремо відповідальність за результат бізнесу, а не тільки за рядки коду.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-10 lg:gap-14">
+        <div>
+          <div class="w-12 h-12 rounded-full border-2 border-brand-500/40 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke-width="1.5"/><path stroke-linecap="round" stroke-width="1.5" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M18.36 5.64l1.41-1.41"/></svg>
+          </div>
+          <p class="text-brand-600 text-xs font-bold tracking-wider mb-2">01 / Бізнес-фокус</p>
+          <h3 class="text-lg font-bold mb-2">Від задачі до рішення</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Починаємо з цілі, процесів і обмежень бізнесу — не з набору технологій. Кожне рішення має обґрунтування.</p>
+        </div>
+        <div>
+          <div class="w-12 h-12 rounded-full border-2 border-brand-500/40 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <p class="text-brand-600 text-xs font-bold tracking-wider mb-2">02 / Підбір команди</p>
+          <h3 class="text-lg font-bold mb-2">Команда під потребу</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Залучаємо спеціалістів з релевантною експертизою для вашого етапу і масштабу. Не «всіх підряд».</p>
+        </div>
+        <div>
+          <div class="w-12 h-12 rounded-full border-2 border-brand-500/40 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+          </div>
+          <p class="text-brand-600 text-xs font-bold tracking-wider mb-2">03 / Чіткість</p>
+          <h3 class="text-lg font-bold mb-2">Прозора співпраця</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Обсяг, пріоритети, формат комунікації та критерії готовності — фіксуємо до старту робіт.</p>
+        </div>
+      </div>
+      <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white/5 rounded-xl p-5 border border-white/5">
+          <p class="text-brand-400 font-bold text-sm mb-1">Фіксована ціна</p>
+          <p class="text-gray-400 text-xs">або прозорий Time & Material — без сюрпризів у кінці</p>
+        </div>
+        <div class="bg-white/5 rounded-xl p-5 border border-white/5">
+          <p class="text-brand-400 font-bold text-sm mb-1">Щотижневі демо</p>
+          <p class="text-gray-400 text-xs">Ви завжди бачите прогрес і можете коригувати напрямок</p>
+        </div>
+        <div class="bg-white/5 rounded-xl p-5 border border-white/5">
+          <p class="text-brand-400 font-bold text-sm mb-1">Код — ваш</p>
+          <p class="text-gray-400 text-xs">Повний доступ до репозиторію з першого дня</p>
+        </div>
+        <div class="bg-white/5 rounded-xl p-5 border border-white/5">
+          <p class="text-brand-400 font-bold text-sm mb-1">Гарантія 30 днів</p>
+          <p class="text-gray-400 text-xs">Безкоштовно виправляємо критичні баги після релізу</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <p class="text-brand-600 text-xs font-semibold tracking-widest uppercase mb-3">Процес</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900">Як будується робота</h2>
+        <p class="text-gray-500 text-sm mt-3 max-w-md mx-auto">Чотири чіткі етапи. Без хаосу і «ми ще думаємо».</p>
+      </div>
+      <div class="relative">
+        <svg class="hidden md:block absolute top-8 left-[12%] right-[12%] h-4 overflow-visible" preserveAspectRatio="none">
+          <line id="processLine" x1="0" y1="8" x2="100%" y2="8" stroke="url(#processGradient)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
+          <defs>
+            <linearGradient id="processGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#86efac"/>
+              <stop offset="50%" stop-color="#4ade80"/>
+              <stop offset="100%" stop-color="#86efac"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+          <div class="relative text-center">
+            <div class="w-16 h-16 mx-auto rounded-full bg-white border-2 border-brand-400 flex items-center justify-center shadow-sm mb-4 relative z-10">
+              <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <p class="text-brand-600 text-xs font-bold mb-1">1</p>
+            <h3 class="font-bold text-gray-900 mb-2">Аналіз задачі</h3>
+            <p class="text-gray-500 text-xs leading-relaxed max-w-[170px] mx-auto">Знайомимось із задачею, користувачами та підтверджуємо цінність. 3–7 днів.</p>
+          </div>
+          <div class="relative text-center">
+            <div class="w-16 h-16 mx-auto rounded-full bg-white border-2 border-brand-400 flex items-center justify-center shadow-sm mb-4 relative z-10">
+              <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <p class="text-brand-600 text-xs font-bold mb-1">2</p>
+            <h3 class="font-bold text-gray-900 mb-2">Рішення</h3>
+            <p class="text-gray-500 text-xs leading-relaxed max-w-[170px] mx-auto">Архітектура, етапи, пріоритети, склад команди та кошторис. Фіксуємо scope.</p>
+          </div>
+          <div class="relative text-center">
+            <div class="w-16 h-16 mx-auto rounded-full bg-white border-2 border-brand-400 flex items-center justify-center shadow-sm mb-4 relative z-10">
+              <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <p class="text-brand-600 text-xs font-bold mb-1">3</p>
+            <h3 class="font-bold text-gray-900 mb-2">Розробка</h3>
+            <p class="text-gray-500 text-xs leading-relaxed max-w-[170px] mx-auto">Короткі ітерації, щотижневі демо, continuous delivery. Ви контролюєте напрямок.</p>
+          </div>
+          <div class="relative text-center">
+            <div class="w-16 h-16 mx-auto rounded-full bg-white border-2 border-brand-400 flex items-center justify-center shadow-sm mb-4 relative z-10">
+              <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            </div>
+            <p class="text-brand-600 text-xs font-bold mb-1">4</p>
+            <h3 class="font-bold text-gray-900 mb-2">Розвиток</h3>
+            <p class="text-gray-500 text-xs leading-relaxed max-w-[170px] mx-auto">Запуск, метрики, ітерації. Розвиваємо продукт далі або передаємо команді.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50 border-y border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-center text-xs font-semibold tracking-widest text-gray-400 uppercase mb-8">Технології, з якими працюємо</p>
+      <div class="tech-marquee">
+        <div class="tech-track">
+          <span class="tech-item">React</span>
+          <span class="tech-item">Next.js</span>
+          <span class="tech-item">TypeScript</span>
+          <span class="tech-item">Node.js</span>
+          <span class="tech-item">Python</span>
+          <span class="tech-item">PostgreSQL</span>
+          <span class="tech-item">AWS</span>
+          <span class="tech-item">Docker</span>
+          <span class="tech-item">OpenAI</span>
+          <span class="tech-item">Stripe</span>
+          <span class="tech-item">Tailwind</span>
+          <span class="tech-item">Prisma</span>
+          <span class="tech-item">Redis</span>
+          <span class="tech-item">Kubernetes</span>
+          <span class="tech-item">GraphQL</span>
+          <span class="tech-item">tRPC</span>
+          <span class="tech-item">Supabase</span>
+          <span class="tech-item">LangChain</span>
+          <span class="tech-item">FastAPI</span>
+          <span class="tech-item">Django</span>
+          <span class="tech-item">React</span>
+          <span class="tech-item">Next.js</span>
+          <span class="tech-item">TypeScript</span>
+          <span class="tech-item">Node.js</span>
+          <span class="tech-item">Python</span>
+          <span class="tech-item">PostgreSQL</span>
+          <span class="tech-item">AWS</span>
+          <span class="tech-item">Docker</span>
+          <span class="tech-item">OpenAI</span>
+          <span class="tech-item">Stripe</span>
+          <span class="tech-item">Tailwind</span>
+          <span class="tech-item">Prisma</span>
+          <span class="tech-item">Redis</span>
+          <span class="tech-item">Kubernetes</span>
+          <span class="tech-item">GraphQL</span>
+          <span class="tech-item">tRPC</span>
+          <span class="tech-item">Supabase</span>
+          <span class="tech-item">LangChain</span>
+          <span class="tech-item">FastAPI</span>
+          <span class="tech-item">Django</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <p class="text-brand-600 text-xs font-semibold tracking-widest uppercase mb-3">Питання</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900">Часті питання</h2>
+      </div>
+      <div class="space-y-3">
+        <div class="faq-item bg-white rounded-xl overflow-hidden transition-colors">
+          <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left font-semibold text-gray-900 text-sm sm:text-base">
+            Скільки коштує розробка MVP?
+            <svg class="faq-icon w-5 h-5 text-gray-400 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="px-6 pb-5 text-sm text-gray-600 leading-relaxed">
+              Залежить від обсягу проєкту. Після безкоштовного передпроєктного аналізу задачі даємо точну фіксовану оцінку або пропонуємо погодинну оплату зі щотижневим лімітом. Без сюрпризів у кінці.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item bg-white rounded-xl overflow-hidden transition-colors">
+          <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left font-semibold text-gray-900 text-sm sm:text-base">
+            Як швидко можна стартувати?
+            <svg class="faq-icon w-5 h-5 text-gray-400 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="px-6 pb-5 text-sm text-gray-600 leading-relaxed">
+              Зазвичай протягом 5–10 робочих днів після узгодження обсягу робіт і договору. Ми невелика команда, тому процес узгодження швидкий — без бюрократії.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item bg-white rounded-xl overflow-hidden transition-colors">
+          <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left font-semibold text-gray-900 text-sm sm:text-base">
+            Хто володіє кодом і інтелектуальною власністю?
+            <svg class="faq-icon w-5 h-5 text-gray-400 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="px-6 pb-5 text-sm text-gray-600 leading-relaxed">
+              Повністю ви. Код у вашому репозиторії з першого дня. Усі права на інтелектуальну власність передаються вам за договором. Ми не тримаємо код «заручником».
+            </div>
+          </div>
+        </div>
+        <div class="faq-item bg-white rounded-xl overflow-hidden transition-colors">
+          <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left font-semibold text-gray-900 text-sm sm:text-base">
+            Чи працюєте з клієнтами за межами України?
+            <svg class="faq-icon w-5 h-5 text-gray-400 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="px-6 pb-5 text-sm text-gray-600 leading-relaxed">
+              Так. Працюємо віддалено з клієнтами з ЄС, США, Канади та Близького Сходу. Комунікація англійською або українською. Часовий пояс UTC+2 — зручний для європейських команд.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item bg-white rounded-xl overflow-hidden transition-colors">
+          <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left font-semibold text-gray-900 text-sm sm:text-base">
+            Що якщо обсяг робіт зміниться в процесі?
+            <svg class="faq-icon w-5 h-5 text-gray-400 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="px-6 pb-5 text-sm text-gray-600 leading-relaxed">
+              Нормально. Працюємо короткими спринтами (1–2 тижні). Зміни оцінюємо і узгоджуємо до старту наступного спринту. Ніколи не «накручуємо» години без вашого дозволу.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item bg-white rounded-xl overflow-hidden transition-colors">
+          <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left font-semibold text-gray-900 text-sm sm:text-base">
+            Які гарантії ви даєте?
+            <svg class="faq-icon w-5 h-5 text-gray-400 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="px-6 pb-5 text-sm text-gray-600 leading-relaxed">
+              30 днів безкоштовного виправлення критичних помилок після релізу. Договір з фіксацією обсягу робіт, термінів та передачі прав. Доступ до репозиторію з першого дня.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="form-gradient py-20 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-white">
+          <p class="text-white/70 text-xs font-semibold tracking-widest uppercase mb-3">Контакт</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight mb-4">
+            Є задача або<br>ідея продукту?
+          </h2>
+          <p class="text-white/80 text-base leading-relaxed max-w-md mb-6">
+            Опишіть коротко — ми повернемося з пропозицією формату співпраці та безкоштовною 30-хвилинною консультацією.
+          </p>
+          <ul class="space-y-3 text-sm text-white/90">
+            <li class="flex items-center gap-2"><svg class="w-5 h-5 text-white/70" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Відповідь протягом 1 робочого дня</li>
+            <li class="flex items-center gap-2"><svg class="w-5 h-5 text-white/70" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Без зобов'язань і «продажних» дзвінків</li>
+            <li class="flex items-center gap-2"><svg class="w-5 h-5 text-white/70" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Конфіденційність гарантована</li>
+          </ul>
+          <div class="mt-8 pt-6 border-t border-white/20">
+            <p class="text-xs text-white/60 mb-3">Або напишіть нам:</p>
+            <div class="flex flex-col gap-3">
+              <div class="flex gap-3">
+                <a href="mailto:contact@vanzalabs.io" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Email">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </a>
+                <a href="https://t.me/vanzalabs" target="_blank" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Telegram: @vanzalabs">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.458.02.889-.16 1.795-.962 6.145-.962 6.145-.4 1.562-.598 1.994-.998 2.023-.83.064-1.462-.543-2.267-1.066-1.26-.82-1.973-1.33-3.192-2.132-1.41-.927-.496-1.438.307-2.27.21-.218 3.843-3.52 3.915-3.82.009-.037.018-.17-.066-.241-.084-.07-.207-.046-.296-.027-.126.027-2.14 1.36-6.04 3.99-.572.394-1.09.586-1.554.575-.512-.015-1.5-.29-2.233-.53-.9-.294-1.614-.45-1.553-.95.032-.26.386-.528 1.06-.8 4.147-1.77 6.912-2.937 8.294-3.51 3.94-1.64 4.76-1.923 5.292-1.934z"/></svg>
+                </a>
+                <a href="https://wa.me/380000000000" target="_blank" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="WhatsApp">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+                <a href="https://instagram.com/vanzalabs" target="_blank" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Instagram">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+                <a href="https://facebook.com/vanzalabs" target="_blank" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Facebook">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+              </div>
+              <div class="text-sm text-white/90 space-y-1">
+                <p><span class="text-white/60">Тел:</span> <a href="tel:+380000000000" class="hover:text-white transition">+38 (0XX) XXX-XX-XX</a></p>
+                <p><span class="text-white/60">Telegram:</span> <a href="https://t.me/vanzalabs" target="_blank" target="_blank" class="hover:text-white transition">@vanzalabs</a></p>
+                <p><span class="text-white/60">Email:</span> <a href="mailto:contact@vanzalabs.io" target="_blank" class="hover:text-white transition">contact@vanzalabs.io</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl">
+          <form id="contactForm" class="space-y-4" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1.5">Ім'я *</label>
+                <input type="text" name="name" required placeholder="Ваше ім'я"
+                  class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1.5">Email *</label>
+                <input type="email" name="email" required placeholder="email@company.com"
+                  class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm">
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Компанія / проєкт</label>
+              <input type="text" name="company" placeholder="Назва компанії або проєкту"
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Що вас цікавить? *</label>
+              <select name="service" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm bg-white">
+                <option value="">Оберіть варіант</option>
+                <option value="mvp">MVP / Продукт під ключ</option>
+                <option value="automation">Автоматизація / AI-рішення</option>
+                <option value="team">Команда під проєкт</option>
+                <option value="other">Інше / Ще не знаю</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Повідомлення *</label>
+              <textarea name="message" rows="4" required placeholder="Коротко про задачу, терміни, бюджет (якщо є)..."
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm resize-none"></textarea>
+            </div>
+            <div class="flex items-start gap-2">
+              <input type="checkbox" id="privacy" name="privacy" required class="mt-0.5 w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500">
+              <label for="privacy" class="text-xs text-gray-500 leading-relaxed">Я погоджуюсь на обробку персональних даних відповідно до <a href="#" class="text-brand-600 hover:underline">Політики конфіденційності</a></label>
+            </div>
+            <button type="submit"
+              class="w-full bg-dark-900 hover:bg-gray-800 text-white font-semibold py-3.5 rounded-lg transition flex items-center justify-center gap-2">
+              Відправити заявку
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </button>
+            <p class="text-xs text-gray-400 text-center">Підказка: замініть YOUR_FORM_ID у коді на ваш ID з Formspree, або налаштуйте свій бекенд.</p>
+            <p id="formStatus" class="text-center text-sm hidden"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark-900 text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center gap-2.5 mb-4">
+  <img src="vanzalabs_logo_white_text.png" alt="vanzalabs" class="h-4 w-auto">
+</div>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4">Інженерна студія.<br>Розробка MVP, автоматизація, dedicated teams.</p>
+          <p class="text-xs text-gray-500">Україна</p>
+        </div>
+        <div>
+          <h4 class="text-xs font-semibold tracking-wider text-gray-400 uppercase mb-4">Навігація</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#about" class="text-gray-300 hover:text-brand-400 transition">Про нас</a></li>
+            <li><a href="#services" class="text-gray-300 hover:text-brand-400 transition">Послуги</a></li>
+            <li><a href="#principles" class="text-gray-300 hover:text-brand-400 transition">Принципи</a></li>
+            <li><a href="#process" class="text-gray-300 hover:text-brand-400 transition">Процес</a></li>
+            <li><a href="#faq" class="text-gray-300 hover:text-brand-400 transition">Питання</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-semibold tracking-wider text-gray-400 uppercase mb-4">Зв'яжіться з нами</h4>
+          <ul class="space-y-2.5 text-sm text-gray-300">
+            <li><a href="tel:+380000000000" class="hover:text-brand-400 transition">+38 (0XX) XXX-XX-XX</a></li>
+            <li><a href="https://t.me/vanzalabs" target="_blank" target="_blank" class="hover:text-brand-400 transition">Telegram: @vanzalabs</a></li>
+            <li><a href="mailto:contact@vanzalabs.io" target="_blank" class="hover:text-brand-400 transition">contact@vanzalabs.io</a></li>
+            <li class="text-gray-500 text-xs">Україна</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-semibold tracking-wider text-gray-400 uppercase mb-4">Соцмережі</h4>
+          <div class="flex gap-3">
+            <a href="https://instagram.com/vanzalabs" target="_blank" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="Instagram">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://facebook.com/vanzalabs" target="_blank" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="Facebook">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://t.me/vanzalabs" target="_blank" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="Telegram">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.458.02.889-.16 1.795-.962 6.145-.962 6.145-.4 1.562-.598 1.994-.998 2.023-.83.064-1.462-.543-2.267-1.066-1.26-.82-1.973-1.33-3.192-2.132-1.41-.927-.496-1.438.307-2.27.21-.218 3.843-3.52 3.915-3.82.009-.037.018-.17-.066-.241-.084-.07-.207-.046-.296-.027-.126.027-2.14 1.36-6.04 3.99-.572.394-1.09.586-1.554.575-.512-.015-1.5-.29-2.233-.53-.9-.294-1.614-.45-1.553-.95.032-.26.386-.528 1.06-.8 4.147-1.77 6.912-2.937 8.294-3.51 3.94-1.64 4.76-1.923 5.292-1.934z"/></svg>
+            </a>
+            <a href="https://wa.me/380000000000" target="_blank" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="WhatsApp">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <p>© 2026 — VanzaLabs. All rights reserved.</p>
+        <div class="flex gap-6 items-center">
+          <a href="#" class="hover:text-gray-300 transition">Політика конфіденційності</a>
+          <span class="text-brand-400 font-medium">Ua</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for all anchor links — prevents any page reload
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          const target = document.querySelector(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Process line draw on scroll
+    const processLine = document.getElementById('processLine');
+    if (processLine) {
+      const processSection = document.getElementById('process');
+      const drawLine = () => {
+        const rect = processSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+
+        // Calculate progress: 0 when section top hits bottom of viewport, 1 when section bottom hits top
+        let progress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+        progress = Math.max(0, Math.min(1, progress));
+
+        const drawLength = 1000 * progress;
+        processLine.style.strokeDashoffset = 1000 - drawLength;
+      };
+
+      window.addEventListener('scroll', drawLine);
+      drawLine();
+    }
+
+    // Form
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', e => {
+      if (form.action.includes('YOUR_FORM_ID')) {
+        e.preventDefault();
+        status.classList.remove('hidden', 'text-red-600');
+        status.classList.add('text-brand-600');
+        status.textContent = "Дякуємо! Ми зв'яжемося з вами протягом 1 робочого дня. (Примітка: підключіть Formspree або свій бекенд для реальної відправки.)";
+        form.reset();
+        setTimeout(() => status.classList.add('hidden'), 8000);
+      }
+    });
+  </script>
+</body>
+</html>
