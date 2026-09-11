@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Політика конфіденційності — VanzaLabs</title>
+  <meta name="description" content="Політика конфіденційності VanzaLabs">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="theme-color" content="#16a34a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +15,12 @@
     * { box-sizing: border-box; }
     body { margin: 0; font-family: Inter, system-ui, sans-serif; color: #111827; background: #f9fafb; line-height: 1.65; }
     main { max-width: 760px; margin: 0 auto; padding: 56px 24px 72px; }
-    .back { display: inline-block; margin-bottom: 32px; color: #15803d; font-weight: 600; text-decoration: none; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 32px; }
+    .back { color: #15803d; font-weight: 600; text-decoration: none; }
+    .language { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid #bbf7d0; border-radius: 999px; background: #f0fdf4; }
+    .lang-switch { border: 0; border-radius: 999px; padding: 6px 10px; color: #15803d; background: transparent; font: inherit; font-size: .8rem; font-weight: 700; cursor: pointer; transition: background .2s ease, color .2s ease, transform .2s ease; }
+    .lang-switch:hover { background: #dcfce7; }
+    .lang-switch.active { color: #fff; background: #16a34a; box-shadow: 0 2px 6px rgba(22, 163, 74, .2); }
     article { padding: 40px; background: #fff; border: 1px solid #e5e7eb; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,.04); }
     h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 5vw, 2.4rem); line-height: 1.2; }
     h2 { margin: 32px 0 10px; font-size: 1.15rem; }
@@ -26,7 +32,13 @@
 </head>
 <body>
   <main>
-    <a class="back" href="index.html" target="_self">← Повернутися на сайт</a>
+    <div class="topbar">
+      <a class="back" href="index.html" target="_self">← Повернутися на сайт</a>
+      <div class="language">
+        <button class="lang-switch" type="button" data-lang="uk" aria-pressed="false">UA</button>
+        <button class="lang-switch" type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
     <article>
       <h1>Політика конфіденційності</h1>
       <p class="updated">Останнє оновлення: 11 вересня 2026 року</p>
@@ -50,5 +62,61 @@
       <p>З питань щодо приватності звертайтеся на <a href="mailto:contact@vanzalabs.tech">contact@vanzalabs.tech</a> або в Telegram <a href="https://t.me/vanzalabs">@vanzalabs</a>.</p>
     </article>
   </main>
+  <script>
+    const translations = {
+      '← Повернутися на сайт': '← Back to website',
+      'Мова': 'Language',
+      'Політика конфіденційності': 'Privacy Policy',
+      'Останнє оновлення: 11 вересня 2026 року': 'Last updated: 11 September 2026',
+      'Які дані ми отримуємо': 'What data we collect',
+      'VanzaLabs отримує лише дані, які ви добровільно залишаєте через форму: ім’я, email, назву компанії або проєкту та зміст вашого повідомлення.': 'VanzaLabs only receives the information you voluntarily submit through the form: your name, email address, company or project name, and message content.',
+      'Для чого ми їх використовуємо': 'How we use it',
+      'Ми використовуємо ці дані, щоб відповісти на ваш запит, обговорити потенційну співпрацю та, за потреби, підготувати пропозицію. Ми не продаємо і не передаємо персональні дані третім особам для маркетингових цілей.': 'We use this information to respond to your request, discuss potential cooperation, and, when needed, prepare a proposal. We do not sell or share personal data with third parties for marketing purposes.',
+      'Обробка форми': 'Form processing',
+      'Заявки з форми обробляються через сервіс Formspree. Дані можуть зберігатися на його захищених серверах відповідно до політики конфіденційності цього сервісу.': 'Form submissions are processed through Formspree. The data may be stored on its secure servers in accordance with that service’s privacy policy.',
+      'Зберігання та захист': 'Storage and protection',
+      'Ми зберігаємо дані лише стільки, скільки потрібно для комунікації та виконання домовленостей, і вживаємо розумних організаційних та технічних заходів для їх захисту.': 'We keep data only for as long as needed for communication and to fulfil our agreements, and take reasonable organisational and technical measures to protect it.',
+      'Ваші права': 'Your rights',
+      'Ви можете попросити уточнити, виправити або видалити ваші персональні дані, написавши нам на': 'You may ask us to clarify, correct, or delete your personal data by emailing us at',
+      'Контакти': 'Contact',
+      'З питань щодо приватності звертайтеся на': 'For privacy-related questions, contact us at',
+      'або в Telegram': 'or on Telegram'
+    };
+    const originalText = new WeakMap();
+    const meta = {
+      uk: { title: 'Політика конфіденційності — VanzaLabs', description: 'Політика конфіденційності VanzaLabs' },
+      en: { title: 'Privacy Policy — VanzaLabs', description: 'VanzaLabs Privacy Policy' }
+    };
+
+    function setLanguage(lang) {
+      const english = lang === 'en';
+      document.documentElement.lang = lang;
+      document.title = meta[lang].title;
+      document.querySelector('meta[name="description"]').content = meta[lang].description;
+
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      let node;
+      while ((node = walker.nextNode())) {
+        if (node.parentElement?.tagName === 'SCRIPT' || !node.nodeValue.trim()) continue;
+        if (!originalText.has(node)) originalText.set(node, node.nodeValue);
+        const original = originalText.get(node);
+        const key = original.trim();
+        const translated = english ? translations[key] : Object.keys(translations).find(value => translations[value] === key);
+        node.nodeValue = translated ? original.replace(key, translated) : original;
+      }
+
+      document.querySelectorAll('.lang-switch').forEach(button => {
+        const active = button.dataset.lang === lang;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      localStorage.setItem('vanzalabs-language', lang);
+    }
+
+    document.querySelectorAll('.lang-switch').forEach(button => {
+      button.addEventListener('click', () => setLanguage(button.dataset.lang));
+    });
+    setLanguage(localStorage.getItem('vanzalabs-language') || 'en');
+  </script>
 </body>
 </html>
