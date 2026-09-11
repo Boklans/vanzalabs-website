@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VanzaLabs — Інженерна студія | MVP, автоматизація, продукти</title>
-  <meta name="description" content="VanzaLabs — команда з України. Розробляємо MVP, автоматизуємо бізнес-процеси та допомагаємо стартапам запускати продукти. Від ідеї до релізу.">
+  <title>VanzaLabs — Engineering Studio | MVPs, automation, products</title>
+  <meta name="description" content="VanzaLabs is a Ukrainian engineering studio. We build MVPs, automate business processes and help startups launch products from idea to release.">
 
-  <meta property="og:title" content="VanzaLabs — Інженерна студія">
-  <meta property="og:description" content="MVP, автоматизація та продуктова розробка. Команда з України.">
+  <meta property="og:title" content="VanzaLabs — Engineering Studio">
+  <meta property="og:description" content="MVPs, automation and product development. A team from Ukraine.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vanzalabs.io">
   <meta property="og:image" content="https://vanzalabs.io/og-image.jpg">
@@ -52,7 +52,27 @@
     const originalText = new WeakMap();
     const metaUk = { title: document.title, description: document.querySelector('meta[name="description"]').content, ogTitle: document.querySelector('meta[property="og:title"]').content, ogDescription: document.querySelector('meta[property="og:description"]').content };
     const metaEn = { title: 'VanzaLabs — Engineering Studio | MVPs, automation, products', description: 'VanzaLabs is a Ukrainian engineering studio. We build MVPs, automate business processes and help startups launch products.', ogTitle: 'VanzaLabs — Engineering Studio', ogDescription: 'MVPs, automation and product development. A team from Ukraine.' };
-    const attributeTranslations = new Map([['Відкрити меню', 'Open menu'], ['Ваше ім’я', 'Your name'], ['Ваше ім\'я', 'Your name'], ['Назва компанії або проєкту', 'Company or project name'], ['Коротко про задачу, терміни, бюджет (якщо є)...', 'Briefly describe the challenge, timeline and budget (if any)...'], ['VanzaLabs — на головну', 'VanzaLabs — home']]);
+    const attributeTranslations = new Map([
+      ['Відкрити меню', 'Open menu'],
+      ['Ваше ім’я', 'Your name'],
+      ["Ваше ім'я", 'Your name'],
+      ['Назва компанії або проєкту', 'Company or project name'],
+      ['Коротко про задачу, терміни, бюджет (якщо є)...', 'Briefly describe the challenge, timeline and budget (if any)...'],
+      ['VanzaLabs — на головну', 'VanzaLabs — home'],
+      ['Ім\'я *', 'Name *'],
+      ["Ім'я *", 'Name *'],
+      ['Email *', 'Email *'],
+      ['Компанія / проєкт', 'Company / project'],
+      ['Що вас цікавить? *', 'What are you interested in? *'],
+      ['Оберіть варіант', 'Choose an option'],
+      ['Повідомлення *', 'Message *'],
+      ['Я погоджуюсь на обробку персональних даних відповідно до', 'I agree to the processing of personal data in accordance with the'],
+      ['Політики конфіденційності', 'Privacy Policy'],
+      ['Відправити заявку', 'Send inquiry'],
+      ['Відповімо протягом 1 робочого дня.', 'We will reply within one business day.'],
+      ['Ігор', 'Igor'],
+      ['Руслан', 'Ruslan']
+    ]);
 
     function setLanguage(lang) {
       const english = lang === 'en';
@@ -61,35 +81,44 @@
       document.querySelector('meta[name="description"]').content = (english ? metaEn : metaUk).description;
       document.querySelector('meta[property="og:title"]').content = (english ? metaEn : metaUk).ogTitle;
       document.querySelector('meta[property="og:description"]').content = (english ? metaEn : metaUk).ogDescription;
+
       const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
       let node;
-      while (node = walker.nextNode()) {
-        if (['SCRIPT', 'STYLE'].includes(node.parentElement.tagName) || !node.nodeValue.trim()) continue;
+      while ((node = walker.nextNode())) {
+        if (['SCRIPT', 'STYLE'].includes(node.parentElement?.tagName) || !node.nodeValue.trim()) continue;
         if (!originalText.has(node)) originalText.set(node, node.nodeValue);
         const original = originalText.get(node);
         const key = original.trim();
-        node.nodeValue = english && translations.has(key) ? original.replace(key, translations.get(key)) : original;
+        const replacement = english ? translations.get(key) : null;
+        node.nodeValue = replacement ? original.replace(key, replacement) : original;
       }
+
       document.querySelectorAll('[aria-label], [placeholder], [title]').forEach(el => {
         ['aria-label', 'placeholder', 'title'].forEach(attr => {
           const initial = el.dataset[`original${attr}`] || el.getAttribute(attr);
           if (!initial) return;
           el.dataset[`original${attr}`] = initial;
-          el.setAttribute(attr, english && attributeTranslations.has(initial) ? attributeTranslations.get(initial) : initial);
+          const translated = english && attributeTranslations.has(initial) ? attributeTranslations.get(initial) : initial;
+          el.setAttribute(attr, translated);
         });
       });
+
       document.querySelectorAll('.lang-switch').forEach(button => {
         const active = button.dataset.lang === lang;
         button.classList.toggle('bg-brand-600', active);
         button.classList.toggle('text-white', active);
         button.classList.toggle('text-gray-500', !active);
-        button.setAttribute('aria-pressed', active);
+        button.setAttribute('aria-pressed', String(active));
       });
+
       localStorage.setItem('vanzalabs-language', lang);
     }
+
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.lang-switch').forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
-      setLanguage(localStorage.getItem('vanzalabs-language') || 'uk');
+      document.querySelectorAll('.lang-switch').forEach(button => {
+        button.addEventListener('click', () => setLanguage(button.dataset.lang));
+      });
+      setLanguage(localStorage.getItem('vanzalabs-language') || 'en');
     });
 
     tailwind.config = {
@@ -230,9 +259,9 @@
     }
     .cta-primary svg { transition: transform 0.25s ease; }
     .cta-primary:hover svg { transform: translateX(3px); }
-    .founder-photo { object-fit: cover; }
-    .founder-photo-igor { transform: scale(1.35) translateY(9%) translateX(-6%); }
-    .founder-photo-ruslan { transform: scale(1.15) translateY(-12%)  translateX(6%); }
+    .founder-photo { object-fit: cover; object-position: center top; }
+    .founder-photo-igor { transform: scale(1.15) translateY(5%) translateX(-5%); }
+    .founder-photo-ruslan { transform: scale(1.15) translateY(5%) translateX(0); }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -445,9 +474,9 @@
         <div class="grid sm:grid-cols-2 gap-4">
           <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center">
             <div class="w-28 h-28 mx-auto rounded-full bg-brand-100 border-2 border-white shadow-sm flex items-center justify-center mb-4 overflow-hidden">
-              <img src="founder1.jpg" alt="Ігор" class="founder-photo founder-photo-igor w-full h-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-brand-700\'>І</span>';">
+              <img src="founder1.jpg" alt="Igor" class="founder-photo founder-photo-igor w-full h-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-brand-700\'>I</span>';">
             </div>
-            <p class="font-bold text-gray-900 mb-0.5">Ігор</p>
+            <p class="font-bold text-gray-900 mb-0.5">Igor</p>
             <p class="text-xs font-bold text-gray-400 mb-3">ЗАСНОВНИК</p>
             <div class="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center mx-auto mb-4">
               <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
@@ -457,9 +486,9 @@
           </div>
           <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center">
             <div class="w-28 h-28 mx-auto rounded-full bg-accent-100 border-2 border-white shadow-sm flex items-center justify-center mb-4 overflow-hidden">
-              <img src="founder2.jpg" alt="Руслан" class="founder-photo founder-photo-ruslan w-full h-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-accent-700\'>Р</span>';">
+              <img src="founder2.jpg" alt="Ruslan" class="founder-photo founder-photo-ruslan w-full h-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-accent-700\'>R</span>';">
             </div>
-            <p class="font-bold text-gray-900 mb-0.5">Руслан</p>
+            <p class="font-bold text-gray-900 mb-0.5">Ruslan</p>
             <p class="text-xs font-bold text-gray-400 mb-3">ЗАСНОВНИК</p>
             <div class="w-12 h-12 rounded-xl bg-accent-50 flex items-center justify-center mx-auto mb-4">
               <svg class="w-6 h-6 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
@@ -869,8 +898,8 @@
           <form id="contactForm" class="space-y-4" action="https://formspree.io/f/xyegvywp" method="POST">
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-medium text-gray-500 mb-1.5">Ім'я *</label>
-                <input type="text" name="name" required placeholder="Ваше ім'я"
+                <label class="block text-xs font-medium text-gray-500 mb-1.5">Name *</label>
+                <input type="text" name="name" required placeholder="Your name"
                   class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm">
               </div>
               <div>
@@ -880,35 +909,35 @@
               </div>
             </div>
             <div>
-              <label class="block text-xs font-medium text-gray-500 mb-1.5">Компанія / проєкт</label>
-              <input type="text" name="company" placeholder="Назва компанії або проєкту"
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Company / project</label>
+              <input type="text" name="company" placeholder="Company or project name"
                 class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm">
             </div>
             <div>
-              <label class="block text-xs font-medium text-gray-500 mb-1.5">Що вас цікавить? *</label>
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">What are you interested in? *</label>
               <select name="service" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm bg-white">
-                <option value="">Оберіть варіант</option>
-                <option value="mvp">MVP / Продукт під ключ</option>
-                <option value="automation">Автоматизація / AI-рішення</option>
-                <option value="team">Команда під проєкт</option>
-                <option value="other">Інше / Ще не знаю</option>
+                <option value="">Choose an option</option>
+                <option value="mvp">MVP / Turnkey product</option>
+                <option value="automation">Automation / AI solutions</option>
+                <option value="team">Project team</option>
+                <option value="other">Other / Not sure yet</option>
               </select>
             </div>
             <div>
-              <label class="block text-xs font-medium text-gray-500 mb-1.5">Повідомлення *</label>
-              <textarea name="message" rows="4" required placeholder="Коротко про задачу, терміни, бюджет (якщо є)..."
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Message *</label>
+              <textarea name="message" rows="4" required placeholder="Briefly describe the challenge, timeline and budget (if any)..."
                 class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm resize-none"></textarea>
             </div>
             <div class="flex items-start gap-2">
               <input type="checkbox" id="privacy" name="privacy" required class="mt-0.5 w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500">
-              <label for="privacy" class="text-xs text-gray-500 leading-relaxed">Я погоджуюсь на обробку персональних даних відповідно до <a href="privacy-policy.html" class="text-brand-600 hover:underline">Політики конфіденційності</a></label>
+              <label for="privacy" class="text-xs text-gray-500 leading-relaxed">I agree to the processing of personal data in accordance with the <a href="privacy-policy.html" class="text-brand-600 hover:underline">Privacy Policy</a></label>
             </div>
             <button type="submit"
               class="w-full bg-dark-900 hover:bg-gray-800 text-white font-semibold py-3.5 rounded-lg transition flex items-center justify-center gap-2">
-              Відправити заявку
+              Send inquiry
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </button>
-            <p class="text-xs text-gray-400 text-center">Відповімо протягом 1 робочого дня.</p>
+            <p class="text-xs text-gray-400 text-center">We will reply within one business day.</p>
             <p id="formStatus" class="text-center text-sm hidden"></p>
           </form>
         </div>
