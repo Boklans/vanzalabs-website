@@ -229,6 +229,9 @@
     }
     .cta-primary svg { transition: transform 0.25s ease; }
     .cta-primary:hover svg { transform: translateX(3px); }
+    .founder-photo { object-fit: cover; }
+    .founder-photo-igor { transform: scale(1.35) translateY(9%) translateX(-6%); }
+    .founder-photo-ruslan { transform: scale(1.15) translateY(-12%)  translateX(6%); }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -441,7 +444,7 @@
         <div class="grid sm:grid-cols-2 gap-4">
           <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center">
             <div class="w-28 h-28 mx-auto rounded-full bg-brand-100 border-2 border-white shadow-sm flex items-center justify-center mb-4 overflow-hidden">
-              <img src="founder1.jpg" alt="Ігор" class="w-full h-full object-cover object-center" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-brand-700\'>І</span>';">
+              <img src="founder1.jpg" alt="Ігор" class="founder-photo founder-photo-igor w-full h-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-brand-700\'>І</span>';">
             </div>
             <p class="font-bold text-gray-900 mb-0.5">Ігор</p>
             <p class="text-xs font-bold text-gray-400 mb-3">ЗАСНОВНИК</p>
@@ -453,7 +456,7 @@
           </div>
           <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center">
             <div class="w-28 h-28 mx-auto rounded-full bg-accent-100 border-2 border-white shadow-sm flex items-center justify-center mb-4 overflow-hidden">
-              <img src="founder2.jpg" alt="Руслан" class="w-full h-full object-cover object-center" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-accent-700\'>Р</span>';">
+              <img src="founder2.jpg" alt="Руслан" class="founder-photo founder-photo-ruslan w-full h-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-accent-700\'>Р</span>';">
             </div>
             <p class="font-bold text-gray-900 mb-0.5">Руслан</p>
             <p class="text-xs font-bold text-gray-400 mb-3">ЗАСНОВНИК</p>
