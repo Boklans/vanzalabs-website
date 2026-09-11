@@ -73,6 +73,34 @@
       ['Ігор', 'Igor'],
       ['Руслан', 'Ruslan']
     ]);
+    const ukrainianTranslations = new Map([
+      ['Igor', 'Ігор'],
+      ['Ruslan', 'Руслан'],
+      ['CO-FOUNDER', 'ЗАСНОВНИК'],
+      ['Name *', "Ім'я *"],
+      ['Your name', "Ваше ім'я"],
+      ['Company / project', 'Компанія / проєкт'],
+      ['Company or project name', 'Назва компанії або проєкту'],
+      ['What are you interested in? *', 'Що вас цікавить? *'],
+      ['Choose an option', 'Оберіть варіант'],
+      ['MVP / Turnkey product', 'MVP / Продукт під ключ'],
+      ['Automation / AI solutions', 'Автоматизація / AI-рішення'],
+      ['Project team', 'Команда під проєкт'],
+      ['Other / Not sure yet', 'Інше / Ще не знаю'],
+      ['Message *', 'Повідомлення *'],
+      ['Briefly describe the challenge, timeline and budget (if any)...', 'Коротко про задачу, терміни, бюджет (якщо є)...'],
+      ['I agree to the processing of personal data in accordance with the', 'Я погоджуюсь на обробку персональних даних відповідно до'],
+      ['Privacy Policy', 'Політики конфіденційності'],
+      ['Send inquiry', 'Відправити заявку'],
+      ['We will reply within one business day.', 'Відповімо протягом 1 робочого дня.']
+    ]);
+    const ukrainianAttributeTranslations = new Map([
+      ['Igor', 'Ігор'],
+      ['Ruslan', 'Руслан'],
+      ['Your name', "Ваше ім'я"],
+      ['Company or project name', 'Назва компанії або проєкту'],
+      ['Briefly describe the challenge, timeline and budget (if any)...', 'Коротко про задачу, терміни, бюджет (якщо є)...']
+    ]);
 
     function setLanguage(lang) {
       const english = lang === 'en';
@@ -89,16 +117,19 @@
         if (!originalText.has(node)) originalText.set(node, node.nodeValue);
         const original = originalText.get(node);
         const key = original.trim();
-        const replacement = english ? translations.get(key) : null;
+        const replacement = english ? translations.get(key) : ukrainianTranslations.get(key);
         node.nodeValue = replacement ? original.replace(key, replacement) : original;
       }
 
       document.querySelectorAll('[aria-label], [placeholder], [title]').forEach(el => {
         ['aria-label', 'placeholder', 'title'].forEach(attr => {
-          const initial = el.dataset[`original${attr}`] || el.getAttribute(attr);
+          const dataKey = `original${attr.charAt(0).toUpperCase()}${attr.slice(1).replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())}`;
+          const initial = el.dataset[dataKey] || el.getAttribute(attr);
           if (!initial) return;
-          el.dataset[`original${attr}`] = initial;
-          const translated = english && attributeTranslations.has(initial) ? attributeTranslations.get(initial) : initial;
+          el.dataset[dataKey] = initial;
+          const translated = english
+            ? (attributeTranslations.get(initial) || initial)
+            : (ukrainianAttributeTranslations.get(initial) || initial);
           el.setAttribute(attr, translated);
         });
       });
@@ -309,11 +340,11 @@
           <a href="#faq" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Питання</a>
         </nav>
         <div class="hidden lg:flex items-center gap-4">
-          <div class="flex items-center rounded-lg border border-gray-200 p-0.5 text-xs font-semibold" aria-label="Language selector">
-            <button type="button" class="lang-switch px-2 py-1 rounded-md transition" data-lang="uk">UA</button>
-            <button type="button" class="lang-switch px-2 py-1 rounded-md transition" data-lang="en">EN</button>
+          <div class="flex w-20 shrink-0 items-center justify-center rounded-lg border border-gray-200 p-0.5 text-xs font-semibold" aria-label="Language selector">
+            <button type="button" class="lang-switch w-8 px-2 py-1 rounded-md transition" data-lang="uk">UA</button>
+            <button type="button" class="lang-switch w-8 px-2 py-1 rounded-md transition" data-lang="en">EN</button>
           </div>
-          <a href="#contact" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition shadow-sm">
+          <a href="#contact" class="inline-flex w-52 shrink-0 items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition shadow-sm">
             Обговорити проєкт
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
@@ -331,10 +362,10 @@
           <a href="#faq" class="block text-sm font-medium text-gray-700 py-1">Питання</a>
           <div class="flex items-center gap-2 pt-1 text-xs font-semibold text-gray-600" aria-label="Language selector">
             <span>Мова:</span>
-            <button type="button" class="lang-switch rounded px-2 py-1" data-lang="uk">UA</button>
-            <button type="button" class="lang-switch rounded px-2 py-1" data-lang="en">EN</button>
+            <button type="button" class="lang-switch w-8 rounded px-2 py-1 text-center" data-lang="uk">UA</button>
+            <button type="button" class="lang-switch w-8 rounded px-2 py-1 text-center" data-lang="en">EN</button>
           </div>
-          <a href="#contact" class="inline-flex items-center gap-2 bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg mt-2">Обговорити проєкт →</a>
+          <a href="#contact" class="inline-flex w-full items-center justify-center gap-2 bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg mt-2">Обговорити проєкт →</a>
         </div>
       </div>
     </div>
