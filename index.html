@@ -20,6 +20,77 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    // Language switcher. Ukrainian remains the default; the choice is remembered per browser.
+    const translations = new Map([
+      [`Про нас`, `About`], [`Послуги`, `Services`], [`Принципи`, `Principles`], [`Процес`, `Process`], [`Питання`, `FAQ`],
+      [`Обговорити проєкт`, `Discuss a project`], [`Обговорити проєкт →`, `Discuss a project →`], [`Мова:`, `Language:`],
+      [`Приймаємо нові проєкти`, `Accepting new projects`], [`Ми створюємо`, `We build`], [`цифрові продукти,`, `digital products`], [`що рухають`, `that move`], [`бізнес вперед`, `business forward`],
+      [`Інженерна студія з України. Розробляємо MVP та вебпродукти, автоматизуємо бізнес-процеси та допомагаємо стартапам і бізнесам масштабуватися.`, `An engineering studio from Ukraine. We build MVPs and web products, automate business processes, and help startups and companies scale.`],
+      [`Від ідеї до стабільного рішення — ми поруч на кожному етапі.`, `From an idea to a dependable solution — we are with you at every stage.`],
+      [`Розповісти про задачу`, `Tell us about your challenge`], [`Наші послуги`, `Our services`], [`Безкоштовна консультація 30 хв`, `Free 30-minute consultation`], [`Фіксована ціна або Time & Material`, `Fixed price or Time & Material`],
+      [`Аналізуємо бізнес-задачу...`, `Analysing your business challenge...`], [`Проєктуємо архітектуру...`, `Designing the architecture...`], [`Пишемо перший спринт...`, `Building the first sprint...`],
+      [`Відкритий код`, `Open source code`], [`З першого дня у вашому репозиторії`, `In your repository from day one`], [`години на відповідь`, `hours to respond`], [`відкритий код з 1 дня`, `open code from day one`], [`тижнів до MVP`, `weeks to MVP`], [`посередників у комунікації`, `middlemen in communication`],
+      [`Чому ми створили`, `Why we created`], [`Ми — два інженери, які роками працювали на різних проєктах і бачили одну й ту саму проблему:`, `We are two engineers who spent years working on different projects and repeatedly saw the same issue:`], [`клієнти не отримують те, за що платять`, `clients do not get what they pay for`], [`Затягування термінів, приховані комісії, код, який ніхто не може підтримати.`, `Missed deadlines, hidden fees, and code no one can maintain.`],
+      [`Тому ми створили VanzaLabs. Назва походить від італійського`, `That is why we created VanzaLabs. The name comes from the Italian`], [`— «рухатися вперед». Ми рухаємо ваш бізнес вперед, розуміючи, навіщо це потрібно.`, `— “to move forward.” We move your business forward by understanding why it matters.`],
+      [`Зараз нас двоє, але за спиною — мережа перевірених розробників, з якими ми співпрацювали роками. Це дає нам гнучкість: від невеликого MVP до повноцінної команди під продукт.`, `There are two of us today, backed by a network of proven developers we have worked with for years. This gives us flexibility, from a small MVP to a full product team.`],
+      [`Україна`, `Ukraine`], [`Працюємо з клієнтами по всьому світу`, `Working with clients worldwide`], [`ЗАСНОВНИК`, `CO-FOUNDER`],
+      [`Реклама, digital-маркетинг, продуктовий менеджмент. Знає, як знайти клієнта для продукту та вивести його на ринок. Розуміє бізнес ізсередини.`, `Advertising, digital marketing and product management. Knows how to find a product’s customer and bring it to market. Understands business from the inside.`],
+      [`Аналітик, аудитор, проджект-менеджер. Вів проєкти в державних установах, вигравав державні гранти та запускав стартапи.`, `Analyst, auditor and project manager. Led projects for public institutions, won government grants and launched startups.`],
+      [`Наша мережа`, `Our network`], [`За потреби залучаємо перевірених розробників: React/Next, Python, DevOps, Mobile, UI/UX. Всі — з попереднім досвідом спільної роботи. Ніяких «підборів з нуля» та сюрпризів для клієнта.`, `When needed, we bring in proven React/Next, Python, DevOps, Mobile and UI/UX developers. Everyone has prior experience working together — no sourcing from scratch or surprises for clients.`],
+      [`Що ми робимо`, `What we do`], [`Три моделі співпраці. Обирайте ту, що відповідає вашому етапу.`, `Three engagement models. Choose the one that fits your stage.`],
+      [`01 / Розробка продуктів`, `01 / Product development`], [`MVP та продукти під ключ`, `MVPs and turnkey products`], [`Від ідеї до робочого продукту. Підходить для стартапів, які треба швидко перевірити гіпотезу, та бізнесів, що запускають новий напрям.`, `From an idea to a working product. For startups that need to validate a hypothesis quickly and businesses launching a new direction.`], [`Discovery + технічне завдання`, `Discovery + technical specification`], [`Запуск і post-launch підтримка`, `Launch and post-launch support`], [`інд. оцінка`, `custom estimate`],
+      [`02 / Автоматизація та AI`, `02 / Automation and AI`], [`Автоматизація та AI-рішення`, `Automation and AI solutions`], [`Менше ручної роботи, більше швидкості. Інтегруємо системи, впроваджуємо чат-ботів, RAG та агентів, які реально економлять час і гроші.`, `Less manual work, more speed. We integrate systems and implement chatbots, RAG and agents that genuinely save time and money.`], [`Інтеграції CRM / ERP / API`, `CRM / ERP / API integrations`], [`Чат-боти, RAG, AI-агенти`, `Chatbots, RAG, AI agents`], [`Дашборди та аналітика`, `Dashboards and analytics`],
+      [`03 / Команда під проєкт`, `03 / A team for your project`], [`Команда під ваш продукт`, `A team for your product`], [`Формуємо віддалену команду, яка стає продовженням вашого бізнесу. Підбираємо під стек і домен, не «всіх підряд».`, `We assemble a remote team that becomes an extension of your business. We match people to your stack and domain, not simply anyone available.`], [`Підбір під стек і домен`, `Matched to your stack and domain`], [`Повна прозорість процесів`, `Complete process transparency`], [`Масштабування вгору/вниз`, `Scale up or down`],
+      [`Як ми працюємо`, `How we work`], [`Те, що можемо гарантувати кожному клієнту.`, `What we can guarantee every client.`], [`Бізнес-задача перш за все`, `Business challenge first`], [`Починаємо не з коду, а з розуміння: навіщо це потрібно, хто користувач, яка метрика успіху. Якщо фіча не вирішує задачу — скажемо «ні».`, `We start with understanding, not code: why it is needed, who the user is and what success looks like. If a feature does not solve the challenge, we will say no.`], [`Код, який можна підтримувати`, `Maintainable code`], [`Чиста архітектура, документація, тести. Не залишаємо «чорних скриньок». Ваш наступний розробник скаже «дякую».`, `Clean architecture, documentation and tests. No black boxes left behind. Your next developer will thank you.`], [`Повна прозорість`, `Full transparency`], [`Доступ до репозиторію з 1 дня. Щотижневі демо. Жодних прихованих годин. Scope узгоджуємо до старту.`, `Repository access from day one. Weekly demos. No hidden hours. We agree on scope before we start.`],
+      [`Чому ми`, `Why us`], [`Технічний партнер,`, `A technical partner,`], [`а не просто виконавець`, `not just a contractor`], [`Беремо відповідальність за результат бізнесу, а не тільки за рядки коду.`, `We take responsibility for business outcomes, not only lines of code.`], [`01 / Бізнес-фокус`, `01 / Business focus`], [`Від задачі до рішення`, `From challenge to solution`], [`Починаємо з цілі, процесів і обмежень бізнесу — не з набору технологій. Кожне рішення має обґрунтування.`, `We begin with business goals, processes and constraints — not a technology list. Every decision has a rationale.`], [`02 / Підбір команди`, `02 / Team selection`], [`Команда під потребу`, `A team for the need`], [`Залучаємо спеціалістів з релевантною експертизою для вашого етапу і масштабу. Не «всіх підряд».`, `We involve specialists with relevant expertise for your stage and scale — not just anyone.`], [`03 / Чіткість`, `03 / Clarity`], [`Прозора співпраця`, `Transparent collaboration`], [`Обсяг, пріоритети, формат комунікації та критерії готовності — фіксуємо до старту робіт.`, `We define scope, priorities, communication format and acceptance criteria before work starts.`], [`Фіксована ціна`, `Fixed price`], [`або прозорий Time & Material — без сюрпризів у кінці`, `or transparent Time & Material — no surprises at the end`], [`Щотижневі демо`, `Weekly demos`], [`Ви завжди бачите прогрес і можете коригувати напрямок`, `You always see progress and can adjust direction`], [`Код — ваш`, `The code is yours`], [`Повний доступ до репозиторію з першого дня`, `Full repository access from day one`], [`Гарантія 30 днів`, `30-day warranty`], [`Безкоштовно виправляємо критичні баги після релізу`, `We fix critical bugs free of charge after launch`],
+      [`Як будується робота`, `How work is structured`], [`Чотири чіткі етапи. Без хаосу і «ми ще думаємо».`, `Four clear stages. No chaos or “we are still thinking.”`], [`Аналіз задачі`, `Challenge analysis`], [`Знайомимось із задачею, користувачами та підтверджуємо цінність. 3–7 днів.`, `We learn about the challenge and users, and validate the value. 3–7 days.`], [`Рішення`, `Solution`], [`Архітектура, етапи, пріоритети, склад команди та кошторис. Фіксуємо scope.`, `Architecture, stages, priorities, team composition and estimate. We lock the scope.`], [`Розробка`, `Development`], [`Короткі ітерації, щотижневі демо, continuous delivery. Ви контролюєте напрямок.`, `Short iterations, weekly demos and continuous delivery. You control the direction.`], [`Розвиток`, `Growth`], [`Запуск, метрики, ітерації. Розвиваємо продукт далі або передаємо команді.`, `Launch, metrics and iterations. We continue growing the product or hand it over to your team.`], [`Технології, з якими працюємо`, `Technologies we work with`],
+      [`Часті питання`, `Frequently asked questions`], [`Скільки коштує розробка MVP?`, `How much does MVP development cost?`], [`Залежить від обсягу проєкту. Після безкоштовного передпроєктного аналізу задачі даємо точну фіксовану оцінку або пропонуємо погодинну оплату зі щотижневим лімітом. Без сюрпризів у кінці.`, `It depends on the project scope. After a free pre-project analysis, we provide an exact fixed estimate or hourly billing with a weekly cap. No surprises at the end.`], [`Як швидко можна стартувати?`, `How soon can we start?`], [`Зазвичай протягом 5–10 робочих днів після узгодження обсягу робіт і договору. Ми невелика команда, тому процес узгодження швидкий — без бюрократії.`, `Usually within 5–10 business days after agreeing on the scope and contract. We are a small team, so approvals are quick and bureaucracy-free.`], [`Хто володіє кодом і інтелектуальною власністю?`, `Who owns the code and intellectual property?`], [`Повністю ви. Код у вашому репозиторії з першого дня. Усі права на інтелектуальну власність передаються вам за договором. Ми не тримаємо код «заручником».`, `You do, entirely. The code is in your repository from day one. All intellectual-property rights are transferred to you by contract. We never hold code hostage.`], [`Чи працюєте з клієнтами за межами України?`, `Do you work with clients outside Ukraine?`], [`Так. Працюємо віддалено з клієнтами з ЄС, США, Канади та Близького Сходу. Комунікація англійською або українською. Часовий пояс UTC+2 — зручний для європейських команд.`, `Yes. We work remotely with clients in the EU, US, Canada and the Middle East. We communicate in English or Ukrainian. UTC+2 is convenient for European teams.`], [`Що якщо обсяг робіт зміниться в процесі?`, `What if the scope changes during the project?`], [`Нормально. Працюємо короткими спринтами (1–2 тижні). Зміни оцінюємо і узгоджуємо до старту наступного спринту. Ніколи не «накручуємо» години без вашого дозволу.`, `That is normal. We work in short 1–2 week sprints. We estimate and agree on changes before the next sprint begins. We never add hours without your approval.`], [`Які гарантії ви даєте?`, `What guarantees do you provide?`], [`30 днів безкоштовного виправлення критичних помилок після релізу. Договір з фіксацією обсягу робіт, термінів та передачі прав. Доступ до репозиторію з першого дня.`, `30 days of free critical-bug fixes after launch. A contract defining scope, timelines and transfer of rights. Repository access from day one.`],
+      [`Контакт`, `Contact`], [`Є задача або`, `Have a challenge or`], [`ідея продукту?`, `a product idea?`], [`Опишіть коротко — ми повернемося з пропозицією формату співпраці та безкоштовною 30-хвилинною консультацією.`, `Tell us briefly about it — we will come back with a proposed engagement format and a free 30-minute consultation.`], [`Відповідь протягом 1 робочого дня`, `Reply within one business day`], [`Без зобов'язань і «продажних» дзвінків`, `No obligations or sales calls`], [`Конфіденційність гарантована`, `Confidentiality guaranteed`], [`Або напишіть нам:`, `Or write to us:`], [`Тел:`, `Tel:`], [`Ім'я *`, `Name *`], [`Компанія / проєкт`, `Company / project`], [`Що вас цікавить? *`, `What are you interested in? *`], [`Оберіть варіант`, `Choose an option`], [`MVP / Продукт під ключ`, `MVP / Turnkey product`], [`Автоматизація / AI-рішення`, `Automation / AI solutions`], [`Команда під проєкт`, `Project team`], [`Інше / Ще не знаю`, `Other / Not sure yet`], [`Повідомлення *`, `Message *`], [`Я погоджуюсь на обробку персональних даних відповідно до`, `I agree to the processing of personal data in accordance with the`], [`Політики конфіденційності`, `Privacy Policy`], [`Відправити заявку`, `Send inquiry`], [`Відповімо протягом 1 робочого дня.`, `We will reply within one business day.`],
+      [`Інженерна студія.`, `Engineering studio.`], [`Розробка MVP, автоматизація, dedicated teams.`, `MVP development, automation, dedicated teams.`], [`Навігація`, `Navigation`], [`Зв'яжіться з нами`, `Get in touch`], [`Соцмережі`, `Social media`], [`Політика конфіденційності`, `Privacy Policy`]
+    ]);
+    const originalText = new WeakMap();
+    const metaUk = { title: document.title, description: document.querySelector('meta[name="description"]').content, ogTitle: document.querySelector('meta[property="og:title"]').content, ogDescription: document.querySelector('meta[property="og:description"]').content };
+    const metaEn = { title: 'VanzaLabs — Engineering Studio | MVPs, automation, products', description: 'VanzaLabs is a Ukrainian engineering studio. We build MVPs, automate business processes and help startups launch products.', ogTitle: 'VanzaLabs — Engineering Studio', ogDescription: 'MVPs, automation and product development. A team from Ukraine.' };
+    const attributeTranslations = new Map([['Відкрити меню', 'Open menu'], ['Ваше ім’я', 'Your name'], ['Ваше ім\'я', 'Your name'], ['Назва компанії або проєкту', 'Company or project name'], ['Коротко про задачу, терміни, бюджет (якщо є)...', 'Briefly describe the challenge, timeline and budget (if any)...'], ['VanzaLabs — на головну', 'VanzaLabs — home']]);
+
+    function setLanguage(lang) {
+      const english = lang === 'en';
+      document.documentElement.lang = lang;
+      document.title = (english ? metaEn : metaUk).title;
+      document.querySelector('meta[name="description"]').content = (english ? metaEn : metaUk).description;
+      document.querySelector('meta[property="og:title"]').content = (english ? metaEn : metaUk).ogTitle;
+      document.querySelector('meta[property="og:description"]').content = (english ? metaEn : metaUk).ogDescription;
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      let node;
+      while (node = walker.nextNode()) {
+        if (['SCRIPT', 'STYLE'].includes(node.parentElement.tagName) || !node.nodeValue.trim()) continue;
+        if (!originalText.has(node)) originalText.set(node, node.nodeValue);
+        const original = originalText.get(node);
+        const key = original.trim();
+        node.nodeValue = english && translations.has(key) ? original.replace(key, translations.get(key)) : original;
+      }
+      document.querySelectorAll('[aria-label], [placeholder], [title]').forEach(el => {
+        ['aria-label', 'placeholder', 'title'].forEach(attr => {
+          const initial = el.dataset[`original${attr}`] || el.getAttribute(attr);
+          if (!initial) return;
+          el.dataset[`original${attr}`] = initial;
+          el.setAttribute(attr, english && attributeTranslations.has(initial) ? attributeTranslations.get(initial) : initial);
+        });
+      });
+      document.querySelectorAll('.lang-switch').forEach(button => {
+        const active = button.dataset.lang === lang;
+        button.classList.toggle('bg-brand-600', active);
+        button.classList.toggle('text-white', active);
+        button.classList.toggle('text-gray-500', !active);
+        button.setAttribute('aria-pressed', active);
+      });
+      localStorage.setItem('vanzalabs-language', lang);
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.lang-switch').forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
+      setLanguage(localStorage.getItem('vanzalabs-language') || 'uk');
+    });
+
     tailwind.config = {
       theme: {
         extend: {
@@ -149,6 +220,24 @@
       opacity: 1;
       transform: translateY(0);
     }
+    .cta-primary {
+      box-shadow: 0 10px 24px rgba(22, 163, 74, 0.22);
+    }
+    .cta-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(22, 163, 74, 0.3);
+    }
+    .cta-primary svg { transition: transform 0.25s ease; }
+    .cta-primary:hover svg { transform: translateX(3px); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+      .fade-in { opacity: 1; transform: none; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -187,7 +276,10 @@
           <a href="#faq" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Питання</a>
         </nav>
         <div class="hidden lg:flex items-center gap-4">
-          <span class="text-xs text-gray-400" title="English version — coming soon">EN soon →</span>
+          <div class="flex items-center rounded-lg border border-gray-200 p-0.5 text-xs font-semibold" aria-label="Language selector">
+            <button type="button" class="lang-switch px-2 py-1 rounded-md transition" data-lang="uk">UA</button>
+            <button type="button" class="lang-switch px-2 py-1 rounded-md transition" data-lang="en">EN</button>
+          </div>
           <a href="#contact" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition shadow-sm">
             Обговорити проєкт
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -204,6 +296,11 @@
           <a href="#principles" class="block text-sm font-medium text-gray-700 py-1">Принципи</a>
           <a href="#process" class="block text-sm font-medium text-gray-700 py-1">Процес</a>
           <a href="#faq" class="block text-sm font-medium text-gray-700 py-1">Питання</a>
+          <div class="flex items-center gap-2 pt-1 text-xs font-semibold text-gray-600" aria-label="Language selector">
+            <span>Мова:</span>
+            <button type="button" class="lang-switch rounded px-2 py-1" data-lang="uk">UA</button>
+            <button type="button" class="lang-switch rounded px-2 py-1" data-lang="en">EN</button>
+          </div>
           <a href="#contact" class="inline-flex items-center gap-2 bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg mt-2">Обговорити проєкт →</a>
         </div>
       </div>
@@ -229,7 +326,7 @@
           </p>
           <p class="text-gray-500 text-sm mb-8">Від ідеї до стабільного рішення — ми поруч на кожному етапі.</p>
           <div class="flex flex-wrap gap-3 mb-8">
-            <a href="#contact" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3.5 rounded-lg transition shadow-md hover:shadow-lg">
+            <a href="#contact" class="cta-primary inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3.5 rounded-lg transition shadow-md hover:shadow-lg">
               Розповісти про задачу
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
@@ -343,8 +440,8 @@
         </div>
         <div class="grid sm:grid-cols-2 gap-4">
           <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center">
-            <div class="w-20 h-20 mx-auto rounded-full bg-brand-100 border-2 border-white shadow-sm flex items-center justify-center mb-3 overflow-hidden">
-              <img src="founder1.jpg" alt="Ігор" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-xl font-bold text-brand-700\'>Р</span>';">
+            <div class="w-28 h-28 mx-auto rounded-full bg-brand-100 border-2 border-white shadow-sm flex items-center justify-center mb-4 overflow-hidden">
+              <img src="founder1.jpg" alt="Ігор" class="w-full h-full object-cover object-center" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-brand-700\'>І</span>';">
             </div>
             <p class="font-bold text-gray-900 mb-0.5">Ігор</p>
             <p class="text-xs font-bold text-gray-400 mb-3">ЗАСНОВНИК</p>
@@ -355,8 +452,8 @@
             <p class="text-sm text-gray-500">Реклама, digital-маркетинг, продуктовий менеджмент. Знає, як знайти клієнта для продукту та вивести його на ринок. Розуміє бізнес ізсередини.</p>
           </div>
           <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center">
-            <div class="w-20 h-20 mx-auto rounded-full bg-accent-100 border-2 border-white shadow-sm flex items-center justify-center mb-3 overflow-hidden">
-              <img src="founder2.jpg" alt="Руслан" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-xl font-bold text-accent-700\'>B</span>';">
+            <div class="w-28 h-28 mx-auto rounded-full bg-accent-100 border-2 border-white shadow-sm flex items-center justify-center mb-4 overflow-hidden">
+              <img src="founder2.jpg" alt="Руслан" class="w-full h-full object-cover object-center" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-accent-700\'>Р</span>';">
             </div>
             <p class="font-bold text-gray-900 mb-0.5">Руслан</p>
             <p class="text-xs font-bold text-gray-400 mb-3">ЗАСНОВНИК</p>
@@ -741,24 +838,27 @@
             <p class="text-xs text-white/60 mb-3">Або напишіть нам:</p>
             <div class="flex flex-col gap-3">
               <div class="flex gap-3">
-                <a href="mailto:info@vanzalabs.tech" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Email">
+                <a href="mailto:info@vanzalabs.tech" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Email: info@vanzalabs.tech">
                   <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 </a>
                 <a href="https://t.me/vanzalabs" target="_blank" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Telegram: @vanzalabs">
                   <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.458.02.889-.16 1.795-.962 6.145-.962 6.145-.4 1.562-.598 1.994-.998 2.023-.83.064-1.462-.543-2.267-1.066-1.26-.82-1.973-1.33-3.192-2.132-1.41-.927-.496-1.438.307-2.27.21-.218 3.843-3.52 3.915-3.82.009-.037.018-.17-.066-.241-.084-.07-.207-.046-.296-.027-.126.027-2.14 1.36-6.04 3.99-.572.394-1.09.586-1.554.575-.512-.015-1.5-.29-2.233-.53-.9-.294-1.614-.45-1.553-.95.032-.26.386-.528 1.06-.8 4.147-1.77 6.912-2.937 8.294-3.51 3.94-1.64 4.76-1.923 5.292-1.934z"/></svg>
                 </a>
-                <a href="https://wa.me/380000000000" target="_blank" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="WhatsApp">
+                <a href="https://www.linkedin.com/in/vanza-labs-453134436/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="LinkedIn" aria-label="LinkedIn">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6A2.5 2.5 0 1 1 4.98 3.5zM.3 8.1h4.4V23H.3V8.1zM7.5 8.1h4.22v2.04h.06c.59-1.12 2.03-2.3 4.18-2.3 4.47 0 5.3 2.94 5.3 6.77V23h-4.4v-7.4c0-1.77-.03-4.04-2.46-4.04-2.47 0-2.85 1.93-2.85 3.92V23H7.5V8.1z"/></svg>
+                </a>
+                <a href="https://wa.me/380636333067" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="WhatsApp: +380636333067">
                   <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 </a>
-                <a href="https://instagram.com/vanzalabs" target="_blank" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Instagram">
+                <a href="https://www.instagram.com/vanzalabs_new/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Instagram">
                   <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                 </a>
-                <a href="https://facebook.com/vanzalabs" target="_blank" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Facebook">
+                <a href="https://www.facebook.com/profile.php?id=61594339408916" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Facebook">
                   <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </a>
               </div>
               <div class="text-sm text-white/90 space-y-1">
-                <p><span class="text-white/60">Тел:</span> <a href="tel:+380000000000" class="hover:text-white transition">+38 (0XX) XXX-XX-XX</a></p>
+                <p><span class="text-white/60">Тел:</span> <a href="tel:+380636333067" class="hover:text-white transition">+380 63 633 30 67</a></p>
                 <p><span class="text-white/60">Telegram:</span> <a href="https://t.me/vanzalabs" target="_blank" target="_blank" class="hover:text-white transition">@vanzalabs</a></p>
                 <p><span class="text-white/60">Email:</span> <a href="mailto:info@vanzalabs.tech" target="_blank" class="hover:text-white transition">info@vanzalabs.tech</a></p>
               </div>
@@ -801,14 +901,14 @@
             </div>
             <div class="flex items-start gap-2">
               <input type="checkbox" id="privacy" name="privacy" required class="mt-0.5 w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500">
-              <label for="privacy" class="text-xs text-gray-500 leading-relaxed">Я погоджуюсь на обробку персональних даних відповідно до <a href="#" class="text-brand-600 hover:underline">Політики конфіденційності</a></label>
+              <label for="privacy" class="text-xs text-gray-500 leading-relaxed">Я погоджуюсь на обробку персональних даних відповідно до <a href="privacy-policy.html" class="text-brand-600 hover:underline">Політики конфіденційності</a></label>
             </div>
             <button type="submit"
               class="w-full bg-dark-900 hover:bg-gray-800 text-white font-semibold py-3.5 rounded-lg transition flex items-center justify-center gap-2">
               Відправити заявку
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </button>
-           
+            <p class="text-xs text-gray-400 text-center">Відповімо протягом 1 робочого дня.</p>
             <p id="formStatus" class="text-center text-sm hidden"></p>
           </form>
         </div>
@@ -839,7 +939,7 @@
         <div>
           <h4 class="text-xs font-semibold tracking-wider text-gray-400 uppercase mb-4">Зв'яжіться з нами</h4>
           <ul class="space-y-2.5 text-sm text-gray-300">
-            <li><a href="tel:+380000000000" class="hover:text-brand-400 transition">+38 (0XX) XXX-XX-XX</a></li>
+            <li><a href="tel:+380636333067" class="hover:text-brand-400 transition">+380 63 633 30 67</a></li>
             <li><a href="https://t.me/vanzalabs" target="_blank" target="_blank" class="hover:text-brand-400 transition">Telegram: @vanzalabs</a></li>
             <li><a href="mailto:info@vanzalabs.tech" target="_blank" class="hover:text-brand-400 transition">info@vanzalabs.tech</a></li>
             <li class="text-gray-500 text-xs">Україна</li>
@@ -848,16 +948,19 @@
         <div>
           <h4 class="text-xs font-semibold tracking-wider text-gray-400 uppercase mb-4">Соцмережі</h4>
           <div class="flex gap-3">
-            <a href="https://instagram.com/vanzalabs" target="_blank" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="Instagram">
+            <a href="https://www.instagram.com/vanzalabs_new/" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="Instagram">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             </a>
-            <a href="https://facebook.com/vanzalabs" target="_blank" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="Facebook">
+            <a href="https://www.facebook.com/profile.php?id=61594339408916" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="Facebook">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/vanza-labs-453134436/" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="LinkedIn" aria-label="LinkedIn">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6A2.5 2.5 0 1 1 4.98 3.5zM.3 8.1h4.4V23H.3V8.1zM7.5 8.1h4.22v2.04h.06c.59-1.12 2.03-2.3 4.18-2.3 4.47 0 5.3 2.94 5.3 6.77V23h-4.4v-7.4c0-1.77-.03-4.04-2.46-4.04-2.47 0-2.85 1.93-2.85 3.92V23H7.5V8.1z"/></svg>
             </a>
             <a href="https://t.me/vanzalabs" target="_blank" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="Telegram">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.458.02.889-.16 1.795-.962 6.145-.962 6.145-.4 1.562-.598 1.994-.998 2.023-.83.064-1.462-.543-2.267-1.066-1.26-.82-1.973-1.33-3.192-2.132-1.41-.927-.496-1.438.307-2.27.21-.218 3.843-3.52 3.915-3.82.009-.037.018-.17-.066-.241-.084-.07-.207-.046-.296-.027-.126.027-2.14 1.36-6.04 3.99-.572.394-1.09.586-1.554.575-.512-.015-1.5-.29-2.233-.53-.9-.294-1.614-.45-1.553-.95.032-.26.386-.528 1.06-.8 4.147-1.77 6.912-2.937 8.294-3.51 3.94-1.64 4.76-1.923 5.292-1.934z"/></svg>
             </a>
-            <a href="https://wa.me/380000000000" target="_blank" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="WhatsApp">
+            <a href="https://wa.me/380636333067" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="WhatsApp: +380636333067">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </a>
           </div>
@@ -866,7 +969,7 @@
       <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
         <p>© 2026 — VanzaLabs. All rights reserved.</p>
         <div class="flex gap-6 items-center">
-          <a href="#" class="hover:text-gray-300 transition">Політика конфіденційності</a>
+          <a href="privacy-policy.html" class="hover:text-gray-300 transition">Політика конфіденційності</a>
           <span class="text-brand-400 font-medium">Ua</span>
         </div>
       </div>
@@ -915,6 +1018,16 @@
       });
     }, { threshold: 0.1 });
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('section:not(.hero-bg) > div:first-child').forEach(element => {
+      if (reduceMotion) {
+        element.classList.add('visible');
+      } else {
+        element.classList.add('fade-in');
+        observer.observe(element);
+      }
+    });
+
     // Process line draw on scroll
     const processLine = document.getElementById('processLine');
     if (processLine) {
@@ -945,7 +1058,9 @@
         e.preventDefault();
         status.classList.remove('hidden', 'text-red-600');
         status.classList.add('text-brand-600');
-        status.textContent = "Дякуємо! Ми зв'яжемося з вами протягом 1 робочого дня. (Примітка: підключіть Formspree або свій бекенд для реальної відправки.)";
+        status.textContent = document.documentElement.lang === 'en'
+          ? 'Thank you! We will get back to you within one business day. (Note: connect Formspree or your own backend to send submissions.)'
+          : "Дякуємо! Ми зв'яжемося з вами протягом 1 робочого дня. (Примітка: підключіть Formspree або свій бекенд для реальної відправки.)";
         form.reset();
         setTimeout(() => status.classList.add('hidden'), 8000);
       }
