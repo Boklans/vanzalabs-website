@@ -21,94 +21,280 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Language switcher. Ukrainian remains the default; the choice is remembered per browser.
-    const translations = new Map([
-      [`Про нас`, `About`], [`Послуги`, `Services`], [`Принципи`, `Principles`], [`Процес`, `Process`], [`Питання`, `FAQ`],
-      [`Обговорити проєкт`, `Discuss a project`], [`Обговорити проєкт →`, `Discuss a project →`], [`Мова:`, `Language:`],
-      [`Приймаємо нові проєкти`, `Accepting new projects`], [`Ми створюємо`, `We build`], [`цифрові продукти,`, `digital products`], [`що рухають`, `that move`], [`бізнес вперед`, `business forward`],
-      [`Інженерна студія з України. Розробляємо MVP та вебпродукти, автоматизуємо бізнес-процеси та допомагаємо стартапам і бізнесам масштабуватися.`, `An engineering studio from Ukraine. We build MVPs and web products, automate business processes, and help startups and companies scale.`],
-      [`Від ідеї до стабільного рішення — ми поруч на кожному етапі.`, `From an idea to a dependable solution — we are with you at every stage.`],
-      [`Розповісти про задачу`, `Tell us about your challenge`], [`Наші послуги`, `Our services`], [`Безкоштовна консультація 30 хв`, `Free 30-minute consultation`], [`Фіксована ціна або Time & Material`, `Fixed price or Time & Material`],
-      [`Аналізуємо бізнес-задачу...`, `Analysing your business challenge...`], [`Проєктуємо архітектуру...`, `Designing the architecture...`], [`Пишемо перший спринт...`, `Building the first sprint...`],
-      [`Відкритий код`, `Open source code`], [`З першого дня у вашому репозиторії`, `In your repository from day one`], [`години на відповідь`, `hours to respond`], [`відкритий код з 1 дня`, `open code from day one`], [`тижнів до MVP`, `weeks to MVP`], [`посередників у комунікації`, `middlemen in communication`],
-      [`Чому ми створили`, `Why we created`], [`Ми — два інженери, які роками працювали на різних проєктах і бачили одну й ту саму проблему:`, `We are two engineers who spent years working on different projects and repeatedly saw the same issue:`], [`клієнти не отримують те, за що платять`, `clients do not get what they pay for`], [`Затягування термінів, приховані комісії, код, який ніхто не може підтримати.`, `Missed deadlines, hidden fees, and code no one can maintain.`],
-      [`Тому ми створили VanzaLabs. Назва походить від італійського`, `That is why we created VanzaLabs. The name comes from the Italian`], [`— «рухатися вперед». Ми рухаємо ваш бізнес вперед, розуміючи, навіщо це потрібно.`, `— “to move forward.” We move your business forward by understanding why it matters.`],
-      [`Зараз нас двоє, але за спиною — мережа перевірених розробників, з якими ми співпрацювали роками. Це дає нам гнучкість: від невеликого MVP до повноцінної команди під продукт.`, `There are two of us today, backed by a network of proven developers we have worked with for years. This gives us flexibility, from a small MVP to a full product team.`],
-      [`Україна`, `Ukraine`], [`Працюємо з клієнтами по всьому світу`, `Working with clients worldwide`], [`ЗАСНОВНИК`, `CO-FOUNDER`],
-      [`Реклама, digital-маркетинг, продуктовий менеджмент. Знає, як знайти клієнта для продукту та вивести його на ринок. Розуміє бізнес ізсередини.`, `Advertising, digital marketing and product management. Knows how to find a product’s customer and bring it to market. Understands business from the inside.`],
-      [`Аналітик, аудитор, проджект-менеджер. Вів проєкти в державних установах, вигравав державні гранти та запускав стартапи.`, `Analyst, auditor and project manager. Led projects for public institutions, won government grants and launched startups.`],
-      [`Наша мережа`, `Our network`], [`За потреби залучаємо перевірених розробників: React/Next, Python, DevOps, Mobile, UI/UX. Всі — з попереднім досвідом спільної роботи. Ніяких «підборів з нуля» та сюрпризів для клієнта.`, `When needed, we bring in proven React/Next, Python, DevOps, Mobile and UI/UX developers. Everyone has prior experience working together — no sourcing from scratch or surprises for clients.`],
-      [`Що ми робимо`, `What we do`], [`Три моделі співпраці. Обирайте ту, що відповідає вашому етапу.`, `Three engagement models. Choose the one that fits your stage.`],
-      [`01 / Розробка продуктів`, `01 / Product development`], [`MVP та продукти під ключ`, `MVPs and turnkey products`], [`Від ідеї до робочого продукту. Підходить для стартапів, які треба швидко перевірити гіпотезу, та бізнесів, що запускають новий напрям.`, `From an idea to a working product. For startups that need to validate a hypothesis quickly and businesses launching a new direction.`], [`Discovery + технічне завдання`, `Discovery + technical specification`], [`Запуск і post-launch підтримка`, `Launch and post-launch support`], [`інд. оцінка`, `custom estimate`],
-      [`02 / Автоматизація та AI`, `02 / Automation and AI`], [`Автоматизація та AI-рішення`, `Automation and AI solutions`], [`Менше ручної роботи, більше швидкості. Інтегруємо системи, впроваджуємо чат-ботів, RAG та агентів, які реально економлять час і гроші.`, `Less manual work, more speed. We integrate systems and implement chatbots, RAG and agents that genuinely save time and money.`], [`Інтеграції CRM / ERP / API`, `CRM / ERP / API integrations`], [`Чат-боти, RAG, AI-агенти`, `Chatbots, RAG, AI agents`], [`Дашборди та аналітика`, `Dashboards and analytics`],
-      [`03 / Команда під проєкт`, `03 / A team for your project`], [`Команда під ваш продукт`, `A team for your product`], [`Формуємо віддалену команду, яка стає продовженням вашого бізнесу. Підбираємо під стек і домен, не «всіх підряд».`, `We assemble a remote team that becomes an extension of your business. We match people to your stack and domain, not simply anyone available.`], [`Підбір під стек і домен`, `Matched to your stack and domain`], [`Повна прозорість процесів`, `Complete process transparency`], [`Масштабування вгору/вниз`, `Scale up or down`],
-      [`Як ми працюємо`, `How we work`], [`Те, що можемо гарантувати кожному клієнту.`, `What we can guarantee every client.`], [`Бізнес-задача перш за все`, `Business challenge first`], [`Починаємо не з коду, а з розуміння: навіщо це потрібно, хто користувач, яка метрика успіху. Якщо фіча не вирішує задачу — скажемо «ні».`, `We start with understanding, not code: why it is needed, who the user is and what success looks like. If a feature does not solve the challenge, we will say no.`], [`Код, який можна підтримувати`, `Maintainable code`], [`Чиста архітектура, документація, тести. Не залишаємо «чорних скриньок». Ваш наступний розробник скаже «дякую».`, `Clean architecture, documentation and tests. No black boxes left behind. Your next developer will thank you.`], [`Повна прозорість`, `Full transparency`], [`Доступ до репозиторію з 1 дня. Щотижневі демо. Жодних прихованих годин. Scope узгоджуємо до старту.`, `Repository access from day one. Weekly demos. No hidden hours. We agree on scope before we start.`],
-      [`Чому ми`, `Why us`], [`Технічний партнер,`, `A technical partner,`], [`а не просто виконавець`, `not just a contractor`], [`Беремо відповідальність за результат бізнесу, а не тільки за рядки коду.`, `We take responsibility for business outcomes, not only lines of code.`], [`01 / Бізнес-фокус`, `01 / Business focus`], [`Від задачі до рішення`, `From challenge to solution`], [`Починаємо з цілі, процесів і обмежень бізнесу — не з набору технологій. Кожне рішення має обґрунтування.`, `We begin with business goals, processes and constraints — not a technology list. Every decision has a rationale.`], [`02 / Підбір команди`, `02 / Team selection`], [`Команда під потребу`, `A team for the need`], [`Залучаємо спеціалістів з релевантною експертизою для вашого етапу і масштабу. Не «всіх підряд».`, `We involve specialists with relevant expertise for your stage and scale — not just anyone.`], [`03 / Чіткість`, `03 / Clarity`], [`Прозора співпраця`, `Transparent collaboration`], [`Обсяг, пріоритети, формат комунікації та критерії готовності — фіксуємо до старту робіт.`, `We define scope, priorities, communication format and acceptance criteria before work starts.`], [`Фіксована ціна`, `Fixed price`], [`або прозорий Time & Material — без сюрпризів у кінці`, `or transparent Time & Material — no surprises at the end`], [`Щотижневі демо`, `Weekly demos`], [`Ви завжди бачите прогрес і можете коригувати напрямок`, `You always see progress and can adjust direction`], [`Код — ваш`, `The code is yours`], [`Повний доступ до репозиторію з першого дня`, `Full repository access from day one`], [`Гарантія 30 днів`, `30-day warranty`], [`Безкоштовно виправляємо критичні баги після релізу`, `We fix critical bugs free of charge after launch`],
-      [`Як будується робота`, `How work is structured`], [`Чотири чіткі етапи. Без хаосу і «ми ще думаємо».`, `Four clear stages. No chaos or “we are still thinking.”`], [`Аналіз задачі`, `Challenge analysis`], [`Знайомимось із задачею, користувачами та підтверджуємо цінність. 3–7 днів.`, `We learn about the challenge and users, and validate the value. 3–7 days.`], [`Рішення`, `Solution`], [`Архітектура, етапи, пріоритети, склад команди та кошторис. Фіксуємо scope.`, `Architecture, stages, priorities, team composition and estimate. We lock the scope.`], [`Розробка`, `Development`], [`Короткі ітерації, щотижневі демо, continuous delivery. Ви контролюєте напрямок.`, `Short iterations, weekly demos and continuous delivery. You control the direction.`], [`Розвиток`, `Growth`], [`Запуск, метрики, ітерації. Розвиваємо продукт далі або передаємо команді.`, `Launch, metrics and iterations. We continue growing the product or hand it over to your team.`], [`Технології, з якими працюємо`, `Technologies we work with`],
-      [`Часті питання`, `Frequently asked questions`], [`Скільки коштує розробка MVP?`, `How much does MVP development cost?`], [`Залежить від обсягу проєкту. Після безкоштовного передпроєктного аналізу задачі даємо точну фіксовану оцінку або пропонуємо погодинну оплату зі щотижневим лімітом. Без сюрпризів у кінці.`, `It depends on the project scope. After a free pre-project analysis, we provide an exact fixed estimate or hourly billing with a weekly cap. No surprises at the end.`], [`Як швидко можна стартувати?`, `How soon can we start?`], [`Зазвичай протягом 5–10 робочих днів після узгодження обсягу робіт і договору. Ми невелика команда, тому процес узгодження швидкий — без бюрократії.`, `Usually within 5–10 business days after agreeing on the scope and contract. We are a small team, so approvals are quick and bureaucracy-free.`], [`Хто володіє кодом і інтелектуальною власністю?`, `Who owns the code and intellectual property?`], [`Повністю ви. Код у вашому репозиторії з першого дня. Усі права на інтелектуальну власність передаються вам за договором. Ми не тримаємо код «заручником».`, `You do, entirely. The code is in your repository from day one. All intellectual-property rights are transferred to you by contract. We never hold code hostage.`], [`Чи працюєте з клієнтами за межами України?`, `Do you work with clients outside Ukraine?`], [`Так. Працюємо віддалено з клієнтами з ЄС, США, Канади та Близького Сходу. Комунікація англійською або українською. Часовий пояс UTC+2 — зручний для європейських команд.`, `Yes. We work remotely with clients in the EU, US, Canada and the Middle East. We communicate in English or Ukrainian. UTC+2 is convenient for European teams.`], [`Що якщо обсяг робіт зміниться в процесі?`, `What if the scope changes during the project?`], [`Нормально. Працюємо короткими спринтами (1–2 тижні). Зміни оцінюємо і узгоджуємо до старту наступного спринту. Ніколи не «накручуємо» години без вашого дозволу.`, `That is normal. We work in short 1–2 week sprints. We estimate and agree on changes before the next sprint begins. We never add hours without your approval.`], [`Які гарантії ви даєте?`, `What guarantees do you provide?`], [`30 днів безкоштовного виправлення критичних помилок після релізу. Договір з фіксацією обсягу робіт, термінів та передачі прав. Доступ до репозиторію з першого дня.`, `30 days of free critical-bug fixes after launch. A contract defining scope, timelines and transfer of rights. Repository access from day one.`],
-      [`Контакт`, `Contact`], [`Є задача або`, `Have a challenge or`], [`ідея продукту?`, `a product idea?`], [`Опишіть коротко — ми повернемося з пропозицією формату співпраці та безкоштовною 30-хвилинною консультацією.`, `Tell us briefly about it — we will come back with a proposed engagement format and a free 30-minute consultation.`], [`Відповідь протягом 1 робочого дня`, `Reply within one business day`], [`Без зобов'язань і «продажних» дзвінків`, `No obligations or sales calls`], [`Конфіденційність гарантована`, `Confidentiality guaranteed`], [`Або напишіть нам:`, `Or write to us:`], [`Тел:`, `Tel:`], [`Ім'я *`, `Name *`], [`Компанія / проєкт`, `Company / project`], [`Що вас цікавить? *`, `What are you interested in? *`], [`Оберіть варіант`, `Choose an option`], [`MVP / Продукт під ключ`, `MVP / Turnkey product`], [`Автоматизація / AI-рішення`, `Automation / AI solutions`], [`Команда під проєкт`, `Project team`], [`Інше / Ще не знаю`, `Other / Not sure yet`], [`Повідомлення *`, `Message *`], [`Я погоджуюсь на обробку персональних даних відповідно до`, `I agree to the processing of personal data in accordance with the`], [`Політики конфіденційності`, `Privacy Policy`], [`Відправити заявку`, `Send inquiry`], [`Відповімо протягом 1 робочого дня.`, `We will reply within one business day.`],
-      [`Інженерна студія.`, `Engineering studio.`], [`Розробка MVP, автоматизація, dedicated teams.`, `MVP development, automation, dedicated teams.`], [`Навігація`, `Navigation`], [`Зв'яжіться з нами`, `Get in touch`], [`Соцмережі`, `Social media`], [`Політика конфіденційності`, `Privacy Policy`]
-    ]);
+    // Bidirectional translation engine
+    const ukToEn = new Map();
+    const enToUk = new Map();
+
+    function addTranslation(uk, en) {
+      ukToEn.set(uk, en);
+      ukToEn.set(en, en);
+      enToUk.set(en, uk);
+      enToUk.set(uk, uk);
+    }
+
+    // Navigation & Hero
+    addTranslation('Про нас', 'About');
+    addTranslation('Послуги', 'Services');
+    addTranslation('Принципи', 'Principles');
+    addTranslation('Процес', 'Process');
+    addTranslation('Питання', 'FAQ');
+    addTranslation('Обговорити проєкт', 'Discuss a project');
+    addTranslation('Обговорити проєкт →', 'Discuss a project →');
+    addTranslation('Мова:', 'Language:');
+    addTranslation('Приймаємо нові проєкти', 'Accepting new projects');
+    addTranslation('Ми створюємо', 'We build');
+    addTranslation('цифрові продукти,', 'digital products');
+    addTranslation('що рухають', 'that move');
+    addTranslation('бізнес вперед', 'business forward');
+    addTranslation('Інженерна студія з України. Розробляємо MVP та вебпродукти, автоматизуємо бізнес-процеси та допомагаємо стартапам і бізнесам масштабуватися.', 'An engineering studio from Ukraine. We build MVPs and web products, automate business processes, and help startups and companies scale.');
+    addTranslation('Від ідеї до стабільного рішення — ми поруч на кожному етапі.', 'From an idea to a dependable solution — we are with you at every stage.');
+    addTranslation('Розповісти про задачу', 'Tell us about your challenge');
+    addTranslation('Наші послуги', 'Our services');
+    addTranslation('Безкоштовна консультація 30 хв', 'Free 30-minute consultation');
+    addTranslation('Фіксована ціна або Time & Material', 'Fixed price or Time & Material');
+
+    // Hero Terminal & Mockup
+    addTranslation('Аналізуємо бізнес-задачу...', 'Analysing your business challenge...');
+    addTranslation('Проєктуємо архітектуру...', 'Designing the architecture...');
+    addTranslation('Пишемо перший спринт...', 'Building the first sprint...');
+    addTranslation('→ Аналізуємо бізнес-задачу...', '→ Analysing your business challenge...');
+    addTranslation('→ Проєктуємо архітектуру...', '→ Designing the architecture...');
+    addTranslation('→ Пишемо перший спринт...', '→ Building the first sprint...');
+    addTranslation('Відкритий код', 'Open source code');
+    addTranslation('З першого дня у вашому репозиторії', 'In your repository from day one');
+
+    // Stats
+    addTranslation('години на відповідь', 'hours to respond');
+    addTranslation('відкритий код з 1 дня', 'open code from day one');
+    addTranslation('тижнів до MVP', 'weeks to MVP');
+    addTranslation('посередників у комунікації', 'middlemen in communication');
+
+    // About Section
+    addTranslation('Чому ми створили', 'Why we created');
+    addTranslation('Ми — два інженери, які роками працювали на різних проєктах і бачили одну й ту саму проблему:', 'We are two engineers who spent years working on different projects and repeatedly saw the same issue:');
+    addTranslation('клієнти не отримують те, за що платять', 'clients do not get what they pay for');
+    addTranslation('клієнти не отримують те, за що платять.', 'clients do not get what they pay for.');
+    addTranslation('Затягування термінів, приховані комісії, код, який ніхто не може підтримати.', 'Missed deadlines, hidden fees, and code no one can maintain.');
+    addTranslation('. Затягування термінів, приховані комісії, код, який ніхто не може підтримати.', '. Missed deadlines, hidden fees, and code no one can maintain.');
+    addTranslation('Тому ми створили VanzaLabs. Назва походить від італійського', 'That is why we created VanzaLabs. The name comes from the Italian');
+    addTranslation('— «рухатися вперед». Ми рухаємо ваш бізнес вперед, розуміючи, навіщо це потрібно.', '— “to move forward.” We move your business forward by understanding why it matters.');
+    addTranslation('Зараз нас двоє, але за спиною — мережа перевірених розробників, з якими ми співпрацювали роками. Це дає нам гнучкість: від невеликого MVP до повноцінної команди під продукт.', 'There are two of us today, backed by a network of proven developers we have worked with for years. This gives us flexibility, from a small MVP to a full product team.');
+    addTranslation('Україна', 'Ukraine');
+    addTranslation('Працюємо з клієнтами по всьому світу', 'Working with clients worldwide');
+    addTranslation('Ігор', 'Igor');
+    addTranslation('Руслан', 'Ruslan');
+    addTranslation('ЗАСНОВНИК', 'CO-FOUNDER');
+    addTranslation('Реклама, digital-маркетинг, продуктовий менеджмент. Знає, як знайти клієнта для продукту та вивести його на ринок. Розуміє бізнес ізсередини.', 'Advertising, digital marketing and product management. Knows how to find a product’s customer and bring it to market. Understands business from the inside.');
+    addTranslation('Аналітик, аудитор, проджект-менеджер. Вів проєкти в державних установах, вигравав державні гранти та запускав стартапи.', 'Analyst, auditor and project manager. Led projects for public institutions, won government grants and launched startups.');
+    addTranslation('Наша мережа', 'Our network');
+    addTranslation('За потреби залучаємо перевірених розробників: React/Next, Python, DevOps, Mobile, UI/UX. Всі — з попереднім досвідом спільної роботи. Ніяких «підборів з нуля» та сюрпризів для клієнта.', 'When needed, we bring in proven React/Next, Python, DevOps, Mobile and UI/UX developers. Everyone has prior experience working together — no sourcing from scratch or surprises for clients.');
+
+    // Services
+    addTranslation('Що ми робимо', 'What we do');
+    addTranslation('Три моделі співпраці. Обирайте ту, що відповідає вашому етапу.', 'Three engagement models. Choose the one that fits your stage.');
+    addTranslation('01 / Розробка продуктів', '01 / Product development');
+    addTranslation('MVP та продукти під ключ', 'MVPs and turnkey products');
+    addTranslation('Від ідеї до робочого продукту. Підходить для стартапів, які треба швидко перевірити гіпотезу, та бізнесів, що запускають новий напрям.', 'From an idea to a working product. For startups that need to validate a hypothesis quickly and businesses launching a new direction.');
+    addTranslation('Discovery + технічне завдання', 'Discovery + technical specification');
+    addTranslation('UI/UX + розробка + QA', 'UI/UX + development + QA');
+    addTranslation('Запуск і post-launch підтримка', 'Launch and post-launch support');
+    addTranslation('інд. оцінка', 'custom estimate');
+    addTranslation('02 / Автоматизація та AI', '02 / Automation and AI');
+    addTranslation('Автоматизація та AI-рішення', 'Automation and AI solutions');
+    addTranslation('Менше ручної роботи, більше швидкості. Інтегруємо системи, впроваджуємо чат-ботів, RAG та агентів, які реально економлять час і гроші.', 'Less manual work, more speed. We integrate systems and implement chatbots, RAG and agents that genuinely save time and money.');
+    addTranslation('Інтеграції CRM / ERP / API', 'CRM / ERP / API integrations');
+    addTranslation('Чат-боти, RAG, AI-агенти', 'Chatbots, RAG, AI agents');
+    addTranslation('Дашборди та аналітика', 'Dashboards and analytics');
+    addTranslation('03 / Команда під проєкт', '03 / A team for your project');
+    addTranslation('Команда під ваш продукт', 'A team for your product');
+    addTranslation('Формуємо віддалену команду, яка стає продовженням вашого бізнесу. Підбираємо під стек і домен, не «всіх підряд».', 'We assemble a remote team that becomes an extension of your business. We match people to your stack and domain, not simply anyone available.');
+    addTranslation('Підбір під стек і домен', 'Matched to your stack and domain');
+    addTranslation('Повна прозорість процесів', 'Complete process transparency');
+    addTranslation('Масштабування вгору/вниз', 'Scale up or down');
+
+    // Principles
+    addTranslation('Як ми працюємо', 'How we work');
+    addTranslation('Те, що можемо гарантувати кожному клієнту.', 'What we can guarantee every client.');
+    addTranslation('Бізнес-задача перш за все', 'Business challenge first');
+    addTranslation('Починаємо не з коду, а з розуміння: навіщо це потрібно, хто користувач, яка метрика успіху. Якщо фіча не вирішує задачу — скажемо «ні».', 'We start with understanding, not code: why it is needed, who the user is and what success looks like. If a feature does not solve the challenge, we will say no.');
+    addTranslation('Код, який можна підтримувати', 'Maintainable code');
+    addTranslation('Чиста архітектура, документація, тести. Не залишаємо «чорних скриньок». Ваш наступний розробник скаже «дякую».', 'Clean architecture, documentation and tests. No black boxes left behind. Your next developer will thank you.');
+    addTranslation('Повна прозорість', 'Full transparency');
+    addTranslation('Доступ до репозиторію з 1 дня. Щотижневі демо. Жодних прихованих годин. Scope узгоджуємо до старту.', 'Repository access from day one. Weekly demos. No hidden hours. We agree on scope before we start.');
+
+    // Approach
+    addTranslation('Чому ми', 'Why us');
+    addTranslation('Технічний партнер,', 'A technical partner,');
+    addTranslation('а не просто виконавець', 'not just a contractor');
+    addTranslation('Беремо відповідальність за результат бізнесу, а не тільки за рядки коду.', 'We take responsibility for business outcomes, not only lines of code.');
+    addTranslation('01 / Бізнес-фокус', '01 / Business focus');
+    addTranslation('Від задачі до рішення', 'From challenge to solution');
+    addTranslation('Починаємо з цілі, процесів і обмежень бізнесу — не з набору технологій. Кожне рішення має обґрунтування.', 'We begin with business goals, processes and constraints — not a technology list. Every decision has a rationale.');
+    addTranslation('02 / Підбір команди', '02 / Team selection');
+    addTranslation('Команда під потребу', 'A team for the need');
+    addTranslation('Залучаємо спеціалістів з релевантною експертизою для вашого етапу і масштабу. Не «всіх підряд».', 'We involve specialists with relevant expertise for your stage and scale — not just anyone.');
+    addTranslation('03 / Чіткість', '03 / Clarity');
+    addTranslation('Прозора співпраця', 'Transparent collaboration');
+    addTranslation('Обсяг, пріоритети, формат комунікації та критерії готовності — фіксуємо до старту робіт.', 'We define scope, priorities, communication format and acceptance criteria before work starts.');
+    addTranslation('Фіксована ціна', 'Fixed price');
+    addTranslation('або прозорий Time & Material — без сюрпризів у кінці', 'or transparent Time & Material — no surprises at the end');
+    addTranslation('Щотижневі демо', 'Weekly demos');
+    addTranslation('Ви завжди бачите прогрес і можете коригувати напрямок', 'You always see progress and can adjust direction');
+    addTranslation('Код — ваш', 'The code is yours');
+    addTranslation('Повний доступ до репозиторію з першого дня', 'Full repository access from day one');
+    addTranslation('Гарантія 30 днів', '30-day warranty');
+    addTranslation('Безкоштовно виправляємо критичні баги після релізу', 'We fix critical bugs free of charge after launch');
+
+    // Process
+    addTranslation('Як будується робота', 'How work is structured');
+    addTranslation('Чотири чіткі етапи. Без хаосу і «ми ще думаємо».', 'Four clear stages. No chaos or “we are still thinking.”');
+    addTranslation('Аналіз задачі', 'Challenge analysis');
+    addTranslation('Знайомимось із задачею, користувачами та підтверджуємо цінність. 3–7 днів.', 'We learn about the challenge and users, and validate the value. 3–7 days.');
+    addTranslation('Рішення', 'Solution');
+    addTranslation('Архітектура, етапи, пріоритети, склад команди та кошторис. Фіксуємо scope.', 'Architecture, stages, priorities, team composition and estimate. We lock the scope.');
+    addTranslation('Розробка', 'Development');
+    addTranslation('Короткі ітерації, щотижневі демо, continuous delivery. Ви контролюєте напрямок.', 'Short iterations, weekly demos and continuous delivery. You control the direction.');
+    addTranslation('Розвиток', 'Growth');
+    addTranslation('Запуск, метрики, ітерації. Розвиваємо продукт далі або передаємо команді.', 'Launch, metrics and iterations. We continue growing the product or hand it over to your team.');
+    addTranslation('Технології, з якими працюємо', 'Technologies we work with');
+
+    // FAQ
+    addTranslation('Часті питання', 'Frequently asked questions');
+    addTranslation('Скільки коштує розробка MVP?', 'How much does MVP development cost?');
+    addTranslation('Залежить від обсягу проєкту. Після безкоштовного передпроєктного аналізу задачі даємо точну фіксовану оцінку або пропонуємо погодинну оплату зі щотижневим лімітом. Без сюрпризів у кінці.', 'It depends on the project scope. After a free pre-project analysis, we provide an exact fixed estimate or hourly billing with a weekly cap. No surprises at the end.');
+    addTranslation('Як швидко можна стартувати?', 'How soon can we start?');
+    addTranslation('Зазвичай протягом 5–10 робочих днів після узгодження обсягу робіт і договору. Ми невелика команда, тому процес узгодження швидкий — без бюрократії.', 'Usually within 5–10 business days after agreeing on the scope and contract. We are a small team, so approvals are quick and bureaucracy-free.');
+    addTranslation('Хто володіє кодом і інтелектуальною власністю?', 'Who owns the code and intellectual property?');
+    addTranslation('Повністю ви. Код у вашому репозиторії з першого дня. Усі права на інтелектуальну власність передаються вам за договором. Ми не тримаємо код «заручником».', 'You do, entirely. The code is in your repository from day one. All intellectual-property rights are transferred to you by contract. We never hold code hostage.');
+    addTranslation('Чи працюєте з клієнтами за межами України?', 'Do you work with clients outside Ukraine?');
+    addTranslation('Так. Працюємо віддалено з клієнтами з ЄС, США, Канади та Близького Сходу. Комунікація англійською або українською. Часовий пояс UTC+2 — зручний для європейських команд.', 'Yes. We work remotely with clients in the EU, US, Canada and the Middle East. We communicate in English or Ukrainian. UTC+2 is convenient for European teams.');
+    addTranslation('Що якщо обсяг робіт зміниться в процесі?', 'What if the scope changes during the project?');
+    addTranslation('Нормально. Працюємо короткими спринтами (1–2 тижні). Зміни оцінюємо і узгоджуємо до старту наступного спринту. Ніколи не «накручуємо» години без вашого дозволу.', 'That is normal. We work in short 1–2 week sprints. We estimate and agree on changes before the next sprint begins. We never add hours without your approval.');
+    addTranslation('Які гарантії ви даєте?', 'What guarantees do you provide?');
+    addTranslation('30 днів безкоштовного виправлення критичних помилок після релізу. Договір з фіксацією обсягу робіт, термінів та передачі прав. Доступ до репозиторію з першого дня.', '30 days of free critical-bug fixes after launch. A contract defining scope, timelines and transfer of rights. Repository access from day one.');
+
+    // Contact & Form
+    addTranslation('Контакт', 'Contact');
+    addTranslation('Є задача або', 'Have a challenge or');
+    addTranslation('ідея продукту?', 'a product idea?');
+    addTranslation('Опишіть коротко — ми повернемося з пропозицією формату співпраці та безкоштовною 30-хвилинною консультацією.', 'Tell us briefly about it — we will come back with a proposed engagement format and a free 30-minute consultation.');
+    addTranslation('Відповідь протягом 1 робочого дня', 'Reply within one business day');
+    addTranslation('Без зобов\'язань і «продажних» дзвінків', 'No obligations or sales calls');
+    addTranslation('Конфіденційність гарантована', 'Confidentiality guaranteed');
+    addTranslation('Або напишіть нам:', 'Or write to us:');
+    addTranslation('Тел:', 'Tel:');
+    addTranslation('Telegram:', 'Telegram:');
+    addTranslation('Email:', 'Email:');
+    addTranslation("Ім'я *", 'Name *');
+    addTranslation('Name *', 'Name *');
+    addTranslation('Email *', 'Email *');
+    addTranslation('Компанія / проєкт', 'Company / project');
+    addTranslation('Company / project', 'Company / project');
+    addTranslation('Що вас цікавить? *', 'What are you interested in? *');
+    addTranslation('What are you interested in? *', 'What are you interested in? *');
+    addTranslation('Оберіть варіант', 'Choose an option');
+    addTranslation('Choose an option', 'Choose an option');
+    addTranslation('MVP / Продукт під ключ', 'MVP / Turnkey product');
+    addTranslation('MVP / Turnkey product', 'MVP / Turnkey product');
+    addTranslation('Автоматизація / AI-рішення', 'Automation / AI solutions');
+    addTranslation('Automation / AI solutions', 'Automation / AI solutions');
+    addTranslation('Команда під проєкт', 'Project team');
+    addTranslation('Project team', 'Project team');
+    addTranslation('Інше / Ще не знаю', 'Other / Not sure yet');
+    addTranslation('Other / Not sure yet', 'Other / Not sure yet');
+    addTranslation('Повідомлення *', 'Message *');
+    addTranslation('Message *', 'Message *');
+    addTranslation('Я погоджуюсь на обробку персональних даних відповідно до', 'I agree to the processing of personal data in accordance with the');
+    addTranslation('I agree to the processing of personal data in accordance with the', 'I agree to the processing of personal data in accordance with the');
+    addTranslation('Політики конфіденційності', 'Privacy Policy');
+    addTranslation('Privacy Policy', 'Privacy Policy');
+    addTranslation('Відправити заявку', 'Send inquiry');
+    addTranslation('Send inquiry', 'Send inquiry');
+    addTranslation('Відповімо протягом 1 робочого дня.', 'We will reply within one business day.');
+    addTranslation('We will reply within one business day.', 'We will reply within one business day.');
+
+    // Footer
+    addTranslation('Інженерна студія.', 'Engineering studio.');
+    addTranslation('Розробка MVP, автоматизація, dedicated teams.', 'MVP development, automation, dedicated teams.');
+    addTranslation('Навігація', 'Navigation');
+    addTranslation("Зв'яжіться з нами", 'Get in touch');
+    addTranslation('Соцмережі', 'Social media');
+    addTranslation('Політика конфіденційності', 'Privacy Policy');
+
+    // Attributes (placeholders, aria-labels, titles)
+    const attrUkToEn = new Map();
+    const attrEnToUk = new Map();
+
+    function addAttrTranslation(uk, en) {
+      attrUkToEn.set(uk, en);
+      attrUkToEn.set(en, en);
+      attrEnToUk.set(en, uk);
+      attrEnToUk.set(uk, uk);
+    }
+
+    addAttrTranslation("Ваше ім'я", 'Your name');
+    addAttrTranslation('Ваше ім’я', 'Your name');
+    addAttrTranslation('Your name', 'Your name');
+    addAttrTranslation('Назва компанії або проєкту', 'Company or project name');
+    addAttrTranslation('Company or project name', 'Company or project name');
+    addAttrTranslation('Коротко про задачу, терміни, бюджет (якщо є)...', 'Briefly describe the challenge, timeline and budget (if any)...');
+    addAttrTranslation('Briefly describe the challenge, timeline and budget (if any)...', 'Briefly describe the challenge, timeline and budget (if any)...');
+    addAttrTranslation('Відкрити меню', 'Open menu');
+    addAttrTranslation('Open menu', 'Open menu');
+    addAttrTranslation('VanzaLabs — на головну', 'VanzaLabs — home');
+    addAttrTranslation('VanzaLabs — home', 'VanzaLabs — home');
+
+    // Dynamic Form Validation Messages per language
+    const validationMessages = {
+      uk: {
+        general: 'Будь ласка, заповніть це поле.',
+        select: 'Будь ласка, оберіть варіант зі списку.',
+        privacy: 'Будь ласка, підтвердіть згоду з політикою конфіденційності.',
+        emailEmpty: 'Будь ласка, заповніть це поле.',
+        emailInvalid: 'Будь ласка, введіть коректну email-адресу.'
+      },
+      en: {
+        general: 'Please fill out this field.',
+        select: 'Please choose an option from the list.',
+        privacy: 'Please agree to the Privacy Policy.',
+        emailEmpty: 'Please fill out this field.',
+        emailInvalid: 'Please enter a valid email address.'
+      }
+    };
+
+    function updateFieldValidation(field) {
+      const lang = document.documentElement.lang === 'en' ? 'en' : 'uk';
+      const msgs = validationMessages[lang];
+
+      if (field.validity.valueMissing) {
+        if (field.tagName === 'SELECT') {
+          field.setCustomValidity(msgs.select);
+        } else if (field.type === 'checkbox') {
+          field.setCustomValidity(msgs.privacy);
+        } else {
+          field.setCustomValidity(msgs.general);
+        }
+      } else if (field.validity.typeMismatch && field.type === 'email') {
+        field.setCustomValidity(msgs.emailInvalid);
+      } else {
+        field.setCustomValidity('');
+      }
+    }
+
     const originalText = new WeakMap();
-    const metaUk = { title: document.title, description: document.querySelector('meta[name="description"]').content, ogTitle: document.querySelector('meta[property="og:title"]').content, ogDescription: document.querySelector('meta[property="og:description"]').content };
+    const metaUk = { title: 'VanzaLabs — Інженерна студія | MVP, автоматизація, продукти', description: 'VanzaLabs — українська інженерна студія. Розробляємо MVP, автоматизуємо бізнес-процеси та допомагаємо стартапам запускати продукти.', ogTitle: 'VanzaLabs — Інженерна студія', ogDescription: 'MVP, автоматизація та розробка продуктів. Команда з України.' };
     const metaEn = { title: 'VanzaLabs — Engineering Studio | MVPs, automation, products', description: 'VanzaLabs is a Ukrainian engineering studio. We build MVPs, automate business processes and help startups launch products.', ogTitle: 'VanzaLabs — Engineering Studio', ogDescription: 'MVPs, automation and product development. A team from Ukraine.' };
-    const attributeTranslations = new Map([
-      ['Відкрити меню', 'Open menu'],
-      ['Ваше ім’я', 'Your name'],
-      ["Ваше ім'я", 'Your name'],
-      ['Назва компанії або проєкту', 'Company or project name'],
-      ['Коротко про задачу, терміни, бюджет (якщо є)...', 'Briefly describe the challenge, timeline and budget (if any)...'],
-      ['VanzaLabs — на головну', 'VanzaLabs — home'],
-      ['Ім\'я *', 'Name *'],
-      ["Ім'я *", 'Name *'],
-      ['Email *', 'Email *'],
-      ['Компанія / проєкт', 'Company / project'],
-      ['Що вас цікавить? *', 'What are you interested in? *'],
-      ['Оберіть варіант', 'Choose an option'],
-      ['Повідомлення *', 'Message *'],
-      ['Я погоджуюсь на обробку персональних даних відповідно до', 'I agree to the processing of personal data in accordance with the'],
-      ['Політики конфіденційності', 'Privacy Policy'],
-      ['Відправити заявку', 'Send inquiry'],
-      ['Відповімо протягом 1 робочого дня.', 'We will reply within one business day.'],
-      ['Ігор', 'Igor'],
-      ['Руслан', 'Ruslan']
-    ]);
-    const ukrainianTranslations = new Map([
-      ['Igor', 'Ігор'],
-      ['Ruslan', 'Руслан'],
-      ['CO-FOUNDER', 'ЗАСНОВНИК'],
-      ['Name *', "Ім'я *"],
-      ['Your name', "Ваше ім'я"],
-      ['Company / project', 'Компанія / проєкт'],
-      ['Company or project name', 'Назва компанії або проєкту'],
-      ['What are you interested in? *', 'Що вас цікавить? *'],
-      ['Choose an option', 'Оберіть варіант'],
-      ['MVP / Turnkey product', 'MVP / Продукт під ключ'],
-      ['Automation / AI solutions', 'Автоматизація / AI-рішення'],
-      ['Project team', 'Команда під проєкт'],
-      ['Other / Not sure yet', 'Інше / Ще не знаю'],
-      ['Message *', 'Повідомлення *'],
-      ['Briefly describe the challenge, timeline and budget (if any)...', 'Коротко про задачу, терміни, бюджет (якщо є)...'],
-      ['I agree to the processing of personal data in accordance with the', 'Я погоджуюсь на обробку персональних даних відповідно до'],
-      ['Privacy Policy', 'Політики конфіденційності'],
-      ['Send inquiry', 'Відправити заявку'],
-      ['We will reply within one business day.', 'Відповімо протягом 1 робочого дня.']
-    ]);
-    const ukrainianAttributeTranslations = new Map([
-      ['Igor', 'Ігор'],
-      ['Ruslan', 'Руслан'],
-      ['Your name', "Ваше ім'я"],
-      ['Company or project name', 'Назва компанії або проєкту'],
-      ['Briefly describe the challenge, timeline and budget (if any)...', 'Коротко про задачу, терміни, бюджет (якщо є)...']
-    ]);
 
     function setLanguage(lang) {
       const english = lang === 'en';
       document.documentElement.lang = lang;
       document.title = (english ? metaEn : metaUk).title;
-      document.querySelector('meta[name="description"]').content = (english ? metaEn : metaUk).description;
-      document.querySelector('meta[property="og:title"]').content = (english ? metaEn : metaUk).ogTitle;
-      document.querySelector('meta[property="og:description"]').content = (english ? metaEn : metaUk).ogDescription;
+      const descMeta = document.querySelector('meta[name="description"]');
+      if (descMeta) descMeta.content = (english ? metaEn : metaUk).description;
+      const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+      if (ogTitleMeta) ogTitleMeta.content = (english ? metaEn : metaUk).ogTitle;
+      const ogDescMeta = document.querySelector('meta[property="og:description"]');
+      if (ogDescMeta) ogDescMeta.content = (english ? metaEn : metaUk).ogDescription;
 
       const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
       let node;
@@ -117,7 +303,7 @@
         if (!originalText.has(node)) originalText.set(node, node.nodeValue);
         const original = originalText.get(node);
         const key = original.trim();
-        const replacement = english ? translations.get(key) : ukrainianTranslations.get(key);
+        const replacement = english ? ukToEn.get(key) : enToUk.get(key);
         node.nodeValue = replacement ? original.replace(key, replacement) : original;
       }
 
@@ -128,11 +314,21 @@
           if (!initial) return;
           el.dataset[dataKey] = initial;
           const translated = english
-            ? (attributeTranslations.get(initial) || initial)
-            : (ukrainianAttributeTranslations.get(initial) || initial);
+            ? (attrUkToEn.get(initial) || initial)
+            : (attrEnToUk.get(initial) || initial);
           el.setAttribute(attr, translated);
         });
       });
+
+      // Update validation messages on form fields if they have custom error
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
+          if (field.validationMessage) {
+            updateFieldValidation(field);
+          }
+        });
+      }
 
       document.querySelectorAll('.lang-switch').forEach(button => {
         const active = button.dataset.lang === lang;
@@ -149,6 +345,18 @@
       document.querySelectorAll('.lang-switch').forEach(button => {
         button.addEventListener('click', () => setLanguage(button.dataset.lang));
       });
+
+      // Setup localized validation handlers
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        const reqFields = contactForm.querySelectorAll('input[required], select[required], textarea[required]');
+        reqFields.forEach(field => {
+          field.addEventListener('invalid', () => updateFieldValidation(field));
+          field.addEventListener('input', () => field.setCustomValidity(''));
+          field.addEventListener('change', () => field.setCustomValidity(''));
+        });
+      }
+
       setLanguage(localStorage.getItem('vanzalabs-language') || 'en');
     });
 
@@ -388,7 +596,7 @@
         <div class="relative z-10">
           <div class="inline-flex items-center gap-2 bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
             <span class="w-1.5 h-1.5 rounded-full bg-brand-500 status-dot"></span>
-            Приймаємо нові проєкти
+            Accepting new projects
           </div>
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-gray-900 mb-6">
             Ми створюємо<br>
@@ -427,9 +635,9 @@
               <div class="space-y-2.5 font-mono text-xs sm:text-sm">
                 <div class="flex gap-3"><span class="text-brand-600">$</span><span class="text-gray-700">git clone idea.git</span></div>
                 <div class="flex gap-3"><span class="text-brand-600">$</span><span class="text-gray-700">cd idea && npm run discover</span></div>
-                <div class="pl-6 text-gray-500">→ Аналізуємо бізнес-задачу...</div>
-                <div class="pl-6 text-gray-500">→ Проєктуємо архітектуру...</div>
-                <div class="pl-6 text-gray-500">→ Пишемо перший спринт...</div>
+                <div class="pl-6 text-gray-500">→ Analysing your business challenge...</div>
+                <div class="pl-6 text-gray-500">→ Designing the architecture...</div>
+                <div class="pl-6 text-gray-500">→ Building the first sprint...</div>
                 <div class="flex gap-3"><span class="text-brand-600">$</span><span class="text-gray-700">npm run deploy</span></div>
                 <div class="pl-6 text-brand-600 font-semibold">✓ MVP live in 8 weeks</div>
               </div>
@@ -448,8 +656,8 @@
                   <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 </div>
                 <div>
-                  <p class="text-xs font-bold text-gray-900">Відкритий код</p>
-                  <p class="text-[10px] text-gray-500">З першого дня у вашому репозиторії</p>
+                  <p class="text-xs font-bold text-gray-900">Open source code</p>
+                  <p class="text-[10px] text-gray-500">In your repository from day one</p>
                 </div>
               </div>
             </div>
@@ -494,7 +702,7 @@
           </h2>
           <div class="space-y-4 text-gray-600 leading-relaxed">
             <p>
-              Ми — два інженери, які роками працювали на різних проєктах і бачили одну й ту саму проблему: <strong>клієнти не отримують те, за що платять</strong>. Затягування термінів, приховані комісії, код, який ніхто не може підтримати.
+              Ми — два інженери, які роками працювали на різних проєктах і бачили одну й ту саму проблему: <strong>клієнти не отримують те, за що платять.</strong> Затягування термінів, приховані комісії, код, який ніхто не може підтримати.
             </p>
             <p>
               Тому ми створили VanzaLabs. Назва походить від італійського <em>avanzare</em> — «рухатися вперед». Ми рухаємо ваш бізнес вперед, розуміючи, навіщо це потрібно.
@@ -938,10 +1146,11 @@
         </div>
         <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-xl">
           <form id="contactForm" class="space-y-4" action="https://formspree.io/f/xyegvywp" method="POST">
+            <input type="hidden" name="_next" value="thank-you.html">
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-medium text-gray-500 mb-1.5">Name *</label>
-                <input type="text" name="name" required placeholder="Your name"
+                <label class="block text-xs font-medium text-gray-500 mb-1.5">Ім'я *</label>
+                <input type="text" name="name" required placeholder="Ваше ім'я"
                   class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm">
               </div>
               <div>
@@ -951,35 +1160,35 @@
               </div>
             </div>
             <div>
-              <label class="block text-xs font-medium text-gray-500 mb-1.5">Company / project</label>
-              <input type="text" name="company" placeholder="Company or project name"
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Компанія / проєкт</label>
+              <input type="text" name="company" placeholder="Назва компанії або проєкту"
                 class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm">
             </div>
             <div>
-              <label class="block text-xs font-medium text-gray-500 mb-1.5">What are you interested in? *</label>
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Що вас цікавить? *</label>
               <select name="service" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm bg-white">
-                <option value="">Choose an option</option>
-                <option value="mvp">MVP / Turnkey product</option>
-                <option value="automation">Automation / AI solutions</option>
-                <option value="team">Project team</option>
-                <option value="other">Other / Not sure yet</option>
+                <option value="">Оберіть варіант</option>
+                <option value="mvp">MVP / Продукт під ключ</option>
+                <option value="automation">Автоматизація / AI-рішення</option>
+                <option value="team">Команда під проєкт</option>
+                <option value="other">Інше / Ще не знаю</option>
               </select>
             </div>
             <div>
-              <label class="block text-xs font-medium text-gray-500 mb-1.5">Message *</label>
-              <textarea name="message" rows="4" required placeholder="Briefly describe the challenge, timeline and budget (if any)..."
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Повідомлення *</label>
+              <textarea name="message" rows="4" required placeholder="Коротко про задачу, терміни, бюджет (якщо є)..."
                 class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm resize-none"></textarea>
             </div>
             <div class="flex items-start gap-2">
               <input type="checkbox" id="privacy" name="privacy" required class="mt-0.5 w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500">
-              <label for="privacy" class="text-xs text-gray-500 leading-relaxed">I agree to the processing of personal data in accordance with the <a href="privacy-policy.html" class="text-brand-600 hover:underline">Privacy Policy</a></label>
+              <label for="privacy" class="text-xs text-gray-500 leading-relaxed">Я погоджуюсь на обробку персональних даних відповідно до <a href="privacy-policy.html" class="text-brand-600 hover:underline">Політики конфіденційності</a></label>
             </div>
-            <button type="submit"
+            <button type="submit" id="submitBtn"
               class="w-full bg-dark-900 hover:bg-gray-800 text-white font-semibold py-3.5 rounded-lg transition flex items-center justify-center gap-2">
-              Send inquiry
+              <span>Відправити заявку</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </button>
-            <p class="text-xs text-gray-400 text-center">We will reply within one business day.</p>
+            <p class="text-xs text-gray-400 text-center">Відповімо протягом 1 робочого дня.</p>
             <p id="formStatus" class="text-center text-sm hidden"></p>
           </form>
         </div>
@@ -1121,21 +1330,68 @@
       drawLine();
     }
 
-    // Form
+    // Form submission with AJAX, localized loading state, and redirect to thank-you.html
     const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
     const status = document.getElementById('formStatus');
-    form.addEventListener('submit', e => {
-      if (form.action.includes('YOUR_FORM_ID')) {
+
+    if (form) {
+      form.addEventListener('submit', async e => {
         e.preventDefault();
-        status.classList.remove('hidden', 'text-red-600');
-        status.classList.add('text-brand-600');
-        status.textContent = document.documentElement.lang === 'en'
-          ? 'Thank you! We will get back to you within one business day. (Note: connect Formspree or your own backend to send submissions.)'
-          : "Дякуємо! Ми зв'яжемося з вами протягом 1 робочого дня. (Примітка: підключіть Formspree або свій бекенд для реальної відправки.)";
-        form.reset();
-        setTimeout(() => status.classList.add('hidden'), 8000);
-      }
-    });
+
+        // Native validation check
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const lang = document.documentElement.lang === 'en' ? 'en' : 'uk';
+        const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+          submitBtn.innerHTML = `
+            <svg class="animate-spin w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>${lang === 'en' ? 'Sending...' : 'Відправляємо...'}</span>
+          `;
+        }
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            window.location.href = `thank-you.html?lang=${lang}`;
+          } else {
+            const data = await response.json().catch(() => ({}));
+            throw new Error(data.error || 'Submission error');
+          }
+        } catch (err) {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            submitBtn.innerHTML = originalBtnHtml;
+          }
+          if (status) {
+            status.classList.remove('hidden', 'text-brand-600');
+            status.classList.add('text-red-500');
+            status.textContent = lang === 'en'
+              ? 'An error occurred while sending. Please try again or reach us via Telegram @vanzalabs.'
+              : 'Сталася помилка при відправці. Спробуйте ще раз або напишіть нам у Telegram @vanzalabs.';
+          }
+        }
+      });
+    }
   </script>
 </body>
 </html>
