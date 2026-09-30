@@ -142,7 +142,7 @@
       [`Інженерна студія.`, `Engineering studio.`], [`Розробка MVP, автоматизація, dedicated teams.`, `MVP development, automation, dedicated teams.`], [`Навігація`, `Navigation`], [`Зв'яжіться з нами`, `Get in touch`], [`Соцмережі`, `Social media`], [`Політика конфіденційності`, `Privacy Policy`]
     ]);
     const originalText = new WeakMap();
-    const metaUk = { title: document.title, description: document.querySelector('meta[name="description"]').content, ogTitle: document.querySelector('meta[property="og:title"]').content, ogDescription: document.querySelector('meta[property="og:description"]').content };
+    const metaUk = { title: 'VanzaLabs — Інженерна студія | MVP, автоматизація, продукти', description: 'VanzaLabs — українська інженерна студія. Розробляємо MVP, автоматизуємо бізнес-процеси та допомагаємо стартапам запускати продукти.', ogTitle: 'VanzaLabs — Інженерна студія', ogDescription: 'MVP, автоматизація та розробка продуктів. Команда з України.' };
     const metaEn = { title: 'VanzaLabs — Engineering Studio | MVPs, automation, products', description: 'VanzaLabs is a Ukrainian engineering studio. We build MVPs, automate business processes and help startups launch products.', ogTitle: 'VanzaLabs — Engineering Studio', ogDescription: 'MVPs, automation and product development. A team from Ukraine.' };
     const attributeTranslations = new Map([
       ['Відкрити меню', 'Open menu'],
@@ -204,9 +204,12 @@
       const english = lang === 'en';
       document.documentElement.lang = lang;
       document.title = (english ? metaEn : metaUk).title;
-      document.querySelector('meta[name="description"]').content = (english ? metaEn : metaUk).description;
-      document.querySelector('meta[property="og:title"]').content = (english ? metaEn : metaUk).ogTitle;
-      document.querySelector('meta[property="og:description"]').content = (english ? metaEn : metaUk).ogDescription;
+      const descMeta = document.querySelector('meta[name="description"]');
+      if (descMeta) descMeta.content = (english ? metaEn : metaUk).description;
+      const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+      if (ogTitleMeta) ogTitleMeta.content = (english ? metaEn : metaUk).ogTitle;
+      const ogDescMeta = document.querySelector('meta[property="og:description"]');
+      if (ogDescMeta) ogDescMeta.content = (english ? metaEn : metaUk).ogDescription;
 
       const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
       let node;
@@ -216,7 +219,7 @@
         if (!originalText.has(node)) originalText.set(node, node.nodeValue);
         const original = originalText.get(node);
         const key = original.trim();
-        const replacement = english ? translations.get(key) : ukrainianTranslations.get(key);
+        const replacement = english ? ukToEn.get(key) : enToUk.get(key);
         node.nodeValue = replacement ? original.replace(key, replacement) : original;
       }
 
@@ -234,11 +237,21 @@
           if (!initial) return;
           el.dataset[dataKey] = initial;
           const translated = english
-            ? (attributeTranslations.get(initial) || initial)
-            : (ukrainianAttributeTranslations.get(initial) || initial);
+            ? (attrUkToEn.get(initial) || initial)
+            : (attrEnToUk.get(initial) || initial);
           el.setAttribute(attr, translated);
         });
       });
+
+      // Update validation messages on form fields if they have custom error
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
+          if (field.validationMessage) {
+            updateFieldValidation(field);
+          }
+        });
+      }
 
       document.querySelectorAll('.lang-switch').forEach(button => {
         const active = button.dataset.lang === lang;
@@ -262,6 +275,18 @@
       document.querySelectorAll('.lang-switch').forEach(button => {
         button.addEventListener('click', () => setLanguage(button.dataset.lang));
       });
+
+      // Setup localized validation handlers
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        const reqFields = contactForm.querySelectorAll('input[required], select[required], textarea[required]');
+        reqFields.forEach(field => {
+          field.addEventListener('invalid', () => updateFieldValidation(field));
+          field.addEventListener('input', () => field.setCustomValidity(''));
+          field.addEventListener('change', () => field.setCustomValidity(''));
+        });
+      }
+
       setLanguage(localStorage.getItem('vanzalabs-language') || 'en');
     });
 
@@ -746,7 +771,7 @@
           </h2>
           <div class="space-y-4 text-gray-600 leading-relaxed">
             <p>
-              Ми — два інженери, які роками працювали на різних проєктах і бачили одну й ту саму проблему: <strong>клієнти не отримують те, за що платять</strong>. Затягування термінів, приховані комісії, код, який ніхто не може підтримати.
+              Ми — два інженери, які роками працювали на різних проєктах і бачили одну й ту саму проблему: <strong>клієнти не отримують те, за що платять.</strong> Затягування термінів, приховані комісії, код, який ніхто не може підтримати.
             </p>
             <p>
               Тому ми створили VanzaLabs. Назва походить від італійського <em>avanzare</em> — «рухатися вперед». Ми рухаємо ваш бізнес вперед, розуміючи, навіщо це потрібно.
@@ -1222,8 +1247,8 @@
             <input type="hidden" name="_next" value="thank-you.html">
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-medium text-gray-500 mb-1.5">Name *</label>
-                <input type="text" name="name" required placeholder="Your name"
+                <label class="block text-xs font-medium text-gray-500 mb-1.5">Ім'я *</label>
+                <input type="text" name="name" required placeholder="Ваше ім'я"
                   class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm">
               </div>
               <div>
@@ -1233,35 +1258,35 @@
               </div>
             </div>
             <div>
-              <label class="block text-xs font-medium text-gray-500 mb-1.5">Company / project</label>
-              <input type="text" name="company" placeholder="Company or project name"
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Компанія / проєкт</label>
+              <input type="text" name="company" placeholder="Назва компанії або проєкту"
                 class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm">
             </div>
             <div>
-              <label class="block text-xs font-medium text-gray-500 mb-1.5">What are you interested in? *</label>
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Що вас цікавить? *</label>
               <select name="service" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm bg-white">
-                <option value="">Choose an option</option>
-                <option value="mvp">MVP / Turnkey product</option>
-                <option value="automation">Automation / AI solutions</option>
-                <option value="team">Project team</option>
-                <option value="other">Other / Not sure yet</option>
+                <option value="">Оберіть варіант</option>
+                <option value="mvp">MVP / Продукт під ключ</option>
+                <option value="automation">Автоматизація / AI-рішення</option>
+                <option value="team">Команда під проєкт</option>
+                <option value="other">Інше / Ще не знаю</option>
               </select>
             </div>
             <div>
-              <label class="block text-xs font-medium text-gray-500 mb-1.5">Message *</label>
-              <textarea name="message" rows="4" required placeholder="Briefly describe the challenge, timeline and budget (if any)..."
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Повідомлення *</label>
+              <textarea name="message" rows="4" required placeholder="Коротко про задачу, терміни, бюджет (якщо є)..."
                 class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition text-sm resize-none"></textarea>
             </div>
             <div class="flex items-start gap-2">
               <input type="checkbox" id="privacy" name="privacy" required class="mt-0.5 w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500">
-              <label for="privacy" class="text-xs text-gray-500 leading-relaxed">I agree to the processing of personal data in accordance with the <a href="privacy-policy.html" class="text-brand-600 hover:underline">Privacy Policy</a></label>
+              <label for="privacy" class="text-xs text-gray-500 leading-relaxed">Я погоджуюсь на обробку персональних даних відповідно до <a href="privacy-policy.html" class="text-brand-600 hover:underline">Політики конфіденційності</a></label>
             </div>
             <button type="submit" id="submitBtn"
               class="w-full bg-dark-900 hover:bg-gray-800 text-white font-semibold py-3.5 rounded-lg transition flex items-center justify-center gap-2">
-              Send inquiry
+              <span>Відправити заявку</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </button>
-            <p class="text-xs text-gray-400 text-center">We will reply within one business day.</p>
+            <p class="text-xs text-gray-400 text-center">Відповімо протягом 1 робочого дня.</p>
             <p id="formStatus" class="text-center text-sm hidden"></p>
           </form>
         </div>
