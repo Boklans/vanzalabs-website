@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Дякуємо за заявку — VanzaLabs</title>
+  <meta name="description" content="Дякуємо за ваше звернення до VanzaLabs. Ми зв'яжемося з вами протягом 1 робочого дня.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#16a34a">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
+              400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d',
+              800: '#166534', 900: '#14532d',
+            },
+            accent: {
+              500: '#4f46e5', 600: '#4338ca', 700: '#3730a3'
+            },
+            dark: { 900: '#0B0C10', 800: '#111827', 700: '#1f2937' }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          boxShadow: {
+            'glow': '0 0 40px rgba(34, 197, 94, 0.15)',
+            'card': '0 4px 24px rgba(0,0,0,0.05)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .hero-bg {
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 20%, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(79, 70, 229, 0.05) 0%, transparent 40%),
+        #ffffff;
+    }
+    .language-picker {
+      border-color: #bbf7d0;
+      color: #15803d;
+      background: #f0fdf4;
+    }
+    .status-dot { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-2.5" title="VanzaLabs — на головну">
+          <img src="vanzalabs_logo_black_text.png" alt="vanzalabs" class="h-4 w-auto">
+        </a>
+        <div class="flex items-center gap-4">
+          <div class="language-picker inline-flex shrink-0 items-center rounded-full border p-0.5 text-[11px] font-bold" aria-label="Language selector">
+            <button type="button" class="lang-switch rounded-full px-2 py-1 leading-none transition" data-lang="uk" aria-pressed="false">UA</button>
+            <button type="button" class="lang-switch rounded-full px-2 py-1 leading-none transition" data-lang="en" aria-pressed="false">EN</button>
+          </div>
+          <a href="index.html" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 hover:text-brand-600 transition">
+            <span data-key="backLink">← На головну</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="hero-bg flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl w-full">
+      <div class="bg-white rounded-3xl p-8 sm:p-12 border border-gray-200 shadow-xl text-center relative overflow-hidden">
+        
+        <!-- Status badge -->
+        <div class="inline-flex items-center gap-2 bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-500 status-dot"></span>
+          <span data-key="badgeText">Заявку успішно надіслано</span>
+        </div>
+
+        <!-- Success Icon -->
+        <div class="w-20 h-20 mx-auto rounded-full bg-brand-50 border-2 border-brand-200 flex items-center justify-center text-brand-600 shadow-glow mb-6">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+
+        <!-- Headings -->
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3 tracking-tight" data-key="title">
+          Дякуємо за вашу заявку!
+        </h1>
+        <p class="text-gray-600 text-base sm:text-lg leading-relaxed max-w-lg mx-auto mb-8" data-key="subtitle">
+          Ми отримали ваше повідомлення і зв'яжемося з вами протягом 1 робочого дня для обговорення деталей.
+        </p>
+
+        <!-- What happens next -->
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-left mb-8">
+          <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 text-center sm:text-left" data-key="nextTitle">
+            Що буде далі?
+          </h2>
+          <div class="grid gap-4 sm:grid-cols-3">
+            <div class="flex sm:flex-col gap-3 items-start">
+              <div class="w-7 h-7 rounded-full bg-brand-100 text-brand-700 font-bold text-xs flex items-center justify-center flex-shrink-0">1</div>
+              <div>
+                <p class="text-xs font-bold text-gray-900 mb-1" data-key="step1Title">Аналіз задачі</p>
+                <p class="text-xs text-gray-500 leading-relaxed" data-key="step1Text">Вивчаємо опис вашого проєкту та готуємо попередні запитання.</p>
+              </div>
+            </div>
+            <div class="flex sm:flex-col gap-3 items-start">
+              <div class="w-7 h-7 rounded-full bg-brand-100 text-brand-700 font-bold text-xs flex items-center justify-center flex-shrink-0">2</div>
+              <div>
+                <p class="text-xs font-bold text-gray-900 mb-1" data-key="step2Title">Швидкий зв'язок</p>
+                <p class="text-xs text-gray-500 leading-relaxed" data-key="step2Text">Зв'язуємось у Telegram або на email, щоб обрати зручний час.</p>
+              </div>
+            </div>
+            <div class="flex sm:flex-col gap-3 items-start">
+              <div class="w-7 h-7 rounded-full bg-brand-100 text-brand-700 font-bold text-xs flex items-center justify-center flex-shrink-0">3</div>
+              <div>
+                <p class="text-xs font-bold text-gray-900 mb-1" data-key="step3Title">Консультація</p>
+                <p class="text-xs text-gray-500 leading-relaxed" data-key="step3Text">Проводимо безкоштовний 30-хв дзвінок та фіксуємо план дій.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
+          <a href="index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-xl transition shadow-md hover:shadow-lg text-sm">
+            <span data-key="homeBtn">← Повернутися на головну</span>
+          </a>
+          <a href="https://t.me/vanzalabs" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-semibold px-6 py-3 rounded-xl border border-gray-200 transition text-sm">
+            <svg class="w-4 h-4 text-[#229ED9]" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.458.02.889-.16 1.795-.962 6.145-.962 6.145-.4 1.562-.598 1.994-.998 2.023-.83.064-1.462-.543-2.267-1.066-1.26-.82-1.973-1.33-3.192-2.132-1.41-.927-.496-1.438.307-2.27.21-.218 3.843-3.52 3.915-3.82.009-.037.018-.17-.066-.241-.084-.07-.207-.046-.296-.027-.126.027-2.14 1.36-6.04 3.99-.572.394-1.09.586-1.554.575-.512-.015-1.5-.29-2.233-.53-.9-.294-1.614-.45-1.553-.95.032-.26.386-.528 1.06-.8 4.147-1.77 6.912-2.937 8.294-3.51 3.94-1.64 4.76-1.923 5.292-1.934z"/></svg>
+            <span data-key="telegramBtn">Написати в Telegram</span>
+          </a>
+        </div>
+
+        <!-- Urgent direct contacts -->
+        <p class="text-xs text-gray-500">
+          <span data-key="urgentText">Потрібна термінова відповідь?</span>
+          <a href="mailto:contact@vanzalabs.tech" class="text-brand-600 font-medium hover:underline ml-1">contact@vanzalabs.tech</a>
+          <span class="mx-1">•</span>
+          <a href="tel:+380636333067" class="text-brand-600 font-medium hover:underline">+380 63 633 30 67</a>
+        </p>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-100 py-6 text-xs text-gray-500 text-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p>© 2026 — VanzaLabs. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="privacy-policy.html" class="hover:text-gray-700 transition" data-key="privacyLink">Політика конфіденційності</a>
+        <a href="index.html" class="hover:text-gray-700 transition" data-key="footerHomeLink">Головна</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const content = {
+      uk: {
+        pageTitle: 'Дякуємо за заявку — VanzaLabs',
+        pageDesc: 'Дякуємо за ваше звернення до VanzaLabs. Ми зв\'яжемося з вами протягом 1 робочого дня.',
+        backLink: '← На головну',
+        badgeText: 'Заявку успішно надіслано',
+        title: 'Дякуємо за вашу заявку!',
+        subtitle: 'Ми отримали ваше повідомлення і зв\'яжемося з вами протягом 1 робочого дня для обговорення деталей.',
+        nextTitle: 'Що буде далі?',
+        step1Title: 'Аналіз задачі',
+        step1Text: 'Вивчаємо опис вашого проєкту та готуємо попередні запитання.',
+        step2Title: 'Швидкий зв\'язок',
+        step2Text: 'Зв\'язуємось у Telegram або на email, щоб обрати зручний час.',
+        step3Title: 'Консультація',
+        step3Text: 'Проводимо безкоштовний 30-хв дзвінок та фіксуємо план дій.',
+        homeBtn: '← Повернутися на головну',
+        telegramBtn: 'Написати в Telegram',
+        urgentText: 'Потрібна термінова відповідь?',
+        privacyLink: 'Політика конфіденційності',
+        footerHomeLink: 'Головна'
+      },
+      en: {
+        pageTitle: 'Thank You for Reaching Out — VanzaLabs',
+        pageDesc: 'Thank you for contacting VanzaLabs. We will get back to you within one business day.',
+        backLink: '← Back to website',
+        badgeText: 'Inquiry sent successfully',
+        title: 'Thank you for reaching out!',
+        subtitle: 'We have received your message and will get back to you within one business day to discuss the details.',
+        nextTitle: 'What happens next?',
+        step1Title: 'Challenge analysis',
+        step1Text: 'We review your project details and prepare initial questions.',
+        step2Title: 'Direct contact',
+        step2Text: 'We reach out via Telegram or email to find a convenient time.',
+        step3Title: 'Discovery call',
+        step3Text: 'We hold a free 30-minute consultation and agree on next steps.',
+        homeBtn: '← Back to website',
+        telegramBtn: 'Message on Telegram',
+        urgentText: 'Need an urgent response?',
+        privacyLink: 'Privacy Policy',
+        footerHomeLink: 'Home'
+      }
+    };
+
+    function setLanguage(lang) {
+      const activeLang = lang === 'en' ? 'en' : 'uk';
+      const t = content[activeLang];
+
+      document.documentElement.lang = activeLang;
+      document.title = t.pageTitle;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.content = t.pageDesc;
+
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.dataset.key;
+        if (t[key]) el.textContent = t[key];
+      });
+
+      document.querySelectorAll('.lang-switch').forEach(button => {
+        const active = button.dataset.lang === activeLang;
+        button.classList.toggle('bg-brand-600', active);
+        button.classList.toggle('text-white', active);
+        button.classList.toggle('text-brand-700', !active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+
+      localStorage.setItem('vanzalabs-language', activeLang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.lang-switch').forEach(button => {
+        button.addEventListener('click', () => setLanguage(button.dataset.lang));
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang');
+      const initialLang = urlLang || localStorage.getItem('vanzalabs-language') || 'en';
+      setLanguage(initialLang);
+    });
+  </script>
+</body>
+</html>
+
