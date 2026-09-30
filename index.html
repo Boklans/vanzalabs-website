@@ -25,12 +25,104 @@
     const translations = new Map([
       [`Про нас`, `About`], [`Послуги`, `Services`], [`Принципи`, `Principles`], [`Процес`, `Process`], [`Питання`, `FAQ`],
       [`Обговорити проєкт`, `Discuss a project`], [`Обговорити проєкт →`, `Discuss a project →`], [`Мова:`, `Language:`],
-      [`Приймаємо нові проєкти`, `Accepting new projects`], [`Ми створюємо`, `We build`], [`цифрові продукти,`, `digital products`], [`що рухають`, `that move`], [`бізнес вперед`, `business forward`],
-      [`Інженерна студія з України. Розробляємо MVP та вебпродукти, автоматизуємо бізнес-процеси та допомагаємо стартапам і бізнесам масштабуватися.`, `An engineering studio from Ukraine. We build MVPs and web products, automate business processes, and help startups and companies scale.`],
-      [`Від ідеї до стабільного рішення — ми поруч на кожному етапі.`, `From an idea to a dependable solution — we are with you at every stage.`],
+      [`Приймаємо нові проєкти`, `Accepting new projects`],
+      [`Перетворюємо`, `Turn`],
+      [`бізнес-ідеї`, `business ideas`],
+      [`Перетворюємо бізнес-ідеї`, `Turn business ideas`],
+      [`на`, `into`],
+      [`цифрові продукти`, `digital products`],
+      [`що реально працюють.`, `that actually work.`],
+      [`Проєктуємо та розробляємо MVP, вебплатформи та AI-рішення — з чіткими термінами, повною власністю на код і прямою співпрацею з командою, яка його створює.`, `We design and build MVPs, web platforms, and AI-powered solutions — with clear timelines, full code ownership, and direct collaboration with the team building your product.`],
+      [`Як ми працюємо`, `How we work`],
+      [`Україна`, `Ukraine`],
+      [`Працюємо по всьому світу`, `Worldwide`],
+      [`100% Code Ownership`, `100% Code Ownership`],
+      [`Direct Founder Access`, `Direct Founder Access`],
+      [`ОБЕРІТЬ ВАШУ БІЗНЕС-ЗАДАЧУ:`, `SELECT YOUR BUSINESS CHALLENGE:`],
+      [`Рішення під ключ`, `Turnkey solution`],
+      [`Автоматизація бізнесу`, `Business Automation`],
+      [`Виділена команда`, `Dedicated Team`],
+      [`Запуск MVP`, `Launch MVP`],
+      [`Автоматизація & AI`, `Automation & AI`],
+      [`Для кого:`, `For whom:`],
+      [`Біль бізнесу:`, `Business pain:`],
+      [`Стартапи та компанії, що запускають новий продукт`, `Startups and companies launching a new product`],
+      [`Потрібно перевірити ідею на ринку та залучити клієнтів без витрати $30k+ чи пів року очікування.`, `Need to validate an idea on the market and acquire clients without spending $30k+ or waiting half a year.`],
+      [`Жим: рекомендовано +2.5 кг`, `Bench: +2.5 kg calibrated`],
+      [`Push Day A · Груди й трицепс`, `Push Day A · Chest & Triceps`],
+      [`5 вправ · ~45 хв`, `5 exercises · ~45 min`],
+      [`Почати тренування`, `Start Workout`],
+      [`Тренування`, `Workout`],
+      [`Програма`, `Program`],
+      [`Прогрес`, `Progress`],
+      [`Профіль`, `Profile`],
+      [`1 робочий день`, `1 business day`],
+      [`на первинну технічну оцінку`, `initial technical estimate`],
+      [`Code Ownership у вашому GitHub`, `code ownership in your GitHub`],
+      [`3–8 тижнів`, `3–8 weeks`],
+      [`типовий термін запуску MVP`, `typical MVP delivery`],
+      [`Прямий доступ`, `Direct`],
+      [`до засновників та інженерів`, `founder & engineering access`],
+      [`MVP та вебсервіси під ключ`, `Turnkey MVPs & web products`],
+      [`Від архітектури й UI/UX до робочого релізу. Валідація гіпотез без зливу бюджету та роздутих термінів.`, `From architecture and UI/UX to a working release. Validate hypotheses without burning capital or missing deadlines.`],
+      [`ШІ-асистенти та системні інтеграції`, `AI assistants & systems integration`],
+      [`Звільнення до 40% робочого часу команди: з'єднання CRM, платіжних систем, бази знань (RAG) та ботів.`, `Free up to 40% of team time: connecting CRM, payment gateways, company knowledge base (RAG), and bots.`],
+      [`100% права та ваш репозиторій`, `100% rights & your private repo`],
+      [`Жодного вендор-локу. Чистий код у вашому приватному GitHub, документація, тести та 30 днів гарантії.`, `Zero vendor lock-in. Clean code in your private GitHub, documentation, tests, and 30-day warranty.`],
+      [`Прямий нагляд засновників над кожним спринтом`, `Direct founder oversight on every sprint`],
+      [`Невелика senior-команда з перевіреною інженерною мережею. Ми даємо гнучкість студії без корпоративної бюрократії: від швидкого запуску MVP до повноцінної продуктової команди.`, `A senior core team backed by a proven engineering network. We provide studio flexibility without corporate bureaucracy: from rapid MVP launches to full product teams.`],
+      [`Створено інженерами. Керується засновниками.`, `Built by engineers. Led by founders.`],
+      [`Співзасновник`, `Co-founder`],
+      [`Технологічний стек`, `Technology Stack`],
+      [`Сучасні перевірені інструменти для стабільних і масштабованих рішень.`, `Modern proven tools for stable and scalable solutions.`],
+      [`Хмарна інфраструктура & DevOps`, `Cloud Infrastructure & DevOps`],
+      [`Розробляємо продукти`, `We build products`], [`та автоматизуємо процеси,`, `and automate processes,`], [`які приносять прибуток`, `that drive real profit`],
+      [`Що ви отримуєте:`, `What you get:`],
+      [`Повноцінний робочий вебдодаток або MVP під ключ`, `Full-featured working web app or turnkey MVP`],
+      [`Продуманий UI/UX дизайн під клієнтів`, `Thoughtful UI/UX design crafted for customers`],
+      [`Чиста архітектура, 100% код у вашому GitHub`, `Clean architecture, 100% code in your GitHub`],
+      [`Термін запуску:`, `Delivery timeline:`],
+      [`3–8 тижнів`, `3–8 weeks`],
+      [`Формат оплати:`, `Pricing model:`],
+      [`Фіксована ціна або T&M`, `Fixed price or T&M`],
+      [`Обговорити запуск MVP →`, `Discuss MVP launch →`],
+      [`Діючому бізнесу, де рутина гальмує продажі`, `Growing companies where routine slows down sales`],
+      [`Менеджери вручну переносять дані між CRM, таблицями та складом. Заявки губляться, а обробка триває годинами.`, `Managers manually copy data across CRMs, spreadsheets, and orders. Leads get lost and processing takes hours.`],
+      [`Інтеграція CRM, ERP, платіжних систем та API`, `Integration of CRM, ERP, payment systems, and APIs`],
+      [`AI-асистенти, чат-боти та обробка заявок 24/7`, `AI assistants, chatbots, and 24/7 lead handling`],
+      [`Звільнення до 40% робочого часу команди`, `Freeing up to 40% of team working hours`],
+      [`Термін впровадження:`, `Deployment timeline:`],
+      [`2–5 тижнів`, `2–5 weeks`],
+      [`Оцінити автоматизацію →`, `Estimate automation →`],
+      [`Компаніям, яким не вистачає інженерів під ріст`, `Companies needing engineers to accelerate growth`],
+      [`Штатні розробники завантажені, найм триває місяцями, а критичні фічі та продукт треба релізити зараз.`, `In-house developers are at capacity, hiring takes months, and critical product features are needed now.`],
+      [`Перевірені інженери: React/Next, Python, Mobile, DevOps`, `Vetted engineers: React/Next, Python, Mobile, DevOps`],
+      [`Пряма інтеграція у ваші процеси (Jira/Linear)`, `Seamless integration into your workflows (Jira/Linear)`],
+      [`Гнучке масштабування команди вгору/вниз`, `Flexible team scaling up or down on demand`],
+      [`Старт робіт:`, `Start date:`],
+      [`від 5 робочих днів`, `from 5 business days`],
+      [`Dedicated / T&M`, `Dedicated / T&M`],
+      [`Підібрати спеціалістів →`, `Match specialists →`],
+      [`Стек, на якому ми будуємо продукти`, `The Stack We Build On`],
+      [`Frontend & Mobile`, `Frontend & Mobile`],
+      [`Швидкі інтерфейси, оптимізовані під високу конверсію та мобільні пристрої.`, `Fast interfaces optimized for conversion and mobile UX.`],
+      [`Backend & Бази даних`, `Backend & Databases`],
+      [`Відмовостійка логіка, модульна архітектура та захист даних бізнесу.`, `Fault-tolerant logic, modular architecture, and secure data storage.`],
+      [`Хмара та DevOps`, `Cloud & DevOps`],
+      [`Автоматичні пайплайни деплою, контейнеризація та масштабованість.`, `Automated deployment pipelines, containerization, and scale.`],
+      [`ШІ та Автоматизація`, `AI & Automation`],
+      [`Інтеграція сучасних мовних моделей, RAG-баз знань та агентів у процеси.`, `Integrating modern LLMs, RAG knowledge bases, and agents into workflows.`],
+      [`Product, Technology & Growth`, `Product, Technology & Growth`],
+      [`Strategy, Delivery & Business`, `Strategy, Delivery & Business`],
+      [`Залучаємо перевірених інженерів під специфіку вашого стеку: React/Next, Python, DevOps, Mobile, UI/UX. Жодного рекрутингу навмання — тільки досвідчені спеціалісти з історією спільних релізів.`, `We bring in vetted engineers matching your specific stack: React/Next, Python, DevOps, Mobile, UI/UX. Zero random recruiting — only seasoned specialists with a track record of shipping together.`],
+      [`Прямий контакт з архітекторами`, `Direct contact with architects`],
+      [`0 посередників`, `0 middlemen`],
       [`Розповісти про задачу`, `Tell us about your challenge`], [`Наші послуги`, `Our services`], [`Безкоштовна консультація 30 хв`, `Free 30-minute consultation`], [`Фіксована ціна або Time & Material`, `Fixed price or Time & Material`],
+      [`Написати в Telegram`, `Chat in Telegram`],
+      [`години на відповідь та оцінку`, `hours to respond & estimate`], [`прозорий код з 1 дня`, `transparent code from day one`],
+      [`середній термін запуску MVP`, `average MVP delivery timeline`], [`бюрократії та посередників`, `bureaucracy and middlemen`],
       [`Аналізуємо бізнес-задачу...`, `Analysing your business challenge...`], [`Проєктуємо архітектуру...`, `Designing the architecture...`], [`Пишемо перший спринт...`, `Building the first sprint...`],
-      [`Відкритий код`, `Open source code`], [`З першого дня у вашому репозиторії`, `In your repository from day one`], [`години на відповідь`, `hours to respond`], [`відкритий код з 1 дня`, `open code from day one`], [`тижнів до MVP`, `weeks to MVP`], [`посередників у комунікації`, `middlemen in communication`],
+      [`Відкритий код`, `Code Ownership`], [`З першого дня у вашому репозиторії`, `In your repository from day one`], [`години на відповідь`, `hours to respond`], [`відкритий код з 1 дня`, `code ownership from day one`], [`тижнів до MVP`, `weeks to MVP`], [`посередників у комунікації`, `middlemen in communication`],
       [`Чому ми створили`, `Why we created`], [`Ми — два інженери, які роками працювали на різних проєктах і бачили одну й ту саму проблему:`, `We are two engineers who spent years working on different projects and repeatedly saw the same issue:`], [`клієнти не отримують те, за що платять`, `clients do not get what they pay for`], [`Затягування термінів, приховані комісії, код, який ніхто не може підтримати.`, `Missed deadlines, hidden fees, and code no one can maintain.`],
       [`Тому ми створили VanzaLabs. Назва походить від італійського`, `That is why we created VanzaLabs. The name comes from the Italian`], [`— «рухатися вперед». Ми рухаємо ваш бізнес вперед, розуміючи, навіщо це потрібно.`, `— “to move forward.” We move your business forward by understanding why it matters.`],
       [`Зараз нас двоє, але за спиною — мережа перевірених розробників, з якими ми співпрацювали роками. Це дає нам гнучкість: від невеликого MVP до повноцінної команди під продукт.`, `There are two of us today, backed by a network of proven developers we have worked with for years. This gives us flexibility, from a small MVP to a full product team.`],
@@ -74,6 +166,12 @@
       ['Руслан', 'Ruslan']
     ]);
     const ukrainianTranslations = new Map([
+      ['Turn', 'Перетворюємо'],
+      ['business ideas', 'бізнес-ідеї'],
+      ['Turn business ideas', 'Перетворюємо бізнес-ідеї'],
+      ['into', 'на'],
+      ['digital products', 'цифрові продукти'],
+      ['that actually work.', 'що реально працюють.'],
       ['Igor', 'Ігор'],
       ['Ruslan', 'Руслан'],
       ['CO-FOUNDER', 'ЗАСНОВНИК'],
@@ -114,11 +212,19 @@
       let node;
       while ((node = walker.nextNode())) {
         if (['SCRIPT', 'STYLE'].includes(node.parentElement?.tagName) || !node.nodeValue.trim()) continue;
+        if (node.parentElement?.closest('#headlineUa, #headlineEn')) continue;
         if (!originalText.has(node)) originalText.set(node, node.nodeValue);
         const original = originalText.get(node);
         const key = original.trim();
         const replacement = english ? translations.get(key) : ukrainianTranslations.get(key);
         node.nodeValue = replacement ? original.replace(key, replacement) : original;
+      }
+
+      const hUa = document.getElementById('headlineUa');
+      const hEn = document.getElementById('headlineEn');
+      if (hUa && hEn) {
+        hUa.classList.toggle('hidden', english);
+        hEn.classList.toggle('hidden', !english);
       }
 
       document.querySelectorAll('[aria-label], [placeholder], [title]').forEach(el => {
@@ -141,6 +247,13 @@
         button.classList.toggle('text-brand-700', !active);
         button.setAttribute('aria-pressed', String(active));
       });
+
+      const badge = document.getElementById('challengeBadge');
+      if (badge) {
+        const activeTab = document.querySelector('.challenge-tab.active') || document.querySelector('.challenge-tab');
+        const badgeText = activeTab ? activeTab.dataset.badge : 'Рішення під ключ';
+        badge.textContent = english ? (translations.get(badgeText) || badgeText) : badgeText;
+      }
 
       localStorage.setItem('vanzalabs-language', lang);
     }
@@ -383,105 +496,244 @@
   </header>
 
   <section class="hero-bg relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-20 lg:pt-24 lg:pb-28">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div class="relative z-10">
-          <div class="inline-flex items-center gap-2 bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-500 status-dot"></span>
-            Приймаємо нові проєкти
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 lg:pt-20 lg:pb-24 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <!-- Left Column: Value, Positioning, CTAs (7 cols) -->
+        <div class="lg:col-span-7">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 border border-gray-200/80 text-gray-700 text-xs font-semibold uppercase tracking-wider mb-6">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-600"></span>
+            Product Engineering Studio
           </div>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-gray-900 mb-6">
-            Ми створюємо<br>
-            <span class="gradient-text">цифрові продукти,</span><br>
-            що рухають<br>
-            бізнес вперед
+
+          <h1 class="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold leading-[1.1] tracking-tight text-gray-900 mb-6">
+            <span id="headlineUa">
+              <span class="block">Перетворюємо</span>
+              <span class="block">бізнес-ідеї</span>
+              <span class="block">на <span class="gradient-text">цифрові продукти</span></span>
+              <span class="block">що реально працюють.</span>
+            </span>
+            <span id="headlineEn" class="hidden">
+              <span class="block">Turn business ideas</span>
+              <span class="block">into <span class="gradient-text">digital products</span></span>
+              <span class="block">that actually work.</span>
+            </span>
           </h1>
-          <p class="text-gray-600 text-base lg:text-lg leading-relaxed max-w-lg mb-4">
-            Інженерна студія з України. Розробляємо MVP та вебпродукти, автоматизуємо бізнес-процеси та допомагаємо стартапам і бізнесам масштабуватися.
+
+          <p class="text-gray-600 text-base sm:text-lg leading-relaxed max-w-xl mb-8">
+            Проєктуємо та розробляємо MVP, вебплатформи та AI-рішення — з чіткими термінами, повною власністю на код і прямою співпрацею з командою, яка його створює.
           </p>
-          <p class="text-gray-500 text-sm mb-8">Від ідеї до стабільного рішення — ми поруч на кожному етапі.</p>
-          <div class="flex flex-wrap gap-3 mb-8">
-            <a href="#contact" class="cta-primary inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3.5 rounded-lg transition shadow-md hover:shadow-lg">
-              Розповісти про задачу
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap items-center gap-3.5 mb-8">
+            <a href="#contact" class="cta-primary inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3.5 rounded-xl transition shadow-md hover:shadow-lg">
+              Обговорити проєкт
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
-            <a href="#services" class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-semibold px-6 py-3.5 rounded-lg border border-gray-200 transition">
-              Наші послуги
+            <a href="#process" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-semibold px-6 py-3.5 rounded-xl border border-gray-200 transition shadow-xs hover:border-gray-300">
+              Як ми працюємо
             </a>
           </div>
-          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-500">
-            <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Безкоштовна консультація 30 хв</span>
-            <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Фіксована ціна або Time & Material</span>
+
+          <!-- Trust Line -->
+          <div class="pt-6 border-t border-gray-100 flex flex-wrap items-center gap-y-2 gap-x-3 sm:gap-x-4 text-xs text-gray-500">
+            <span>Україна</span>
+            <span class="text-gray-300">•</span>
+            <span>Працюємо по всьому світу</span>
+            <span class="text-gray-300">•</span>
+            <span class="font-semibold text-gray-800">100% Code Ownership</span>
+            <span class="text-gray-300">•</span>
+            <span>Direct Founder Access</span>
           </div>
         </div>
 
-        <div class="relative flex justify-center lg:justify-end">
-          <div class="relative w-full max-w-md">
-            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-card">
-              <div class="flex items-center gap-2 mb-6">
-                <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                <div class="w-3 h-3 rounded-full bg-green-400"></div>
-                <div class="ml-auto text-[10px] text-gray-400 font-mono">vanza@labs: ~/project</div>
-              </div>
-              <div class="space-y-2.5 font-mono text-xs sm:text-sm">
-                <div class="flex gap-3"><span class="text-brand-600">$</span><span class="text-gray-700">git clone idea.git</span></div>
-                <div class="flex gap-3"><span class="text-brand-600">$</span><span class="text-gray-700">cd idea && npm run discover</span></div>
-                <div class="pl-6 text-gray-500">→ Аналізуємо бізнес-задачу...</div>
-                <div class="pl-6 text-gray-500">→ Проєктуємо архітектуру...</div>
-                <div class="pl-6 text-gray-500">→ Пишемо перший спринт...</div>
-                <div class="flex gap-3"><span class="text-brand-600">$</span><span class="text-gray-700">npm run deploy</span></div>
-                <div class="pl-6 text-brand-600 font-semibold">✓ MVP live in 8 weeks</div>
-              </div>
-              <div class="mt-5 pt-4 border-t border-gray-200 flex items-center justify-between">
-                <div class="flex -space-x-2">
-                  <div class="w-8 h-8 rounded-full bg-brand-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-brand-700">FE</div>
-                  <div class="w-8 h-8 rounded-full bg-accent-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-accent-700">BE</div>
-                  <div class="w-8 h-8 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-gray-600">Dev</div>
+        <!-- Right Column: Interactive Business Challenge Widget (5 cols) -->
+        <div class="lg:col-span-5">
+          <div class="bg-white rounded-3xl p-6 sm:p-7 border border-gray-200/90 shadow-card hover:shadow-card-hover transition relative">
+            
+            <!-- Top Header: Select Challenge + Badge -->
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="text-[11px] font-mono font-bold tracking-wider text-gray-500 uppercase">
+                ОБЕРІТЬ ВАШУ БІЗНЕС-ЗАДАЧУ:
+              </span>
+              <span id="challengeBadge" class="text-[11px] font-semibold text-brand-700 bg-brand-50 border border-brand-200/60 px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                Рішення під ключ
+              </span>
+            </div>
+
+            <!-- Tab Switcher (3 Tabs) -->
+            <div class="grid grid-cols-3 gap-1 p-1 bg-gray-100 rounded-xl mb-5 text-center font-semibold">
+              <button type="button" class="challenge-tab py-2 px-1.5 sm:px-2 rounded-lg transition bg-brand-600 text-white shadow-xs text-[11px] sm:text-xs truncate sm:overflow-visible" data-target="panel-mvp" data-badge="Рішення під ключ">
+                Запуск MVP
+              </button>
+              <button type="button" class="challenge-tab py-2 px-1.5 sm:px-2 rounded-lg transition text-gray-600 hover:text-gray-900 text-[11px] sm:text-xs truncate sm:overflow-visible" data-target="panel-automation" data-badge="Автоматизація бізнесу">
+                Автоматизація & AI
+              </button>
+              <button type="button" class="challenge-tab py-2 px-1.5 sm:px-2 rounded-lg transition text-gray-600 hover:text-gray-900 text-[11px] sm:text-xs truncate sm:overflow-visible" data-target="panel-team" data-badge="Виділена команда">
+                Команда під проєкт
+              </button>
+            </div>
+
+            <!-- Panels Container (CSS Grid Stack: Absolute 0px layout shifts) -->
+            <div class="grid grid-cols-1 grid-rows-1 items-start">
+              <!-- Panel 1: MVP -->
+              <div id="panel-mvp" class="challenge-panel col-start-1 row-start-1 w-full space-y-4 transition-opacity duration-150">
+                <div class="p-4 rounded-2xl bg-gray-50 border border-gray-100 text-xs sm:text-[13px] space-y-2 min-h-[96px] flex flex-col justify-center">
+                  <p><span class="font-bold text-gray-900">Для кого:</span> <span class="text-gray-600">Стартапи та компанії, що запускають новий продукт</span></p>
+                  <p><span class="font-bold text-gray-900">Біль бізнесу:</span> <span class="text-gray-600">Потрібно перевірити ідею на ринку та залучити клієнтів без витрати $30k+ чи пів року очікування.</span></p>
                 </div>
-                <span class="text-[10px] text-gray-400 font-mono">2 founders + network</span>
+
+                <div class="space-y-1.5 text-xs sm:text-[13px]">
+                  <p class="font-bold text-gray-900 mb-1">Що ви отримуєте:</p>
+                  <div class="flex items-center gap-2 text-gray-700">
+                    <span class="text-brand-600 font-bold">✓</span>
+                    <span>Повноцінний робочий вебдодаток або MVP під ключ</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-gray-700">
+                    <span class="text-brand-600 font-bold">✓</span>
+                    <span>Продуманий UI/UX дизайн під клієнтів</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-gray-700">
+                    <span class="text-brand-600 font-bold">✓</span>
+                    <span>Чиста архітектура, 100% код у вашому GitHub</span>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100 text-xs">
+                  <div>
+                    <span class="text-gray-500 block mb-0.5">Термін запуску:</span>
+                    <span class="font-bold text-gray-900">3–8 тижнів</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500 block mb-0.5">Формат оплати:</span>
+                    <span class="font-bold text-gray-900">Фіксована ціна або T&M</span>
+                  </div>
+                </div>
+
+                <a href="#contact" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 px-4 rounded-xl transition shadow-sm hover:shadow text-sm">
+                  <span>Обговорити запуск MVP →</span>
+                </a>
+              </div>
+
+              <!-- Panel 2: Automation -->
+              <div id="panel-automation" class="challenge-panel col-start-1 row-start-1 w-full space-y-4 transition-opacity duration-150 opacity-0 pointer-events-none invisible">
+                <div class="p-4 rounded-2xl bg-gray-50 border border-gray-100 text-xs sm:text-[13px] space-y-2 min-h-[96px] flex flex-col justify-center">
+                  <p><span class="font-bold text-gray-900">Для кого:</span> <span class="text-gray-600">Діючому бізнесу, де рутина гальмує продажі</span></p>
+                  <p><span class="font-bold text-gray-900">Біль бізнесу:</span> <span class="text-gray-600">Менеджери вручну переносять дані між CRM, таблицями та складом. Заявки губляться, а обробка триває годинами.</span></p>
+                </div>
+
+                <div class="space-y-1.5 text-xs sm:text-[13px]">
+                  <p class="font-bold text-gray-900 mb-1">Що ви отримуєте:</p>
+                  <div class="flex items-center gap-2 text-gray-700">
+                    <span class="text-brand-600 font-bold">✓</span>
+                    <span>Інтеграція CRM, ERP, платіжних систем та API</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-gray-700">
+                    <span class="text-brand-600 font-bold">✓</span>
+                    <span>AI-асистенти, чат-боти та обробка заявок 24/7</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-gray-700">
+                    <span class="text-brand-600 font-bold">✓</span>
+                    <span>Звільнення до 40% робочого часу команди</span>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100 text-xs">
+                  <div>
+                    <span class="text-gray-500 block mb-0.5">Термін впровадження:</span>
+                    <span class="font-bold text-gray-900">2–5 тижнів</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500 block mb-0.5">Формат оплати:</span>
+                    <span class="font-bold text-gray-900">Фіксована ціна або T&M</span>
+                  </div>
+                </div>
+
+                <a href="#contact" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 px-4 rounded-xl transition shadow-sm hover:shadow text-sm">
+                  <span>Оцінити автоматизацію →</span>
+                </a>
+              </div>
+
+              <!-- Panel 3: Team -->
+              <div id="panel-team" class="challenge-panel col-start-1 row-start-1 w-full space-y-4 transition-opacity duration-150 opacity-0 pointer-events-none invisible">
+                <div class="p-4 rounded-2xl bg-gray-50 border border-gray-100 text-xs sm:text-[13px] space-y-2 min-h-[96px] flex flex-col justify-center">
+                  <p><span class="font-bold text-gray-900">Для кого:</span> <span class="text-gray-600">Компаніям, яким не вистачає інженерів під ріст</span></p>
+                  <p><span class="font-bold text-gray-900">Біль бізнесу:</span> <span class="text-gray-600">Штатні розробники завантажені, найм триває місяцями, а критичні фічі та продукт треба релізити зараз.</span></p>
+                </div>
+
+                <div class="space-y-1.5 text-xs sm:text-[13px]">
+                  <p class="font-bold text-gray-900 mb-1">Що ви отримуєте:</p>
+                  <div class="flex items-center gap-2 text-gray-700">
+                    <span class="text-brand-600 font-bold">✓</span>
+                    <span>Перевірені інженери: React/Next, Python, Mobile, DevOps</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-gray-700">
+                    <span class="text-brand-600 font-bold">✓</span>
+                    <span>Пряма інтеграція у ваші процеси (Jira/Linear)</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-gray-700">
+                    <span class="text-brand-600 font-bold">✓</span>
+                    <span>Гнучке масштабування команди вгору/вниз</span>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100 text-xs">
+                  <div>
+                    <span class="text-gray-500 block mb-0.5">Старт робіт:</span>
+                    <span class="font-bold text-gray-900">від 5 робочих днів</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-500 block mb-0.5">Формат оплати:</span>
+                    <span class="font-bold text-gray-900">Dedicated / T&M</span>
+                  </div>
+                </div>
+
+                <a href="#contact" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 px-4 rounded-xl transition shadow-sm hover:shadow text-sm">
+                  <span>Підібрати спеціалістів →</span>
+                </a>
               </div>
             </div>
-            <div class="mt-4 flex justify-end">
-              <div class="bg-white rounded-xl px-4 py-3 shadow-lg border border-gray-100 flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
-                  <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                </div>
-                <div>
-                  <p class="text-xs font-bold text-gray-900">Відкритий код</p>
-                  <p class="text-[10px] text-gray-500">З першого дня у вашому репозиторії</p>
-                </div>
-              </div>
+
+            <!-- Card Footer: Direct contact & 0 middlemen -->
+            <div class="mt-4 pt-3.5 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+              <span class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+                <span>Прямий контакт з архітекторами</span>
+              </span>
+              <span class="font-mono text-[11px] text-gray-400">0 посередників</span>
             </div>
+
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <section class="bg-dark-900 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div>
-          <p class="text-3xl sm:text-4xl font-extrabold text-brand-400 mb-1">24</p>
-          <p class="text-sm text-gray-400">години на відповідь</p>
+  <section class="bg-gradient-to-b from-gray-950 via-dark-900 to-gray-950 text-white py-12 relative overflow-hidden border-y border-gray-800">
+    <div class="absolute inset-0 pointer-events-none opacity-20">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-28 bg-brand-500/25 blur-3xl rounded-full"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <div class="bg-white/[0.04] backdrop-blur-sm rounded-2xl p-5 border border-white/5 hover:border-brand-500/30 transition text-center shadow-xs">
+          <p class="text-2xl sm:text-3xl font-extrabold text-brand-400 mb-1">1 робочий день</p>
+          <p class="text-xs sm:text-sm text-gray-400">на первинну технічну оцінку</p>
         </div>
-        <div>
-          <p class="text-3xl sm:text-4xl font-extrabold text-brand-400 mb-1">100%</p>
-          <p class="text-sm text-gray-400">відкритий код з 1 дня</p>
+        <div class="bg-white/[0.04] backdrop-blur-sm rounded-2xl p-5 border border-white/5 hover:border-brand-500/30 transition text-center shadow-xs">
+          <p class="text-2xl sm:text-3xl font-extrabold text-brand-400 mb-1">100%</p>
+          <p class="text-xs sm:text-sm text-gray-400">Code Ownership у вашому GitHub</p>
         </div>
-        <div>
-          <p class="text-3xl sm:text-4xl font-extrabold text-brand-400 mb-1">3–12</p>
-          <p class="text-sm text-gray-400">тижнів до MVP</p>
+        <div class="bg-white/[0.04] backdrop-blur-sm rounded-2xl p-5 border border-white/5 hover:border-brand-500/30 transition text-center shadow-xs">
+          <p class="text-2xl sm:text-3xl font-extrabold text-brand-400 mb-1">3–8 тижнів</p>
+          <p class="text-xs sm:text-sm text-gray-400">типовий термін запуску MVP</p>
         </div>
-        <div>
-          <p class="text-3xl sm:text-4xl font-extrabold text-brand-400 mb-1">0</p>
-          <p class="text-sm text-gray-400">посередників у комунікації</p>
+        <div class="bg-white/[0.04] backdrop-blur-sm rounded-2xl p-5 border border-white/5 hover:border-brand-500/30 transition text-center shadow-xs">
+          <p class="text-2xl sm:text-3xl font-extrabold text-brand-400 mb-1">Прямий доступ</p>
+          <p class="text-xs sm:text-sm text-gray-400">до засновників та інженерів</p>
         </div>
       </div>
     </div>
-    
-
   </section>
 
   <section id="about" class="py-20 lg:py-28 bg-white">
@@ -500,7 +752,7 @@
               Тому ми створили VanzaLabs. Назва походить від італійського <em>avanzare</em> — «рухатися вперед». Ми рухаємо ваш бізнес вперед, розуміючи, навіщо це потрібно.
             </p>
             <p>
-              Зараз нас двоє, але за спиною — мережа перевірених розробників, з якими ми співпрацювали роками. Це дає нам гнучкість: від невеликого MVP до повноцінної команди під продукт.
+              Невелика senior-команда з перевіреною інженерною мережею. Ми даємо гнучкість студії без корпоративної бюрократії: від швидкого запуску MVP до повноцінної продуктової команди.
             </p>
           </div>
           <div class="mt-6 flex items-center gap-3">
@@ -519,11 +771,11 @@
               <img src="founder1.jpg" alt="Igor" class="founder-photo founder-photo-igor w-full h-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-brand-700\'>I</span>';">
             </div>
             <p class="font-bold text-gray-900 mb-0.5">Igor</p>
-            <p class="text-xs font-bold text-gray-400 mb-3">ЗАСНОВНИК</p>
+            <p class="text-xs font-bold text-brand-600 mb-3 uppercase tracking-wider">Співзасновник</p>
             <div class="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center mx-auto mb-4">
               <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
             </div>
-            <p class="font-bold text-gray-900 mb-1">Product & Marketing</p>
+            <p class="font-bold text-gray-900 mb-1">Product, Technology & Growth</p>
             <p class="text-sm text-gray-500">Реклама, digital-маркетинг, продуктовий менеджмент. Знає, як знайти клієнта для продукту та вивести його на ринок. Розуміє бізнес ізсередини.</p>
           </div>
           <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center">
@@ -531,16 +783,19 @@
               <img src="founder2.jpg" alt="Ruslan" class="founder-photo founder-photo-ruslan w-full h-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-accent-700\'>R</span>';">
             </div>
             <p class="font-bold text-gray-900 mb-0.5">Ruslan</p>
-            <p class="text-xs font-bold text-gray-400 mb-3">ЗАСНОВНИК</p>
+            <p class="text-xs font-bold text-accent-600 mb-3 uppercase tracking-wider">Співзасновник</p>
             <div class="w-12 h-12 rounded-xl bg-accent-50 flex items-center justify-center mx-auto mb-4">
               <svg class="w-6 h-6 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
             </div>
-            <p class="font-bold text-gray-900 mb-1">Product & Strategy</p>
+            <p class="font-bold text-gray-900 mb-1">Strategy, Delivery & Business</p>
             <p class="text-sm text-gray-500">Аналітик, аудитор, проджект-менеджер. Вів проєкти в державних установах, вигравав державні гранти та запускав стартапи.</p>
           </div>
           <div class="sm:col-span-2 bg-gradient-to-br from-brand-50 to-accent-50 rounded-2xl p-6 border border-brand-100">
-            <p class="text-sm font-semibold text-gray-900 mb-2">Наша мережа</p>
-            <p class="text-sm text-gray-600">За потреби залучаємо перевірених розробників: React/Next, Python, DevOps, Mobile, UI/UX. Всі — з попереднім досвідом спільної роботи. Ніяких «підборів з нуля» та сюрпризів для клієнта.</p>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+              <p class="text-xs font-bold text-brand-800 uppercase tracking-wider">Створено інженерами. Керується засновниками.</p>
+            </div>
+            <p class="text-sm text-gray-600">Залучаємо перевірених інженерів під специфіку вашого стеку: React/Next, Python, DevOps, Mobile, UI/UX. Жодного рекрутингу навмання — тільки досвідчені спеціалісти з історією спільних релізів.</p>
           </div>
         </div>
       </div>
@@ -762,51 +1017,77 @@
     </div>
   </section>
 
-  <section class="py-16 bg-gray-50 border-y border-gray-100">
+  <section class="py-20 bg-gray-50 border-y border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-center text-xs font-semibold tracking-widest text-gray-400 uppercase mb-8">Технології, з якими працюємо</p>
-      <div class="tech-marquee">
-        <div class="tech-track">
-          <span class="tech-item">React</span>
-          <span class="tech-item">Next.js</span>
-          <span class="tech-item">TypeScript</span>
-          <span class="tech-item">Node.js</span>
-          <span class="tech-item">Python</span>
-          <span class="tech-item">PostgreSQL</span>
-          <span class="tech-item">AWS</span>
-          <span class="tech-item">Docker</span>
-          <span class="tech-item">OpenAI</span>
-          <span class="tech-item">Stripe</span>
-          <span class="tech-item">Tailwind</span>
-          <span class="tech-item">Prisma</span>
-          <span class="tech-item">Redis</span>
-          <span class="tech-item">Kubernetes</span>
-          <span class="tech-item">GraphQL</span>
-          <span class="tech-item">tRPC</span>
-          <span class="tech-item">Supabase</span>
-          <span class="tech-item">LangChain</span>
-          <span class="tech-item">FastAPI</span>
-          <span class="tech-item">Django</span>
-          <span class="tech-item">React</span>
-          <span class="tech-item">Next.js</span>
-          <span class="tech-item">TypeScript</span>
-          <span class="tech-item">Node.js</span>
-          <span class="tech-item">Python</span>
-          <span class="tech-item">PostgreSQL</span>
-          <span class="tech-item">AWS</span>
-          <span class="tech-item">Docker</span>
-          <span class="tech-item">OpenAI</span>
-          <span class="tech-item">Stripe</span>
-          <span class="tech-item">Tailwind</span>
-          <span class="tech-item">Prisma</span>
-          <span class="tech-item">Redis</span>
-          <span class="tech-item">Kubernetes</span>
-          <span class="tech-item">GraphQL</span>
-          <span class="tech-item">tRPC</span>
-          <span class="tech-item">Supabase</span>
-          <span class="tech-item">LangChain</span>
-          <span class="tech-item">FastAPI</span>
-          <span class="tech-item">Django</span>
+      <div class="text-center mb-14">
+        <p class="text-brand-600 text-xs font-semibold tracking-widest uppercase mb-3">Технологічний стек</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Стек, на якому ми будуємо продукти</h2>
+        <p class="text-gray-500 text-sm max-w-lg mx-auto">Сучасні перевірені інструменти для стабільних і масштабованих рішень.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Frontend -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-card">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-xs mb-4">
+            UI
+          </div>
+          <h4 class="font-bold text-gray-900 mb-2">Frontend & Mobile</h4>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">Швидкі інтерфейси, оптимізовані під високу конверсію та мобільні пристрої.</p>
+          <div class="flex flex-wrap gap-1.5 text-xs font-medium text-gray-700">
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">React</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">Next.js</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">React Native</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">TypeScript</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-card">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs mb-4">
+            API
+          </div>
+          <h4 class="font-bold text-gray-900 mb-2">Backend & Бази даних</h4>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">Відмовостійка логіка, модульна архітектура та захист даних бізнесу.</p>
+          <div class="flex flex-wrap gap-1.5 text-xs font-medium text-gray-700">
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">Node.js</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">Python</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">FastAPI</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">PostgreSQL</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">Redis</span>
+          </div>
+        </div>
+
+        <!-- Infrastructure -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-card">
+          <div class="w-10 h-10 rounded-xl bg-accent-50 text-accent-600 flex items-center justify-center font-bold text-xs mb-4">
+            OPS
+          </div>
+          <h4 class="font-bold text-gray-900 mb-2">Хмара та DevOps</h4>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">Автоматичні пайплайни деплою, контейнеризація та масштабованість.</p>
+          <div class="flex flex-wrap gap-1.5 text-xs font-medium text-gray-700">
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">AWS</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">Docker</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">CI / CD</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">Supabase</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">Vercel</span>
+          </div>
+        </div>
+
+        <!-- AI -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-card">
+          <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-xs mb-4">
+            AI
+          </div>
+          <h4 class="font-bold text-gray-900 mb-2">ШІ та Автоматизація</h4>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">Інтеграція сучасних мовних моделей, RAG-баз знань та агентів у процеси.</p>
+          <div class="flex flex-wrap gap-1.5 text-xs font-medium text-gray-700">
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">OpenAI API</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">Claude API</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">RAG</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">AI Agents</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">Telegram Bot</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1048,6 +1329,29 @@
   </footer>
 
   <script>
+    // Hero tab switcher
+    function switchHeroTab(tabId) {
+      document.querySelectorAll('.hero-tab-btn').forEach(btn => {
+        const active = btn.dataset.tab === tabId;
+        btn.classList.toggle('bg-brand-600', active);
+        btn.classList.toggle('text-white', active);
+        btn.classList.toggle('shadow-sm', active);
+        btn.classList.toggle('bg-transparent', !active);
+        btn.classList.toggle('text-gray-700', !active);
+        btn.classList.toggle('hover:text-gray-900', !active);
+      });
+      document.querySelectorAll('.hero-tab-pane').forEach(pane => {
+        pane.classList.toggle('hidden', pane.id !== `hero-pane-${tabId}`);
+      });
+    }
+
+    function selectHeroService(serviceValue) {
+      const select = document.querySelector('select[name="service"]');
+      if (select) {
+        select.value = serviceValue;
+      }
+    }
+
     // Smooth scroll for all anchor links — prevents any page reload
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
@@ -1120,6 +1424,36 @@
       window.addEventListener('scroll', drawLine);
       drawLine();
     }
+
+    // Business challenge interactive tabs
+    document.querySelectorAll('.challenge-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.challenge-tab').forEach(t => {
+          t.classList.remove('active', 'bg-brand-600', 'text-white', 'shadow-xs');
+          t.classList.add('text-gray-600');
+        });
+        tab.classList.add('active', 'bg-brand-600', 'text-white', 'shadow-xs');
+        tab.classList.remove('text-gray-600');
+
+        const target = tab.dataset.target;
+        document.querySelectorAll('.challenge-panel').forEach(p => {
+          p.classList.add('opacity-0', 'pointer-events-none', 'invisible');
+          p.classList.remove('opacity-100', 'pointer-events-auto', 'visible');
+        });
+        const activePanel = document.getElementById(target);
+        if (activePanel) {
+          activePanel.classList.remove('opacity-0', 'pointer-events-none', 'invisible');
+          activePanel.classList.add('opacity-100', 'pointer-events-auto', 'visible');
+        }
+
+        const badge = document.getElementById('challengeBadge');
+        if (badge) {
+          const isEn = document.documentElement.lang === 'en';
+          const badgeText = tab.dataset.badge;
+          badge.textContent = isEn ? (translations.get(badgeText) || badgeText) : badgeText;
+        }
+      });
+    });
 
     // Form
     const form = document.getElementById('contactForm');
