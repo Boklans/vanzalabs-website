@@ -200,6 +200,48 @@
       ['Briefly describe the challenge, timeline and budget (if any)...', 'Коротко про задачу, терміни, бюджет (якщо є)...']
     ]);
 
+    const ukToEn = translations;
+    const enToUk = ukrainianTranslations;
+    const attrUkToEn = attributeTranslations;
+    const attrEnToUk = ukrainianAttributeTranslations;
+
+    const validationMessages = {
+      uk: {
+        general: 'Будь ласка, заповніть це поле.',
+        select: 'Будь ласка, оберіть варіант зі списку.',
+        privacy: 'Будь ласка, погодьтеся з політикою конфіденційності.',
+        emailEmpty: 'Будь ласка, заповніть це поле.',
+        emailInvalid: 'Введіть коректну електронну адресу.'
+      },
+      en: {
+        general: 'Please fill out this field.',
+        select: 'Please choose an option from the list.',
+        privacy: 'Please agree to the Privacy Policy.',
+        emailEmpty: 'Please fill out this field.',
+        emailInvalid: 'Please enter a valid email address.'
+      }
+    };
+
+    function updateFieldValidation(field) {
+      if (!field || !field.validity) return;
+      const lang = document.documentElement.lang === 'en' ? 'en' : 'uk';
+      const msgs = validationMessages[lang];
+
+      if (field.validity.valueMissing) {
+        if (field.tagName === 'SELECT') {
+          field.setCustomValidity(msgs.select);
+        } else if (field.type === 'checkbox') {
+          field.setCustomValidity(msgs.privacy);
+        } else {
+          field.setCustomValidity(msgs.general);
+        }
+      } else if (field.validity.typeMismatch && field.type === 'email') {
+        field.setCustomValidity(msgs.emailInvalid);
+      } else {
+        field.setCustomValidity('');
+      }
+    }
+
     function setLanguage(lang) {
       const english = lang === 'en';
       document.documentElement.lang = lang;
@@ -219,7 +261,7 @@
         if (!originalText.has(node)) originalText.set(node, node.nodeValue);
         const original = originalText.get(node);
         const key = original.trim();
-        const replacement = english ? ukToEn.get(key) : enToUk.get(key);
+        const replacement = english ? translations.get(key) : ukrainianTranslations.get(key);
         node.nodeValue = replacement ? original.replace(key, replacement) : original;
       }
 
@@ -237,8 +279,8 @@
           if (!initial) return;
           el.dataset[dataKey] = initial;
           const translated = english
-            ? (attrUkToEn.get(initial) || initial)
-            : (attrEnToUk.get(initial) || initial);
+            ? (attributeTranslations.get(initial) || initial)
+            : (ukrainianAttributeTranslations.get(initial) || initial);
           el.setAttribute(attr, translated);
         });
       });
