@@ -1115,7 +1115,7 @@
               <div class="flex items-center gap-1.5">
                 <span class="font-bold text-sm tracking-tight truncate">SPOT</span>
               </div>
-              <p class="text-[11px] text-gray-400 truncate"><span>Fitness & Health</span></p>
+              <p class="text-[11px] text-gray-400 truncate">Training and Progress</p>
             </div>
           </div>
         </button>
@@ -1128,7 +1128,7 @@
               <div class="flex items-center gap-1.5">
                 <span class="font-bold text-sm tracking-tight truncate">FormGrid</span>
               </div>
-              <p class="text-[11px] text-gray-500 truncate"><span>Forms & Sheets</span></p>
+              <p class="text-[11px] text-gray-500 truncate">Forms & Sheets</p>
             </div>
           </div>
         </button>
@@ -1141,7 +1141,7 @@
               <div class="flex items-center gap-1.5">
                 <span class="font-bold text-sm tracking-tight truncate">Invoices</span>
               </div>
-              <p class="text-[11px] text-gray-500 truncate"><span>FinTech & Docs</span></p>
+              <p class="text-[11px] text-gray-500 truncate">FinTech & Docs</p>
             </div>
           </div>
         </button>
@@ -1154,7 +1154,7 @@
               <div class="flex items-center gap-1.5">
                 <span class="font-bold text-sm tracking-tight truncate">Convert</span>
               </div>
-              <p class="text-[11px] text-gray-500 truncate"><span>Media & PDF</span></p>
+              <p class="text-[11px] text-gray-500 truncate">Media & PDF</p>
             </div>
           </div>
         </button>
@@ -1169,9 +1169,9 @@
           <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
             <div class="lg:col-span-7 flex flex-col justify-between space-y-5">
               <div class="flex flex-wrap items-center gap-2">
-                <span class="px-3 py-1 rounded-full bg-lime-400/15 border border-lime-400/30 text-[#C8FF3D] text-xs font-semibold"><span>B2C Mobile App</span></span>
-                <span class="px-2.5 py-1 rounded-full bg-gray-800 text-gray-300 text-xs font-medium"><span>Health & Fitness</span></span>
-                <span class="px-2.5 py-1 rounded-full bg-gray-800 text-gray-300 text-xs font-medium"><span>iOS & Android</span></span>
+                <span class="px-3 py-1 rounded-full bg-lime-400/15 border border-lime-400/30 text-[#C8FF3D] text-xs font-semibold">B2C Mobile App</span>
+                <span class="px-2.5 py-1 rounded-full bg-gray-800 text-gray-300 text-xs font-medium">Health & Fitness</span>
+                <span class="px-2.5 py-1 rounded-full bg-gray-800 text-gray-300 text-xs font-medium">iOS & Android</span>
               </div>
 
               <div class="flex items-center gap-3.5">
@@ -1906,6 +1906,12 @@
         btn.classList.toggle('bg-white', !active);
         btn.classList.toggle('text-gray-800', !active);
         btn.classList.toggle('border-gray-200', !active);
+
+        const sub = btn.querySelector('p');
+        if (sub) {
+          sub.classList.toggle('text-gray-400', active);
+          sub.classList.toggle('text-gray-500', !active);
+        }
       });
       document.querySelectorAll('.app-showcase-panel').forEach(pane => {
         pane.classList.toggle('hidden', pane.id !== `app-panel-${appId}`);
