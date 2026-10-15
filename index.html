@@ -23,7 +23,7 @@
   <script>
     // Language switcher. Ukrainian remains the default; the choice is remembered per browser.
     const translations = new Map([
-      [`Про нас`, `About`], [`Послуги`, `Services`], [`Принципи`, `Principles`], [`Процес`, `Process`], [`Питання`, `FAQ`],
+      [`Про нас`, `About`], [`Послуги`, `Services`], [`Кейси`, `Cases`], [`Принципи`, `Principles`], [`Процес`, `Process`], [`Питання`, `FAQ`],
       [`Обговорити проєкт`, `Discuss a project`], [`Обговорити проєкт →`, `Discuss a project →`], [`Мова:`, `Language:`],
       [`Приймаємо нові проєкти`, `Accepting new projects`],
       [`Перетворюємо`, `Turn`],
@@ -139,7 +139,101 @@
       [`Як будується робота`, `How work is structured`], [`Чотири чіткі етапи. Без хаосу і «ми ще думаємо».`, `Four clear stages. No chaos or “we are still thinking.”`], [`Аналіз задачі`, `Challenge analysis`], [`Знайомимось із задачею, користувачами та підтверджуємо цінність. 3–7 днів.`, `We learn about the challenge and users, and validate the value. 3–7 days.`], [`Рішення`, `Solution`], [`Архітектура, етапи, пріоритети, склад команди та кошторис. Фіксуємо scope.`, `Architecture, stages, priorities, team composition and estimate. We lock the scope.`], [`Розробка`, `Development`], [`Короткі ітерації, щотижневі демо, continuous delivery. Ви контролюєте напрямок.`, `Short iterations, weekly demos and continuous delivery. You control the direction.`], [`Розвиток`, `Growth`], [`Запуск, метрики, ітерації. Розвиваємо продукт далі або передаємо команді.`, `Launch, metrics and iterations. We continue growing the product or hand it over to your team.`], [`Технології, з якими працюємо`, `Technologies we work with`],
       [`Часті питання`, `Frequently asked questions`], [`Скільки коштує розробка MVP?`, `How much does MVP development cost?`], [`Залежить від обсягу проєкту. Після безкоштовного передпроєктного аналізу задачі даємо точну фіксовану оцінку або пропонуємо погодинну оплату зі щотижневим лімітом. Без сюрпризів у кінці.`, `It depends on the project scope. After a free pre-project analysis, we provide an exact fixed estimate or hourly billing with a weekly cap. No surprises at the end.`], [`Як швидко можна стартувати?`, `How soon can we start?`], [`Зазвичай протягом 5–10 робочих днів після узгодження обсягу робіт і договору. Ми невелика команда, тому процес узгодження швидкий — без бюрократії.`, `Usually within 5–10 business days after agreeing on the scope and contract. We are a small team, so approvals are quick and bureaucracy-free.`], [`Хто володіє кодом і інтелектуальною власністю?`, `Who owns the code and intellectual property?`], [`Повністю ви. Код у вашому репозиторії з першого дня. Усі права на інтелектуальну власність передаються вам за договором. Ми не тримаємо код «заручником».`, `You do, entirely. The code is in your repository from day one. All intellectual-property rights are transferred to you by contract. We never hold code hostage.`], [`Чи працюєте з клієнтами за межами України?`, `Do you work with clients outside Ukraine?`], [`Так. Працюємо віддалено з клієнтами з ЄС, США, Канади та Близького Сходу. Комунікація англійською або українською. Часовий пояс UTC+2 — зручний для європейських команд.`, `Yes. We work remotely with clients in the EU, US, Canada and the Middle East. We communicate in English or Ukrainian. UTC+2 is convenient for European teams.`], [`Що якщо обсяг робіт зміниться в процесі?`, `What if the scope changes during the project?`], [`Нормально. Працюємо короткими спринтами (1–2 тижні). Зміни оцінюємо і узгоджуємо до старту наступного спринту. Ніколи не «накручуємо» години без вашого дозволу.`, `That is normal. We work in short 1–2 week sprints. We estimate and agree on changes before the next sprint begins. We never add hours without your approval.`], [`Які гарантії ви даєте?`, `What guarantees do you provide?`], [`30 днів безкоштовного виправлення критичних помилок після релізу. Договір з фіксацією обсягу робіт, термінів та передачі прав. Доступ до репозиторію з першого дня.`, `30 days of free critical-bug fixes after launch. A contract defining scope, timelines and transfer of rights. Repository access from day one.`],
       [`Контакт`, `Contact`], [`Є задача або`, `Have a challenge or`], [`ідея продукту?`, `a product idea?`], [`Опишіть коротко — ми повернемося з пропозицією формату співпраці та безкоштовною 30-хвилинною консультацією.`, `Tell us briefly about it — we will come back with a proposed engagement format and a free 30-minute consultation.`], [`Відповідь протягом 1 робочого дня`, `Reply within one business day`], [`Без зобов'язань і «продажних» дзвінків`, `No obligations or sales calls`], [`Конфіденційність гарантована`, `Confidentiality guaranteed`], [`Або напишіть нам:`, `Or write to us:`], [`Тел:`, `Tel:`], [`Ім'я *`, `Name *`], [`Компанія / проєкт`, `Company / project`], [`Що вас цікавить? *`, `What are you interested in? *`], [`Оберіть варіант`, `Choose an option`], [`MVP / Продукт під ключ`, `MVP / Turnkey product`], [`Автоматизація / AI-рішення`, `Automation / AI solutions`], [`Команда під проєкт`, `Project team`], [`Інше / Ще не знаю`, `Other / Not sure yet`], [`Повідомлення *`, `Message *`], [`Я погоджуюсь на обробку персональних даних відповідно до`, `I agree to the processing of personal data in accordance with the`], [`Політики конфіденційності`, `Privacy Policy`], [`Відправити заявку`, `Send inquiry`], [`Відповімо протягом 1 робочого дня.`, `We will reply within one business day.`],
-      [`Інженерна студія.`, `Engineering studio.`], [`Розробка MVP, автоматизація, dedicated teams.`, `MVP development, automation, dedicated teams.`], [`Навігація`, `Navigation`], [`Зв'яжіться з нами`, `Get in touch`], [`Соцмережі`, `Social media`], [`Політика конфіденційності`, `Privacy Policy`]
+      [`Інженерна студія.`, `Engineering studio.`], [`Розробка MVP, автоматизація, dedicated teams.`, `MVP development, automation, dedicated teams.`], [`Навігація`, `Navigation`], [`Зв'яжіться з нами`, `Get in touch`], [`Соцмережі`, `Social media`], [`Політика конфіденційності`, `Privacy Policy`],
+      ['Ігор', 'Igor'],
+      ['Руслан', 'Ruslan'],
+      ['Портфоліо та кейси', 'Portfolio & Cases'],
+      ['Портфоліо та продукти', 'Portfolio & Products'],
+      ['Портфоліо', 'Portfolio'],
+      ['Продукти та застосунки', 'Products & Applications'],
+      ['Власні продукти та застосунки', 'Our Products & Applications'],
+      ['Власні продукти та застосунки в Google Play', 'Our Products & Live Apps on Google Play'],
+      ['KAPSA — Капсули моментів для своїх', 'KAPSA — Moment Capsules for Inner Circles'],
+      ['Приватний анти-соцмережевий простір для компанії друзів або пари. Один спільний момент на день, захищені закриті картки та автоматичне формування «Золотого фонду» спільних жартів і спогадів без спаму загальних чатів.', 'A private anti-social network space for friend groups or couples. One shared daily moment, private locked cards, and automated curation of a “Lore Vault” for inside jokes and memories without group chat spam.'],
+      ['Unblur Mechanism:', 'Unblur Mechanism:'],
+      ['чужі картки заблюрені, доки не відповіси сам — миттєве відкриття після твого ходу або о 21:00', 'friends\' cards remain blurred until you answer — instant reveal upon your move or at 21:00'],
+      ['Vote & Show:', 'Vote & Show:'],
+      ['щоденні інтригуючі голосування «Хто з нас...?» та миттєві живі фото моменту без підготовки', 'daily intriguing “Who is most likely to...?” polls & candid raw moment photos without prep'],
+      ['Pin to Lore ⭐:', 'Pin to Lore ⭐:'],
+      ['збереження найкращих відповідей, мемів та результатів у приватну хронологію компанії з 1-го дня', 'saving the funniest answers, memes, and poll results into a private timeline from day 1'],
+      ['Режими Пара / Банда:', 'Couple / Squad Modes:'],
+      ['персоналізовані колоди запитань окремо для закоханих (2 людей) та для компаній (3–8 людей)', 'tailored question decks crafted specifically for couples (2 people) or squad circles (3–8 people)'],
+      ['Банда з КПІ 🔥', 'KPI Squad 🔥'],
+      ['Раунд дня', 'Daily Round'],
+      ['4 з 5 уже відповіли', '4 of 5 have responded'],
+      ['Голосування дня · Vote', 'Poll of the Day · Vote'],
+      ['«Хто з нас найімовірніше заблукає навіть з увімкненим Google Maps? 🗺️»', '“Who among us is most likely to get lost even with Google Maps on? 🗺️”'],
+      ['Саша', 'Sasha'],
+      ['(ти)', '(you)'],
+      ['обрано: Макс', 'voted: Max'],
+      ['«Він учора 40 хвилин шукав вихід з метро 😂»', '“He spent 40 minutes finding the subway exit yesterday 😂”'],
+      ['Діма', 'Dima'],
+      ['15 хв тому', '15m ago'],
+      ['обрано: Макс «Топ 1 топографічний...»', 'voted: Max “Top 1 navigation master...”'],
+      ['Відкрито о 21:00', 'Reveals at 21:00'],
+      ['Оля', 'Olya'],
+      ['«Пам\'ятаєте поїздку до Львова? 🧭😂»', '“Remember the road trip to Lviv? 🧭😂”'],
+      ['Макс', 'Max'],
+      ['Очікуємо хід...', 'Awaiting turn...'],
+      ['Сьогодні', 'Today'],
+      ['Золотий фонд', 'Lore Vault'],
+      ['Кімната', 'Room'],
+      ['Обговорити подібний продукт', 'Discuss building a similar product'],
+      ['Обговорити розробку подібного додатку', 'Discuss building a similar app'],
+      ['Мобільний робочий простір для Google Forms™ і Google Sheets™: створюйте анкети, таблиці й додавайте записи прямо зі смартфона — без незручної мобільної веб-версії та громіздких інтерфейсів.', 'Mobile workspace for Google Forms™ and Google Sheets™: create surveys, sheets, and add entries on the go — without clunky mobile web versions.'],
+      ['Форма + таблиця в 1 дотик:', 'Form + Sheet in 1 tap:'],
+      ['конструктор форм з авто-прив\'язкою до нової Google-таблиці та готові бізнес-шаблони', 'form builder auto-linked to new Google Sheets with business templates'],
+      ['Працює без інтернету:', 'Works offline:'],
+      ['нові рядки потрапляють в офлайн-чергу і самі синхронізуються при появі мережі', 'new entries enter offline queue and auto-sync when network reconnects'],
+      ['Приватність за архітектурою:', 'Privacy by design:'],
+      ['зв\'язок напряму з Google API без серверів (доступ лише до власних файлів)', 'direct Google API integration without servers (access only to own files)'],
+      ['QR-дизайнер & Drive:', 'QR Designer & Drive:'],
+      ['швидка генерація QR-кодів для форм та імпорт через системне меню «Поділитися»', 'instant QR code generation for forms & Drive file import via Share menu'],
+      ['Кишеньковий генератор комерційних документів для сервісних бізнесів, майстрів, фрілансерів і ФОП: кошторис, договір, рахунок, акт чи накладна — у професійному PDF прямо на об\'єкті, навіть без інтернету.', 'Pocket commercial document generator for contractors, trades, freelancers, and businesses: estimates, contracts, invoices, and service acts in professional PDF.'],
+      ['PDF за 1 хвилину:', 'PDF in 1 minute:'],
+      ['авто-підрахунок сум, знижок, податків, сума прописом та відправка у месенджери в 1 дотик', 'auto totals, discounts, taxes, written amounts & 1-tap messaging share'],
+      ['100% офлайн і приватно:', '100% offline & private:'],
+      ['клієнти, ціни й документи зберігаються лише локально на смартфоні', 'clients, prices, and documents stay strictly on the device'],
+      ['Підпис і печатка на екрані:', 'On-screen signature & stamp:'],
+      ['клієнт розписується пальцем при прийманні робіт + власна печатка', 'touchscreen client signature on completion + transparent custom stamp'],
+      ['20+ валют & аналітика:', '20+ currencies & analytics:'],
+      ['мультивалютний розрахунок (UAH, USD, EUR...) та дашборд виручки', 'multi-currency calculation (UAH, USD, EUR...) & revenue dashboard'],
+      ['Швидкий офлайн-конвертер і компресор фотографій та документів + кишенькова PDF-студія. Для всіх, у кого файли не пролазять у пошту/месенджер, пам\'ять телефону переповнена, або фото з iPhone (HEIC) не відкриваються.', 'Fast offline converter & compressor for photos and documents + pocket PDF studio. Built for files too heavy for messaging or iPhone HEIC incompatibilities.'],
+      ['Стиснення до −90%:', 'Compress up to −90%:'],
+      ['повзунок якості та живий прогноз розміру ще до початку обробки («3.4 МБ → ~850 КБ»)', 'quality slider with live size prediction before processing («3.4 MB → ~850 KB»)'],
+      ['Пакетна конвертація до 30 фото:', 'Batch convert up to 30 photos:'],
+      ['миттєвий перевід HEIC, JPG, PNG, WebP → JPG/PNG/PDF без зміни оригіналів', 'instant HEIC, JPG, PNG, WebP → JPG/PNG/PDF conversion without altering originals'],
+      ['PDF-студія:', 'PDF Studio:'],
+      ['конвертація фото ↔ PDF, об\'єднання/розділення документів та шифрування AES-256', 'photo ↔ PDF conversion, document merge/split & AES-256 encryption'],
+      ['100% On-Device обробка:', '100% On-Device processing:'],
+      ['нуль передачі даних на сервери, повна приватність, робота без інтернету та реклами', 'zero data sent to servers, full privacy, zero ads, runs fully offline'],
+      ['Жим штанги лежачи', 'Barbell Bench Press'],
+      ['В процесі', 'In Progress'],
+      ['Відпочинок', 'Rest'],
+      ['SPOT — Розумний трекер тренувань та відновлення мʼязів', 'SPOT — Precision Workout Tracker & Muscle Recovery Engine'],
+      ['Преміальний фітнес-застосунок у темній неоновій естетиці для силових тренувань. Поєднує розумний алгоритм відновлення м\'язових груп, автоматичну генерацію персональних спліт-програм та фокусований трекер підходів з тактильним фідбеком.', 'An intelligent, dark-aesthetic strength training companion for lifters and athletes. Features algorithmic muscle recovery tracking, dynamic split workout generation, and a distraction-free live session tracker with tactile haptic feedback.'],
+      ['Muscle Readiness Engine:', 'Muscle Readiness Engine:'],
+      ['розрахунок відновлення кожної групи мʼязів (0–100%) на базі математичної моделі часового спаду навантаження', 'algorithmic recovery tracking (0–100%) per muscle group using time-decay models to optimize training frequency and prevent overtraining'],
+      ['Генератор програм:', 'Adaptive Routine Generator:'],
+      ['адаптивні спліт-програми (Push/Pull/Legs, Верх/Низ, Full Body) під цілі, рівень підготовки та доступні дні', 'auto-generated custom splits (PPL, Upper/Lower, Full Body) customized by days per week, experience, and equipment'],
+      ['Лайв-трекер підходів:', 'Focused Live Session Tracker:'],
+      ['швидкий запис ваги/повторень, вбудований таймер відпочинку з haptic-відгуком і фоновою роботою', 'frictionless set/rep logging, intelligent rest timer with audio/haptic cues, and background session continuity'],
+      ['Аналітика та рекорди 🏆:', 'Deep Analytics & PRs 🏆:'],
+      ['фіксація особистих рекордів (PR), баланс м\'язових груп та динаміка робочого тоннажу', 'automated personal record (PR) detection, volume progression charts, and muscle group balance breakdown'],
+      ['Готовність сьогодні', 'Readiness Today'],
+      ['Силовий спліт', 'Strength Split'],
+      ['Відновлено', 'Recovered'],
+      ['Оптимально', 'Optimal'],
+      ['Груди', 'Chest'],
+      ['Спина', 'Back'],
+      ['Ноги', 'Legs'],
+      ['Заплановано на сьогодні', 'Scheduled Today'],
+      ['5 вправ · 16 робочих підходів', '5 exercises · 16 working sets'],
+      ['Тяга гантелей у нахилі', 'Bent-over DB Rows'],
+      ['Почати тренування', 'Start Workout'],
+      ['Програми', 'Workouts'],
+      ['Аналітика', 'Analytics'],
+      ['Профіль', 'Profile']
     ]);
     const originalText = new WeakMap();
     const metaUk = { title: 'VanzaLabs — Інженерна студія | MVP, автоматизація, продукти', description: 'VanzaLabs — українська інженерна студія. Розробляємо MVP, автоматизуємо бізнес-процеси та допомагаємо стартапам запускати продукти.', ogTitle: 'VanzaLabs — Інженерна студія', ogDescription: 'MVP, автоматизація та розробка продуктів. Команда з України.' };
@@ -157,13 +251,7 @@
       ['Компанія / проєкт', 'Company / project'],
       ['Що вас цікавить? *', 'What are you interested in? *'],
       ['Оберіть варіант', 'Choose an option'],
-      ['Повідомлення *', 'Message *'],
-      ['Я погоджуюсь на обробку персональних даних відповідно до', 'I agree to the processing of personal data in accordance with the'],
-      ['Політики конфіденційності', 'Privacy Policy'],
-      ['Відправити заявку', 'Send inquiry'],
-      ['Відповімо протягом 1 робочого дня.', 'We will reply within one business day.'],
-      ['Ігор', 'Igor'],
-      ['Руслан', 'Ruslan']
+      ['Повідомлення *', 'Message *']
     ]);
     const ukrainianTranslations = new Map([
       ['Turn', 'Перетворюємо'],
@@ -175,6 +263,70 @@
       ['Igor', 'Ігор'],
       ['Ruslan', 'Руслан'],
       ['CO-FOUNDER', 'ЗАСНОВНИК'],
+      ['Cases', 'Кейси'],
+      ['Portfolio & Cases', 'Портфоліо та кейси'],
+      ['Portfolio & Products', 'Портфоліо та продукти'],
+      ['Portfolio', 'Портфоліо'],
+      ['Products & Applications', 'Продукти та застосунки'],
+      ['Our Products & Applications', 'Власні продукти та застосунки'],
+      ['Our Products & Live Apps on Google Play', 'Власні продукти та застосунки в Google Play'],
+      ['KAPSA — Moment Capsules for Inner Circles', 'KAPSA — Капсули моментів для своїх'],
+      ['A private anti-social network space for friend groups or couples. One shared daily moment, private locked cards, and automated curation of a “Lore Vault” for inside jokes and memories without group chat spam.', 'Приватний анти-соцмережевий простір для компанії друзів або пари. Один спільний момент на день, захищені закриті картки та автоматичне формування «Золотого фонду» спільних жартів і спогадів без спаму загальних чатів.'],
+      ['Unblur Mechanism:', 'Unblur Mechanism:'],
+      ['friends\' cards remain blurred until you answer — instant reveal upon your move or at 21:00', 'чужі картки заблюрені, доки не відповіси сам — миттєве відкриття після твого ходу або о 21:00'],
+      ['Vote & Show:', 'Vote & Show:'],
+      ['daily intriguing “Who is most likely to...?” polls & candid raw moment photos without prep', 'щоденні інтригуючі голосування «Хто з нас...?» та миттєві живі фото моменту без підготовки'],
+      ['Pin to Lore ⭐:', 'Pin to Lore ⭐:'],
+      ['saving the funniest answers, memes, and poll results into a private timeline from day 1', 'збереження найкращих відповідей, мемів та результатів у приватну хронологію компанії з 1-го дня'],
+      ['Couple / Squad Modes:', 'Режими Пара / Банда:'],
+      ['tailored question decks crafted specifically for couples (2 people) or squad circles (3–8 people)', 'персоналізовані колоди запитань окремо для закоханих (2 людей) та для компаній (3–8 людей)'],
+      ['KPI Squad 🔥', 'Банда з КПІ 🔥'],
+      ['Daily Round', 'Раунд дня'],
+      ['4 of 5 have responded', '4 з 5 уже відповіли'],
+      ['Poll of the Day · Vote', 'Голосування дня · Vote'],
+      ['“Who among us is most likely to get lost even with Google Maps on? 🗺️”', '«Хто з нас найімовірніше заблукає навіть з увімкненим Google Maps? 🗺️»'],
+      ['Sasha', 'Саша'],
+      ['(you)', '(ти)'],
+      ['voted: Max', 'обрано: Макс'],
+      ['“He spent 40 minutes finding the subway exit yesterday 😂”', '«Він учора 40 хвилин шукав вихід з метро 😂»'],
+      ['Dima', 'Діма'],
+      ['15m ago', '15 хв тому'],
+      ['voted: Max “Top 1 navigation master...”', 'обрано: Макс «Топ 1 топографічний...»'],
+      ['Reveals at 21:00', 'Відкрито о 21:00'],
+      ['Olya', 'Оля'],
+      ['“Remember the road trip to Lviv? 🧭😂”', '«Пам\'ятаєте поїздку до Львова? 🧭😂»'],
+      ['Max', 'Макс'],
+      ['Awaiting turn...', 'Очікуємо хід...'],
+      ['Today', 'Сьогодні'],
+      ['Lore Vault', 'Золотий фонд'],
+      ['Room', 'Кімната'],
+      ['SPOT — Precision Workout Tracker & Muscle Recovery Engine', 'SPOT — Розумний трекер тренувань та відновлення мʼязів'],
+      ['An intelligent, dark-aesthetic strength training companion for lifters and athletes. Features algorithmic muscle recovery tracking, dynamic split workout generation, and a distraction-free live session tracker with tactile haptic feedback.', 'Преміальний фітнес-застосунок у темній неоновій естетиці для силових тренувань. Поєднує розумний алгоритм відновлення м\'язових груп, автоматичну генерацію персональних спліт-програм та фокусований трекер підходів з тактильним фідбеком.'],
+      ['algorithmic recovery tracking (0–100%) per muscle group using time-decay models to optimize training frequency and prevent overtraining', 'розрахунок відновлення кожної групи мʼязів (0–100%) на базі математичної моделі часового спаду навантаження'],
+      ['Muscle Readiness Engine:', 'Muscle Readiness Engine:'],
+      ['Adaptive Routine Generator:', 'Генератор програм:'],
+      ['auto-generated custom splits (PPL, Upper/Lower, Full Body) customized by days per week, experience, and equipment', 'адаптивні спліт-програми (Push/Pull/Legs, Верх/Низ, Full Body) під цілі, рівень підготовки та доступні дні'],
+      ['Focused Live Session Tracker:', 'Лайв-трекер підходів:'],
+      ['frictionless set/rep logging, intelligent rest timer with audio/haptic cues, and background session continuity', 'швидкий запис ваги/повторень, вбудований таймер відпочинку з haptic-відгуком і фоновою роботою'],
+      ['Deep Analytics & PRs 🏆:', 'Аналітика та рекорди 🏆:'],
+      ['automated personal record (PR) detection, volume progression charts, and muscle group balance breakdown', 'фіксація особистих рекордів (PR), баланс м\'язових груп та динаміка робочого тоннажу'],
+      ['Readiness Today', 'Готовність сьогодні'],
+      ['Strength Split', 'Силовий спліт'],
+      ['Recovered', 'Відновлено'],
+      ['Optimal', 'Оптимально'],
+      ['Chest', 'Груди'],
+      ['Back', 'Спина'],
+      ['Legs', 'Ноги'],
+      ['Scheduled Today', 'Заплановано на сьогодні'],
+      ['5 exercises · 16 working sets', '5 вправ · 16 робочих підходів'],
+      ['Bent-over DB Rows', 'Тяга гантелей у нахилі'],
+      ['Start Workout', 'Почати тренування'],
+      ['Workouts', 'Програми'],
+      ['Analytics', 'Аналітика'],
+      ['Profile', 'Профіль'],
+      ['Discuss your application', 'Обговорити ваш застосунок'],
+      ['Discuss building a similar product', 'Обговорити подібний продукт'],
+      ['Discuss building a similar app', 'Обговорити розробку подібного додатку'],
       ['Name *', "Ім'я *"],
       ['Your name', "Ваше ім'я"],
       ['Company / project', 'Компанія / проєкт'],
@@ -527,6 +679,7 @@
         <nav class="hidden lg:flex items-center gap-7">
           <a href="#about" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Про нас</a>
           <a href="#services" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Послуги</a>
+          <a href="#cases" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Кейси</a>
           <a href="#principles" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Принципи</a>
           <a href="#process" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Процес</a>
           <a href="#faq" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900">Питання</a>
@@ -549,6 +702,7 @@
         <div class="py-4 space-y-3">
           <a href="#about" class="block text-sm font-medium text-gray-700 py-1">Про нас</a>
           <a href="#services" class="block text-sm font-medium text-gray-700 py-1">Послуги</a>
+          <a href="#cases" class="block text-sm font-medium text-gray-700 py-1">Кейси</a>
           <a href="#principles" class="block text-sm font-medium text-gray-700 py-1">Принципи</a>
           <a href="#process" class="block text-sm font-medium text-gray-700 py-1">Процес</a>
           <a href="#faq" class="block text-sm font-medium text-gray-700 py-1">Питання</a>
@@ -937,6 +1091,342 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cases & Products Showcase Section -->
+  <section id="cases" class="py-20 lg:py-28 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10 lg:mb-12">
+        <p class="text-brand-600 text-xs font-semibold tracking-widest uppercase mb-3">Портфоліо</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Продукти та застосунки</h2>
+      </div>
+
+      <!-- App Tabs Navigation (4 equal apps) -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
+        <!-- Tab 1: SPOT -->
+        <button type="button" onclick="switchAppShowcase('spot')" data-app="spot" class="app-showcase-tab active text-left p-3.5 sm:p-4 rounded-2xl border transition duration-200 cursor-pointer bg-gray-950 text-white border-gray-900 shadow-md ring-2 ring-brand-500/40">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-black border border-gray-800 flex items-center justify-center p-1.5 shrink-0">
+              <img src="spot_logo.png" alt="SPOT" class="w-full h-auto object-contain">
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5">
+                <span class="font-bold text-sm tracking-tight truncate">SPOT</span>
+              </div>
+              <p class="text-[11px] text-gray-400 truncate"><span>Fitness & Health</span></p>
+            </div>
+          </div>
+        </button>
+
+        <!-- Tab 2: FormGrid -->
+        <button type="button" onclick="switchAppShowcase('formgrid')" data-app="formgrid" class="app-showcase-tab text-left p-3.5 sm:p-4 rounded-2xl border transition duration-200 cursor-pointer bg-white text-gray-800 border-gray-200 hover:border-gray-300 hover:bg-gray-50">
+          <div class="flex items-center gap-3">
+            <img src="formgrid_icon_512.png" alt="FormGrid" class="w-10 h-10 rounded-xl object-cover shrink-0 shadow-xs">
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5">
+                <span class="font-bold text-sm tracking-tight truncate">FormGrid</span>
+              </div>
+              <p class="text-[11px] text-gray-500 truncate"><span>Forms & Sheets</span></p>
+            </div>
+          </div>
+        </button>
+
+        <!-- Tab 3: Invoices & Contracts -->
+        <button type="button" onclick="switchAppShowcase('invoices')" data-app="invoices" class="app-showcase-tab text-left p-3.5 sm:p-4 rounded-2xl border transition duration-200 cursor-pointer bg-white text-gray-800 border-gray-200 hover:border-gray-300 hover:bg-gray-50">
+          <div class="flex items-center gap-3">
+            <img src="invoices_icon_512.png" alt="Invoices" class="w-10 h-10 rounded-xl object-cover shrink-0 shadow-xs">
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5">
+                <span class="font-bold text-sm tracking-tight truncate">Invoices</span>
+              </div>
+              <p class="text-[11px] text-gray-500 truncate"><span>FinTech & Docs</span></p>
+            </div>
+          </div>
+        </button>
+
+        <!-- Tab 4: Convert & Compress -->
+        <button type="button" onclick="switchAppShowcase('convert')" data-app="convert" class="app-showcase-tab text-left p-3.5 sm:p-4 rounded-2xl border transition duration-200 cursor-pointer bg-white text-gray-800 border-gray-200 hover:border-gray-300 hover:bg-gray-50">
+          <div class="flex items-center gap-3">
+            <img src="convert_icon_512.png" alt="Convert" class="w-10 h-10 rounded-xl object-cover shrink-0 shadow-xs">
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5">
+                <span class="font-bold text-sm tracking-tight truncate">Convert</span>
+              </div>
+              <p class="text-[11px] text-gray-500 truncate"><span>Media & PDF</span></p>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <!-- APP PANELS STAGE (Uniform padding, uniform sizing, clean app screens) -->
+      <div class="relative">
+
+        <!-- PANEL 1: SPOT -->
+        <div id="app-panel-spot" class="app-showcase-panel bg-gradient-to-br from-gray-950 via-dark-900 to-gray-900 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-800 shadow-glow relative overflow-hidden transition-all duration-300">
+          <div class="absolute -top-24 -right-24 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-5">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-3 py-1 rounded-full bg-lime-400/15 border border-lime-400/30 text-[#C8FF3D] text-xs font-semibold"><span>B2C Mobile App</span></span>
+                <span class="px-2.5 py-1 rounded-full bg-gray-800 text-gray-300 text-xs font-medium"><span>Health & Fitness</span></span>
+                <span class="px-2.5 py-1 rounded-full bg-gray-800 text-gray-300 text-xs font-medium"><span>iOS & Android</span></span>
+              </div>
+
+              <div class="flex items-center gap-3.5">
+                <div class="w-14 h-14 rounded-2xl bg-black border border-gray-800 flex items-center justify-center p-2 shadow-inner shrink-0">
+                  <img src="spot_logo.png" alt="SPOT" class="w-full h-auto object-contain">
+                </div>
+                <div>
+                  <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight"><span>SPOT — Розумний трекер тренувань та відновлення мʼязів</span></h3>
+                  <p class="text-xs text-gray-400 font-mono">com.vanzalabs.spot</p>
+                </div>
+              </div>
+
+              <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                <span>Преміальний фітнес-застосунок у темній неоновій естетиці для силових тренувань. Поєднує розумний алгоритм відновлення м'язових груп, автоматичну генерацію персональних спліт-програм та фокусований трекер підходів з тактильним фідбеком.</span>
+              </p>
+
+              <div class="grid sm:grid-cols-2 gap-3 pt-1 text-xs text-gray-300">
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-[#C8FF3D] font-bold">✓</span>
+                  <span><strong><span>Muscle Readiness Engine:</span></strong> <span>розрахунок відновлення кожної групи мʼязів (0–100%) на базі математичної моделі часового спаду навантаження</span></span>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-[#C8FF3D] font-bold">✓</span>
+                  <span><strong><span>Генератор програм:</span></strong> <span>адаптивні спліт-програми (Push/Pull/Legs, Верх/Низ, Full Body) під цілі, рівень підготовки та доступні дні</span></span>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-[#C8FF3D] font-bold">✓</span>
+                  <span><strong><span>Лайв-трекер підходів:</span></strong> <span>швидкий запис ваги/повторень, вбудований таймер відпочинку з haptic-відгуком і фоновою роботою</span></span>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-[#C8FF3D] font-bold">✓</span>
+                  <span><strong><span>Аналітика та рекорди 🏆:</span></strong> <span>фіксація особистих рекордів (PR), баланс м'язових груп та динаміка робочого тоннажу</span></span>
+                </div>
+              </div>
+
+              <div class="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-gray-800/80">
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">React Native</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Expo Router</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Zustand</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Supabase</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">RevenueCat</span>
+                </div>
+                <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
+                  <span>Обговорити подібний продукт</span>
+                  <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Screen SPOT -->
+            <div class="lg:col-span-5 flex justify-center items-center">
+              <div class="w-full max-w-[270px] sm:max-w-[290px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-gray-800/80 bg-gray-900 aspect-[9/19] flex items-center justify-center">
+                <img src="screen_spot.jpg" alt="SPOT Workout Screen" class="w-full h-full object-cover object-top">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 2: FormGrid -->
+        <div id="app-panel-formgrid" class="app-showcase-panel hidden bg-gradient-to-br from-gray-950 via-dark-900 to-gray-900 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-800 shadow-glow relative overflow-hidden transition-all duration-300">
+          <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-5">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-3 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-400 text-xs font-semibold">B2B & Small Business</span>
+                <span class="px-2.5 py-1 rounded-full bg-gray-800 text-gray-300 text-xs font-medium">Productivity & Data</span>
+              </div>
+
+              <div class="flex items-center gap-3.5">
+                <img src="formgrid_icon_512.png" alt="FormGrid Icon" class="w-14 h-14 rounded-2xl object-cover shrink-0 shadow-md">
+                <div>
+                  <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">FormGrid: Forms & Sheets</h3>
+                  <p class="text-xs text-gray-400 font-mono">com.vanza.formgrid</p>
+                </div>
+              </div>
+
+              <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                Мобільний робочий простір для Google Forms™ і Google Sheets™: створюйте анкети, таблиці й додавайте записи прямо зі смартфона — без незручної мобільної веб-версії та громіздких інтерфейсів.
+              </p>
+
+              <div class="grid sm:grid-cols-2 gap-3 pt-1 text-xs text-gray-300">
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-brand-400 font-bold">✓</span>
+                  <span><strong>Форма + таблиця в 1 дотик:</strong> конструктор форм з авто-прив'язкою до нової Google-таблиці та готові бізнес-шаблони</span>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-brand-400 font-bold">✓</span>
+                  <span><strong>Працює без інтернету:</strong> нові рядки потрапляють в офлайн-чергу і самі синхронізуються при появі мережі</span>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-brand-400 font-bold">✓</span>
+                  <span><strong>Приватність за архітектурою:</strong> зв'язок напряму з Google API без серверів (доступ лише до власних файлів)</span>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-brand-400 font-bold">✓</span>
+                  <span><strong>QR-дизайнер & Drive:</strong> швидка генерація QR-кодів для форм та імпорт через системне меню «Поділитися»</span>
+                </div>
+              </div>
+
+              <div class="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-gray-800/80">
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Flutter / Dart</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Material 3</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Google Drive API</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Google Sheets API</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Offline Sync</span>
+                </div>
+                <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
+                  <span>Обговорити подібний продукт</span>
+                  <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Screen FormGrid -->
+            <div class="lg:col-span-5 flex justify-center items-center">
+              <div class="w-full max-w-[270px] sm:max-w-[290px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-gray-800/80 bg-gray-900 aspect-[9/19] flex items-center justify-center">
+                <img src="screen_formgrid.png" alt="FormGrid Screen" class="w-full h-full object-cover object-top">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 3: Invoices & Contracts -->
+        <div id="app-panel-invoices" class="app-showcase-panel hidden bg-gradient-to-br from-gray-950 via-dark-900 to-gray-900 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-800 shadow-glow relative overflow-hidden transition-all duration-300">
+          <div class="absolute -top-24 -right-24 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-5">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 text-xs font-semibold">FinTech & Legal</span>
+                <span class="px-2.5 py-1 rounded-full bg-gray-800 text-gray-300 text-xs font-medium">Business Tools</span>
+              </div>
+
+              <div class="flex items-center gap-3.5">
+                <img src="invoices_icon_512.png" alt="Invoices Icon" class="w-14 h-14 rounded-2xl object-cover shrink-0 shadow-md">
+                <div>
+                  <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Vanza: Invoices & Contracts</h3>
+                  <p class="text-xs text-gray-400 font-mono">app.vanza.docs</p>
+                </div>
+              </div>
+
+              <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                Кишеньковий генератор комерційних документів для сервісних бізнесів, майстрів, фрілансерів і ФОП: кошторис, договір, рахунок, акт чи накладна — у професійному PDF прямо на об'єкті, навіть без інтернету.
+              </p>
+
+              <div class="grid sm:grid-cols-2 gap-3 pt-1 text-xs text-gray-300">
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-brand-400 font-bold">✓</span>
+                  <span><strong>PDF за 1 хвилину:</strong> авто-підрахунок сум, знижок, податків, сума прописом та відправка у месенджери в 1 дотик</span>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-brand-400 font-bold">✓</span>
+                  <span><strong>100% офлайн і приватно:</strong> клієнти, ціни й документи зберігаються лише локально на смартфоні</span>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-brand-400 font-bold">✓</span>
+                  <span><strong>Підпис і печатка на екрані:</strong> клієнт розписується пальцем при прийманні робіт + власна печатка</span>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-brand-400 font-bold">✓</span>
+                  <span><strong>20+ валют & аналітика:</strong> мультивалютний розрахунок (UAH, USD, EUR...) та дашборд виручки</span>
+                </div>
+              </div>
+
+              <div class="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-gray-800/80">
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">React 19</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">TypeScript</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Capacitor 8</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Dexie.js (IndexedDB)</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">jsPDF Engine</span>
+                </div>
+                <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
+                  <span>Обговорити подібний продукт</span>
+                  <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Screen Invoices -->
+            <div class="lg:col-span-5 flex justify-center items-center">
+              <div class="w-full max-w-[270px] sm:max-w-[290px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-gray-800/80 bg-gray-900 aspect-[9/19] flex items-center justify-center">
+                <img src="screen_invoices.png" alt="Invoices Screen" class="w-full h-full object-cover object-top">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 4: Convert & Compress -->
+        <div id="app-panel-convert" class="app-showcase-panel hidden bg-gradient-to-br from-gray-950 via-dark-900 to-gray-900 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-gray-800 shadow-glow relative overflow-hidden transition-all duration-300">
+          <div class="absolute -top-24 -right-24 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-5">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-3 py-1 rounded-full bg-teal-500/15 border border-teal-500/30 text-teal-400 text-xs font-semibold">Utility & Media</span>
+                <span class="px-2.5 py-1 rounded-full bg-gray-800 text-gray-300 text-xs font-medium">File Processing</span>
+              </div>
+
+              <div class="flex items-center gap-3.5">
+                <img src="convert_icon_512.png" alt="Convert & Compress Icon" class="w-14 h-14 rounded-2xl object-cover shrink-0 shadow-md">
+                <div>
+                  <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Vanza: Convert & Compress</h3>
+                  <p class="text-xs text-gray-400 font-mono">tech.vanzalabs.convertcompress</p>
+                </div>
+              </div>
+
+              <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                Швидкий офлайн-конвертер і компресор фотографій та документів + кишенькова PDF-студія. Для всіх, у кого файли не пролазять у пошту/месенджер, пам'ять телефону переповнена, або фото з iPhone (HEIC) не відкриваються.
+              </p>
+
+              <div class="grid sm:grid-cols-2 gap-3 pt-1 text-xs text-gray-300">
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-brand-400 font-bold">✓</span>
+                  <span><strong>Стиснення до −90%:</strong> повзунок якості та живий прогноз розміру ще до початку обробки («3.4 МБ → ~850 КБ»)</span>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-brand-400 font-bold">✓</span>
+                  <span><strong>Пакетна конвертація до 30 фото:</strong> миттєвий перевід HEIC, JPG, PNG, WebP → JPG/PNG/PDF без зміни оригіналів</span>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-brand-400 font-bold">✓</span>
+                  <span><strong>PDF-студія:</strong> конвертація фото ↔ PDF, об'єднання/розділення документів та шифрування AES-256</span>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <span class="text-brand-400 font-bold">✓</span>
+                  <span><strong>100% On-Device обробка:</strong> нуль передачі даних на сервери, повна приватність, робота без інтернету та реклами</span>
+                </div>
+              </div>
+
+              <div class="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-gray-800/80">
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Flutter / Dart</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Multi-threading Isolate</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Syncfusion PDF</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">AES-256 Encryption</span>
+                  <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Local Gal Engine</span>
+                </div>
+                <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
+                  <span>Обговорити подібний продукт</span>
+                  <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Screen Convert -->
+            <div class="lg:col-span-5 flex justify-center items-center">
+              <div class="w-full max-w-[270px] sm:max-w-[290px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-gray-800/80 bg-gray-900 aspect-[9/19] flex items-center justify-center">
+                <img src="screen_convert.png" alt="Convert Screen" class="w-full h-full object-cover object-top">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
   </section>
@@ -1354,6 +1844,7 @@
           <ul class="space-y-2.5 text-sm">
             <li><a href="#about" class="text-gray-300 hover:text-brand-400 transition">Про нас</a></li>
             <li><a href="#services" class="text-gray-300 hover:text-brand-400 transition">Послуги</a></li>
+            <li><a href="#cases" class="text-gray-300 hover:text-brand-400 transition">Кейси</a></li>
             <li><a href="#principles" class="text-gray-300 hover:text-brand-400 transition">Принципи</a></li>
             <li><a href="#process" class="text-gray-300 hover:text-brand-400 transition">Процес</a></li>
             <li><a href="#faq" class="text-gray-300 hover:text-brand-400 transition">Питання</a></li>
@@ -1400,6 +1891,27 @@
   </footer>
 
   <script>
+    // App showcase tab switcher
+    function switchAppShowcase(appId) {
+      document.querySelectorAll('.app-showcase-tab').forEach(btn => {
+        const active = btn.dataset.app === appId;
+        btn.classList.toggle('active', active);
+        btn.classList.toggle('bg-gray-950', active);
+        btn.classList.toggle('text-white', active);
+        btn.classList.toggle('border-gray-900', active);
+        btn.classList.toggle('shadow-md', active);
+        btn.classList.toggle('ring-2', active);
+        btn.classList.toggle('ring-brand-500/40', active);
+
+        btn.classList.toggle('bg-white', !active);
+        btn.classList.toggle('text-gray-800', !active);
+        btn.classList.toggle('border-gray-200', !active);
+      });
+      document.querySelectorAll('.app-showcase-panel').forEach(pane => {
+        pane.classList.toggle('hidden', pane.id !== `app-panel-${appId}`);
+      });
+    }
+
     // Hero tab switcher
     function switchHeroTab(tabId) {
       document.querySelectorAll('.hero-tab-btn').forEach(btn => {
