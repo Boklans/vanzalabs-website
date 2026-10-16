@@ -9,9 +9,10 @@
   <meta property="og:title" content="VanzaLabs — Engineering Studio">
   <meta property="og:description" content="MVPs, automation and product development. A team from Ukraine.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://vanzalabs.io">
-  <meta property="og:image" content="https://vanzalabs.io/og-image.jpg">
+  <meta property="og:url" content="https://vanzalabs.tech">
+  <meta property="og:image" content="https://vanzalabs.tech/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://vanzalabs.tech/">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="theme-color" content="#16a34a">
@@ -1190,7 +1191,7 @@
 
               <div class="flex items-center gap-3.5">
                 <div class="w-14 h-14 rounded-2xl bg-black border border-gray-800 flex items-center justify-center p-2 shadow-inner shrink-0">
-                  <img src="spot_logo.png" alt="SPOT" class="w-full h-auto object-contain">
+                  <img src="spot_logo.png" alt="SPOT" loading="lazy" decoding="async" class="w-full h-auto object-contain">
                 </div>
                 <div>
                   <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">SPOT - Training and Progress</h3>
@@ -1229,10 +1230,17 @@
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Supabase</span>
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">RevenueCat</span>
                 </div>
-                <a href="#contact" onclick="selectHeroService('mvp', 'SPOT')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
-                  <span>Обговорити подібний продукт</span>
-                  <span class="group-hover:translate-x-0.5 transition-transform">→</span>
-                </a>
+                <div class="flex flex-wrap items-center gap-2">
+                  <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.spot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white text-xs font-semibold transition">
+                    <svg class="w-3.5 h-3.5 text-[#C8FF3D] shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+                    <span>Google Play</span>
+                    <span class="text-gray-400 text-[10px]">↗</span>
+                  </a>
+                  <a href="#contact" onclick="selectHeroService('mvp', 'SPOT')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
+                    <span>Обговорити подібний продукт</span>
+                    <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -1294,10 +1302,17 @@
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Google Sheets API</span>
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Offline Sync</span>
                 </div>
-                <a href="#contact" onclick="selectHeroService('mvp', 'FormGrid')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
-                  <span>Обговорити подібний продукт</span>
-                  <span class="group-hover:translate-x-0.5 transition-transform">→</span>
-                </a>
+                <div class="flex flex-wrap items-center gap-2">
+                  <a href="https://play.google.com/store/apps/details?id=com.vanza.formgrid" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white text-xs font-semibold transition">
+                    <svg class="w-3.5 h-3.5 text-brand-400 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+                    <span>Google Play</span>
+                    <span class="text-gray-400 text-[10px]">↗</span>
+                  </a>
+                  <a href="#contact" onclick="selectHeroService('mvp', 'FormGrid')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
+                    <span>Обговорити подібний продукт</span>
+                    <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -1359,10 +1374,17 @@
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Dexie.js (IndexedDB)</span>
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">jsPDF Engine</span>
                 </div>
-                <a href="#contact" onclick="selectHeroService('mvp', 'Vanza: Invoices & Contracts')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
-                  <span>Обговорити подібний продукт</span>
-                  <span class="group-hover:translate-x-0.5 transition-transform">→</span>
-                </a>
+                <div class="flex flex-wrap items-center gap-2">
+                  <a href="https://play.google.com/store/apps/details?id=app.vanza.docs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white text-xs font-semibold transition">
+                    <svg class="w-3.5 h-3.5 text-brand-400 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+                    <span>Google Play</span>
+                    <span class="text-gray-400 text-[10px]">↗</span>
+                  </a>
+                  <a href="#contact" onclick="selectHeroService('mvp', 'Vanza: Invoices & Contracts')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
+                    <span>Обговорити подібний продукт</span>
+                    <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -1424,10 +1446,17 @@
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">AES-256 Encryption</span>
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Local Gal Engine</span>
                 </div>
-                <a href="#contact" onclick="selectHeroService('mvp', 'Vanza: Convert & Compress')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
-                  <span>Обговорити подібний продукт</span>
-                  <span class="group-hover:translate-x-0.5 transition-transform">→</span>
-                </a>
+                <div class="flex flex-wrap items-center gap-2">
+                  <a href="https://play.google.com/store/apps/details?id=tech.vanzalabs.convertcompress" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white text-xs font-semibold transition">
+                    <svg class="w-3.5 h-3.5 text-brand-400 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+                    <span>Google Play</span>
+                    <span class="text-gray-400 text-[10px]">↗</span>
+                  </a>
+                  <a href="#contact" onclick="selectHeroService('mvp', 'Vanza: Convert & Compress')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
+                    <span>Обговорити подібний продукт</span>
+                    <span class="group-hover:translate-x-0.5 transition-transform">→</span>
+                  </a>
+                </div>
               </div>
             </div>
 
