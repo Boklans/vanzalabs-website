@@ -233,7 +233,9 @@
       ['Почати тренування', 'Start Workout'],
       ['Програми', 'Workouts'],
       ['Аналітика', 'Analytics'],
-      ['Профіль', 'Profile']
+      ['Профіль', 'Profile'],
+      ['Обговорити →', 'Discuss →'],
+      ['Ua', 'En']
     ]);
     const originalText = new WeakMap();
     const metaUk = { title: 'VanzaLabs — Інженерна студія | MVP, автоматизація, продукти', description: 'VanzaLabs — українська інженерна студія. Розробляємо MVP, автоматизуємо бізнес-процеси та допомагаємо стартапам запускати продукти.', ogTitle: 'VanzaLabs — Інженерна студія', ogDescription: 'MVP, автоматизація та розробка продуктів. Команда з України.' };
@@ -342,7 +344,9 @@
       ['I agree to the processing of personal data in accordance with the', 'Я погоджуюсь на обробку персональних даних відповідно до'],
       ['Privacy Policy', 'Політики конфіденційності'],
       ['Send inquiry', 'Відправити заявку'],
-      ['We will reply within one business day.', 'Відповімо протягом 1 робочого дня.']
+      ['We will reply within one business day.', 'Відповімо протягом 1 робочого дня.'],
+      ['Discuss →', 'Обговорити →'],
+      ['En', 'Ua']
     ]);
     const ukrainianAttributeTranslations = new Map([
       ['Igor', 'Ігор'],
@@ -834,7 +838,7 @@
                   </div>
                 </div>
 
-                <a href="#contact" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 px-4 rounded-xl transition shadow-sm hover:shadow text-sm">
+                <a href="#contact" onclick="selectHeroService('mvp')" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 px-4 rounded-xl transition shadow-sm hover:shadow text-sm">
                   <span>Обговорити запуск MVP →</span>
                 </a>
               </div>
@@ -873,7 +877,7 @@
                   </div>
                 </div>
 
-                <a href="#contact" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 px-4 rounded-xl transition shadow-sm hover:shadow text-sm">
+                <a href="#contact" onclick="selectHeroService('automation')" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 px-4 rounded-xl transition shadow-sm hover:shadow text-sm">
                   <span>Оцінити автоматизацію →</span>
                 </a>
               </div>
@@ -912,7 +916,7 @@
                   </div>
                 </div>
 
-                <a href="#contact" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 px-4 rounded-xl transition shadow-sm hover:shadow text-sm">
+                <a href="#contact" onclick="selectHeroService('team')" class="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3.5 px-4 rounded-xl transition shadow-sm hover:shadow text-sm">
                   <span>Підібрати спеціалістів →</span>
                 </a>
               </div>
@@ -992,7 +996,7 @@
         <div class="grid sm:grid-cols-2 gap-4">
           <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center">
             <div class="w-28 h-28 mx-auto rounded-full bg-brand-100 border-2 border-white shadow-sm flex items-center justify-center mb-4 overflow-hidden">
-              <img src="founder1.jpg" alt="Igor" class="founder-photo founder-photo-igor w-full h-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-brand-700\'>I</span>';">
+              <img src="founder1.jpg" alt="Igor" loading="lazy" decoding="async" class="founder-photo founder-photo-igor w-full h-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-brand-700\'>I</span>';">
             </div>
             <p class="font-bold text-gray-900 mb-0.5">Igor</p>
             <p class="text-xs font-bold text-brand-600 mb-3 uppercase tracking-wider">Співзасновник</p>
@@ -1004,7 +1008,7 @@
           </div>
           <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center">
             <div class="w-28 h-28 mx-auto rounded-full bg-accent-100 border-2 border-white shadow-sm flex items-center justify-center mb-4 overflow-hidden">
-              <img src="founder2.jpg" alt="Ruslan" class="founder-photo founder-photo-ruslan w-full h-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-accent-700\'>R</span>';">
+              <img src="founder2.jpg" alt="Ruslan" loading="lazy" decoding="async" class="founder-photo founder-photo-ruslan w-full h-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl font-bold text-accent-700\'>R</span>';">
             </div>
             <p class="font-bold text-gray-900 mb-0.5">Ruslan</p>
             <p class="text-xs font-bold text-accent-600 mb-3 uppercase tracking-wider">Співзасновник</p>
@@ -1051,7 +1055,11 @@
               <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">MVP</span>
               <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">SaaS</span>
               <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">Web</span>
-            </div>          </div>
+            </div>
+            <a href="#contact" onclick="selectHeroService('mvp')" class="text-xs font-bold text-brand-600 hover:text-brand-700 transition inline-flex items-center gap-1 shrink-0">
+              <span>Обговорити →</span>
+            </a>
+          </div>
         </div>
         <div class="service-card bg-white border border-gray-100 rounded-2xl p-6 lg:p-8 shadow-card flex flex-col">
           <div class="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center mb-5">
@@ -1070,6 +1078,9 @@
               <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">Automation</span>
               <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">AI</span>
             </div>
+            <a href="#contact" onclick="selectHeroService('automation')" class="text-xs font-bold text-brand-600 hover:text-brand-700 transition inline-flex items-center gap-1 shrink-0">
+              <span>Обговорити →</span>
+            </a>
           </div>
         </div>
         <div class="service-card bg-white border border-gray-100 rounded-2xl p-6 lg:p-8 shadow-card flex flex-col">
@@ -1089,6 +1100,9 @@
               <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">Dedicated</span>
               <span class="text-[10px] px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-medium">Scalable</span>
             </div>
+            <a href="#contact" onclick="selectHeroService('team')" class="text-xs font-bold text-brand-600 hover:text-brand-700 transition inline-flex items-center gap-1 shrink-0">
+              <span>Обговорити →</span>
+            </a>
           </div>
         </div>
       </div>
@@ -1109,7 +1123,7 @@
         <button type="button" onclick="switchAppShowcase('spot')" data-app="spot" class="app-showcase-tab active text-left p-3.5 sm:p-4 rounded-2xl border transition duration-200 cursor-pointer bg-gray-950 text-white border-gray-900 shadow-md ring-2 ring-brand-500/40">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-black border border-gray-800 flex items-center justify-center p-1.5 shrink-0">
-              <img src="spot_logo.png" alt="SPOT" class="w-full h-auto object-contain">
+              <img src="spot_logo.png" alt="SPOT" loading="lazy" decoding="async" class="w-full h-auto object-contain">
             </div>
             <div class="min-w-0">
               <div class="flex items-center gap-1.5">
@@ -1123,7 +1137,7 @@
         <!-- Tab 2: FormGrid -->
         <button type="button" onclick="switchAppShowcase('formgrid')" data-app="formgrid" class="app-showcase-tab text-left p-3.5 sm:p-4 rounded-2xl border transition duration-200 cursor-pointer bg-white text-gray-800 border-gray-200 hover:border-gray-300 hover:bg-gray-50">
           <div class="flex items-center gap-3">
-            <img src="formgrid_icon_512.png" alt="FormGrid" class="w-10 h-10 rounded-xl object-cover shrink-0 shadow-xs">
+            <img src="formgrid_icon_512.png" alt="FormGrid" loading="lazy" decoding="async" class="w-10 h-10 rounded-xl object-cover shrink-0 shadow-xs">
             <div class="min-w-0">
               <div class="flex items-center gap-1.5">
                 <span class="font-bold text-sm tracking-tight truncate">FormGrid</span>
@@ -1136,7 +1150,7 @@
         <!-- Tab 3: Invoices & Contracts -->
         <button type="button" onclick="switchAppShowcase('invoices')" data-app="invoices" class="app-showcase-tab text-left p-3.5 sm:p-4 rounded-2xl border transition duration-200 cursor-pointer bg-white text-gray-800 border-gray-200 hover:border-gray-300 hover:bg-gray-50">
           <div class="flex items-center gap-3">
-            <img src="invoices_icon_512.png" alt="Invoices" class="w-10 h-10 rounded-xl object-cover shrink-0 shadow-xs">
+            <img src="invoices_icon_512.png" alt="Invoices" loading="lazy" decoding="async" class="w-10 h-10 rounded-xl object-cover shrink-0 shadow-xs">
             <div class="min-w-0">
               <div class="flex items-center gap-1.5">
                 <span class="font-bold text-sm tracking-tight truncate">Invoices</span>
@@ -1149,7 +1163,7 @@
         <!-- Tab 4: Convert & Compress -->
         <button type="button" onclick="switchAppShowcase('convert')" data-app="convert" class="app-showcase-tab text-left p-3.5 sm:p-4 rounded-2xl border transition duration-200 cursor-pointer bg-white text-gray-800 border-gray-200 hover:border-gray-300 hover:bg-gray-50">
           <div class="flex items-center gap-3">
-            <img src="convert_icon_512.png" alt="Convert" class="w-10 h-10 rounded-xl object-cover shrink-0 shadow-xs">
+            <img src="convert_icon_512.png" alt="Convert" loading="lazy" decoding="async" class="w-10 h-10 rounded-xl object-cover shrink-0 shadow-xs">
             <div class="min-w-0">
               <div class="flex items-center gap-1.5">
                 <span class="font-bold text-sm tracking-tight truncate">Convert</span>
@@ -1215,7 +1229,7 @@
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Supabase</span>
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">RevenueCat</span>
                 </div>
-                <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
+                <a href="#contact" onclick="selectHeroService('mvp', 'SPOT')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
                   <span>Обговорити подібний продукт</span>
                   <span class="group-hover:translate-x-0.5 transition-transform">→</span>
                 </a>
@@ -1225,7 +1239,7 @@
             <!-- Screen SPOT -->
             <div class="lg:col-span-5 flex justify-center items-center">
               <div class="w-full max-w-[270px] sm:max-w-[290px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-gray-800/80 bg-gray-900 aspect-[9/19] flex items-center justify-center">
-                <img src="screen_spot.jpg" alt="SPOT Workout Screen" class="w-full h-full object-cover object-top">
+                <img src="screen_spot.jpg" alt="SPOT Workout Screen" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
               </div>
             </div>
           </div>
@@ -1242,7 +1256,7 @@
               </div>
 
               <div class="flex items-center gap-3.5">
-                <img src="formgrid_icon_512.png" alt="FormGrid Icon" class="w-14 h-14 rounded-2xl object-cover shrink-0 shadow-md">
+                <img src="formgrid_icon_512.png" alt="FormGrid Icon" loading="lazy" decoding="async" class="w-14 h-14 rounded-2xl object-cover shrink-0 shadow-md">
                 <div>
                   <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">FormGrid: Forms & Sheets</h3>
                   <p class="text-xs text-gray-400 font-mono">com.vanza.formgrid</p>
@@ -1280,7 +1294,7 @@
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Google Sheets API</span>
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Offline Sync</span>
                 </div>
-                <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
+                <a href="#contact" onclick="selectHeroService('mvp', 'FormGrid')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
                   <span>Обговорити подібний продукт</span>
                   <span class="group-hover:translate-x-0.5 transition-transform">→</span>
                 </a>
@@ -1290,7 +1304,7 @@
             <!-- Screen FormGrid -->
             <div class="lg:col-span-5 flex justify-center items-center">
               <div class="w-full max-w-[270px] sm:max-w-[290px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-gray-800/80 bg-gray-900 aspect-[9/19] flex items-center justify-center">
-                <img src="screen_formgrid.png" alt="FormGrid Screen" class="w-full h-full object-cover object-top">
+                <img src="screen_formgrid.png" alt="FormGrid Screen" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
               </div>
             </div>
           </div>
@@ -1307,7 +1321,7 @@
               </div>
 
               <div class="flex items-center gap-3.5">
-                <img src="invoices_icon_512.png" alt="Invoices Icon" class="w-14 h-14 rounded-2xl object-cover shrink-0 shadow-md">
+                <img src="invoices_icon_512.png" alt="Invoices Icon" loading="lazy" decoding="async" class="w-14 h-14 rounded-2xl object-cover shrink-0 shadow-md">
                 <div>
                   <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Vanza: Invoices & Contracts</h3>
                   <p class="text-xs text-gray-400 font-mono">app.vanza.docs</p>
@@ -1345,7 +1359,7 @@
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Dexie.js (IndexedDB)</span>
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">jsPDF Engine</span>
                 </div>
-                <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
+                <a href="#contact" onclick="selectHeroService('mvp', 'Vanza: Invoices & Contracts')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
                   <span>Обговорити подібний продукт</span>
                   <span class="group-hover:translate-x-0.5 transition-transform">→</span>
                 </a>
@@ -1355,7 +1369,7 @@
             <!-- Screen Invoices -->
             <div class="lg:col-span-5 flex justify-center items-center">
               <div class="w-full max-w-[270px] sm:max-w-[290px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-gray-800/80 bg-gray-900 aspect-[9/19] flex items-center justify-center">
-                <img src="screen_invoices.png" alt="Invoices Screen" class="w-full h-full object-cover object-top">
+                <img src="screen_invoices.png" alt="Invoices Screen" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
               </div>
             </div>
           </div>
@@ -1372,7 +1386,7 @@
               </div>
 
               <div class="flex items-center gap-3.5">
-                <img src="convert_icon_512.png" alt="Convert & Compress Icon" class="w-14 h-14 rounded-2xl object-cover shrink-0 shadow-md">
+                <img src="convert_icon_512.png" alt="Convert & Compress Icon" loading="lazy" decoding="async" class="w-14 h-14 rounded-2xl object-cover shrink-0 shadow-md">
                 <div>
                   <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Vanza: Convert & Compress</h3>
                   <p class="text-xs text-gray-400 font-mono">tech.vanzalabs.convertcompress</p>
@@ -1410,7 +1424,7 @@
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">AES-256 Encryption</span>
                   <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs font-medium">Local Gal Engine</span>
                 </div>
-                <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
+                <a href="#contact" onclick="selectHeroService('mvp', 'Vanza: Convert & Compress')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-xs transition group">
                   <span>Обговорити подібний продукт</span>
                   <span class="group-hover:translate-x-0.5 transition-transform">→</span>
                 </a>
@@ -1420,7 +1434,7 @@
             <!-- Screen Convert -->
             <div class="lg:col-span-5 flex justify-center items-center">
               <div class="w-full max-w-[270px] sm:max-w-[290px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-gray-800/80 bg-gray-900 aspect-[9/19] flex items-center justify-center">
-                <img src="screen_convert.png" alt="Convert Screen" class="w-full h-full object-cover object-top">
+                <img src="screen_convert.png" alt="Convert Screen" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
               </div>
             </div>
           </div>
@@ -1597,6 +1611,7 @@
             <span class="px-2.5 py-1 rounded-md bg-gray-100">React</span>
             <span class="px-2.5 py-1 rounded-md bg-gray-100">Next.js</span>
             <span class="px-2.5 py-1 rounded-md bg-gray-100">React Native</span>
+            <span class="px-2.5 py-1 rounded-md bg-gray-100">Flutter</span>
             <span class="px-2.5 py-1 rounded-md bg-gray-100">TypeScript</span>
             <span class="px-2.5 py-1 rounded-md bg-gray-100">Tailwind CSS</span>
           </div>
@@ -1753,7 +1768,7 @@
                 <a href="mailto:contact@vanzalabs.tech" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Email: contact@vanzalabs.tech">
                   <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 </a>
-                <a href="https://t.me/vanzalabs" target="_blank" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Telegram: @vanzalabs">
+                <a href="https://t.me/vanzalabs" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="Telegram: @vanzalabs">
                   <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.458.02.889-.16 1.795-.962 6.145-.962 6.145-.4 1.562-.598 1.994-.998 2.023-.83.064-1.462-.543-2.267-1.066-1.26-.82-1.973-1.33-3.192-2.132-1.41-.927-.496-1.438.307-2.27.21-.218 3.843-3.52 3.915-3.82.009-.037.018-.17-.066-.241-.084-.07-.207-.046-.296-.027-.126.027-2.14 1.36-6.04 3.99-.572.394-1.09.586-1.554.575-.512-.015-1.5-.29-2.233-.53-.9-.294-1.614-.45-1.553-.95.032-.26.386-.528 1.06-.8 4.147-1.77 6.912-2.937 8.294-3.51 3.94-1.64 4.76-1.923 5.292-1.934z"/></svg>
                 </a>
                 <a href="https://www.linkedin.com/in/vanza-labs-453134436/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="LinkedIn" aria-label="LinkedIn">
@@ -1771,7 +1786,7 @@
               </div>
               <div class="text-sm text-white/90 space-y-1">
                 <p><span class="text-white/60">Тел:</span> <a href="tel:+380636333067" class="hover:text-white transition">+380 63 633 30 67</a></p>
-                <p><span class="text-white/60">Telegram:</span> <a href="https://t.me/vanzalabs" target="_blank" target="_blank" class="hover:text-white transition">@vanzalabs</a></p>
+                <p><span class="text-white/60">Telegram:</span> <a href="https://t.me/vanzalabs" target="_blank" class="hover:text-white transition">@vanzalabs</a></p>
                 <p><span class="text-white/60">Email:</span> <a href="mailto:contact@vanzalabs.tech" target="_blank" class="hover:text-white transition">contact@vanzalabs.tech</a></p>
               </div>
             </div>
@@ -1834,7 +1849,7 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
         <div class="col-span-2 md:col-span-1">
           <div class="flex items-center gap-2.5 mb-4">
-  <img src="vanzalabs_logo_white_text.png" alt="vanzalabs" class="h-4 w-auto">
+  <img src="vanzalabs_logo_white_text.png" alt="vanzalabs" loading="lazy" decoding="async" class="h-4 w-auto">
 </div>
           <p class="text-gray-400 text-sm leading-relaxed mb-4">Інженерна студія.<br>Розробка MVP, автоматизація, dedicated teams.</p>
           <p class="text-xs text-gray-500">Україна</p>
@@ -1854,7 +1869,7 @@
           <h4 class="text-xs font-semibold tracking-wider text-gray-400 uppercase mb-4">Зв'яжіться з нами</h4>
           <ul class="space-y-2.5 text-sm text-gray-300">
             <li><a href="tel:+380636333067" class="hover:text-brand-400 transition">+380 63 633 30 67</a></li>
-            <li><a href="https://t.me/vanzalabs" target="_blank" target="_blank" class="hover:text-brand-400 transition">Telegram: @vanzalabs</a></li>
+            <li><a href="https://t.me/vanzalabs" target="_blank" class="hover:text-brand-400 transition">Telegram: @vanzalabs</a></li>
             <li><a href="mailto:contact@vanzalabs.tech" target="_blank" class="hover:text-brand-400 transition">contact@vanzalabs.tech</a></li>
             <li class="text-gray-500 text-xs">Україна</li>
           </ul>
@@ -1871,7 +1886,7 @@
             <a href="https://www.linkedin.com/in/vanza-labs-453134436/" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="LinkedIn" aria-label="LinkedIn">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6A2.5 2.5 0 1 1 4.98 3.5zM.3 8.1h4.4V23H.3V8.1zM7.5 8.1h4.22v2.04h.06c.59-1.12 2.03-2.3 4.18-2.3 4.47 0 5.3 2.94 5.3 6.77V23h-4.4v-7.4c0-1.77-.03-4.04-2.46-4.04-2.47 0-2.85 1.93-2.85 3.92V23H7.5V8.1z"/></svg>
             </a>
-            <a href="https://t.me/vanzalabs" target="_blank" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="Telegram">
+            <a href="https://t.me/vanzalabs" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="Telegram">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.458.02.889-.16 1.795-.962 6.145-.962 6.145-.4 1.562-.598 1.994-.998 2.023-.83.064-1.462-.543-2.267-1.066-1.26-.82-1.973-1.33-3.192-2.132-1.41-.927-.496-1.438.307-2.27.21-.218 3.843-3.52 3.915-3.82.009-.037.018-.17-.066-.241-.084-.07-.207-.046-.296-.027-.126.027-2.14 1.36-6.04 3.99-.572.394-1.09.586-1.554.575-.512-.015-1.5-.29-2.233-.53-.9-.294-1.614-.45-1.553-.95.032-.26.386-.528 1.06-.8 4.147-1.77 6.912-2.937 8.294-3.51 3.94-1.64 4.76-1.923 5.292-1.934z"/></svg>
             </a>
             <a href="https://wa.me/380636333067" target="_blank" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition" title="WhatsApp: +380636333067">
@@ -1884,7 +1899,7 @@
         <p>© 2026 — VanzaLabs. All rights reserved.</p>
         <div class="flex gap-6 items-center">
           <a href="privacy-policy.html" class="hover:text-gray-300 transition">Політика конфіденційності</a>
-          <span class="text-brand-400 font-medium">Ua</span>
+          <button type="button" onclick="setLanguage(document.documentElement.lang === 'en' ? 'uk' : 'en')" class="text-brand-400 hover:text-brand-300 font-medium transition cursor-pointer"><span>Ua</span></button>
         </div>
       </div>
     </div>
@@ -1934,10 +1949,29 @@
       });
     }
 
-    function selectHeroService(serviceValue) {
+    function selectHeroService(serviceValue, productContext) {
       const select = document.querySelector('select[name="service"]');
       if (select) {
         select.value = serviceValue;
+        select.setCustomValidity('');
+        select.classList.add('border-brand-500', 'ring-2', 'ring-brand-500/20');
+        setTimeout(() => {
+          select.classList.remove('border-brand-500', 'ring-2', 'ring-brand-500/20');
+        }, 1800);
+      }
+      if (productContext) {
+        const messageField = document.querySelector('textarea[name="message"]');
+        if (messageField && !messageField.value.trim()) {
+          const isEn = document.documentElement.lang === 'en';
+          messageField.value = isEn
+            ? `Interested in building a product similar to ${productContext}. `
+            : `Цікавить розробка продукту, подібного до ${productContext}. `;
+          messageField.setCustomValidity('');
+          setTimeout(() => {
+            messageField.focus({ preventScroll: true });
+            messageField.setSelectionRange(messageField.value.length, messageField.value.length);
+          }, 500);
+        }
       }
     }
 
