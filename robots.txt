@@ -3,3 +3,4 @@ Allow: /
 Disallow: /thank-you.html
 
 Sitemap: https://vanzalabs.tech/sitemap.xml
+
