@@ -1,0 +1,610 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vanza Convert & Compress — Offline Photo Compressor & Secure PDF Studio</title>
+  <meta name="description" content="Compress heavy photos up to -90%, batch convert Apple HEIC to JPG/PNG, and secure PDFs with AES-256 encryption. 100% offline with zero cloud uploads.">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:title" content="Vanza Convert & Compress — Offline Photo Compressor & Secure PDF Studio">
+  <meta property="og:description" content="Smart compression with live size calculation, batch HEIC conversion, and encrypted PDF tools with zero ads.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vanzalabs.tech/convert">
+  <meta property="og:image" content="https://vanzalabs.tech/convert-og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vanza Convert & Compress — Offline Photo Compressor">
+  <meta name="twitter:description" content="Fast batch photo converter and compressor on device with zero cloud uploads.">
+  <link rel="canonical" href="https://vanzalabs.tech/convert">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="512x512" href="/images/convert_icon_512.png">
+  <meta name="theme-color" content="#08090C">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              emerald: '#10B981',
+              emeraldHover: '#059669',
+              emeraldGlow: 'rgba(16, 185, 129, 0.25)',
+              cyan: '#06B6D4',
+              dark: '#08090C',
+              card: '#0F1218',
+              cardBorder: '#1A1F2B',
+              surface: '#151922'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #08090C;
+      color: #F3F4F6;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .neon-glow {
+      box-shadow: 0 0 50px -10px rgba(16, 185, 129, 0.35);
+    }
+    .neon-text-glow {
+      text-shadow: 0 0 24px rgba(16, 185, 129, 0.5);
+    }
+    .grid-bg {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+  </style>
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu pu gu mu init Gu Qu Hu Wu Xu il Vu Yu ju oc ac lc uc cc hc capture getExtension Zu hu gc calculateEventProperties vc register register_once register_for_session unregister unregister_for_session zu mc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync wc identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset kc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty yc nc createPersonProfile setInternalOrTestUser bc xu ku opt_in_capturing opt_out_capturing Su has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing tc debug nl Os getPageViewId captureTraceFeedback captureTraceMetric Du".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_q5gM7VmNh57nCNKfKQx7KZDNgqaY7UK2mdXjrAzKDRey', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'always'
+    });
+  </script>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-[#10B981] selection:text-black">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-[#08090C]/85 backdrop-blur-md border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo + Badge -->
+      <div class="flex items-center gap-3">
+        <a href="#hero" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 border border-emerald-400/40 flex items-center justify-center p-1 shadow-inner transition group-hover:scale-105">
+            <img src="/images/convert_icon_512.png" alt="Convert & Compress Logo" class="w-full h-auto object-contain rounded-lg">
+          </div>
+          <div>
+            <span class="font-black text-lg tracking-tight text-white group-hover:text-[#10B981] transition">Vanza Convert</span>
+            <span class="hidden sm:inline-block ml-2 text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-gray-400">Convert & Compress</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center Links (Desktop) -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider text-gray-400">
+        <a href="#features" class="hover:text-white transition"><span>Features</span></a>
+        <a href="#pdf" class="hover:text-white transition"><span>PDF Studio</span></a>
+        <a href="#comparison" class="hover:text-white transition"><span>Why Vanza</span></a>
+        <a href="#faq" class="hover:text-white transition"><span>FAQ</span></a>
+        <a href="/privacy/convert" class="hover:text-white transition text-[#10B981]"><span>Privacy Policy</span></a>
+      </nav>
+
+      <!-- Right Actions: Language Switcher + Download CTA -->
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleConvertLang()" id="langBtn" class="px-2.5 py-1.5 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:text-white hover:border-gray-700 transition">
+          <span id="langLabel">UA</span>
+        </button>
+
+        <a href="https://play.google.com/store/apps/details?id=tech.vanzalabs.convertcompress" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black text-xs font-bold transition shadow-sm">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span class="hidden sm:inline"><span>Get on Google Play</span></span>
+          <span class="sm:hidden">Install</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="relative pt-12 sm:pt-20 lg:pt-24 pb-16 sm:pb-24 overflow-hidden grid-bg">
+    <!-- Ambient Glow Orbs -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#10B981]/15 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="absolute top-1/3 right-10 w-80 h-80 bg-teal-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Copy -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs">
+            <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+            <span class="text-[#10B981] font-semibold"><span>High-Performance Media Studio</span></span>
+            <span class="text-gray-500">•</span>
+            <span class="text-gray-300"><span>100% Offline Processing</span></span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+            <span>Compress photos up to −90%.</span><br>
+            <span class="text-[#10B981] neon-text-glow"><span>Batch convert HEIC, PNG & WebP.</span></span><br>
+            <span>100% private & offline.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <span>Fast, private photo compressor, format converter, and encrypted PDF studio. Free up gigabytes of smartphone storage, convert iPhone HEIC photos in bulk, and secure PDF files with AES-256 without uploading anything to the web.</span>
+          </p>
+
+          <!-- Main CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="https://play.google.com/store/apps/details?id=tech.vanzalabs.convertcompress" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl bg-[#10B981] hover:bg-[#059669] text-black font-extrabold text-sm transition shadow-lg neon-glow group">
+              <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+              <span><span>Download on Google Play</span></span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+
+            <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-sm transition">
+              <span><span>Explore Features</span></span>
+            </a>
+          </div>
+
+          <!-- Feature badges row -->
+          <div class="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs text-gray-400">
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#10B981]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Zero Cloud Uploads</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#10B981]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Lossless Quality Engine</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#10B981]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Zero Ads & Zero Tracking</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Visual Mockup -->
+        <div class="lg:col-span-5 flex justify-center items-center relative">
+          <!-- Subtle Frame Glow -->
+          <div class="absolute inset-0 max-w-[320px] mx-auto bg-gradient-to-b from-[#10B981]/25 via-teal-500/10 to-transparent rounded-[42px] blur-2xl pointer-events-none"></div>
+
+          <!-- Phone Device Frame -->
+          <div class="relative w-full max-w-[280px] sm:max-w-[305px] rounded-[36px] p-2.5 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-2xl border border-gray-700/60">
+            <div class="rounded-[28px] overflow-hidden bg-black aspect-[9/19.5] border border-gray-900/80 shadow-inner flex items-center justify-center">
+              <img src="/images/convert_screenshot.png" alt="Convert & Compress Interface" class="w-full h-full object-cover object-top">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK STATS & ARCHITECTURE BAR -->
+  <section class="py-10 bg-[#0F1218] border-y border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="space-y-1">
+          <p class="text-2xl sm:text-3xl font-extrabold text-[#10B981]">−90%</p>
+          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold"><span>Smart Compression</span></p>
+        </div>
+        <div class="space-y-1">
+          <p class="text-2xl sm:text-3xl font-extrabold text-white">30 Photos</p>
+          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold"><span>Batch Processing</span></p>
+        </div>
+        <div class="space-y-1">
+          <p class="text-2xl sm:text-3xl font-extrabold text-[#10B981]">AES-256</p>
+          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold"><span>Encrypted PDF Studio</span></p>
+        </div>
+        <div class="space-y-1">
+          <p class="text-2xl sm:text-3xl font-extrabold text-white">100% Offline</p>
+          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold"><span>Zero Cloud Uploads</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 CORE FEATURES GRID -->
+  <section id="features" class="py-20 sm:py-28 bg-[#08090C] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <p class="text-xs font-bold uppercase tracking-widest text-[#10B981] mb-3"><span>Core Architecture</span></p>
+        <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
+          <span>Heavy files compressed. Zero compromises on privacy.</span>
+        </h2>
+        <p class="text-sm sm:text-base text-gray-400 mt-4 leading-relaxed">
+          <span>Web converters steal your personal photos and inject annoying ads. Vanza Convert & Compress processes every image locally inside an isolated processor thread on your phone.</span>
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+        
+        <!-- Card 1: Smart Compression Engine -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#10B981]/40 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center text-[#10B981] font-bold text-xl">
+            📉
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition">
+            <span>Smart Compression Engine (-90%)</span>
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            <span>Shrink heavy 12 MB camera files down to 600 KB without visible blurring or color loss. Perfect for passing email attachment limits and uploading to government portals.</span>
+          </p>
+          <ul class="space-y-2 text-xs text-gray-400 pt-2">
+            <li class="flex items-center gap-2"><span class="text-[#10B981]">✓</span> <span>Interactive quality slider with live size calculator before processing</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#10B981]">✓</span> <span>Batch mode to compress entire photo shoots with one tap</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Batch Format Converter -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#10B981]/40 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center text-[#10B981] font-bold text-xl">
+            🔄
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition">
+            <span>Batch Multi-Format Converter</span>
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            <span>Seamlessly convert between modern formats: HEIC (Apple), JPG, PNG, WebP, and BMP. Fix incompatible files so they open anywhere on Windows, Android, and web.</span>
+          </p>
+          <ul class="space-y-2 text-xs text-gray-400 pt-2">
+            <li class="flex items-center gap-2"><span class="text-[#10B981]">✓</span> <span>Bulk convert up to 30 iPhone HEIC images simultaneously</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#10B981]">✓</span> <span>Saves safely into a dedicated album without altering originals</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Secure PDF Studio & AES-256 -->
+        <div id="pdf" class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#10B981]/40 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center text-[#10B981] font-bold text-xl">
+            🛡️
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition">
+            <span>Secure PDF Studio & AES-256</span>
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            <span>Turn stacks of photos or receipts into a clean PDF document. Merge multiple PDF files, split multipage documents, and lock sensitive records with AES-256 passwords.</span>
+          </p>
+          <ul class="space-y-2 text-xs text-gray-400 pt-2">
+            <li class="flex items-center gap-2"><span class="text-[#10B981]">✓</span> <span>Bank-grade AES-256 password protection for financial records & IDs</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#10B981]">✓</span> <span>Fast merging and splitting of PDF documents directly on device</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 4: Isolated On-Device Processing -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#10B981]/40 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center text-[#10B981] font-bold text-xl">
+            ⚡
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition">
+            <span>Isolated Background Processing</span>
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            <span>All image manipulation runs in an isolated background thread (Dart Isolate) on your device's chip. Zero UI stuttering, zero crashes, and zero bytes leaving your phone.</span>
+          </p>
+          <ul class="space-y-2 text-xs text-gray-400 pt-2">
+            <li class="flex items-center gap-2"><span class="text-[#10B981]">✓</span> <span>Works in airplane mode, subway tunnels, and remote zones</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#10B981]">✓</span> <span>Guaranteed privacy: personal family photos never touch cloud servers</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section id="comparison" class="py-16 sm:py-24 bg-[#0F1218] border-y border-gray-800/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <span>Why users switch to Vanza Convert</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-400 mt-2">
+          <span>100% on-device privacy, zero popup ads, and blazing processing speed.</span>
+        </p>
+      </div>
+
+      <div class="bg-[#08090C] border border-gray-800 rounded-3xl overflow-hidden shadow-xl">
+        <div class="grid grid-cols-3 p-4 sm:p-6 bg-white/5 border-b border-gray-800 text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-300">
+          <div><span>Capability</span></div>
+          <div class="text-center text-[#10B981]">Vanza Convert</div>
+          <div class="text-center text-gray-400"><span>Online Web Converters</span></div>
+        </div>
+
+        <div class="divide-y divide-gray-800/80 text-xs sm:text-sm text-gray-300">
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center">
+            <div class="font-semibold text-white"><span>Image Privacy</span></div>
+            <div class="text-center text-[#10B981] font-bold">✓ 100% Local on Device Chip</div>
+            <div class="text-center text-gray-500">✗ Uploaded to unknown cloud servers</div>
+          </div>
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center bg-white/[0.02]">
+            <div class="font-semibold text-white"><span>Distraction & Ads</span></div>
+            <div class="text-center text-[#10B981] font-bold">✓ Zero Ads · Immediate output</div>
+            <div class="text-center text-gray-500">✗ Intrusive popups & video timers</div>
+          </div>
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center">
+            <div class="font-semibold text-white"><span>Batch Capacity</span></div>
+            <div class="text-center text-[#10B981] font-bold">✓ Up to 30 files at once</div>
+            <div class="text-center text-gray-500">✗ Limited to 1-2 files for free</div>
+          </div>
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center bg-white/[0.02]">
+            <div class="font-semibold text-white"><span>Original Files Safety</span></div>
+            <div class="text-center text-[#10B981] font-bold">✓ Originals untouched in album</div>
+            <div class="text-center text-gray-500">✗ Risk of overwriting originals</div>
+          </div>
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center">
+            <div class="font-semibold text-white"><span>Offline Security</span></div>
+            <div class="text-center text-[#10B981] font-bold">✓ Works in Airplane Mode</div>
+            <div class="text-center text-gray-500">✗ Fails completely without internet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" class="py-16 sm:py-24 bg-[#08090C]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <p class="text-xs font-bold uppercase tracking-widest text-[#10B981] mb-2">FAQ</p>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight"><span>Frequently Asked Questions</span></h2>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5 sm:p-6">
+          <h3 class="text-base font-bold text-white mb-2"><span>Are my photos uploaded to any servers?</span></h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+            <span>Never. Every single mathematical compression, format conversion, and PDF encryption algorithm runs solely on your smartphone's processor using an isolated background isolate. You can safely compress photos with Wi-Fi and mobile data completely disabled.</span>
+          </p>
+        </div>
+
+        <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5 sm:p-6">
+          <h3 class="text-base font-bold text-white mb-2"><span>Why won't Apple iPhone HEIC photos open on Windows?</span></h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+            <span>Apple uses the proprietary HEIC format to save space, but most Windows PCs, older smartphones, and web portals lack native support. Vanza Convert & Compress effortlessly converts bulk batches of HEIC files into universal JPEG or PNG formats in seconds.</span>
+          </p>
+        </div>
+
+        <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5 sm:p-6">
+          <h3 class="text-base font-bold text-white mb-2"><span>Will my images look blurry after compression?</span></h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+            <span>No. Our smart compression algorithms strip out invisible redundant metadata and optimize pixel encoding while preserving razor-sharp edges and color fidelity. You also get a real-time file size forecast before initiating compression.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA BANNER -->
+  <section class="py-16 sm:py-20 bg-gradient-to-b from-[#0F1218] to-[#08090C] border-t border-gray-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[#10B981]/5 pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
+      
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 border border-emerald-400/40 mx-auto flex items-center justify-center p-2 shadow-xl">
+        <img src="/images/convert_icon_512.png" alt="Convert & Compress" class="w-full h-auto object-contain rounded-xl">
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+        <span>Take back your phone's storage</span>
+      </h2>
+
+      <p class="text-sm sm:text-base text-gray-300 max-w-xl mx-auto">
+        <span>Download Vanza Convert & Compress on Google Play and start optimizing photos with zero cloud uploads.</span>
+      </p>
+
+      <div class="pt-2">
+        <a href="https://play.google.com/store/apps/details?id=tech.vanzalabs.convertcompress" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#10B981] hover:bg-[#059669] text-black font-extrabold text-sm sm:text-base transition shadow-xl neon-glow">
+          <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span><span>Get Convert & Compress on Google Play</span></span>
+        </a>
+      </div>
+      <p class="text-xs text-gray-500 font-mono">tech.vanzalabs.convertcompress</p>
+    </div>
+  </section>
+
+  <!-- STUDIO ATTRIBUTION -->
+  <section class="py-12 bg-black border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4 text-left">
+          <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-2 shrink-0">
+            <span class="text-xl font-black text-white">VL</span>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-[#10B981]"><span>Engineered by VanzaLabs Studio</span></p>
+            <p class="text-sm text-gray-300"><span>Need a custom mobile app or high-performance tool built with this polish?</span></p>
+          </div>
+        </div>
+        <a href="https://vanzalabs.tech/#contact" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white text-xs font-bold transition shrink-0 group">
+          <span><span>Hire VanzaLabs to Build Your App</span></span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY & DATA SAFETY SECTION -->
+  <section id="privacy" class="py-16 sm:py-20 bg-[#0F1218] border-t border-gray-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-[#08090C] border border-gray-800 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-3 text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-xs font-semibold text-[#10B981]">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Privacy First Architecture</span>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <span>Your files never leave your device. Ever.</span>
+          </h3>
+          <p class="text-sm text-gray-400 max-w-xl leading-relaxed">
+            <span>Vanza: Convert & Compress processes all images and PDFs 100% locally on your device chipset. No cloud uploads, no tracking, and no third-party data sharing. Fully compliant with Google Play Data Safety and GDPR.</span>
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0 w-full md:w-auto">
+          <a href="/privacy/convert" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-[#10B981] hover:bg-[#059669] text-black font-extrabold text-xs sm:text-sm transition shadow-lg neon-glow text-center">
+            <span><span>Read Full Privacy Policy (EN / UA)</span></span>
+            <span>→</span>
+          </a>
+          <p class="text-[11px] text-gray-500 text-center font-mono">tech.vanzalabs.convertcompress</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#08090C] border-t border-gray-900 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 Vanza Convert by VanzaLabs. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="/privacy/convert" class="hover:text-white text-[#10B981] transition"><span>Privacy Policy</span></a>
+        <a href="mailto:contact@vanzalabs.tech" class="hover:text-gray-300 transition"><span>Support: contact@vanzalabs.tech</span></a>
+        <a href="https://vanzalabs.tech" class="hover:text-gray-300 transition"><span>VanzaLabs Main Site</span></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bilingual Translations Dictionary -->
+  <script>
+    const convertTranslations = {
+      // Nav
+      'Features': 'Функції',
+      'PDF Studio': 'PDF Студія',
+      'Why Vanza': 'Чому Vanza',
+      'FAQ': 'Часті питання',
+      'Get on Google Play': 'Завантажити в Google Play',
+
+      // Hero
+      'High-Performance Media Studio': 'Швидка медіа-студія',
+      '100% Offline Processing': '100% офлайн обробка',
+      'Compress photos up to −90%.': 'Стискай фото до −90%.',
+      'Batch convert HEIC, PNG & WebP.': 'Конвертуй пачками HEIC, PNG та WebP.',
+      '100% private & offline.': '100% приватно та без інтернету.',
+      'Fast, private photo compressor, format converter, and encrypted PDF studio. Free up gigabytes of smartphone storage, convert iPhone HEIC photos in bulk, and secure PDF files with AES-256 without uploading anything to the web.':
+        'Швидкий приватний компресор фотографій, пакетний конвертер та захищена PDF-студія. Звільняйте гігабайти пам\'яті смартфона, конвертуйте файли Apple HEIC та шифруйте PDF банківським стандартом AES-256 без вивантаження файлів в інтернет.',
+      'Download on Google Play': 'Завантажити в Google Play',
+      'Explore Features': 'Переглянути можливості',
+      'Zero Cloud Uploads': 'Нуль вивантажень у хмару',
+      'Lossless Quality Engine': 'Збереження високої чіткості',
+      'Zero Ads & Zero Tracking': 'Нуль реклами та трекерів',
+
+      // Stats
+      'Smart Compression': 'Розумне стиснення',
+      'Batch Processing': 'Пакетна обробка',
+      'Encrypted PDF Studio': 'Захищена PDF-студія',
+      'Zero Cloud Uploads': 'Без вивантаження в мережу',
+
+      // Features
+      'Core Architecture': 'Ключова архітектура',
+      'Heavy files compressed. Zero compromises on privacy.': 'Важкі файли стиснуті. Нуль компромісів із приватністю.',
+      'Web converters steal your personal photos and inject annoying ads. Vanza Convert & Compress processes every image locally inside an isolated processor thread on your phone.':
+        'Онлайн-конвертери збирають ваші особисті знімки та перевантажені рекламою. Vanza Convert & Compress обробляє кожне зображення локально в окремому потоці вашого смартфона.',
+      'Smart Compression Engine (-90%)': 'Розумне стиснення фото до −90%',
+      'Shrink heavy 12 MB camera files down to 600 KB without visible blurring or color loss. Perfect for passing email attachment limits and uploading to government portals.':
+        'Зменшуйте розмір важких фотографій (з 12 МБ до 600–900 КБ) без розмиття контурів та втрати чіткості для завантаження на сайти чи відправки поштою.',
+      'Interactive quality slider with live size calculator before processing': 'Інтерактивний повзунок якості з живим розрахунком розміру до старту',
+      'Batch mode to compress entire photo shoots with one tap': 'Пакетне стиснення до 30 файлів за один раз у фоновому потоці',
+      'Batch Multi-Format Converter': 'Пакетна конвертація між 5 форматами',
+      'Seamlessly convert between modern formats: HEIC (Apple), JPG, PNG, WebP, and BMP. Fix incompatible files so they open anywhere on Windows, Android, and web.':
+        'Миттєва конвертація «важких» та несумісних форматів: HEIC (Apple), JPG, PNG, WebP та BMP у будь-яких комбінаціях.',
+      'Bulk convert up to 30 iPhone HEIC images simultaneously': 'Автоматичне відкриття файлів з iPhone та швидка конвертація у JPG чи PNG',
+      'Saves safely into a dedicated album without altering originals': 'Збереження в окремий альбом галереї без перезапису чи пошкодження оригіналів',
+      'Secure PDF Studio & AES-256': 'Автономна PDF-студія з шифруванням AES-256',
+      'Turn stacks of photos or receipts into a clean PDF document. Merge multiple PDF files, split multipage documents, and lock sensitive records with AES-256 passwords.':
+        'Створюйте компактні PDF-файли зі стосу фотографій чи сканів, об\'єднуйте кілька документів в один та встановлюйте надійний пароль.',
+      'Bank-grade AES-256 password protection for financial records & IDs': 'Банківське шифрування AES-256 для паспортів, контрактів і банківських виписок',
+      'Fast merging and splitting of PDF documents directly on device': 'Швидке об\'єднання кількох PDF в один файл та видалення паролів',
+      'Isolated Background Processing': 'Ізольована обробка на процесорі',
+      'All image manipulation runs in an isolated background thread (Dart Isolate) on your device\'s chip. Zero UI stuttering, zero crashes, and zero bytes leaving your phone.':
+        'Усі алгоритми стиснення виконуються на чіпі смартфона в окремому ізольованому потоці Dart Isolate. Застосунок не вивантажує ваші файли на сторонні хмарні сервери.',
+      'Works in airplane mode, subway tunnels, and remote zones': 'Працює в літаку, у сховищах або з увімкненим авіарежимом',
+      'Guaranteed privacy: personal family photos never touch cloud servers': 'Повний захист від витоку приватних знімків чи особистих документів',
+
+      // Comparison
+      'Why users switch to Vanza Convert': 'Чому обирають Vanza Convert',
+      '100% on-device privacy, zero popup ads, and blazing processing speed.': '100% локальна приватність, нуль спливаючої реклами та швидкість.',
+      'Capability': 'Можливість',
+      'Online Web Converters': 'Онлайн веб-конвертери',
+      'Image Privacy': 'Приватність фотографій',
+      'Distraction & Ads': 'Реклама та затримки',
+      'Batch Capacity': 'Пакетна місткість',
+      'Original Files Safety': 'Безпека оригіналів',
+      'Offline Security': 'Робота без інтернету',
+
+      // FAQ
+      'Frequently Asked Questions': 'Часті запитання',
+      'Are my photos uploaded to any servers?': 'Чи вивантажуються мої фотографії на сервер?',
+      'Never. Every single mathematical compression, format conversion, and PDF encryption algorithm runs solely on your smartphone\'s processor using an isolated background isolate. You can safely compress photos with Wi-Fi and mobile data completely disabled.':
+        'Ніколи. Жоден піксель ваших зображень не залишає телефон. Усі математичні алгоритми стиснення, перетворення форматів і шифрування PDF виконуються безпосередньо процесором смартфона. Ви можете працювати навіть без доступу до інтернету.',
+      'Why won\'t Apple iPhone HEIC photos open on Windows?': 'Чому фотографії з iPhone (HEIC) не відкриваються на Windows чи старих телефонах?',
+      'Apple uses the proprietary HEIC format to save space, but most Windows PCs, older smartphones, and web portals lack native support. Vanza Convert & Compress effortlessly converts bulk batches of HEIC files into universal JPEG or PNG formats in seconds.':
+        'Формат HEIC використовується Apple для економії пам\'яті, проте багато комп\'ютерів, поштових клієнтів та державних сайтів його не підтримують. Наш застосунок в один клік конвертує цілу пачку HEIC-знімків у стандартні універсальні формати JPEG або PNG.',
+      'Will my images look blurry after compression?': 'Чи погіршиться якість фотографії при стисненні?',
+      'No. Our smart compression algorithms strip out invisible redundant metadata and optimize pixel encoding while preserving razor-sharp edges and color fidelity. You also get a real-time file size forecast before initiating compression.':
+        'Ні. Наш алгоритм інтелектуально оптимізує кодування, видаляючи зайві технічні шуми без відчутної для ока втрати чіткості. Завдяки повзунку якості та живому калькулятору ви самі обираєте бажаний розмір підсумкового файлу ще до початку стиснення.',
+
+      // Bottom CTA
+      'Take back your phone\'s storage': 'Звільніть гігабайти пам\'яті вашого телефона',
+      'Download Vanza Convert & Compress on Google Play and start optimizing photos with zero cloud uploads.':
+        'Завантажуйте Vanza Convert & Compress у Google Play та оптимізуйте медіафайли без жодного вивантаження у хмару вже сьогодні.',
+      'Get Convert & Compress on Google Play': 'Отримати Convert & Compress у Google Play',
+
+      // Studio
+      'Engineered by VanzaLabs Studio': 'Створено інженерною студією VanzaLabs',
+      'Need a custom mobile app or high-performance tool built with this polish?':
+        'Потрібен власний мобільний застосунок або інструмент такого ж рівня якості?',
+      'Hire VanzaLabs to Build Your App': 'Замовити розробку у VanzaLabs',
+
+      // Privacy Section
+      'Privacy First Architecture': 'Архітектура нульового збору даних',
+      'Your files never leave your device. Ever.': 'Ваші файли ніколи не залишають пристрій.',
+      'Vanza: Convert & Compress processes all images and PDFs 100% locally on your device chipset. No cloud uploads, no tracking, and no third-party data sharing. Fully compliant with Google Play Data Safety and GDPR.':
+        'Застосунок обробляє всі зображення та PDF на 100% локально на чіпсеті телефона. Жодних вивантажень у хмару, трекерів чи передачі даних третім сторонам. Повна відповідність Google Play Data Safety та GDPR.',
+      'Read Full Privacy Policy (EN / UA)': 'Читати повну політику (EN / UA)',
+
+      // Footer
+      'Privacy Policy': 'Політика конфіденційності',
+      'VanzaLabs Main Site': 'Головний сайт VanzaLabs'
+    };
+
+    let currentConvertLang = 'en';
+
+    function setConvertLang(lang) {
+      currentConvertLang = lang;
+      const isUa = lang === 'uk';
+      document.documentElement.lang = isUa ? 'uk' : 'en';
+      document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+
+      const spans = document.querySelectorAll('span');
+      spans.forEach(span => {
+        const text = span.textContent.trim();
+        if (isUa && convertTranslations[text]) {
+          span.dataset.original = text;
+          span.textContent = convertTranslations[text];
+        } else if (!isUa && span.dataset.original) {
+          span.textContent = span.dataset.original;
+        }
+      });
+    }
+
+    function toggleConvertLang() {
+      setConvertLang(currentConvertLang === 'en' ? 'uk' : 'en');
+    }
+  </script>
+</body>
+</html>

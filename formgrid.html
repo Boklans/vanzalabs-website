@@ -1,0 +1,610 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FormGrid — Mobile Workspace for Google Forms & Sheets</title>
+  <meta name="description" content="Native mobile workspace for Google Forms and Sheets. Build forms, connect sheets in 1 tap, and queue submissions offline with zero middleman servers.">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:title" content="FormGrid — Mobile Workspace for Google Forms & Sheets">
+  <meta property="og:description" content="Build forms, manage Google Sheets, and collect responses offline directly from your smartphone.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vanzalabs.tech/formgrid">
+  <meta property="og:image" content="https://vanzalabs.tech/formgrid-og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FormGrid — Mobile Workspace for Google Forms & Sheets">
+  <meta name="twitter:description" content="Fast mobile forms and sheets with offline sync and direct Google API privacy.">
+  <link rel="canonical" href="https://vanzalabs.tech/formgrid">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="512x512" href="/images/formgrid_icon_512.png">
+  <meta name="theme-color" content="#08090C">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#3B82F6',
+              blueHover: '#2563EB',
+              blueGlow: 'rgba(59, 130, 246, 0.25)',
+              purple: '#8B5CF6',
+              dark: '#08090C',
+              card: '#0F1218',
+              cardBorder: '#1A1F2B',
+              surface: '#151922'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #08090C;
+      color: #F3F4F6;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .neon-glow {
+      box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.35);
+    }
+    .neon-text-glow {
+      text-shadow: 0 0 24px rgba(59, 130, 246, 0.5);
+    }
+    .grid-bg {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+  </style>
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu pu gu mu init Gu Qu Hu Wu Xu il Vu Yu ju oc ac lc uc cc hc capture getExtension Zu hu gc calculateEventProperties vc register register_once register_for_session unregister unregister_for_session zu mc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync wc identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset kc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty yc nc createPersonProfile setInternalOrTestUser bc xu ku opt_in_capturing opt_out_capturing Su has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing tc debug nl Os getPageViewId captureTraceFeedback captureTraceMetric Du".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_q5gM7VmNh57nCNKfKQx7KZDNgqaY7UK2mdXjrAzKDRey', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'always'
+    });
+  </script>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-[#3B82F6] selection:text-white">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-[#08090C]/85 backdrop-blur-md border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo + Badge -->
+      <div class="flex items-center gap-3">
+        <a href="#hero" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 border border-blue-400/40 flex items-center justify-center p-1 shadow-inner transition group-hover:scale-105">
+            <img src="/images/formgrid_icon_512.png" alt="FormGrid Logo" class="w-full h-auto object-contain rounded-lg">
+          </div>
+          <div>
+            <span class="font-black text-lg tracking-tight text-white group-hover:text-[#3B82F6] transition">FormGrid</span>
+            <span class="hidden sm:inline-block ml-2 text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-gray-400">Forms & Sheets</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center Links (Desktop) -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider text-gray-400">
+        <a href="#features" class="hover:text-white transition"><span>Features</span></a>
+        <a href="#offline" class="hover:text-white transition"><span>Offline Sync</span></a>
+        <a href="#comparison" class="hover:text-white transition"><span>Why FormGrid</span></a>
+        <a href="#faq" class="hover:text-white transition"><span>FAQ</span></a>
+        <a href="/privacy/formgrid" class="hover:text-white transition text-[#3B82F6]"><span>Privacy Policy</span></a>
+      </nav>
+
+      <!-- Right Actions: Language Switcher + Download CTA -->
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleFormgridLang()" id="langBtn" class="px-2.5 py-1.5 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:text-white hover:border-gray-700 transition">
+          <span id="langLabel">UA</span>
+        </button>
+
+        <a href="https://play.google.com/store/apps/details?id=com.vanza.formgrid" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-[#3B82F6] hover:bg-[#2563EB] text-white text-xs font-bold transition shadow-sm">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span class="hidden sm:inline"><span>Get on Google Play</span></span>
+          <span class="sm:hidden">Install</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="relative pt-12 sm:pt-20 lg:pt-24 pb-16 sm:pb-24 overflow-hidden grid-bg">
+    <!-- Ambient Glow Orbs -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#3B82F6]/15 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="absolute top-1/3 right-10 w-80 h-80 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Copy -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs">
+            <span class="w-2 h-2 rounded-full bg-[#3B82F6] animate-pulse"></span>
+            <span class="text-[#3B82F6] font-semibold"><span>Mobile Workspace Hub</span></span>
+            <span class="text-gray-500">•</span>
+            <span class="text-gray-300"><span>Google Forms™ & Sheets™</span></span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+            <span>Create forms in seconds.</span><br>
+            <span class="text-[#3B82F6] neon-text-glow"><span>Manage Google Sheets on mobile.</span></span><br>
+            <span>Zero slow web browsers.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <span>The streamlined mobile workspace for Google Forms and Sheets. Build forms in one tap, log submissions with an offline queue, and sync directly to your Google Drive with zero intermediate servers.</span>
+          </p>
+
+          <!-- Main CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="https://play.google.com/store/apps/details?id=com.vanza.formgrid" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl bg-[#3B82F6] hover:bg-[#2563EB] text-white font-extrabold text-sm transition shadow-lg neon-glow group">
+              <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+              <span><span>Download on Google Play</span></span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+
+            <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-sm transition">
+              <span><span>Explore Features</span></span>
+            </a>
+          </div>
+
+          <!-- Feature badges row -->
+          <div class="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs text-gray-400">
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#3B82F6]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Offline Queue Sync</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#3B82F6]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Zero Middleman Servers</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#3B82F6]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>drive.file Scope Only</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Visual Mockup -->
+        <div class="lg:col-span-5 flex justify-center items-center relative">
+          <!-- Subtle Frame Glow -->
+          <div class="absolute inset-0 max-w-[320px] mx-auto bg-gradient-to-b from-[#3B82F6]/25 via-indigo-600/10 to-transparent rounded-[42px] blur-2xl pointer-events-none"></div>
+
+          <!-- Phone Device Frame -->
+          <div class="relative w-full max-w-[280px] sm:max-w-[305px] rounded-[36px] p-2.5 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-2xl border border-gray-700/60">
+            <div class="rounded-[28px] overflow-hidden bg-black aspect-[9/19.5] border border-gray-900/80 shadow-inner flex items-center justify-center">
+              <img src="/images/formgrid_screenshot.jpg" alt="FormGrid Interface" class="w-full h-full object-cover object-top">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK STATS & ARCHITECTURE BAR -->
+  <section class="py-10 bg-[#0F1218] border-y border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="space-y-1">
+          <p class="text-2xl sm:text-3xl font-extrabold text-[#3B82F6]">1-Tap</p>
+          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold"><span>Form & Sheet Link</span></p>
+        </div>
+        <div class="space-y-1">
+          <p class="text-2xl sm:text-3xl font-extrabold text-white">100% Offline</p>
+          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold"><span>Queue Buffering</span></p>
+        </div>
+        <div class="space-y-1">
+          <p class="text-2xl sm:text-3xl font-extrabold text-[#3B82F6]">0 Servers</p>
+          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold"><span>Direct Google API</span></p>
+        </div>
+        <div class="space-y-1">
+          <p class="text-2xl sm:text-3xl font-extrabold text-white">drive.file</p>
+          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold"><span>Zero Disk Intrusion</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 CORE FEATURES GRID -->
+  <section id="features" class="py-20 sm:py-28 bg-[#08090C] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <p class="text-xs font-bold uppercase tracking-widest text-[#3B82F6] mb-3"><span>Core Architecture</span></p>
+        <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
+          <span>Engineered for field work. Zero web browser friction.</span>
+        </h2>
+        <p class="text-sm sm:text-base text-gray-400 mt-4 leading-relaxed">
+          <span>Google Forms and Sheets on mobile browsers are slow and clumsy. FormGrid gives you a fast, native workspace with offline queues and instant QR generation.</span>
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+        
+        <!-- Card 1: 1-Tap Form & Sheet Studio -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#3B82F6]/40 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6] font-bold text-xl">
+            ⚡
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#3B82F6] transition">
+            <span>1-Tap Form & Sheet Studio</span>
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            <span>Build custom Google Forms (short text, checkboxes, dropdowns, radio options) with an automatic linked Google Spreadsheet generated in a single tap without touching a browser.</span>
+          </p>
+          <ul class="space-y-2 text-xs text-gray-400 pt-2">
+            <li class="flex items-center gap-2"><span class="text-[#3B82F6]">✓</span> <span>Pre-built business templates for orders, attendance, and inventory</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#3B82F6]">✓</span> <span>Instant direct shareable link for clients and respondents</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Offline Queue -->
+        <div id="offline" class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#3B82F6]/40 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6] font-bold text-xl">
+            📦
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#3B82F6] transition">
+            <span>Offline Submission Queue</span>
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            <span>Collect responses in warehouses, basements, or remote job sites with zero cell reception. Submissions are safely buffered locally and auto-synced the second connection returns.</span>
+          </p>
+          <ul class="space-y-2 text-xs text-gray-400 pt-2">
+            <li class="flex items-center gap-2"><span class="text-[#3B82F6]">✓</span> <span>Never lose a client lead or checklist entry due to dropped connection</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#3B82F6]">✓</span> <span>Background auto-retry mechanism without manual intervention</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Direct API Privacy -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#3B82F6]/40 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6] font-bold text-xl">
+            🔒
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#3B82F6] transition">
+            <span>Direct Client-to-Google Privacy</span>
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            <span>FormGrid talks strictly between your phone and official Google Drive/Sheets APIs. Your confidential business forms and sheet entries never pass through any middleman servers.</span>
+          </p>
+          <ul class="space-y-2 text-xs text-gray-400 pt-2">
+            <li class="flex items-center gap-2"><span class="text-[#3B82F6]">✓</span> <span>Secure official Google Sign-In with OAuth 2.0 verification</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#3B82F6]">✓</span> <span>Restricted drive.file scope — cannot inspect or read your private drive</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 4: Dynamic QR Studio -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#3B82F6]/40 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6] font-bold text-xl">
+            📱
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#3B82F6] transition">
+            <span>Dynamic QR Code Studio & Share</span>
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            <span>Generate publication-ready vector QR codes for your forms and spreadsheets instantly. Print for event check-ins, customer feedback stands, or restaurant menus in seconds.</span>
+          </p>
+          <ul class="space-y-2 text-xs text-gray-400 pt-2">
+            <li class="flex items-center gap-2"><span class="text-[#3B82F6]">✓</span> <span>High-res vector QR export for physical marketing materials</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#3B82F6]">✓</span> <span>Native Android system "Share" target to quickly upload files to Drive</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE: FORMGRID VS MOBILE WEB -->
+  <section id="comparison" class="py-16 sm:py-24 bg-[#0F1218] border-y border-gray-800/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <span>Why professionals choose FormGrid</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-400 mt-2">
+          <span>Native speed, zero browser freezing, and full offline resilience.</span>
+        </p>
+      </div>
+
+      <div class="bg-[#08090C] border border-gray-800 rounded-3xl overflow-hidden shadow-xl">
+        <div class="grid grid-cols-3 p-4 sm:p-6 bg-white/5 border-b border-gray-800 text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-300">
+          <div><span>Capability</span></div>
+          <div class="text-center text-[#3B82F6]">FormGrid</div>
+          <div class="text-center text-gray-400"><span>Mobile Web Browser</span></div>
+        </div>
+
+        <div class="divide-y divide-gray-800/80 text-xs sm:text-sm text-gray-300">
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center">
+            <div class="font-semibold text-white"><span>Mobile Usability</span></div>
+            <div class="text-center text-[#3B82F6] font-bold">✓ Native Material 3 Touch UI</div>
+            <div class="text-center text-gray-500">✗ Clunky, desktop-scaled web view</div>
+          </div>
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center bg-white/[0.02]">
+            <div class="font-semibold text-white"><span>Offline Capability</span></div>
+            <div class="text-center text-[#3B82F6] font-bold">✓ Full Local Queue & Auto-Sync</div>
+            <div class="text-center text-gray-500">✗ Network error & lost data</div>
+          </div>
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center">
+            <div class="font-semibold text-white"><span>Form + Sheet Pairing</span></div>
+            <div class="text-center text-[#3B82F6] font-bold">✓ Automatic 1-Tap Link</div>
+            <div class="text-center text-gray-500">✗ Multi-tab manual configuration</div>
+          </div>
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center bg-white/[0.02]">
+            <div class="font-semibold text-white"><span>Data Privacy Architecture</span></div>
+            <div class="text-center text-[#3B82F6] font-bold">✓ Direct Google API Only</div>
+            <div class="text-center text-gray-500">✓ Google direct (or risky 3rd-party SaaS)</div>
+          </div>
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center">
+            <div class="font-semibold text-white"><span>Built-in QR Studio</span></div>
+            <div class="text-center text-[#3B82F6] font-bold">✓ Vector QR Generator included</div>
+            <div class="text-center text-gray-500">✗ Requires 3rd-party ad-ridden tools</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" class="py-16 sm:py-24 bg-[#08090C]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <p class="text-xs font-bold uppercase tracking-widest text-[#3B82F6] mb-2">FAQ</p>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight"><span>Frequently Asked Questions</span></h2>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5 sm:p-6">
+          <h3 class="text-base font-bold text-white mb-2"><span>Can FormGrid access my other private files on Google Drive?</span></h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+            <span>No. FormGrid exclusively requests the strictest `drive.file` scope. By design, Google only allows the application to access the specific files it created itself. Your private photos, emails, and other personal Drive files remain completely inaccessible.</span>
+          </p>
+        </div>
+
+        <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5 sm:p-6">
+          <h3 class="text-base font-bold text-white mb-2"><span>How does the offline submission queue work?</span></h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+            <span>When collecting field survey responses or inventory data without cell reception, FormGrid safely buffers each submission in local storage. As soon as your device reconnects to Wi-Fi or mobile data, all entries are automatically synchronized to Google Sheets.</span>
+          </p>
+        </div>
+
+        <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5 sm:p-6">
+          <h3 class="text-base font-bold text-white mb-2"><span>Can I use FormGrid for free?</span></h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+            <span>Yes. FormGrid provides a generous free tier allowing you to manage up to 5 full documents with all core features enabled. For unlimited workspaces and advanced tools, you can upgrade via lifetime access or a flexible subscription with a 7-day free trial.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA BANNER -->
+  <section class="py-16 sm:py-20 bg-gradient-to-b from-[#0F1218] to-[#08090C] border-t border-gray-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[#3B82F6]/5 pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
+      
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 border border-blue-400/40 mx-auto flex items-center justify-center p-2 shadow-xl">
+        <img src="/images/formgrid_icon_512.png" alt="FormGrid" class="w-full h-auto object-contain rounded-xl">
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+        <span>Upgrade your Google Forms workflow</span>
+      </h2>
+
+      <p class="text-sm sm:text-base text-gray-300 max-w-xl mx-auto">
+        <span>Install FormGrid from Google Play and start managing forms and spreadsheets with native mobile agility today.</span>
+      </p>
+
+      <div class="pt-2">
+        <a href="https://play.google.com/store/apps/details?id=com.vanza.formgrid" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#3B82F6] hover:bg-[#2563EB] text-white font-extrabold text-sm sm:text-base transition shadow-xl neon-glow">
+          <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span><span>Get FormGrid on Google Play</span></span>
+        </a>
+      </div>
+      <p class="text-xs text-gray-500 font-mono">com.vanza.formgrid</p>
+    </div>
+  </section>
+
+  <!-- STUDIO ATTRIBUTION & INBOUND LEAD BANNER -->
+  <section class="py-12 bg-black border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4 text-left">
+          <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-2 shrink-0">
+            <span class="text-xl font-black text-white">VL</span>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-[#3B82F6]"><span>Engineered by VanzaLabs Studio</span></p>
+            <p class="text-sm text-gray-300"><span>Need a custom mobile app or enterprise workflow built with high polish?</span></p>
+          </div>
+        </div>
+        <a href="https://vanzalabs.tech/#contact" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white text-xs font-bold transition shrink-0 group">
+          <span><span>Hire VanzaLabs to Build Your App</span></span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY & DATA SAFETY SECTION -->
+  <section id="privacy" class="py-16 sm:py-20 bg-[#0F1218] border-t border-gray-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-[#08090C] border border-gray-800 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-3 text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3B82F6]/10 border border-[#3B82F6]/30 text-xs font-semibold text-[#3B82F6]">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Direct Google API Privacy</span>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <span>Zero middleman servers. Strict drive.file scope.</span>
+          </h3>
+          <p class="text-sm text-gray-400 max-w-xl leading-relaxed">
+            <span>FormGrid talks strictly between your phone and official Google Drive/Sheets APIs. We never see, store, or sell your forms or spreadsheets. Full compliance with Google API Services User Data Policy and Limited Use requirements.</span>
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0 w-full md:w-auto">
+          <a href="/privacy/formgrid" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-[#3B82F6] hover:bg-[#2563EB] text-white font-extrabold text-xs sm:text-sm transition shadow-lg neon-glow text-center">
+            <span><span>Read Full Privacy Policy (EN / UA)</span></span>
+            <span>→</span>
+          </a>
+          <p class="text-[11px] text-gray-500 text-center font-mono">com.vanza.formgrid</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#08090C] border-t border-gray-900 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 FormGrid by VanzaLabs. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="/privacy/formgrid" class="hover:text-white text-[#3B82F6] transition"><span>Privacy Policy</span></a>
+        <a href="mailto:contact@vanzalabs.tech" class="hover:text-gray-300 transition"><span>Support: contact@vanzalabs.tech</span></a>
+        <a href="https://vanzalabs.tech" class="hover:text-gray-300 transition"><span>VanzaLabs Main Site</span></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bilingual Translations Dictionary -->
+  <script>
+    const formgridTranslations = {
+      // Nav
+      'Features': 'Функції',
+      'Offline Sync': 'Офлайн-синхронізація',
+      'Why FormGrid': 'Чому FormGrid',
+      'FAQ': 'Часті питання',
+      'Get on Google Play': 'Завантажити в Google Play',
+
+      // Hero
+      'Mobile Workspace Hub': 'Мобільний робочий простір',
+      'Google Forms™ & Sheets™': 'Google Forms™ та Sheets™',
+      'Create forms in seconds.': 'Створюй форми за секунди.',
+      'Manage Google Sheets on mobile.': 'Керуй Google Таблицями з телефону.',
+      'Zero slow web browsers.': 'Нуль гальм мобільного браузера.',
+      'The streamlined mobile workspace for Google Forms and Sheets. Build forms in one tap, log submissions with an offline queue, and sync directly to your Google Drive with zero intermediate servers.':
+        'Швидкий мобільний хаб для Google Forms і Таблиць. Створюйте анкети в 1 дотик, вносьте записи через офлайн-чергу та синхронізуйте напряму з Google Drive без зайвих посередницьких серверів.',
+      'Download on Google Play': 'Завантажити в Google Play',
+      'Explore Features': 'Переглянути можливості',
+      'Offline Queue Sync': 'Офлайн-черга з автосинхронізацією',
+      'Zero Middleman Servers': 'Пряме Google API без посередників',
+      'drive.file Scope Only': 'Доступ лише до власних файлів',
+
+      // Stats
+      'Form & Sheet Link': 'Зв\'язка форми й таблиці',
+      'Queue Buffering': 'Офлайн-буферизація',
+      'Direct Google API': 'Пряме Google API',
+      'Zero Disk Intrusion': 'Без доступу до чужих файлів',
+
+      // Features
+      'Core Architecture': 'Ключова архітектура',
+      'Engineered for field work. Zero web browser friction.': 'Створено для роботи «в полі». Жодних гальм браузера.',
+      'Google Forms and Sheets on mobile browsers are slow and clumsy. FormGrid gives you a fast, native workspace with offline queues and instant QR generation.':
+        'Мобільний браузер для Google Forms повільний і незручний. FormGrid надає нативний робочий простір з офлайн-чергою та швидким генератором QR-кодів.',
+      '1-Tap Form & Sheet Studio': 'Конструктор форм та таблиць в 1 дотик',
+      'Build custom Google Forms (short text, checkboxes, dropdowns, radio options) with an automatic linked Google Spreadsheet generated in a single tap without touching a browser.':
+        'Створюйте повноцінні анкети Google Forms (короткий текст, чекбокси, списки) з автоматичною прив\'язкою до нової Google Таблиці без жодного рядка коду.',
+      'Pre-built business templates for orders, attendance, and inventory': 'Готові бізнес-шаблони для замовлень, обліку та відвідуваності',
+      'Instant direct shareable link for clients and respondents': 'Миттєве посилання на форму для клієнтів і респондентів',
+      'Offline Submission Queue': 'Надійна офлайн-черга записів',
+      'Collect responses in warehouses, basements, or remote job sites with zero cell reception. Submissions are safely buffered locally and auto-synced the second connection returns.':
+        'Збирайте заявки на складах, у підвалах або на виїздах без зв\'язку. Записи надійно буферизуються на телефоні та автоматично синхронізуються при появі інтернету.',
+      'Never lose a client lead or checklist entry due to dropped connection': 'Жодна заявка клієнта не пропаде через обрив мобільної мережі',
+      'Background auto-retry mechanism without manual intervention': 'Автоматична фонова відправка без повторного ручного вводу',
+      'Direct Client-to-Google Privacy': 'Пряма безпека Google API',
+      'FormGrid talks strictly between your phone and official Google Drive/Sheets APIs. Your confidential business forms and sheet entries never pass through any middleman servers.':
+        'Застосунок спілкується виключно між вашим телефоном та серверами Google Drive і Sheets. Ваші конфіденційні дані не проходять через жодні сторонні сервери.',
+      'Secure official Google Sign-In with OAuth 2.0 verification': 'Безпечна авторизація через офіційний Google Sign-In',
+      'Restricted drive.file scope — cannot inspect or read your private drive': 'Суворий scope drive.file — не має доступу до решти файлів на диску',
+      'Dynamic QR Code Studio & Share': 'Генератор QR-кодів та швидкий імпорт',
+      'Generate publication-ready vector QR codes for your forms and spreadsheets instantly. Print for event check-ins, customer feedback stands, or restaurant menus in seconds.':
+        'Створюйте векторні QR-коди для ваших форм і таблиць в один дотик. Друк для реєстрації на подіях, меню чи табличок зворотного зв\'язку.',
+      'High-res vector QR export for physical marketing materials': 'Експорт векторного QR-коду високої якості для поліграфії',
+      'Native Android system "Share" target to quickly upload files to Drive': 'Системне меню «Поділитися» для швидкого завантаження файлів у Google Drive',
+
+      // Comparison
+      'Why professionals choose FormGrid': 'Чому обирають FormGrid',
+      'Native speed, zero browser freezing, and full offline resilience.': 'Нативна швидкість, нуль зависань браузера та надійний офлайн.',
+      'Capability': 'Можливість',
+      'Mobile Web Browser': 'Мобільний браузер (Google Forms)',
+      'Mobile Usability': 'Зручність на смартфоні',
+      'Offline Capability': 'Робота без інтернету',
+      'Form + Sheet Pairing': 'Зв\'язка форми й таблиці',
+      'Data Privacy Architecture': 'Архітектура приватності',
+      'Built-in QR Studio': 'Вбудований генератор QR-кодів',
+
+      // FAQ
+      'Frequently Asked Questions': 'Часті запитання',
+      'Can FormGrid access my other private files on Google Drive?': 'Чи має FormGrid доступ до інших моїх файлів на Google Drive?',
+      'No. FormGrid exclusively requests the strictest `drive.file` scope. By design, Google only allows the application to access the specific files it created itself. Your private photos, emails, and other personal Drive files remain completely inaccessible.':
+        'Ні. FormGrid запитує найсуворіший рівень дозволів drive.file. Google відкриває доступ лише до тих документів, які були створені або відкриті безпосередньо через FormGrid. Ваші особисті фото, пошта та решта файлів на диску надійно захищені.',
+      'How does the offline submission queue work?': 'Як працює додавання записів без інтернету?',
+      'When collecting field survey responses or inventory data without cell reception, FormGrid safely buffers each submission in local storage. As soon as your device reconnects to Wi-Fi or mobile data, all entries are automatically synchronized to Google Sheets.':
+        'При зборі даних або заповненні анкет без зв\'язку FormGrid зберігає кожен запис у локальному буфері. Щойно з\'явиться Wi-Fi або мобільна мережа — всі рядки безперебійно відправляться у Google Таблицю.',
+      'Can I use FormGrid for free?': 'Чи можна користуватись FormGrid безкоштовно?',
+      'Yes. FormGrid provides a generous free tier allowing you to manage up to 5 full documents with all core features enabled. For unlimited workspaces and advanced tools, you can upgrade via lifetime access or a flexible subscription with a 7-day free trial.':
+        'Так. У безкоштовному тарифі ви можете створити до 5 повних документів з усіма функціями. Для необмеженого використання доступна разова пожиттєва ліцензія або підписка з 7-денним пробним періодом.',
+
+      // Bottom CTA
+      'Upgrade your Google Forms workflow': 'Виведіть роботу з Google Forms на новий рівень',
+      'Install FormGrid from Google Play and start managing forms and spreadsheets with native mobile agility today.':
+        'Завантажуйте FormGrid у Google Play та керуйте формами й таблицями з максимальною мобільною швидкістю вже сьогодні.',
+      'Get FormGrid on Google Play': 'Отримати FormGrid у Google Play',
+
+      // Studio
+      'Engineered by VanzaLabs Studio': 'Створено інженерною студією VanzaLabs',
+      'Need a custom mobile app or enterprise workflow built with high polish?':
+        'Потрібен власний мобільний застосунок або корпоративне рішення такого ж рівня якості?',
+      'Hire VanzaLabs to Build Your App': 'Замовити розробку у VanzaLabs',
+
+      // Privacy Section
+      'Direct Google API Privacy': 'Пряма безпека Google API',
+      'Zero middleman servers. Strict drive.file scope.': 'Нуль посередницьких серверів. Суворий scope drive.file.',
+      'FormGrid talks strictly between your phone and official Google Drive/Sheets APIs. We never see, store, or sell your forms or spreadsheets. Full compliance with Google API Services User Data Policy and Limited Use requirements.':
+        'FormGrid спілкується виключно між вашим телефоном та серверами Google API. Ми не збираємо, не зберігаємо та не передаємо ваші дані. Повна відповідність вимогам Google Limited Use Policy.',
+      'Read Full Privacy Policy (EN / UA)': 'Читати повну політику (EN / UA)',
+
+      // Footer
+      'Privacy Policy': 'Політика конфіденційності',
+      'VanzaLabs Main Site': 'Головний сайт VanzaLabs'
+    };
+
+    let currentFormgridLang = 'en';
+
+    function setFormgridLang(lang) {
+      currentFormgridLang = lang;
+      const isUa = lang === 'uk';
+      document.documentElement.lang = isUa ? 'uk' : 'en';
+      document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+
+      const spans = document.querySelectorAll('span');
+      spans.forEach(span => {
+        const text = span.textContent.trim();
+        if (isUa && formgridTranslations[text]) {
+          span.dataset.original = text;
+          span.textContent = formgridTranslations[text];
+        } else if (!isUa && span.dataset.original) {
+          span.textContent = span.dataset.original;
+        }
+      });
+    }
+
+    function toggleFormgridLang() {
+      setFormgridLang(currentFormgridLang === 'en' ? 'uk' : 'en');
+    }
+  </script>
+</body>
+</html>
