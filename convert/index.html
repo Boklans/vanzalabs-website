@@ -240,25 +240,25 @@
           </div>
         </div>
 
-        <!-- Right Visual Mockup with Interactive 3-Screen Switcher -->
+        <!-- Right Visual Mockup with Interactive 3-Screen Switcher (Wider frame for 9:16 aspect ratio) -->
         <div class="lg:col-span-5 flex flex-col justify-center items-center relative">
           <!-- Subtle Frame Glow -->
-          <div class="absolute inset-0 max-w-[320px] mx-auto bg-gradient-to-b from-[#10B981]/25 via-teal-500/10 to-transparent rounded-[42px] blur-2xl pointer-events-none"></div>
+          <div class="absolute inset-0 max-w-[360px] mx-auto bg-gradient-to-b from-[#10B981]/25 via-teal-500/10 to-transparent rounded-[42px] blur-2xl pointer-events-none"></div>
 
-          <!-- Phone Device Frame -->
-          <div class="relative w-full max-w-[280px] sm:max-w-[305px] rounded-[36px] p-2.5 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-2xl border border-gray-700/60">
-            <div class="rounded-[28px] overflow-hidden bg-black aspect-[9/19.5] border border-gray-900/80 shadow-inner relative flex items-center justify-center">
-              <!-- Screen 1: Main Screenshot -->
+          <!-- Phone Device Frame (Wider to prevent cropping of wider 9:16 screenshots) -->
+          <div class="relative w-full max-w-[315px] sm:max-w-[345px] rounded-[36px] p-2.5 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-2xl border border-gray-700/60">
+            <div class="rounded-[28px] overflow-hidden bg-black aspect-[9/16] border border-gray-900/80 shadow-inner relative flex items-center justify-center">
+              <!-- Screen 1: Main Home Studio Screenshot (576x1024) -->
               <div id="cv-scr-1" class="cv-screen w-full h-full">
-                <img src="/images/convert_screenshot.png" alt="Convert & Compress Interface" class="w-full h-full object-cover object-top">
+                <img src="/images/convert_screen_1.png" alt="Convert & Compress Studio Home" class="w-full h-full object-cover object-top">
               </div>
 
-              <!-- Screen 2: PDF Tools Screenshot -->
+              <!-- Screen 2: Compression Settings Screenshot (576x1024) -->
               <div id="cv-scr-2" class="cv-screen hidden w-full h-full">
-                <img src="/images/convert_screen_2.png" alt="Convert & Compress PDF Tools" class="w-full h-full object-cover object-top">
+                <img src="/images/convert_screen_2.png" alt="Convert & Compress Settings" class="w-full h-full object-cover object-top">
               </div>
 
-              <!-- Screen 3: Processing Result Screenshot -->
+              <!-- Screen 3: Processing Result Screenshot (576x1024) -->
               <div id="cv-scr-3" class="cv-screen hidden w-full h-full">
                 <img src="/images/convert_screen_3.png" alt="Convert & Compress Processing Result" class="w-full h-full object-cover object-top">
               </div>
@@ -271,10 +271,10 @@
               <span>1. Studio Home</span>
             </button>
             <button type="button" onclick="switchCvScreen(2)" id="cv-tab-2" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
-              <span>2. PDF Tools</span>
+              <span>2. Compression</span>
             </button>
             <button type="button" onclick="switchCvScreen(3)" id="cv-tab-3" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
-              <span>3. Processing Result</span>
+              <span>3. Results</span>
             </button>
           </div>
         </div>
@@ -666,10 +666,9 @@
       'Scan to install': 'Скануй для встановлення',
       'Point phone camera to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
       'Scan QR Code': 'Скануй QR-код',
-      'Install on phone': 'Встановити на смартфон',
       '1. Studio Home': '1. Головна студія',
-      '2. PDF Tools': '2. Інструменти PDF',
-      '3. Processing Result': '3. Результат стиснення',
+      '2. Compression': '2. Стиснення фото',
+      '3. Results': '3. Результат обробки',
       'Interactive Preview': 'Інтерактивний огляд',
       'Smart Compressor': 'Розумний компресор',
       'Original (24 HEIC Photos)': 'Оригінал (24 HEIC фото)',
