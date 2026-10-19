@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -79,6 +79,55 @@
         person_profiles: 'always'
     });
   </script>
+
+  <!-- JSON-LD Structured Data (SoftwareApplication + FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Vanza Docs — Invoices, Estimates & Contracts on the Job Site",
+        "operatingSystem": "Android",
+        "applicationCategory": "BusinessApplication",
+        "description": "Generate professional invoices, quotes, estimates, and contracts in 60 seconds. Touch signature on screen, 100% offline with zero cloud lock-in.",
+        "url": "https://vanzalabs.tech/invoices",
+        "downloadUrl": "https://play.google.com/store/apps/details?id=app.vanza.docs",
+        "author": {
+          "@type": "Organization",
+          "name": "VanzaLabs",
+          "url": "https://vanzalabs.tech"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can I generate quotes on remote job sites without cell service?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Vanza Docs is built strictly offline-first. Your entire item catalog, client address book, calculations, and PDF generation work with zero internet."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where is my financial and client data stored?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "All your data is saved exclusively on your phone's internal storage via IndexedDB. We do not operate external database servers or track your revenue."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-[#2563EB] selection:text-white">
 
@@ -150,7 +199,7 @@
             <span>The pocket commercial document generator for tradesmen, builders, and entrepreneurs. Auto-calculate sums, discounts, and taxes, collect client finger signatures on screen, and export publication-grade PDFs with zero internet required.</span>
           </p>
 
-          <!-- Main CTA Buttons -->
+          <!-- Main CTA Buttons + Desktop QR Bridge -->
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
             <a href="https://play.google.com/store/apps/details?id=app.vanza.docs" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-extrabold text-sm transition shadow-lg neon-glow group">
               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
@@ -161,6 +210,15 @@
             <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-sm transition">
               <span><span>Explore Features</span></span>
             </a>
+
+            <!-- Desktop QR Quick-Install -->
+            <div class="hidden xl:flex items-center gap-3 pl-3 pr-4 py-2 rounded-2xl bg-[#0F1218]/90 border border-gray-800 hover:border-[#2563EB]/40 transition">
+              <img src="/images/qr_invoices.png" alt="Scan to install Vanza Docs" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
+              <div class="text-left leading-tight">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-[#2563EB]"><span>Scan to Install</span></p>
+                <p class="text-[11px] text-gray-400"><span>Point phone camera at QR to open Google Play</span></p>
+              </div>
+            </div>
           </div>
 
           <!-- Feature badges row -->
@@ -180,16 +238,102 @@
           </div>
         </div>
 
-        <!-- Right Visual Mockup -->
-        <div class="lg:col-span-5 flex justify-center items-center relative">
+        <!-- Right Visual Mockup with Interactive 3-Screen Switcher -->
+        <div class="lg:col-span-5 flex flex-col justify-center items-center relative">
           <!-- Subtle Frame Glow -->
           <div class="absolute inset-0 max-w-[320px] mx-auto bg-gradient-to-b from-[#2563EB]/25 via-blue-500/10 to-transparent rounded-[42px] blur-2xl pointer-events-none"></div>
 
           <!-- Phone Device Frame -->
           <div class="relative w-full max-w-[280px] sm:max-w-[305px] rounded-[36px] p-2.5 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-2xl border border-gray-700/60">
-            <div class="rounded-[28px] overflow-hidden bg-white aspect-[9/19.5] border border-gray-900/80 shadow-inner flex items-center justify-center">
-              <img src="/images/invoices_screenshot.png" alt="Vanza Invoices Interface" class="w-full h-full object-cover object-top">
+            <div class="rounded-[28px] overflow-hidden bg-white aspect-[9/19.5] border border-gray-900/80 shadow-inner relative flex items-center justify-center">
+              <!-- Screen 1: Main Screenshot -->
+              <img id="inv-scr-1" src="/images/invoices_screenshot.png" alt="Vanza Invoices Interface" class="w-full h-full object-cover object-top transition-opacity duration-300">
+
+              <!-- Screen 2: Interactive PDF Preview -->
+              <div id="inv-scr-2" class="hidden absolute inset-0 bg-[#0B0F17] p-4 flex-col justify-between text-left select-none">
+                <div>
+                  <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                    <div>
+                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#2563EB]"><span>Interactive Preview</span></p>
+                      <h4 class="text-sm font-black text-white"><span>Invoice #INV-2026-089</span></h4>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 text-[10px] font-bold">PAID</span>
+                  </div>
+                  <div class="mt-3 bg-white rounded-xl p-3 text-gray-900 shadow-inner space-y-2">
+                    <div class="flex justify-between items-center border-b border-gray-200 pb-1.5">
+                      <span class="text-[10px] font-black uppercase text-[#2563EB]">Vanza Construction LLC</span>
+                      <span class="text-[10px] font-mono text-gray-500">19 Oct 2026</span>
+                    </div>
+                    <div class="space-y-1 text-[10px]">
+                      <div class="flex justify-between">
+                        <span class="text-gray-600"><span>1. Electrical Wiring & Panel</span></span>
+                        <span class="font-bold">$1,450.00</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-gray-600"><span>2. Smart Breaker Setup</span></span>
+                        <span class="font-bold">$620.00</span>
+                      </div>
+                      <div class="flex justify-between text-emerald-700">
+                        <span><span>Discount (5% Loyalty)</span></span>
+                        <span>-$103.50</span>
+                      </div>
+                    </div>
+                    <div class="border-t border-gray-200 pt-1.5 flex justify-between items-center">
+                      <span class="text-[10px] font-bold uppercase"><span>Total Due</span></span>
+                      <span class="text-sm font-black text-[#2563EB]">$1,966.50</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-[10px] text-gray-400 px-1">
+                    <span><span>Theme: Corporate Blue (1 of 12)</span></span>
+                    <span class="text-[#2563EB] font-bold">A4 Vector</span>
+                  </div>
+                  <div class="py-2.5 rounded-xl bg-[#2563EB] text-white font-extrabold text-xs text-center">
+                    <span>↗ Share PDF via Telegram / Email</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screen 3: Interactive Touch Signature Pad -->
+              <div id="inv-scr-3" class="hidden absolute inset-0 bg-[#0B0F17] p-4 flex-col justify-between text-left select-none">
+                <div>
+                  <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                    <div>
+                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#2563EB]"><span>On-Site Approval</span></p>
+                      <h4 class="text-sm font-black text-white"><span>Client Touch Signature</span></h4>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 text-[10px] font-bold">Vector Ink</span>
+                  </div>
+                  <div class="mt-3 bg-[#131926] border border-dashed border-[#2563EB]/50 rounded-2xl p-4 flex flex-col items-center justify-center">
+                    <svg class="w-40 h-16 text-[#3B82F6]" viewBox="0 0 220 80" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                      <path d="M15 55 C 35 20, 55 65, 80 35 C 95 18, 105 55, 130 42 C 155 28, 175 48, 205 25" />
+                    </svg>
+                    <p class="text-[10px] text-gray-400 mt-2"><span>Signed by: Alex Mercer (Client)</span></p>
+                  </div>
+                  <div class="mt-3 bg-[#131926] border border-gray-800 rounded-xl p-2.5 flex items-center justify-between">
+                    <span class="text-[11px] text-gray-300 font-semibold"><span>Company Official Seal</span></span>
+                    <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">✓ Attached</span>
+                  </div>
+                </div>
+                <div class="py-2.5 rounded-xl bg-emerald-500 text-black font-extrabold text-xs text-center">
+                  <span>✓ Lock & Embed into Contract PDF</span>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- 3-Screen Switcher Pills -->
+          <div class="mt-5 flex items-center gap-2 bg-[#0F1218] p-1.5 rounded-2xl border border-gray-800 relative z-10">
+            <button type="button" onclick="switchInvScreen(1)" id="inv-tab-1" class="px-3 py-1.5 rounded-xl text-[11px] font-bold bg-[#2563EB] text-white transition shadow">
+              <span>1. Editor</span>
+            </button>
+            <button type="button" onclick="switchInvScreen(2)" id="inv-tab-2" class="px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
+              <span>2. PDF Preview</span>
+            </button>
+            <button type="button" onclick="switchInvScreen(3)" id="inv-tab-3" class="px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
+              <span>3. Touch Sign</span>
+            </button>
           </div>
         </div>
 
@@ -239,8 +383,8 @@
         
         <!-- Card 1: Instant Document Engine -->
         <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#2563EB]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center text-[#2563EB] font-bold text-xl">
-            ⚡
+          <div class="w-12 h-12 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center text-[#2563EB]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#2563EB] transition">
             <span>Instant Document Engine</span>
@@ -256,8 +400,8 @@
 
         <!-- Card 2: Touch Signature & Stamp Studio -->
         <div id="signatures" class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#2563EB]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center text-[#2563EB] font-bold text-xl">
-            ✍️
+          <div class="w-12 h-12 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center text-[#2563EB]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#2563EB] transition">
             <span>Touch Signature & Stamp Studio</span>
@@ -273,8 +417,8 @@
 
         <!-- Card 3: 12 Designer PDF Themes -->
         <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#2563EB]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center text-[#2563EB] font-bold text-xl">
-            📄
+          <div class="w-12 h-12 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center text-[#2563EB]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#2563EB] transition">
             <span>12 Publication-Grade PDF Themes</span>
@@ -290,8 +434,8 @@
 
         <!-- Card 4: 100% Offline Privacy + Drive Backup -->
         <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#2563EB]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center text-[#2563EB] font-bold text-xl">
-            🔒
+          <div class="w-12 h-12 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center text-[#2563EB]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#2563EB] transition">
             <span>Offline Privacy + Google Drive Backup</span>
@@ -409,13 +553,71 @@
         <span>Download Vanza Docs from Google Play and start issuing contracts and invoices in 60 seconds.</span>
       </p>
 
-      <div class="pt-2">
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="https://play.google.com/store/apps/details?id=app.vanza.docs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-extrabold text-sm sm:text-base transition shadow-xl neon-glow">
           <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
           <span><span>Get Vanza Docs on Google Play</span></span>
         </a>
+        <div class="hidden sm:flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-black/60 border border-gray-800 text-left">
+          <img src="/images/qr_invoices.png" alt="QR Code" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
+          <div class="leading-tight">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-[#2563EB]"><span>Scan QR</span></p>
+            <p class="text-[11px] text-gray-400"><span>Install on phone</span></p>
+          </div>
+        </div>
       </div>
       <p class="text-xs text-gray-500 font-mono">app.vanza.docs</p>
+    </div>
+  </section>
+
+  <!-- VANZALABS ECOSYSTEM SHOWCASE -->
+  <section class="py-14 bg-[#08090C] border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-[#2563EB] mb-1"><span>VanzaLabs Product Ecosystem</span></p>
+          <h2 class="text-2xl sm:text-3xl font-black text-white"><span>More Apps Engineered by Our Studio</span></h2>
+        </div>
+        <a href="https://vanzalabs.tech/#cases" class="text-xs font-semibold text-gray-400 hover:text-white transition"><span>View All Studio Products →</span></a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <!-- SPOT -->
+        <a href="/spot" class="group bg-[#0F1218] border border-gray-800 hover:border-[#C8FF3D]/50 rounded-2xl p-5 flex items-start gap-4 transition">
+          <img src="/spot_logo.png" alt="SPOT" class="w-12 h-12 rounded-xl object-contain bg-black p-1.5 shrink-0 border border-gray-800">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-bold text-white group-hover:text-[#C8FF3D] transition">SPOT Fitness</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#C8FF3D]/10 text-[#C8FF3D] border border-[#C8FF3D]/20">Health & Gym</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-2"><span>Algorithmic muscle recovery tracker, custom splits & tactile gym session logger.</span></p>
+          </div>
+        </a>
+
+        <!-- FormGrid -->
+        <a href="/formgrid" class="group bg-[#0F1218] border border-gray-800 hover:border-blue-500/50 rounded-2xl p-5 flex items-start gap-4 transition">
+          <img src="/images/formgrid_icon_512.png" alt="FormGrid" class="w-12 h-12 rounded-xl object-cover shrink-0 border border-gray-800">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-bold text-white group-hover:text-blue-400 transition">FormGrid</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">No-Code DB</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-2"><span>Offline-first custom forms, relational tables, QR scanner & CSV/PDF export.</span></p>
+          </div>
+        </a>
+
+        <!-- Convert -->
+        <a href="/convert" class="group bg-[#0F1218] border border-gray-800 hover:border-emerald-500/50 rounded-2xl p-5 flex items-start gap-4 transition">
+          <img src="/images/convert_icon_512.png" alt="Convert & Compress" class="w-12 h-12 rounded-xl object-cover shrink-0 border border-gray-800">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-bold text-white group-hover:text-emerald-400 transition">Convert & Compress</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Media Engine</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-2"><span>100% on-device photo compressor, format converter & encrypted PDF toolkit.</span></p>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -425,7 +627,7 @@
       <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-4 text-left">
           <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-2 shrink-0">
-            <span class="text-xl font-black text-white">VL</span>
+            <img src="/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="w-full h-auto object-contain">
           </div>
           <div>
             <p class="text-xs font-semibold uppercase tracking-wider text-[#2563EB]"><span>Engineered by VanzaLabs Studio</span></p>
@@ -479,8 +681,28 @@
     </div>
   </footer>
 
-  <!-- Bilingual Translations Dictionary -->
+  <!-- Interactive Screen Switcher & Bilingual Translations -->
   <script>
+    function switchInvScreen(index) {
+      for (let i = 1; i <= 3; i++) {
+        const scr = document.getElementById('inv-scr-' + i);
+        const tab = document.getElementById('inv-tab-' + i);
+        if (!scr || !tab) continue;
+        if (i === index) {
+          scr.classList.remove('hidden');
+          scr.classList.add('flex');
+          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-bold bg-[#2563EB] text-white transition shadow';
+        } else {
+          scr.classList.add('hidden');
+          scr.classList.remove('flex');
+          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition';
+        }
+      }
+      if (window.posthog) {
+        window.posthog.capture('invoices_screen_preview_switched', { screen: index });
+      }
+    }
+
     const invoicesTranslations = {
       // Nav
       'Features': 'Функції',
@@ -489,7 +711,7 @@
       'FAQ': 'Часті питання',
       'Get on Google Play': 'Завантажити в Google Play',
 
-      // Hero
+      // Hero & QR & Screen Switcher
       'Job Site Document Studio': 'Документи прямо на об\'єкті',
       'Contractors & Freelance': 'Для майстрів та бізнесу',
       'Quotes & Invoices in 60 seconds.': 'Рахунки та кошториси за 60 секунд.',
@@ -499,6 +721,26 @@
         'Кишеньковий генератор комерційних документів для майстрів, будівельників та підприємців. Автоматичний підрахунок сум і податків, підпис замовника пальцем на екрані та миттєвий PDF без інтернету.',
       'Download on Google Play': 'Завантажити в Google Play',
       'Explore Features': 'Переглянути можливості',
+      'Scan to Install': 'Скануй для встановлення',
+      'Point phone camera at QR to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
+      'Scan QR': 'Скануй QR',
+      'Install on phone': 'Встановити на смартфон',
+      '1. Editor': '1. Редактор',
+      '2. PDF Preview': '2. PDF-огляд',
+      '3. Touch Sign': '3. Підпис',
+      'Interactive Preview': 'Інтерактивний огляд',
+      'Invoice #INV-2026-089': 'Рахунок #INV-2026-089',
+      '1. Electrical Wiring & Panel': '1. Електромонтаж та щитова',
+      '2. Smart Breaker Setup': '2. Налаштування автоматики',
+      'Discount (5% Loyalty)': 'Знижка (5% Постійний клієнт)',
+      'Total Due': 'До сплати',
+      'Theme: Corporate Blue (1 of 12)': 'Тема: Корпоративна Синя (1 з 12)',
+      '↗ Share PDF via Telegram / Email': '↗ Надіслати PDF у Telegram / Email',
+      'On-Site Approval': 'Погодження на місці',
+      'Client Touch Signature': 'Підпис клієнта на екрані',
+      'Signed by: Alex Mercer (Client)': 'Підписано: Олексій Мерсер (Замовник)',
+      'Company Official Seal': 'Офіційна печатка компанії',
+      '✓ Lock & Embed into Contract PDF': '✓ Зафіксувати у PDF-договорі',
       '100% Offline IndexedDB': '100% Офлайн IndexedDB',
       'On-Screen Signatures': 'Підпис пальцем на екрані',
       '12 Clean PDF Styles': '12 дизайнерських тем PDF',
@@ -558,11 +800,20 @@
       'Yes. Generated PDFs contain all required commercial requisites (tax IDs, IBAN bank numbers, legal entity names, detailed scope of work, sum written in words), along with graphic client signatures and company seals.':
         'Так. Документи містять усі обов\'язкові реквізити (ЄДРПОУ/ІПН, IBAN, банк, адреси), суму прописом, графічний підпис і печатку, що відповідає діловому документообігу.',
 
-      // Bottom CTA
+      // Bottom CTA & Ecosystem
       'Upgrade your business documentation': 'Автоматизуйте роботу з документами вже сьогодні',
       'Download Vanza Docs from Google Play and start issuing contracts and invoices in 60 seconds.':
         'Завантажуйте Vanza Docs у Google Play та формуйте офіційні договори й рахунки за 60 секунд.',
       'Get Vanza Docs on Google Play': 'Отримати Vanza Docs у Google Play',
+      'VanzaLabs Product Ecosystem': 'Екосистема продуктів VanzaLabs',
+      'More Apps Engineered by Our Studio': 'Інші застосунки нашої студії',
+      'View All Studio Products →': 'Усі продукти студії →',
+      'Algorithmic muscle recovery tracker, custom splits & tactile gym session logger.':
+        'Алгоритм відновлення мʼязів, персональні спліт-програми та зручний лайв-трекер для залу.',
+      'Offline-first custom forms, relational tables, QR scanner & CSV/PDF export.':
+        'Офлайн-конструктор форм, реляційних таблиць, QR-сканер та експорт у CSV/PDF.',
+      '100% on-device photo compressor, format converter & encrypted PDF toolkit.':
+        '100% локальне стиснення фото, конвертація форматів та захист PDF паролем.',
 
       // Studio
       'Engineered by VanzaLabs Studio': 'Створено інженерною студією VanzaLabs',
@@ -584,27 +835,49 @@
 
     let currentInvoicesLang = 'en';
 
-    function setInvoicesLang(lang) {
+    function setInvoicesLang(lang, save = true) {
       currentInvoicesLang = lang;
       const isUa = lang === 'uk';
       document.documentElement.lang = isUa ? 'uk' : 'en';
       document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+      if (save) {
+        try { localStorage.setItem('vanza_lang', lang); } catch(e) {}
+      }
 
       const spans = document.querySelectorAll('span');
       spans.forEach(span => {
-        const text = span.textContent.trim();
+        if (span.children.length > 0) return;
+        const text = (span.dataset.original || span.textContent).trim();
         if (isUa && invoicesTranslations[text]) {
-          span.dataset.original = text;
+          if (!span.dataset.original) span.dataset.original = text;
           span.textContent = invoicesTranslations[text];
         } else if (!isUa && span.dataset.original) {
           span.textContent = span.dataset.original;
         }
       });
+
+      if (window.posthog && save) {
+        window.posthog.capture('invoices_lang_switched', { lang: lang });
+      }
     }
 
     function toggleInvoicesLang() {
-      setInvoicesLang(currentInvoicesLang === 'en' ? 'uk' : 'en');
+      setInvoicesLang(currentInvoicesLang === 'en' ? 'uk' : 'en', true);
     }
+
+    (function initLang() {
+      try {
+        const saved = localStorage.getItem('vanza_lang');
+        if (saved === 'uk' || saved === 'en') {
+          if (saved === 'uk') setInvoicesLang('uk', false);
+          return;
+        }
+        const sysLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (sysLang.startsWith('uk') || sysLang.startsWith('ru')) {
+          setInvoicesLang('uk', false);
+        }
+      } catch(e) {}
+    })();
   </script>
 </body>
 </html>

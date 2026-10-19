@@ -83,6 +83,61 @@
         linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     }
   </style>
+
+  <!-- Schema.org Structured Data (SoftwareApplication + FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "SPOT — Workout Tracker & Muscle Recovery",
+        "operatingSystem": "Android",
+        "applicationCategory": "HealthApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "installUrl": "https://play.google.com/store/apps/details?id=com.vanzalabs.spot",
+        "author": {
+          "@type": "Organization",
+          "name": "VanzaLabs",
+          "url": "https://vanzalabs.tech"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the Muscle Recovery Engine calculate readiness?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SPOT models muscle fatigue based on volume, intensity, and time-decay curves. Different muscle groups have different recovery windows to help you pick the best day for each split."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does SPOT work without an internet connection?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. SPOT stores your workout routines, logs, and timer locally on device so you never lose a set even in gym basements."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my workout data private?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Completely. We do not sell your biometric, health, or workout data to any advertisers or third-party brokers."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-[#C8FF3D] selection:text-black">
 
@@ -154,8 +209,8 @@
             <span>An intelligent, dark-aesthetic strength training companion for lifters and athletes. Algorithmic muscle recovery tracking, custom splits, and frictionless live logging with zero distractions.</span>
           </p>
 
-          <!-- Main CTA Buttons -->
-          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+          <!-- Main CTA Buttons + QR Bridge -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
             <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.spot" target="_blank" rel="noopener noreferrer" onclick="if(window.posthog)posthog.capture('spot_hero_google_play_clicked')" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl bg-[#C8FF3D] hover:bg-[#B6EE2C] text-black font-extrabold text-sm transition shadow-lg neon-glow group">
               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
               <span><span>Download on Google Play</span></span>
@@ -165,6 +220,15 @@
             <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-sm transition">
               <span><span>Explore Features</span></span>
             </a>
+
+            <!-- Desktop QR Quick-Install Bridge -->
+            <div class="hidden xl:flex items-center gap-3 pl-2.5 pr-4 py-1.5 rounded-2xl bg-[#0F1218]/90 border border-white/10 shadow-inner">
+              <img src="/images/qr_spot.png" alt="Scan to install SPOT" class="w-10 h-10 rounded-lg bg-white p-0.5 shrink-0">
+              <div class="text-left leading-tight">
+                <p class="text-[11px] font-bold text-[#C8FF3D]"><span>Scan to install</span></p>
+                <p class="text-[10px] text-gray-400"><span>Direct to phone</span></p>
+              </div>
+            </div>
           </div>
 
           <!-- Feature badges row -->
@@ -184,16 +248,116 @@
           </div>
         </div>
 
-        <!-- Right Visual Mockup -->
-        <div class="lg:col-span-5 flex justify-center items-center relative">
+        <!-- Right Visual Mockup with Interactive Screen Switcher -->
+        <div class="lg:col-span-5 flex flex-col items-center relative">
           <!-- Subtle Frame Glow -->
           <div class="absolute inset-0 max-w-[320px] mx-auto bg-gradient-to-b from-[#C8FF3D]/25 via-emerald-500/10 to-transparent rounded-[42px] blur-2xl pointer-events-none"></div>
 
           <!-- Phone Device Frame -->
           <div class="relative w-full max-w-[280px] sm:max-w-[305px] rounded-[36px] p-2.5 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-2xl border border-gray-700/60">
-            <div class="rounded-[28px] overflow-hidden bg-black aspect-[9/19.5] border border-gray-900/80 shadow-inner flex items-center justify-center">
-              <img src="/screen_spot.jpg" alt="SPOT Workout Interface" class="w-full h-full object-cover object-top">
+            <div class="rounded-[28px] overflow-hidden bg-[#0A0C0E] aspect-[9/19.5] border border-gray-900/80 shadow-inner relative">
+              <!-- Screen 1: Main Readiness Screenshot -->
+              <div id="spot-scr-1" class="spot-screen w-full h-full">
+                <img src="/screen_spot.jpg" alt="SPOT Workout Interface" class="w-full h-full object-cover object-top">
+              </div>
+
+              <!-- Screen 2: Live Session Logger Preview -->
+              <div id="spot-scr-2" class="spot-screen hidden w-full h-full p-4 flex flex-col justify-between bg-[#090B0E] text-white select-none">
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between text-[10px] text-gray-400 pt-1">
+                    <span>16:28</span>
+                    <span class="px-2 py-0.5 rounded-full bg-[#C8FF3D]/15 text-[#C8FF3D] font-bold">● LIVE SESSION</span>
+                  </div>
+                  <div class="p-3 rounded-2xl bg-[#12161D] border border-gray-800 flex items-center justify-between">
+                    <div>
+                      <p class="text-[10px] text-gray-400 uppercase font-semibold"><span>Rest Timer (Haptic)</span></p>
+                      <p class="text-2xl font-black text-[#C8FF3D] font-mono">01:15</p>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-bold text-gray-300">+30s</span>
+                  </div>
+                  <div class="p-3.5 rounded-2xl bg-[#12161D] border border-gray-800 space-y-2.5">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-extrabold text-white">Incline DB Press</span>
+                      <span class="text-[10px] px-2 py-0.5 rounded bg-[#C8FF3D]/20 text-[#C8FF3D] font-bold">NEW PR</span>
+                    </div>
+                    <div class="space-y-1.5 text-[11px]">
+                      <div class="flex items-center justify-between p-2 rounded-xl bg-black/50 text-gray-300">
+                        <span class="font-bold text-gray-500">#1</span>
+                        <span>36 kg × 10</span>
+                        <span class="text-[#C8FF3D] font-bold">✓</span>
+                      </div>
+                      <div class="flex items-center justify-between p-2 rounded-xl bg-black/50 text-gray-300">
+                        <span class="font-bold text-gray-500">#2</span>
+                        <span>40 kg × 8</span>
+                        <span class="text-[#C8FF3D] font-bold">✓</span>
+                      </div>
+                      <div class="flex items-center justify-between p-2 rounded-xl bg-[#C8FF3D]/15 border border-[#C8FF3D]/40 text-white font-bold">
+                        <span class="text-[#C8FF3D]">#3</span>
+                        <span>42.5 kg × 8</span>
+                        <span class="px-2 py-0.5 rounded bg-[#C8FF3D] text-black text-[10px] font-black">LOG SET</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-2xl bg-[#C8FF3D] text-black text-center font-black text-xs">
+                  <span>COMPLETE WORKOUT · 14,280 KG</span>
+                </div>
+              </div>
+
+              <!-- Screen 3: Muscle Recovery & Analytics Preview -->
+              <div id="spot-scr-3" class="spot-screen hidden w-full h-full p-4 flex flex-col justify-between bg-[#090B0E] text-white select-none">
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between text-[10px] text-gray-400 pt-1">
+                    <span>16:30</span>
+                    <span class="text-[#C8FF3D] font-bold">RECOVERY MATRIX</span>
+                  </div>
+                  <h4 class="text-sm font-black tracking-tight"><span>Muscle Readiness</span></h4>
+                  <div class="space-y-2 text-[11px]">
+                    <div class="p-2.5 rounded-xl bg-[#12161D] border border-gray-800 space-y-1">
+                      <div class="flex justify-between font-bold"><span>Chest & Triceps</span><span class="text-[#C8FF3D]">98% Ready</span></div>
+                      <div class="w-full h-1.5 rounded-full bg-gray-800 overflow-hidden"><div class="h-full bg-[#C8FF3D]" style="width:98%"></div></div>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-[#12161D] border border-gray-800 space-y-1">
+                      <div class="flex justify-between font-bold"><span>Back & Biceps</span><span class="text-emerald-400">84% Ready</span></div>
+                      <div class="w-full h-1.5 rounded-full bg-gray-800 overflow-hidden"><div class="h-full bg-emerald-400" style="width:84%"></div></div>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-[#12161D] border border-gray-800 space-y-1">
+                      <div class="flex justify-between font-bold"><span>Quads & Hamstrings</span><span class="text-amber-400">42% Fatigue</span></div>
+                      <div class="w-full h-1.5 rounded-full bg-gray-800 overflow-hidden"><div class="h-full bg-amber-400" style="width:42%"></div></div>
+                    </div>
+                  </div>
+                  <div class="p-3 rounded-2xl bg-[#12161D] border border-gray-800 space-y-2">
+                    <div class="flex justify-between items-center text-[10px] text-gray-400">
+                      <span>ESTIMATED 1RM · BENCH</span>
+                      <span class="text-[#C8FF3D] font-bold">+12.5 kg (90d)</span>
+                    </div>
+                    <p class="text-xl font-black text-white">125.0 kg</p>
+                    <div class="flex items-end gap-1.5 h-14 pt-2">
+                      <div class="flex-1 bg-gray-800 rounded-t h-6"></div>
+                      <div class="flex-1 bg-gray-800 rounded-t h-8"></div>
+                      <div class="flex-1 bg-gray-700 rounded-t h-9"></div>
+                      <div class="flex-1 bg-gray-700 rounded-t h-11"></div>
+                      <div class="flex-1 bg-[#C8FF3D]/60 rounded-t h-12"></div>
+                      <div class="flex-1 bg-[#C8FF3D] rounded-t h-14"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center text-[10px] text-gray-500 font-mono">Algorithmic Decay Model v2.4</div>
+              </div>
             </div>
+          </div>
+
+          <!-- Interactive Screen Switcher Pills -->
+          <div class="mt-5 inline-flex items-center gap-1.5 p-1 rounded-2xl bg-[#0F1218] border border-gray-800 shadow-lg relative z-10">
+            <button type="button" onclick="switchSpotScreen(1)" id="spot-tab-1" class="px-3 py-1.5 rounded-xl text-xs font-bold transition bg-[#C8FF3D] text-black">
+              <span>1. Readiness</span>
+            </button>
+            <button type="button" onclick="switchSpotScreen(2)" id="spot-tab-2" class="px-3 py-1.5 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">
+              <span>2. Live Logger</span>
+            </button>
+            <button type="button" onclick="switchSpotScreen(3)" id="spot-tab-3" class="px-3 py-1.5 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">
+              <span>3. PR Analytics</span>
+            </button>
           </div>
         </div>
 
@@ -243,8 +407,8 @@
         
         <!-- Card 1: Muscle Recovery -->
         <div id="readiness" class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#C8FF3D]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#C8FF3D]/10 border border-[#C8FF3D]/30 flex items-center justify-center text-[#C8FF3D] font-bold text-xl">
-            ⚡
+          <div class="w-12 h-12 rounded-2xl bg-[#C8FF3D]/10 border border-[#C8FF3D]/30 flex items-center justify-center text-[#C8FF3D]">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#C8FF3D] transition">
             <span>Muscle Readiness Engine</span>
@@ -260,8 +424,8 @@
 
         <!-- Card 2: Adaptive Routine Generator -->
         <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#C8FF3D]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#C8FF3D]/10 border border-[#C8FF3D]/30 flex items-center justify-center text-[#C8FF3D] font-bold text-xl">
-            🎯
+          <div class="w-12 h-12 rounded-2xl bg-[#C8FF3D]/10 border border-[#C8FF3D]/30 flex items-center justify-center text-[#C8FF3D]">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#C8FF3D] transition">
             <span>Adaptive Split & Routine Generator</span>
@@ -277,8 +441,8 @@
 
         <!-- Card 3: Focused Live Session Tracker -->
         <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#C8FF3D]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#C8FF3D]/10 border border-[#C8FF3D]/30 flex items-center justify-center text-[#C8FF3D] font-bold text-xl">
-            ⏱️
+          <div class="w-12 h-12 rounded-2xl bg-[#C8FF3D]/10 border border-[#C8FF3D]/30 flex items-center justify-center text-[#C8FF3D]">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/><path d="M10 2h4"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#C8FF3D] transition">
             <span>Frictionless Live Session Tracker</span>
@@ -294,8 +458,8 @@
 
         <!-- Card 4: Deep Analytics & PR Tracking -->
         <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#C8FF3D]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#C8FF3D]/10 border border-[#C8FF3D]/30 flex items-center justify-center text-[#C8FF3D] font-bold text-xl">
-            🏆
+          <div class="w-12 h-12 rounded-2xl bg-[#C8FF3D]/10 border border-[#C8FF3D]/30 flex items-center justify-center text-[#C8FF3D]">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#C8FF3D] transition">
             <span>Deep Analytics & PR Detection</span>
@@ -413,13 +577,71 @@
         <span>Download SPOT on Google Play and start logging with algorithmic precision today.</span>
       </p>
 
-      <div class="pt-2">
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.spot" target="_blank" rel="noopener noreferrer" onclick="if(window.posthog)posthog.capture('spot_bottom_cta_clicked')" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#C8FF3D] hover:bg-[#B6EE2C] text-black font-extrabold text-sm sm:text-base transition shadow-xl neon-glow">
           <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
           <span><span>Get SPOT on Google Play</span></span>
         </a>
+        <div class="hidden sm:flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-black/60 border border-gray-800 text-left">
+          <img src="/images/qr_spot.png" alt="QR Code" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
+          <div class="leading-tight">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-[#C8FF3D]"><span>Scan QR</span></p>
+            <p class="text-[11px] text-gray-400"><span>Install on phone</span></p>
+          </div>
+        </div>
       </div>
       <p class="text-xs text-gray-500 font-mono">com.vanzalabs.spot</p>
+    </div>
+  </section>
+
+  <!-- VANZALABS ECOSYSTEM SHOWCASE -->
+  <section class="py-14 bg-[#08090C] border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-[#C8FF3D] mb-1"><span>VanzaLabs Product Ecosystem</span></p>
+          <h2 class="text-2xl sm:text-3xl font-black text-white"><span>More Apps Engineered by Our Studio</span></h2>
+        </div>
+        <a href="https://vanzalabs.tech/#cases" class="text-xs font-semibold text-gray-400 hover:text-white transition"><span>View All Studio Products →</span></a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <!-- FormGrid -->
+        <a href="/formgrid" class="group bg-[#0F1218] border border-gray-800 hover:border-blue-500/50 rounded-2xl p-5 flex items-start gap-4 transition">
+          <img src="/images/formgrid_icon_512.png" alt="FormGrid" class="w-12 h-12 rounded-xl object-cover shrink-0 border border-gray-800">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-bold text-white group-hover:text-blue-400 transition">FormGrid</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">No-Code DB</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-2"><span>Offline-first custom forms, relational tables, QR scanner & CSV/PDF export.</span></p>
+          </div>
+        </a>
+
+        <!-- Invoices -->
+        <a href="/invoices" class="group bg-[#0F1218] border border-gray-800 hover:border-blue-500/50 rounded-2xl p-5 flex items-start gap-4 transition">
+          <img src="/images/invoices_icon_512.png" alt="Invoices" class="w-12 h-12 rounded-xl object-cover shrink-0 border border-gray-800">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-bold text-white group-hover:text-blue-400 transition">Invoices Maker</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">FinTech</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-2"><span>Generate B2B PDF invoices & estimates in 30 seconds with on-screen signature.</span></p>
+          </div>
+        </a>
+
+        <!-- Convert -->
+        <a href="/convert" class="group bg-[#0F1218] border border-gray-800 hover:border-emerald-500/50 rounded-2xl p-5 flex items-start gap-4 transition">
+          <img src="/images/convert_icon_512.png" alt="Convert & Compress" class="w-12 h-12 rounded-xl object-cover shrink-0 border border-gray-800">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-bold text-white group-hover:text-emerald-400 transition">Convert & Compress</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Media Engine</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-2"><span>100% on-device photo compressor, format converter & encrypted PDF toolkit.</span></p>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -456,8 +678,28 @@
     </div>
   </footer>
 
-  <!-- Bilingual Translations Dictionary -->
+  <!-- Interactive Screen Switcher & Bilingual Translations -->
   <script>
+    function switchSpotScreen(index) {
+      for (let i = 1; i <= 3; i++) {
+        const scr = document.getElementById('spot-scr-' + i);
+        const tab = document.getElementById('spot-tab-' + i);
+        if (!scr || !tab) continue;
+        if (i === index) {
+          scr.classList.remove('hidden');
+          scr.classList.add('flex');
+          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-bold bg-[#C8FF3D] text-black transition shadow';
+        } else {
+          scr.classList.add('hidden');
+          scr.classList.remove('flex');
+          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition';
+        }
+      }
+      if (window.posthog) {
+        window.posthog.capture('spot_screen_preview_switched', { screen: index });
+      }
+    }
+
     const spotTranslations = {
       // Nav
       'Features': 'Функції',
@@ -466,7 +708,7 @@
       'FAQ': 'Часті питання',
       'Get on Google Play': 'Завантажити в Google Play',
 
-      // Hero
+      // Hero & QR & Screen Switcher
       'Precision Workout Companion': 'Точний трекер тренувань',
       'Built for Lifters': 'Створено для атлетів',
       'Train smarter.': 'Тренуйся розумніше.',
@@ -476,6 +718,28 @@
         'Преміальний фітнес-застосунок у темній естетиці для силових тренувань. Розумний алгоритм відновлення мʼязових груп, персональні спліт-програми та фокусований трекер підходів без зайвого спаму.',
       'Download on Google Play': 'Завантажити в Google Play',
       'Explore Features': 'Переглянути можливості',
+      'Scan to Install': 'Скануй для встановлення',
+      'Point phone camera at QR to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
+      'Scan QR': 'Скануй QR',
+      'Install on phone': 'Встановити на смартфон',
+      '1. Dashboard': '1. Дашборд',
+      '2. Recovery Map': '2. Відновлення',
+      '3. Live Logger': '3. Лайв-трекер',
+      'Interactive Preview': 'Інтерактивний огляд',
+      'Muscle Readiness': 'Готовність мʼязів',
+      'Chest & Triceps': 'Груди та Трицепс',
+      'Back & Lats': 'Спина та Найширші',
+      'Quads & Glutes (24h ago)': 'Квадрицепс і Сідниці (24г тому)',
+      'Shoulders & Core': 'Плечі та Кор',
+      'AI Recommendation': 'Рекомендація алгоритму',
+      'Push Day Optimal Today': 'Сьогодні оптимальний Push-день',
+      'Anterior chain is 96% regenerated. Ideal window for progressive overload on Bench Press.':
+        'Передня ланка відновлена на 96%. Ідеальне вікно для прогресії ваги у жимі лежачи.',
+      'Live Session': 'Активне тренування',
+      'Incline Barbell Press': 'Жим штанги під кутом',
+      'Target: 3 sets × 8-10 reps · RPE 8.5': 'Ціль: 3 підходи × 8-10 повт · RPE 8.5',
+      'Rest Timer · Haptic Active': 'Таймер відпочинку · Вібро-відгук',
+      '✓ Log Set & Start Rest': '✓ Записати підхід і відпочинок',
       '100% Focused · 0 Ads': '100% Фокус · Без реклами',
       'Offline Gym Ready': 'Працює без інтернету',
       'Privacy First': 'Повна приватність даних',
@@ -535,11 +799,20 @@
       'Completely. We do not sell your biometric, health, or workout data to any advertisers or third-party brokers.':
         'Абсолютно. Ми не продаємо ваші тренувальні чи біометричні дані третім сторонам або рекламним мережам.',
 
-      // Bottom CTA
+      // Bottom CTA & Ecosystem
       'Ready to elevate your training?': 'Готові вийти на новий рівень у залі?',
       'Download SPOT on Google Play and start logging with algorithmic precision today.':
         'Завантажуйте SPOT у Google Play та тренуйтеся з алгоритмічною точністю вже сьогодні.',
       'Get SPOT on Google Play': 'Отримати SPOT у Google Play',
+      'VanzaLabs Product Ecosystem': 'Екосистема продуктів VanzaLabs',
+      'More Apps Engineered by Our Studio': 'Інші застосунки нашої студії',
+      'View All Studio Products →': 'Усі продукти студії →',
+      'Offline-first custom forms, relational tables, QR scanner & CSV/PDF export.':
+        'Офлайн-конструктор форм, реляційних таблиць, QR-сканер та експорт у CSV/PDF.',
+      'Generate B2B PDF invoices & estimates in 30 seconds with on-screen signature.':
+        'Генерація PDF-інвойсів та кошторисів за 30 секунд із підписом на екрані.',
+      '100% on-device photo compressor, format converter & encrypted PDF toolkit.':
+        '100% локальне стиснення фото, конвертація форматів та захист PDF паролем.',
 
       // Studio Attribution
       'Engineered by VanzaLabs Studio': 'Створено інженерною студією VanzaLabs',
@@ -554,31 +827,50 @@
 
     let currentLang = 'en';
 
-    function setSpotLang(lang) {
+    function setSpotLang(lang, save = true) {
       currentLang = lang;
       const isUa = lang === 'uk';
       document.documentElement.lang = isUa ? 'uk' : 'en';
       document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+      if (save) {
+        try { localStorage.setItem('vanza_lang', lang); } catch(e) {}
+      }
 
       const spans = document.querySelectorAll('span');
       spans.forEach(span => {
-        const text = span.textContent.trim();
+        if (span.children.length > 0) return;
+        const text = (span.dataset.original || span.textContent).trim();
         if (isUa && spotTranslations[text]) {
-          span.dataset.original = text;
+          if (!span.dataset.original) span.dataset.original = text;
           span.textContent = spotTranslations[text];
         } else if (!isUa && span.dataset.original) {
           span.textContent = span.dataset.original;
         }
       });
 
-      if (window.posthog) {
+      if (window.posthog && save) {
         window.posthog.capture('spot_lang_switched', { lang: lang });
       }
     }
 
     function toggleSpotLang() {
-      setSpotLang(currentLang === 'en' ? 'uk' : 'en');
+      setSpotLang(currentLang === 'en' ? 'uk' : 'en', true);
     }
+
+    (function initLang() {
+      try {
+        const saved = localStorage.getItem('vanza_lang');
+        if (saved === 'uk' || saved === 'en') {
+          if (saved === 'uk') setSpotLang('uk', false);
+          return;
+        }
+        const sysLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (sysLang.startsWith('uk') || sysLang.startsWith('ru')) {
+          setSpotLang('uk', false);
+        }
+      } catch(e) {}
+    })();
   </script>
 </body>
 </html>
+

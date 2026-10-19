@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -79,6 +79,55 @@
         person_profiles: 'always'
     });
   </script>
+
+  <!-- JSON-LD Structured Data (SoftwareApplication + FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Vanza Convert & Compress — Offline Photo Compressor & Secure PDF Studio",
+        "operatingSystem": "Android",
+        "applicationCategory": "UtilitiesApplication",
+        "description": "Compress heavy photos up to -90%, batch convert Apple HEIC to JPG/PNG, and secure PDFs with AES-256 encryption. 100% offline with zero cloud uploads.",
+        "url": "https://vanzalabs.tech/convert",
+        "downloadUrl": "https://play.google.com/store/apps/details?id=tech.vanzalabs.convertcompress",
+        "author": {
+          "@type": "Organization",
+          "name": "VanzaLabs",
+          "url": "https://vanzalabs.tech"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are my photos uploaded to any servers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. Every single mathematical compression, format conversion, and PDF encryption algorithm runs solely on your smartphone's processor using an isolated background isolate."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will my images look blurry after compression?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Our smart compression algorithms strip out invisible redundant metadata and optimize pixel encoding while preserving razor-sharp edges and color fidelity."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-[#10B981] selection:text-black">
 
@@ -150,7 +199,7 @@
             <span>Fast, private photo compressor, format converter, and encrypted PDF studio. Free up gigabytes of smartphone storage, convert iPhone HEIC photos in bulk, and secure PDF files with AES-256 without uploading anything to the web.</span>
           </p>
 
-          <!-- Main CTA Buttons -->
+          <!-- Main CTA Buttons + Desktop QR Bridge -->
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
             <a href="https://play.google.com/store/apps/details?id=tech.vanzalabs.convertcompress" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl bg-[#10B981] hover:bg-[#059669] text-black font-extrabold text-sm transition shadow-lg neon-glow group">
               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
@@ -161,6 +210,15 @@
             <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-sm transition">
               <span><span>Explore Features</span></span>
             </a>
+
+            <!-- Desktop QR Quick-Install -->
+            <div class="hidden xl:flex items-center gap-3 pl-3 pr-4 py-2 rounded-2xl bg-[#0F1218]/90 border border-gray-800 hover:border-[#10B981]/40 transition">
+              <img src="/images/qr_convert.png" alt="Scan to install Convert & Compress" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
+              <div class="text-left leading-tight">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-[#10B981]"><span>Scan to Install</span></p>
+                <p class="text-[11px] text-gray-400"><span>Point phone camera at QR to open Google Play</span></p>
+              </div>
+            </div>
           </div>
 
           <!-- Feature badges row -->
@@ -180,16 +238,98 @@
           </div>
         </div>
 
-        <!-- Right Visual Mockup -->
-        <div class="lg:col-span-5 flex justify-center items-center relative">
+        <!-- Right Visual Mockup with Interactive 3-Screen Switcher -->
+        <div class="lg:col-span-5 flex flex-col justify-center items-center relative">
           <!-- Subtle Frame Glow -->
           <div class="absolute inset-0 max-w-[320px] mx-auto bg-gradient-to-b from-[#10B981]/25 via-teal-500/10 to-transparent rounded-[42px] blur-2xl pointer-events-none"></div>
 
           <!-- Phone Device Frame -->
           <div class="relative w-full max-w-[280px] sm:max-w-[305px] rounded-[36px] p-2.5 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-2xl border border-gray-700/60">
-            <div class="rounded-[28px] overflow-hidden bg-black aspect-[9/19.5] border border-gray-900/80 shadow-inner flex items-center justify-center">
-              <img src="/images/convert_screenshot.png" alt="Convert & Compress Interface" class="w-full h-full object-cover object-top">
+            <div class="rounded-[28px] overflow-hidden bg-black aspect-[9/19.5] border border-gray-900/80 shadow-inner relative flex items-center justify-center">
+              <!-- Screen 1: Main Screenshot -->
+              <img id="cv-scr-1" src="/images/convert_screenshot.png" alt="Convert & Compress Interface" class="w-full h-full object-cover object-top transition-opacity duration-300">
+
+              <!-- Screen 2: Interactive Live Compression Calculator -->
+              <div id="cv-scr-2" class="hidden absolute inset-0 bg-[#0B0F17] p-4 flex-col justify-between text-left select-none">
+                <div>
+                  <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                    <div>
+                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#10B981]"><span>Interactive Preview</span></p>
+                      <h4 class="text-sm font-black text-white"><span>Smart Compressor</span></h4>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-[#10B981]/15 text-[#10B981] text-[10px] font-bold">−92% Saved</span>
+                  </div>
+                  <div class="mt-3 bg-[#131926] border border-gray-800 rounded-2xl p-3 space-y-2.5">
+                    <div class="flex justify-between items-center text-xs">
+                      <span class="text-gray-400"><span>Original (24 HEIC Photos)</span></span>
+                      <span class="font-mono font-bold text-rose-400 line-through">148.4 MB</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs">
+                      <span class="text-gray-300 font-semibold"><span>Forecast Output (JPG)</span></span>
+                      <span class="font-mono font-black text-[#10B981] text-sm">11.8 MB</span>
+                    </div>
+                    <div class="pt-1">
+                      <div class="flex justify-between text-[10px] text-gray-400 mb-1">
+                        <span><span>Quality Preset: Smart Lossless</span></span>
+                        <span class="text-[#10B981] font-bold">86%</span>
+                      </div>
+                      <div class="h-2 rounded-full bg-gray-800 overflow-hidden">
+                        <div class="h-full bg-[#10B981] w-[86%] rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-3 bg-[#10B981]/10 border border-[#10B981]/30 rounded-xl p-2.5 text-[11px] text-gray-300">
+                    <span class="text-[#10B981] font-bold">● Dart Isolate:</span> <span>100% local CPU processing. Zero cloud upload.</span>
+                  </div>
+                </div>
+                <div class="py-2.5 rounded-xl bg-[#10B981] text-black font-extrabold text-xs text-center">
+                  <span>⚡ Compress 24 Photos Now</span>
+                </div>
+              </div>
+
+              <!-- Screen 3: Interactive AES-256 PDF Studio -->
+              <div id="cv-scr-3" class="hidden absolute inset-0 bg-[#0B0F17] p-4 flex-col justify-between text-left select-none">
+                <div>
+                  <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                    <div>
+                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#10B981]"><span>Security Vault</span></p>
+                      <h4 class="text-sm font-black text-white"><span>AES-256 PDF Studio</span></h4>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-teal-500/15 text-teal-400 text-[10px] font-bold">256-Bit</span>
+                  </div>
+                  <div class="mt-3 space-y-2">
+                    <div class="bg-[#131926] border border-gray-800 rounded-xl p-2.5 flex items-center justify-between text-xs">
+                      <span class="text-white font-semibold">Passport_Scan_2026.pdf</span>
+                      <span class="text-[10px] text-gray-400">3 pages</span>
+                    </div>
+                    <div class="bg-[#131926] border border-gray-800 rounded-xl p-2.5 flex items-center justify-between text-xs">
+                      <span class="text-white font-semibold">Tax_Statement_Q3.pdf</span>
+                      <span class="text-[10px] text-gray-400">5 pages</span>
+                    </div>
+                    <div class="bg-[#131926] border border-[#10B981]/40 rounded-xl p-3 space-y-1.5">
+                      <p class="text-[10px] text-[#10B981] font-bold uppercase"><span>Encryption Password</span></p>
+                      <p class="text-xs font-mono tracking-widest text-white">••••••••••••••</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="py-2.5 rounded-xl bg-[#10B981] text-black font-extrabold text-xs text-center">
+                  <span>🔒 Merge & Encrypt PDF Offline</span>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- 3-Screen Switcher Pills -->
+          <div class="mt-5 flex items-center gap-2 bg-[#0F1218] p-1.5 rounded-2xl border border-gray-800 relative z-10">
+            <button type="button" onclick="switchCvScreen(1)" id="cv-tab-1" class="px-3 py-1.5 rounded-xl text-[11px] font-bold bg-[#10B981] text-black transition shadow">
+              <span>1. Studio Home</span>
+            </button>
+            <button type="button" onclick="switchCvScreen(2)" id="cv-tab-2" class="px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
+              <span>2. Compress -90%</span>
+            </button>
+            <button type="button" onclick="switchCvScreen(3)" id="cv-tab-3" class="px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
+              <span>3. AES-256 PDF</span>
+            </button>
           </div>
         </div>
 
@@ -239,8 +379,8 @@
         
         <!-- Card 1: Smart Compression Engine -->
         <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#10B981]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center text-[#10B981] font-bold text-xl">
-            📉
+          <div class="w-12 h-12 rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center text-[#10B981]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition">
             <span>Smart Compression Engine (-90%)</span>
@@ -256,8 +396,8 @@
 
         <!-- Card 2: Batch Format Converter -->
         <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#10B981]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center text-[#10B981] font-bold text-xl">
-            🔄
+          <div class="w-12 h-12 rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center text-[#10B981]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition">
             <span>Batch Multi-Format Converter</span>
@@ -273,8 +413,8 @@
 
         <!-- Card 3: Secure PDF Studio & AES-256 -->
         <div id="pdf" class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#10B981]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center text-[#10B981] font-bold text-xl">
-            🛡️
+          <div class="w-12 h-12 rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center text-[#10B981]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition">
             <span>Secure PDF Studio & AES-256</span>
@@ -290,8 +430,8 @@
 
         <!-- Card 4: Isolated On-Device Processing -->
         <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#10B981]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center text-[#10B981] font-bold text-xl">
-            ⚡
+          <div class="w-12 h-12 rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center text-[#10B981]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition">
             <span>Isolated Background Processing</span>
@@ -409,13 +549,71 @@
         <span>Download Vanza Convert & Compress on Google Play and start optimizing photos with zero cloud uploads.</span>
       </p>
 
-      <div class="pt-2">
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="https://play.google.com/store/apps/details?id=tech.vanzalabs.convertcompress" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#10B981] hover:bg-[#059669] text-black font-extrabold text-sm sm:text-base transition shadow-xl neon-glow">
           <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
           <span><span>Get Convert & Compress on Google Play</span></span>
         </a>
+        <div class="hidden sm:flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-black/60 border border-gray-800 text-left">
+          <img src="/images/qr_convert.png" alt="QR Code" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
+          <div class="leading-tight">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-[#10B981]"><span>Scan QR</span></p>
+            <p class="text-[11px] text-gray-400"><span>Install on phone</span></p>
+          </div>
+        </div>
       </div>
       <p class="text-xs text-gray-500 font-mono">tech.vanzalabs.convertcompress</p>
+    </div>
+  </section>
+
+  <!-- VANZALABS ECOSYSTEM SHOWCASE -->
+  <section class="py-14 bg-[#08090C] border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-[#10B981] mb-1"><span>VanzaLabs Product Ecosystem</span></p>
+          <h2 class="text-2xl sm:text-3xl font-black text-white"><span>More Apps Engineered by Our Studio</span></h2>
+        </div>
+        <a href="https://vanzalabs.tech/#cases" class="text-xs font-semibold text-gray-400 hover:text-white transition"><span>View All Studio Products →</span></a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <!-- SPOT -->
+        <a href="/spot" class="group bg-[#0F1218] border border-gray-800 hover:border-[#C8FF3D]/50 rounded-2xl p-5 flex items-start gap-4 transition">
+          <img src="/spot_logo.png" alt="SPOT" class="w-12 h-12 rounded-xl object-contain bg-black p-1.5 shrink-0 border border-gray-800">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-bold text-white group-hover:text-[#C8FF3D] transition">SPOT Fitness</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#C8FF3D]/10 text-[#C8FF3D] border border-[#C8FF3D]/20">Health & Gym</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-2"><span>Algorithmic muscle recovery tracker, custom splits & tactile gym session logger.</span></p>
+          </div>
+        </a>
+
+        <!-- FormGrid -->
+        <a href="/formgrid" class="group bg-[#0F1218] border border-gray-800 hover:border-blue-500/50 rounded-2xl p-5 flex items-start gap-4 transition">
+          <img src="/images/formgrid_icon_512.png" alt="FormGrid" class="w-12 h-12 rounded-xl object-cover shrink-0 border border-gray-800">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-bold text-white group-hover:text-blue-400 transition">FormGrid</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">No-Code DB</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-2"><span>Offline-first custom forms, relational tables, QR scanner & CSV/PDF export.</span></p>
+          </div>
+        </a>
+
+        <!-- Invoices -->
+        <a href="/invoices" class="group bg-[#0F1218] border border-gray-800 hover:border-blue-500/50 rounded-2xl p-5 flex items-start gap-4 transition">
+          <img src="/images/invoices_icon_512.png" alt="Invoices" class="w-12 h-12 rounded-xl object-cover shrink-0 border border-gray-800">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-bold text-white group-hover:text-blue-400 transition">Invoices Maker</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">FinTech</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-2"><span>Generate B2B PDF invoices & estimates in 30 seconds with on-screen signature.</span></p>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -425,7 +623,7 @@
       <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-4 text-left">
           <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-2 shrink-0">
-            <span class="text-xl font-black text-white">VL</span>
+            <img src="/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="w-full h-auto object-contain">
           </div>
           <div>
             <p class="text-xs font-semibold uppercase tracking-wider text-[#10B981]"><span>Engineered by VanzaLabs Studio</span></p>
@@ -479,8 +677,28 @@
     </div>
   </footer>
 
-  <!-- Bilingual Translations Dictionary -->
+  <!-- Interactive Screen Switcher & Bilingual Translations -->
   <script>
+    function switchCvScreen(index) {
+      for (let i = 1; i <= 3; i++) {
+        const scr = document.getElementById('cv-scr-' + i);
+        const tab = document.getElementById('cv-tab-' + i);
+        if (!scr || !tab) continue;
+        if (i === index) {
+          scr.classList.remove('hidden');
+          scr.classList.add('flex');
+          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-bold bg-[#10B981] text-black transition shadow';
+        } else {
+          scr.classList.add('hidden');
+          scr.classList.remove('flex');
+          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition';
+        }
+      }
+      if (window.posthog) {
+        window.posthog.capture('convert_screen_preview_switched', { screen: index });
+      }
+    }
+
     const convertTranslations = {
       // Nav
       'Features': 'Функції',
@@ -489,7 +707,7 @@
       'FAQ': 'Часті питання',
       'Get on Google Play': 'Завантажити в Google Play',
 
-      // Hero
+      // Hero & QR & Screen Switcher
       'High-Performance Media Studio': 'Швидка медіа-студія',
       '100% Offline Processing': '100% офлайн обробка',
       'Compress photos up to −90%.': 'Стискай фото до −90%.',
@@ -499,6 +717,24 @@
         'Швидкий приватний компресор фотографій, пакетний конвертер та захищена PDF-студія. Звільняйте гігабайти пам\'яті смартфона, конвертуйте файли Apple HEIC та шифруйте PDF банківським стандартом AES-256 без вивантаження файлів в інтернет.',
       'Download on Google Play': 'Завантажити в Google Play',
       'Explore Features': 'Переглянути можливості',
+      'Scan to Install': 'Скануй для встановлення',
+      'Point phone camera at QR to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
+      'Scan QR': 'Скануй QR',
+      'Install on phone': 'Встановити на смартфон',
+      '1. Studio Home': '1. Головна',
+      '2. Compress -90%': '2. Стиснення',
+      '3. AES-256 PDF': '3. Захист PDF',
+      'Interactive Preview': 'Інтерактивний огляд',
+      'Smart Compressor': 'Розумний компресор',
+      'Original (24 HEIC Photos)': 'Оригінал (24 HEIC фото)',
+      'Forecast Output (JPG)': 'Прогноз після стиснення',
+      'Quality Preset: Smart Lossless': 'Режим: Чіткість без втрат',
+      '100% local CPU processing. Zero cloud upload.': '100% локальна обробка. Без хмар.',
+      '⚡ Compress 24 Photos Now': '⚡ Стиснути 24 фото зараз',
+      'Security Vault': 'Захищене сховище',
+      'AES-256 PDF Studio': 'AES-256 PDF Студія',
+      'Encryption Password': 'Пароль шифрування',
+      '🔒 Merge & Encrypt PDF Offline': '🔒 Обʼєднати та зашифрувати PDF',
       'Zero Cloud Uploads': 'Нуль вивантажень у хмару',
       'Lossless Quality Engine': 'Збереження високої чіткості',
       'Zero Ads & Zero Tracking': 'Нуль реклами та трекерів',
@@ -507,7 +743,6 @@
       'Smart Compression': 'Розумне стиснення',
       'Batch Processing': 'Пакетна обробка',
       'Encrypted PDF Studio': 'Захищена PDF-студія',
-      'Zero Cloud Uploads': 'Без вивантаження в мережу',
 
       // Features
       'Core Architecture': 'Ключова архітектура',
@@ -558,11 +793,20 @@
       'No. Our smart compression algorithms strip out invisible redundant metadata and optimize pixel encoding while preserving razor-sharp edges and color fidelity. You also get a real-time file size forecast before initiating compression.':
         'Ні. Наш алгоритм інтелектуально оптимізує кодування, видаляючи зайві технічні шуми без відчутної для ока втрати чіткості. Завдяки повзунку якості та живому калькулятору ви самі обираєте бажаний розмір підсумкового файлу ще до початку стиснення.',
 
-      // Bottom CTA
+      // Bottom CTA & Ecosystem
       'Take back your phone\'s storage': 'Звільніть гігабайти пам\'яті вашого телефона',
       'Download Vanza Convert & Compress on Google Play and start optimizing photos with zero cloud uploads.':
         'Завантажуйте Vanza Convert & Compress у Google Play та оптимізуйте медіафайли без жодного вивантаження у хмару вже сьогодні.',
       'Get Convert & Compress on Google Play': 'Отримати Convert & Compress у Google Play',
+      'VanzaLabs Product Ecosystem': 'Екосистема продуктів VanzaLabs',
+      'More Apps Engineered by Our Studio': 'Інші застосунки нашої студії',
+      'View All Studio Products →': 'Усі продукти студії →',
+      'Algorithmic muscle recovery tracker, custom splits & tactile gym session logger.':
+        'Алгоритм відновлення мʼязів, персональні спліт-програми та зручний лайв-трекер для залу.',
+      'Offline-first custom forms, relational tables, QR scanner & CSV/PDF export.':
+        'Офлайн-конструктор форм, реляційних таблиць, QR-сканер та експорт у CSV/PDF.',
+      'Generate B2B PDF invoices & estimates in 30 seconds with on-screen signature.':
+        'Генерація PDF-інвойсів та кошторисів за 30 секунд із підписом на екрані.',
 
       // Studio
       'Engineered by VanzaLabs Studio': 'Створено інженерною студією VanzaLabs',
@@ -584,27 +828,49 @@
 
     let currentConvertLang = 'en';
 
-    function setConvertLang(lang) {
+    function setConvertLang(lang, save = true) {
       currentConvertLang = lang;
       const isUa = lang === 'uk';
       document.documentElement.lang = isUa ? 'uk' : 'en';
       document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+      if (save) {
+        try { localStorage.setItem('vanza_lang', lang); } catch(e) {}
+      }
 
       const spans = document.querySelectorAll('span');
       spans.forEach(span => {
-        const text = span.textContent.trim();
+        if (span.children.length > 0) return;
+        const text = (span.dataset.original || span.textContent).trim();
         if (isUa && convertTranslations[text]) {
-          span.dataset.original = text;
+          if (!span.dataset.original) span.dataset.original = text;
           span.textContent = convertTranslations[text];
         } else if (!isUa && span.dataset.original) {
           span.textContent = span.dataset.original;
         }
       });
+
+      if (window.posthog && save) {
+        window.posthog.capture('convert_lang_switched', { lang: lang });
+      }
     }
 
     function toggleConvertLang() {
-      setConvertLang(currentConvertLang === 'en' ? 'uk' : 'en');
+      setConvertLang(currentConvertLang === 'en' ? 'uk' : 'en', true);
     }
+
+    (function initLang() {
+      try {
+        const saved = localStorage.getItem('vanza_lang');
+        if (saved === 'uk' || saved === 'en') {
+          if (saved === 'uk') setConvertLang('uk', false);
+          return;
+        }
+        const sysLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (sysLang.startsWith('uk') || sysLang.startsWith('ru')) {
+          setConvertLang('uk', false);
+        }
+      } catch(e) {}
+    })();
   </script>
 </body>
 </html>

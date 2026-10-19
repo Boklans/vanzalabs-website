@@ -489,7 +489,10 @@
         badge.textContent = english ? (translations.get(badgeText) || badgeText) : badgeText;
       }
 
-      localStorage.setItem('vanzalabs-language-v3', lang);
+      try {
+        localStorage.setItem('vanzalabs-language-v3', lang);
+        localStorage.setItem('vanza_lang', lang);
+      } catch(e) {}
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -510,7 +513,7 @@
 
       const urlParams = new URLSearchParams(window.location.search);
       const langParam = urlParams.get('lang');
-      const savedLang = localStorage.getItem('vanzalabs-language-v3');
+      const savedLang = localStorage.getItem('vanza_lang') || localStorage.getItem('vanzalabs-language-v3');
       setLanguage(langParam || savedLang || 'en');
     });
 

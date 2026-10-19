@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -79,6 +79,55 @@
         person_profiles: 'always'
     });
   </script>
+
+  <!-- JSON-LD Structured Data (SoftwareApplication + FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "FormGrid — Mobile Workspace for Google Forms & Sheets",
+        "operatingSystem": "Android",
+        "applicationCategory": "BusinessApplication",
+        "description": "Native mobile workspace for Google Forms and Sheets. Build forms in 1 tap, collect submissions offline, and sync directly to Google Drive with zero middleman servers.",
+        "url": "https://vanzalabs.tech/formgrid",
+        "downloadUrl": "https://play.google.com/store/apps/details?id=com.vanza.formgrid",
+        "author": {
+          "@type": "Organization",
+          "name": "VanzaLabs",
+          "url": "https://vanzalabs.tech"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can FormGrid access my other private files on Google Drive?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. FormGrid exclusively requests the strictest drive.file scope. Google only allows the application to access the specific files it created itself."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the offline submission queue work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When collecting field survey responses or inventory data without cell reception, FormGrid safely buffers each submission locally and automatically syncs to Google Sheets once online."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-[#3B82F6] selection:text-white">
 
@@ -150,7 +199,7 @@
             <span>The streamlined mobile workspace for Google Forms and Sheets. Build forms in one tap, log submissions with an offline queue, and sync directly to your Google Drive with zero intermediate servers.</span>
           </p>
 
-          <!-- Main CTA Buttons -->
+          <!-- Main CTA Buttons + Desktop QR Bridge -->
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
             <a href="https://play.google.com/store/apps/details?id=com.vanza.formgrid" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl bg-[#3B82F6] hover:bg-[#2563EB] text-white font-extrabold text-sm transition shadow-lg neon-glow group">
               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
@@ -161,6 +210,15 @@
             <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-sm transition">
               <span><span>Explore Features</span></span>
             </a>
+
+            <!-- Desktop QR Quick-Install -->
+            <div class="hidden xl:flex items-center gap-3 pl-3 pr-4 py-2 rounded-2xl bg-[#0F1218]/90 border border-gray-800 hover:border-[#3B82F6]/40 transition">
+              <img src="/images/qr_formgrid.png" alt="Scan to install FormGrid" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
+              <div class="text-left leading-tight">
+                <p class="text-[10px] font-bold uppercase tracking-wider text-[#3B82F6]"><span>Scan to Install</span></p>
+                <p class="text-[11px] text-gray-400"><span>Point phone camera at QR to open Google Play</span></p>
+              </div>
+            </div>
           </div>
 
           <!-- Feature badges row -->
@@ -180,16 +238,103 @@
           </div>
         </div>
 
-        <!-- Right Visual Mockup -->
-        <div class="lg:col-span-5 flex justify-center items-center relative">
+        <!-- Right Visual Mockup with Interactive 3-Screen Switcher -->
+        <div class="lg:col-span-5 flex flex-col justify-center items-center relative">
           <!-- Subtle Frame Glow -->
           <div class="absolute inset-0 max-w-[320px] mx-auto bg-gradient-to-b from-[#3B82F6]/25 via-indigo-600/10 to-transparent rounded-[42px] blur-2xl pointer-events-none"></div>
 
           <!-- Phone Device Frame -->
           <div class="relative w-full max-w-[280px] sm:max-w-[305px] rounded-[36px] p-2.5 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-2xl border border-gray-700/60">
-            <div class="rounded-[28px] overflow-hidden bg-black aspect-[9/19.5] border border-gray-900/80 shadow-inner flex items-center justify-center">
-              <img src="/images/formgrid_screenshot.jpg" alt="FormGrid Interface" class="w-full h-full object-cover object-top">
+            <div class="rounded-[28px] overflow-hidden bg-[#0A0D14] aspect-[9/19.5] border border-gray-900/80 shadow-inner relative flex items-center justify-center">
+              <!-- Screen 1: Main Workspace Screenshot -->
+              <img id="fg-scr-1" src="/images/formgrid_screenshot.jpg" alt="FormGrid Interface" class="w-full h-full object-cover object-top transition-opacity duration-300">
+
+              <!-- Screen 2: Interactive 1-Tap Form Builder Preview -->
+              <div id="fg-scr-2" class="hidden absolute inset-0 bg-[#0B0F17] p-4 flex-col justify-between text-left select-none">
+                <div>
+                  <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                    <div>
+                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#3B82F6]"><span>Interactive Preview</span></p>
+                      <h4 class="text-sm font-black text-white"><span>1-Tap Form Builder</span></h4>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-[#3B82F6]/15 text-[#3B82F6] text-[10px] font-bold">Auto-Sheet</span>
+                  </div>
+                  <div class="mt-3 space-y-2.5">
+                    <div class="bg-[#131926] border border-gray-800 rounded-xl p-2.5">
+                      <p class="text-[10px] text-gray-400"><span>Field 1 · Short Text (Required)</span></p>
+                      <p class="text-xs font-bold text-white mt-0.5"><span>Client Full Name / Company</span></p>
+                    </div>
+                    <div class="bg-[#131926] border border-[#3B82F6]/40 rounded-xl p-2.5">
+                      <p class="text-[10px] text-[#3B82F6] font-semibold"><span>Field 2 · Dropdown Menu</span></p>
+                      <p class="text-xs font-bold text-white mt-0.5"><span>Order Priority Tier</span></p>
+                      <div class="flex gap-1.5 mt-2">
+                        <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px]">Standard</span>
+                        <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 text-[10px]">Express VIP</span>
+                      </div>
+                    </div>
+                    <div class="bg-[#131926] border border-gray-800 rounded-xl p-2.5">
+                      <p class="text-[10px] text-gray-400"><span>Field 3 · Checkboxes</span></p>
+                      <p class="text-xs font-bold text-white mt-0.5"><span>Warehouse Inspection Checklist</span></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-[#3B82F6]/10 border border-[#3B82F6]/30 rounded-2xl p-3">
+                  <div class="flex items-center justify-between text-[11px]">
+                    <span class="text-gray-300 font-semibold"><span>Linked Google Sheet™</span></span>
+                    <span class="text-emerald-400 font-bold">● Live Sync</span>
+                  </div>
+                  <div class="mt-2 py-2 rounded-xl bg-[#3B82F6] text-white font-extrabold text-xs text-center">
+                    <span>✓ Publish & Generate Link</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Screen 3: Interactive Offline Queue & QR Studio -->
+              <div id="fg-scr-3" class="hidden absolute inset-0 bg-[#0B0F17] p-4 flex-col justify-between text-left select-none">
+                <div>
+                  <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                    <div>
+                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#3B82F6]"><span>QR & Offline Engine</span></p>
+                      <h4 class="text-sm font-black text-white"><span>Field Sync Queue</span></h4>
+                    </div>
+                    <span class="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 text-[10px] font-bold">3 Buffered</span>
+                  </div>
+                  <div class="mt-3 bg-[#131926] border border-gray-800 rounded-2xl p-3 flex items-center gap-3">
+                    <img src="/images/qr_formgrid.png" alt="QR" class="w-14 h-14 rounded-lg bg-white p-1 shrink-0">
+                    <div>
+                      <p class="text-xs font-bold text-white"><span>Vector Form QR</span></p>
+                      <p class="text-[10px] text-gray-400 mt-0.5"><span>Ready for event check-in stand or print PDF</span></p>
+                    </div>
+                  </div>
+                  <div class="mt-3 space-y-2">
+                    <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#131926] border border-gray-800 text-[11px]">
+                      <span class="text-white font-semibold">Row #142 · Site Audit</span>
+                      <span class="text-emerald-400 font-bold">✓ Synced</span>
+                    </div>
+                    <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#131926] border border-amber-500/30 text-[11px]">
+                      <span class="text-white font-semibold">Row #143 · Offline Entry</span>
+                      <span class="text-amber-400 font-bold">↻ Queued</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="py-2.5 rounded-xl bg-white/10 border border-white/15 text-white font-bold text-xs text-center">
+                  <span>Auto-Syncs on Reconnect</span>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- 3-Screen Switcher Pills -->
+          <div class="mt-5 flex items-center gap-2 bg-[#0F1218] p-1.5 rounded-2xl border border-gray-800 relative z-10">
+            <button type="button" onclick="switchFgScreen(1)" id="fg-tab-1" class="px-3 py-1.5 rounded-xl text-[11px] font-bold bg-[#3B82F6] text-white transition shadow">
+              <span>1. Workspace</span>
+            </button>
+            <button type="button" onclick="switchFgScreen(2)" id="fg-tab-2" class="px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
+              <span>2. Form Builder</span>
+            </button>
+            <button type="button" onclick="switchFgScreen(3)" id="fg-tab-3" class="px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
+              <span>3. QR & Offline</span>
+            </button>
           </div>
         </div>
 
@@ -239,8 +384,8 @@
         
         <!-- Card 1: 1-Tap Form & Sheet Studio -->
         <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#3B82F6]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6] font-bold text-xl">
-            ⚡
+          <div class="w-12 h-12 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#3B82F6] transition">
             <span>1-Tap Form & Sheet Studio</span>
@@ -256,8 +401,8 @@
 
         <!-- Card 2: Offline Queue -->
         <div id="offline" class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#3B82F6]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6] font-bold text-xl">
-            📦
+          <div class="w-12 h-12 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#3B82F6] transition">
             <span>Offline Submission Queue</span>
@@ -273,8 +418,8 @@
 
         <!-- Card 3: Direct API Privacy -->
         <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#3B82F6]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6] font-bold text-xl">
-            🔒
+          <div class="w-12 h-12 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#3B82F6] transition">
             <span>Direct Client-to-Google Privacy</span>
@@ -290,8 +435,8 @@
 
         <!-- Card 4: Dynamic QR Studio -->
         <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#3B82F6]/40 transition group">
-          <div class="w-12 h-12 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6] font-bold text-xl">
-            📱
+          <div class="w-12 h-12 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
           </div>
           <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#3B82F6] transition">
             <span>Dynamic QR Code Studio & Share</span>
@@ -409,13 +554,71 @@
         <span>Install FormGrid from Google Play and start managing forms and spreadsheets with native mobile agility today.</span>
       </p>
 
-      <div class="pt-2">
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="https://play.google.com/store/apps/details?id=com.vanza.formgrid" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#3B82F6] hover:bg-[#2563EB] text-white font-extrabold text-sm sm:text-base transition shadow-xl neon-glow">
           <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
           <span><span>Get FormGrid on Google Play</span></span>
         </a>
+        <div class="hidden sm:flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-black/60 border border-gray-800 text-left">
+          <img src="/images/qr_formgrid.png" alt="QR Code" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
+          <div class="leading-tight">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-[#3B82F6]"><span>Scan QR</span></p>
+            <p class="text-[11px] text-gray-400"><span>Install on phone</span></p>
+          </div>
+        </div>
       </div>
       <p class="text-xs text-gray-500 font-mono">com.vanza.formgrid</p>
+    </div>
+  </section>
+
+  <!-- VANZALABS ECOSYSTEM SHOWCASE -->
+  <section class="py-14 bg-[#08090C] border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-[#3B82F6] mb-1"><span>VanzaLabs Product Ecosystem</span></p>
+          <h2 class="text-2xl sm:text-3xl font-black text-white"><span>More Apps Engineered by Our Studio</span></h2>
+        </div>
+        <a href="https://vanzalabs.tech/#cases" class="text-xs font-semibold text-gray-400 hover:text-white transition"><span>View All Studio Products →</span></a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <!-- SPOT -->
+        <a href="/spot" class="group bg-[#0F1218] border border-gray-800 hover:border-[#C8FF3D]/50 rounded-2xl p-5 flex items-start gap-4 transition">
+          <img src="/spot_logo.png" alt="SPOT" class="w-12 h-12 rounded-xl object-contain bg-black p-1.5 shrink-0 border border-gray-800">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-bold text-white group-hover:text-[#C8FF3D] transition">SPOT Fitness</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#C8FF3D]/10 text-[#C8FF3D] border border-[#C8FF3D]/20">Health & Gym</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-2"><span>Algorithmic muscle recovery tracker, custom splits & tactile gym session logger.</span></p>
+          </div>
+        </a>
+
+        <!-- Invoices -->
+        <a href="/invoices" class="group bg-[#0F1218] border border-gray-800 hover:border-blue-500/50 rounded-2xl p-5 flex items-start gap-4 transition">
+          <img src="/images/invoices_icon_512.png" alt="Invoices" class="w-12 h-12 rounded-xl object-cover shrink-0 border border-gray-800">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-bold text-white group-hover:text-blue-400 transition">Invoices Maker</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">FinTech</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-2"><span>Generate B2B PDF invoices & estimates in 30 seconds with on-screen signature.</span></p>
+          </div>
+        </a>
+
+        <!-- Convert -->
+        <a href="/convert" class="group bg-[#0F1218] border border-gray-800 hover:border-emerald-500/50 rounded-2xl p-5 flex items-start gap-4 transition">
+          <img src="/images/convert_icon_512.png" alt="Convert & Compress" class="w-12 h-12 rounded-xl object-cover shrink-0 border border-gray-800">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-sm font-bold text-white group-hover:text-emerald-400 transition">Convert & Compress</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Media Engine</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-2"><span>100% on-device photo compressor, format converter & encrypted PDF toolkit.</span></p>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -425,7 +628,7 @@
       <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-4 text-left">
           <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-2 shrink-0">
-            <span class="text-xl font-black text-white">VL</span>
+            <img src="/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="w-full h-auto object-contain">
           </div>
           <div>
             <p class="text-xs font-semibold uppercase tracking-wider text-[#3B82F6]"><span>Engineered by VanzaLabs Studio</span></p>
@@ -479,8 +682,28 @@
     </div>
   </footer>
 
-  <!-- Bilingual Translations Dictionary -->
+  <!-- Interactive Screen Switcher & Bilingual Translations -->
   <script>
+    function switchFgScreen(index) {
+      for (let i = 1; i <= 3; i++) {
+        const scr = document.getElementById('fg-scr-' + i);
+        const tab = document.getElementById('fg-tab-' + i);
+        if (!scr || !tab) continue;
+        if (i === index) {
+          scr.classList.remove('hidden');
+          scr.classList.add('flex');
+          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-bold bg-[#3B82F6] text-white transition shadow';
+        } else {
+          scr.classList.add('hidden');
+          scr.classList.remove('flex');
+          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition';
+        }
+      }
+      if (window.posthog) {
+        window.posthog.capture('formgrid_screen_preview_switched', { screen: index });
+      }
+    }
+
     const formgridTranslations = {
       // Nav
       'Features': 'Функції',
@@ -489,7 +712,7 @@
       'FAQ': 'Часті питання',
       'Get on Google Play': 'Завантажити в Google Play',
 
-      // Hero
+      // Hero & QR & Screen Switcher
       'Mobile Workspace Hub': 'Мобільний робочий простір',
       'Google Forms™ & Sheets™': 'Google Forms™ та Sheets™',
       'Create forms in seconds.': 'Створюй форми за секунди.',
@@ -499,6 +722,28 @@
         'Швидкий мобільний хаб для Google Forms і Таблиць. Створюйте анкети в 1 дотик, вносьте записи через офлайн-чергу та синхронізуйте напряму з Google Drive без зайвих посередницьких серверів.',
       'Download on Google Play': 'Завантажити в Google Play',
       'Explore Features': 'Переглянути можливості',
+      'Scan to Install': 'Скануй для встановлення',
+      'Point phone camera at QR to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
+      'Scan QR': 'Скануй QR',
+      'Install on phone': 'Встановити на смартфон',
+      '1. Workspace': '1. Простір',
+      '2. Form Builder': '2. Конструктор',
+      '3. QR & Offline': '3. QR та Офлайн',
+      'Interactive Preview': 'Інтерактивний огляд',
+      '1-Tap Form Builder': 'Конструктор форм в 1 дотик',
+      'Field 1 · Short Text (Required)': 'Поле 1 · Короткий текст (Обовʼязково)',
+      'Client Full Name / Company': 'ПІБ клієнта / Компанія',
+      'Field 2 · Dropdown Menu': 'Поле 2 · Випадаючий список',
+      'Order Priority Tier': 'Пріоритет замовлення',
+      'Field 3 · Checkboxes': 'Поле 3 · Чекбокси',
+      'Warehouse Inspection Checklist': 'Чекліст перевірки складу',
+      'Linked Google Sheet™': 'Привʼязана Google Таблиця™',
+      '✓ Publish & Generate Link': '✓ Опублікувати та створити лінк',
+      'QR & Offline Engine': 'QR та Офлайн-рушій',
+      'Field Sync Queue': 'Черга синхронізації',
+      'Vector Form QR': 'Векторний QR-код форми',
+      'Ready for event check-in stand or print PDF': 'Готовий для друку або реєстрації на події',
+      'Auto-Syncs on Reconnect': 'Автосинхронізація при появі мережі',
       'Offline Queue Sync': 'Офлайн-черга з автосинхронізацією',
       'Zero Middleman Servers': 'Пряме Google API без посередників',
       'drive.file Scope Only': 'Доступ лише до власних файлів',
@@ -558,11 +803,20 @@
       'Yes. FormGrid provides a generous free tier allowing you to manage up to 5 full documents with all core features enabled. For unlimited workspaces and advanced tools, you can upgrade via lifetime access or a flexible subscription with a 7-day free trial.':
         'Так. У безкоштовному тарифі ви можете створити до 5 повних документів з усіма функціями. Для необмеженого використання доступна разова пожиттєва ліцензія або підписка з 7-денним пробним періодом.',
 
-      // Bottom CTA
+      // Bottom CTA & Ecosystem
       'Upgrade your Google Forms workflow': 'Виведіть роботу з Google Forms на новий рівень',
       'Install FormGrid from Google Play and start managing forms and spreadsheets with native mobile agility today.':
         'Завантажуйте FormGrid у Google Play та керуйте формами й таблицями з максимальною мобільною швидкістю вже сьогодні.',
       'Get FormGrid on Google Play': 'Отримати FormGrid у Google Play',
+      'VanzaLabs Product Ecosystem': 'Екосистема продуктів VanzaLabs',
+      'More Apps Engineered by Our Studio': 'Інші застосунки нашої студії',
+      'View All Studio Products →': 'Усі продукти студії →',
+      'Algorithmic muscle recovery tracker, custom splits & tactile gym session logger.':
+        'Алгоритм відновлення мʼязів, персональні спліт-програми та зручний лайв-трекер для залу.',
+      'Generate B2B PDF invoices & estimates in 30 seconds with on-screen signature.':
+        'Генерація PDF-інвойсів та кошторисів за 30 секунд із підписом на екрані.',
+      '100% on-device photo compressor, format converter & encrypted PDF toolkit.':
+        '100% локальне стиснення фото, конвертація форматів та захист PDF паролем.',
 
       // Studio
       'Engineered by VanzaLabs Studio': 'Створено інженерною студією VanzaLabs',
@@ -584,27 +838,49 @@
 
     let currentFormgridLang = 'en';
 
-    function setFormgridLang(lang) {
+    function setFormgridLang(lang, save = true) {
       currentFormgridLang = lang;
       const isUa = lang === 'uk';
       document.documentElement.lang = isUa ? 'uk' : 'en';
       document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+      if (save) {
+        try { localStorage.setItem('vanza_lang', lang); } catch(e) {}
+      }
 
       const spans = document.querySelectorAll('span');
       spans.forEach(span => {
-        const text = span.textContent.trim();
+        if (span.children.length > 0) return;
+        const text = (span.dataset.original || span.textContent).trim();
         if (isUa && formgridTranslations[text]) {
-          span.dataset.original = text;
+          if (!span.dataset.original) span.dataset.original = text;
           span.textContent = formgridTranslations[text];
         } else if (!isUa && span.dataset.original) {
           span.textContent = span.dataset.original;
         }
       });
+
+      if (window.posthog && save) {
+        window.posthog.capture('formgrid_lang_switched', { lang: lang });
+      }
     }
 
     function toggleFormgridLang() {
-      setFormgridLang(currentFormgridLang === 'en' ? 'uk' : 'en');
+      setFormgridLang(currentFormgridLang === 'en' ? 'uk' : 'en', true);
     }
+
+    (function initLang() {
+      try {
+        const saved = localStorage.getItem('vanza_lang');
+        if (saved === 'uk' || saved === 'en') {
+          if (saved === 'uk') setFormgridLang('uk', false);
+          return;
+        }
+        const sysLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (sysLang.startsWith('uk') || sysLang.startsWith('ru')) {
+          setFormgridLang('uk', false);
+        }
+      } catch(e) {}
+    })();
   </script>
 </body>
 </html>
