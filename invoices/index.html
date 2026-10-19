@@ -199,24 +199,26 @@
             <span>The pocket commercial document generator for tradesmen, builders, and entrepreneurs. Auto-calculate sums, discounts, and taxes, collect client finger signatures on screen, and export publication-grade PDFs with zero internet required.</span>
           </p>
 
-          <!-- Main CTA Buttons + Desktop QR Bridge -->
-          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+          <!-- Main CTA Buttons + Desktop QR Card -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
             <a href="https://play.google.com/store/apps/details?id=app.vanza.docs" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-extrabold text-sm transition shadow-lg neon-glow group">
               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
               <span><span>Download on Google Play</span></span>
               <span class="group-hover:translate-x-1 transition-transform">→</span>
             </a>
 
-            <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-sm transition">
-              <span><span>Explore Features</span></span>
-            </a>
-
-            <!-- Desktop QR Quick-Install -->
-            <div class="hidden xl:flex items-center gap-3 pl-3 pr-4 py-2 rounded-2xl bg-[#0F1218]/90 border border-gray-800 hover:border-[#2563EB]/40 transition">
-              <img src="/images/qr_invoices.png" alt="Scan to install Vanza Docs" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
-              <div class="text-left leading-tight">
-                <p class="text-[10px] font-bold uppercase tracking-wider text-[#2563EB]"><span>Scan to Install</span></p>
-                <p class="text-[11px] text-gray-400"><span>Point phone camera at QR to open Google Play</span></p>
+            <!-- Desktop QR Quick-Install Card (Large, easy to scan with phone) -->
+            <div class="hidden sm:flex items-center gap-3.5 p-2.5 pr-4 rounded-2xl bg-[#0F1218]/90 border border-white/10 shadow-lg">
+              <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+                <img src="/images/qr_invoices.png" alt="Scan to install Vanza Docs" class="w-24 h-24 rounded-lg block">
+              </div>
+              <div class="text-left space-y-1">
+                <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#2563EB]/15 text-[#3B82F6] text-[10px] font-bold uppercase tracking-wider">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse"></span>
+                  <span>QR Scan</span>
+                </div>
+                <p class="text-xs font-bold text-white"><span>Scan to install</span></p>
+                <p class="text-[11px] text-gray-400 max-w-[130px] leading-tight"><span>Point phone camera to open Google Play</span></p>
               </div>
             </div>
           </div>
@@ -553,16 +555,19 @@
         <span>Download Vanza Docs from Google Play and start issuing contracts and invoices in 60 seconds.</span>
       </p>
 
-      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-5">
         <a href="https://play.google.com/store/apps/details?id=app.vanza.docs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-extrabold text-sm sm:text-base transition shadow-xl neon-glow">
           <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
           <span><span>Get Vanza Docs on Google Play</span></span>
         </a>
-        <div class="hidden sm:flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-black/60 border border-gray-800 text-left">
-          <img src="/images/qr_invoices.png" alt="QR Code" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
-          <div class="leading-tight">
-            <p class="text-[10px] font-bold uppercase tracking-wider text-[#2563EB]"><span>Scan QR</span></p>
-            <p class="text-[11px] text-gray-400"><span>Install on phone</span></p>
+        <div class="hidden sm:flex items-center gap-3.5 p-2.5 pr-5 rounded-2xl bg-black/60 border border-gray-800 text-left">
+          <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+            <img src="/images/qr_invoices.png" alt="Scan to install Vanza Docs" class="w-24 h-24 rounded-lg block">
+          </div>
+          <div class="leading-tight space-y-1">
+            <p class="text-xs font-bold uppercase tracking-wider text-[#2563EB]"><span>Scan QR Code</span></p>
+            <p class="text-xs text-gray-300"><span>Install on phone</span></p>
+            <p class="text-[11px] text-gray-500 font-mono">Google Play Store</p>
           </div>
         </div>
       </div>
@@ -720,10 +725,9 @@
       'The pocket commercial document generator for tradesmen, builders, and entrepreneurs. Auto-calculate sums, discounts, and taxes, collect client finger signatures on screen, and export publication-grade PDFs with zero internet required.':
         'Кишеньковий генератор комерційних документів для майстрів, будівельників та підприємців. Автоматичний підрахунок сум і податків, підпис замовника пальцем на екрані та миттєвий PDF без інтернету.',
       'Download on Google Play': 'Завантажити в Google Play',
-      'Explore Features': 'Переглянути можливості',
-      'Scan to Install': 'Скануй для встановлення',
-      'Point phone camera at QR to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
-      'Scan QR': 'Скануй QR',
+      'Scan to install': 'Скануй для встановлення',
+      'Point phone camera to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
+      'Scan QR Code': 'Скануй QR-код',
       'Install on phone': 'Встановити на смартфон',
       '1. Editor': '1. Редактор',
       '2. PDF Preview': '2. PDF-огляд',

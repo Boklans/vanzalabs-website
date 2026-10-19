@@ -199,24 +199,26 @@
             <span>The streamlined mobile workspace for Google Forms and Sheets. Build forms in one tap, log submissions with an offline queue, and sync directly to your Google Drive with zero intermediate servers.</span>
           </p>
 
-          <!-- Main CTA Buttons + Desktop QR Bridge -->
-          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+          <!-- Main CTA Buttons + Desktop QR Card -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
             <a href="https://play.google.com/store/apps/details?id=com.vanza.formgrid" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl bg-[#3B82F6] hover:bg-[#2563EB] text-white font-extrabold text-sm transition shadow-lg neon-glow group">
               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
               <span><span>Download on Google Play</span></span>
               <span class="group-hover:translate-x-1 transition-transform">→</span>
             </a>
 
-            <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-sm transition">
-              <span><span>Explore Features</span></span>
-            </a>
-
-            <!-- Desktop QR Quick-Install -->
-            <div class="hidden xl:flex items-center gap-3 pl-3 pr-4 py-2 rounded-2xl bg-[#0F1218]/90 border border-gray-800 hover:border-[#3B82F6]/40 transition">
-              <img src="/images/qr_formgrid.png" alt="Scan to install FormGrid" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
-              <div class="text-left leading-tight">
-                <p class="text-[10px] font-bold uppercase tracking-wider text-[#3B82F6]"><span>Scan to Install</span></p>
-                <p class="text-[11px] text-gray-400"><span>Point phone camera at QR to open Google Play</span></p>
+            <!-- Desktop QR Quick-Install Card (Large, easy to scan with phone) -->
+            <div class="hidden sm:flex items-center gap-3.5 p-2.5 pr-4 rounded-2xl bg-[#0F1218]/90 border border-white/10 shadow-lg">
+              <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+                <img src="/images/qr_formgrid.png" alt="Scan to install FormGrid" class="w-24 h-24 rounded-lg block">
+              </div>
+              <div class="text-left space-y-1">
+                <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#3B82F6]/15 text-[#3B82F6] text-[10px] font-bold uppercase tracking-wider">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse"></span>
+                  <span>QR Scan</span>
+                </div>
+                <p class="text-xs font-bold text-white"><span>Scan to install</span></p>
+                <p class="text-[11px] text-gray-400 max-w-[130px] leading-tight"><span>Point phone camera to open Google Play</span></p>
               </div>
             </div>
           </div>
@@ -247,93 +249,32 @@
           <div class="relative w-full max-w-[280px] sm:max-w-[305px] rounded-[36px] p-2.5 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-2xl border border-gray-700/60">
             <div class="rounded-[28px] overflow-hidden bg-[#0A0D14] aspect-[9/19.5] border border-gray-900/80 shadow-inner relative flex items-center justify-center">
               <!-- Screen 1: Main Workspace Screenshot -->
-              <img id="fg-scr-1" src="/images/formgrid_screenshot.jpg" alt="FormGrid Interface" class="w-full h-full object-cover object-top transition-opacity duration-300">
-
-              <!-- Screen 2: Interactive 1-Tap Form Builder Preview -->
-              <div id="fg-scr-2" class="hidden absolute inset-0 bg-[#0B0F17] p-4 flex-col justify-between text-left select-none">
-                <div>
-                  <div class="flex items-center justify-between border-b border-gray-800 pb-3">
-                    <div>
-                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#3B82F6]"><span>Interactive Preview</span></p>
-                      <h4 class="text-sm font-black text-white"><span>1-Tap Form Builder</span></h4>
-                    </div>
-                    <span class="px-2 py-0.5 rounded-full bg-[#3B82F6]/15 text-[#3B82F6] text-[10px] font-bold">Auto-Sheet</span>
-                  </div>
-                  <div class="mt-3 space-y-2.5">
-                    <div class="bg-[#131926] border border-gray-800 rounded-xl p-2.5">
-                      <p class="text-[10px] text-gray-400"><span>Field 1 · Short Text (Required)</span></p>
-                      <p class="text-xs font-bold text-white mt-0.5"><span>Client Full Name / Company</span></p>
-                    </div>
-                    <div class="bg-[#131926] border border-[#3B82F6]/40 rounded-xl p-2.5">
-                      <p class="text-[10px] text-[#3B82F6] font-semibold"><span>Field 2 · Dropdown Menu</span></p>
-                      <p class="text-xs font-bold text-white mt-0.5"><span>Order Priority Tier</span></p>
-                      <div class="flex gap-1.5 mt-2">
-                        <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px]">Standard</span>
-                        <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 text-[10px]">Express VIP</span>
-                      </div>
-                    </div>
-                    <div class="bg-[#131926] border border-gray-800 rounded-xl p-2.5">
-                      <p class="text-[10px] text-gray-400"><span>Field 3 · Checkboxes</span></p>
-                      <p class="text-xs font-bold text-white mt-0.5"><span>Warehouse Inspection Checklist</span></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="bg-[#3B82F6]/10 border border-[#3B82F6]/30 rounded-2xl p-3">
-                  <div class="flex items-center justify-between text-[11px]">
-                    <span class="text-gray-300 font-semibold"><span>Linked Google Sheet™</span></span>
-                    <span class="text-emerald-400 font-bold">● Live Sync</span>
-                  </div>
-                  <div class="mt-2 py-2 rounded-xl bg-[#3B82F6] text-white font-extrabold text-xs text-center">
-                    <span>✓ Publish & Generate Link</span>
-                  </div>
-                </div>
+              <div id="fg-scr-1" class="fg-screen w-full h-full">
+                <img src="/images/formgrid_screenshot.jpg" alt="FormGrid Interface" class="w-full h-full object-cover object-top">
               </div>
 
-              <!-- Screen 3: Interactive Offline Queue & QR Studio -->
-              <div id="fg-scr-3" class="hidden absolute inset-0 bg-[#0B0F17] p-4 flex-col justify-between text-left select-none">
-                <div>
-                  <div class="flex items-center justify-between border-b border-gray-800 pb-3">
-                    <div>
-                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#3B82F6]"><span>QR & Offline Engine</span></p>
-                      <h4 class="text-sm font-black text-white"><span>Field Sync Queue</span></h4>
-                    </div>
-                    <span class="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 text-[10px] font-bold">3 Buffered</span>
-                  </div>
-                  <div class="mt-3 bg-[#131926] border border-gray-800 rounded-2xl p-3 flex items-center gap-3">
-                    <img src="/images/qr_formgrid.png" alt="QR" class="w-14 h-14 rounded-lg bg-white p-1 shrink-0">
-                    <div>
-                      <p class="text-xs font-bold text-white"><span>Vector Form QR</span></p>
-                      <p class="text-[10px] text-gray-400 mt-0.5"><span>Ready for event check-in stand or print PDF</span></p>
-                    </div>
-                  </div>
-                  <div class="mt-3 space-y-2">
-                    <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#131926] border border-gray-800 text-[11px]">
-                      <span class="text-white font-semibold">Row #142 · Site Audit</span>
-                      <span class="text-emerald-400 font-bold">✓ Synced</span>
-                    </div>
-                    <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#131926] border border-amber-500/30 text-[11px]">
-                      <span class="text-white font-semibold">Row #143 · Offline Entry</span>
-                      <span class="text-amber-400 font-bold">↻ Queued</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="py-2.5 rounded-xl bg-white/10 border border-white/15 text-white font-bold text-xs text-center">
-                  <span>Auto-Syncs on Reconnect</span>
-                </div>
+              <!-- Screen 2: Google Sheets Responses Builder Screenshot -->
+              <div id="fg-scr-2" class="fg-screen hidden w-full h-full">
+                <img src="/images/formgrid_screen_2.png" alt="FormGrid Sheets Responses Builder" class="w-full h-full object-cover object-top">
+              </div>
+
+              <!-- Screen 3: Import by Link & Forms Hub Screenshot -->
+              <div id="fg-scr-3" class="fg-screen hidden w-full h-full">
+                <img src="/images/formgrid_screen_3.png" alt="FormGrid Import by Link & Forms Hub" class="w-full h-full object-cover object-top">
               </div>
             </div>
           </div>
 
           <!-- 3-Screen Switcher Pills -->
           <div class="mt-5 flex items-center gap-2 bg-[#0F1218] p-1.5 rounded-2xl border border-gray-800 relative z-10">
-            <button type="button" onclick="switchFgScreen(1)" id="fg-tab-1" class="px-3 py-1.5 rounded-xl text-[11px] font-bold bg-[#3B82F6] text-white transition shadow">
+            <button type="button" onclick="switchFgScreen(1)" id="fg-tab-1" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#3B82F6] text-white transition shadow">
               <span>1. Workspace</span>
             </button>
-            <button type="button" onclick="switchFgScreen(2)" id="fg-tab-2" class="px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
+            <button type="button" onclick="switchFgScreen(2)" id="fg-tab-2" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
               <span>2. Form Builder</span>
             </button>
-            <button type="button" onclick="switchFgScreen(3)" id="fg-tab-3" class="px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
-              <span>3. QR & Offline</span>
+            <button type="button" onclick="switchFgScreen(3)" id="fg-tab-3" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
+              <span>3. Import & Hub</span>
             </button>
           </div>
         </div>
@@ -554,16 +495,19 @@
         <span>Install FormGrid from Google Play and start managing forms and spreadsheets with native mobile agility today.</span>
       </p>
 
-      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-5">
         <a href="https://play.google.com/store/apps/details?id=com.vanza.formgrid" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#3B82F6] hover:bg-[#2563EB] text-white font-extrabold text-sm sm:text-base transition shadow-xl neon-glow">
           <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
           <span><span>Get FormGrid on Google Play</span></span>
         </a>
-        <div class="hidden sm:flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-black/60 border border-gray-800 text-left">
-          <img src="/images/qr_formgrid.png" alt="QR Code" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
-          <div class="leading-tight">
-            <p class="text-[10px] font-bold uppercase tracking-wider text-[#3B82F6]"><span>Scan QR</span></p>
-            <p class="text-[11px] text-gray-400"><span>Install on phone</span></p>
+        <div class="hidden sm:flex items-center gap-3.5 p-2.5 pr-5 rounded-2xl bg-black/60 border border-gray-800 text-left">
+          <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+            <img src="/images/qr_formgrid.png" alt="Scan to install FormGrid" class="w-24 h-24 rounded-lg block">
+          </div>
+          <div class="leading-tight space-y-1">
+            <p class="text-xs font-bold uppercase tracking-wider text-[#3B82F6]"><span>Scan QR Code</span></p>
+            <p class="text-xs text-gray-300"><span>Install on phone</span></p>
+            <p class="text-[11px] text-gray-500 font-mono">Google Play Store</p>
           </div>
         </div>
       </div>
@@ -691,12 +635,10 @@
         if (!scr || !tab) continue;
         if (i === index) {
           scr.classList.remove('hidden');
-          scr.classList.add('flex');
-          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-bold bg-[#3B82F6] text-white transition shadow';
+          tab.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#3B82F6] text-white transition shadow';
         } else {
           scr.classList.add('hidden');
-          scr.classList.remove('flex');
-          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition';
+          tab.className = 'px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition';
         }
       }
       if (window.posthog) {
@@ -721,14 +663,13 @@
       'The streamlined mobile workspace for Google Forms and Sheets. Build forms in one tap, log submissions with an offline queue, and sync directly to your Google Drive with zero intermediate servers.':
         'Швидкий мобільний хаб для Google Forms і Таблиць. Створюйте анкети в 1 дотик, вносьте записи через офлайн-чергу та синхронізуйте напряму з Google Drive без зайвих посередницьких серверів.',
       'Download on Google Play': 'Завантажити в Google Play',
-      'Explore Features': 'Переглянути можливості',
-      'Scan to Install': 'Скануй для встановлення',
-      'Point phone camera at QR to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
-      'Scan QR': 'Скануй QR',
+      'Scan to install': 'Скануй для встановлення',
+      'Point phone camera to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
+      'Scan QR Code': 'Скануй QR-код',
       'Install on phone': 'Встановити на смартфон',
-      '1. Workspace': '1. Простір',
-      '2. Form Builder': '2. Конструктор',
-      '3. QR & Offline': '3. QR та Офлайн',
+      '1. Workspace': '1. Робочий простір',
+      '2. Form Builder': '2. Конструктор форм',
+      '3. Import & Hub': '3. Імпорт форм',
       'Interactive Preview': 'Інтерактивний огляд',
       '1-Tap Form Builder': 'Конструктор форм в 1 дотик',
       'Field 1 · Short Text (Required)': 'Поле 1 · Короткий текст (Обовʼязково)',

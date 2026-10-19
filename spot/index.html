@@ -217,16 +217,18 @@
               <span class="group-hover:translate-x-1 transition-transform">→</span>
             </a>
 
-            <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-sm transition">
-              <span><span>Explore Features</span></span>
-            </a>
-
-            <!-- Desktop QR Quick-Install Bridge -->
-            <div class="hidden xl:flex items-center gap-3 pl-2.5 pr-4 py-1.5 rounded-2xl bg-[#0F1218]/90 border border-white/10 shadow-inner">
-              <img src="/images/qr_spot.png" alt="Scan to install SPOT" class="w-10 h-10 rounded-lg bg-white p-0.5 shrink-0">
-              <div class="text-left leading-tight">
-                <p class="text-[11px] font-bold text-[#C8FF3D]"><span>Scan to install</span></p>
-                <p class="text-[10px] text-gray-400"><span>Direct to phone</span></p>
+            <!-- Desktop QR Quick-Install Card (Large, easy to scan with phone) -->
+            <div class="hidden sm:flex items-center gap-3.5 p-2.5 pr-4 rounded-2xl bg-[#0F1218]/90 border border-white/10 shadow-lg">
+              <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+                <img src="/images/qr_spot.png" alt="Scan to install SPOT" class="w-24 h-24 rounded-lg block">
+              </div>
+              <div class="text-left space-y-1">
+                <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#C8FF3D]/15 text-[#C8FF3D] text-[10px] font-bold uppercase tracking-wider">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#C8FF3D] animate-pulse"></span>
+                  <span>QR Scan</span>
+                </div>
+                <p class="text-xs font-bold text-white"><span>Scan to install</span></p>
+                <p class="text-[11px] text-gray-400 max-w-[130px] leading-tight"><span>Point phone camera to open Google Play</span></p>
               </div>
             </div>
           </div>
@@ -261,102 +263,28 @@
                 <img src="/screen_spot.jpg" alt="SPOT Workout Interface" class="w-full h-full object-cover object-top">
               </div>
 
-              <!-- Screen 2: Live Session Logger Preview -->
-              <div id="spot-scr-2" class="spot-screen hidden w-full h-full p-4 flex flex-col justify-between bg-[#090B0E] text-white select-none">
-                <div class="space-y-3">
-                  <div class="flex items-center justify-between text-[10px] text-gray-400 pt-1">
-                    <span>16:28</span>
-                    <span class="px-2 py-0.5 rounded-full bg-[#C8FF3D]/15 text-[#C8FF3D] font-bold">● LIVE SESSION</span>
-                  </div>
-                  <div class="p-3 rounded-2xl bg-[#12161D] border border-gray-800 flex items-center justify-between">
-                    <div>
-                      <p class="text-[10px] text-gray-400 uppercase font-semibold"><span>Rest Timer (Haptic)</span></p>
-                      <p class="text-2xl font-black text-[#C8FF3D] font-mono">01:15</p>
-                    </div>
-                    <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[10px] font-bold text-gray-300">+30s</span>
-                  </div>
-                  <div class="p-3.5 rounded-2xl bg-[#12161D] border border-gray-800 space-y-2.5">
-                    <div class="flex items-center justify-between">
-                      <span class="text-xs font-extrabold text-white">Incline DB Press</span>
-                      <span class="text-[10px] px-2 py-0.5 rounded bg-[#C8FF3D]/20 text-[#C8FF3D] font-bold">NEW PR</span>
-                    </div>
-                    <div class="space-y-1.5 text-[11px]">
-                      <div class="flex items-center justify-between p-2 rounded-xl bg-black/50 text-gray-300">
-                        <span class="font-bold text-gray-500">#1</span>
-                        <span>36 kg × 10</span>
-                        <span class="text-[#C8FF3D] font-bold">✓</span>
-                      </div>
-                      <div class="flex items-center justify-between p-2 rounded-xl bg-black/50 text-gray-300">
-                        <span class="font-bold text-gray-500">#2</span>
-                        <span>40 kg × 8</span>
-                        <span class="text-[#C8FF3D] font-bold">✓</span>
-                      </div>
-                      <div class="flex items-center justify-between p-2 rounded-xl bg-[#C8FF3D]/15 border border-[#C8FF3D]/40 text-white font-bold">
-                        <span class="text-[#C8FF3D]">#3</span>
-                        <span>42.5 kg × 8</span>
-                        <span class="px-2 py-0.5 rounded bg-[#C8FF3D] text-black text-[10px] font-black">LOG SET</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="p-3 rounded-2xl bg-[#C8FF3D] text-black text-center font-black text-xs">
-                  <span>COMPLETE WORKOUT · 14,280 KG</span>
-                </div>
+              <!-- Screen 2: Live Rest Timer & Logging Screenshot -->
+              <div id="spot-scr-2" class="spot-screen hidden w-full h-full">
+                <img src="/images/spot_screen_2.png" alt="SPOT Rest Timer & Logging" class="w-full h-full object-cover object-top">
               </div>
 
-              <!-- Screen 3: Muscle Recovery & Analytics Preview -->
-              <div id="spot-scr-3" class="spot-screen hidden w-full h-full p-4 flex flex-col justify-between bg-[#090B0E] text-white select-none">
-                <div class="space-y-3">
-                  <div class="flex items-center justify-between text-[10px] text-gray-400 pt-1">
-                    <span>16:30</span>
-                    <span class="text-[#C8FF3D] font-bold">RECOVERY MATRIX</span>
-                  </div>
-                  <h4 class="text-sm font-black tracking-tight"><span>Muscle Readiness</span></h4>
-                  <div class="space-y-2 text-[11px]">
-                    <div class="p-2.5 rounded-xl bg-[#12161D] border border-gray-800 space-y-1">
-                      <div class="flex justify-between font-bold"><span>Chest & Triceps</span><span class="text-[#C8FF3D]">98% Ready</span></div>
-                      <div class="w-full h-1.5 rounded-full bg-gray-800 overflow-hidden"><div class="h-full bg-[#C8FF3D]" style="width:98%"></div></div>
-                    </div>
-                    <div class="p-2.5 rounded-xl bg-[#12161D] border border-gray-800 space-y-1">
-                      <div class="flex justify-between font-bold"><span>Back & Biceps</span><span class="text-emerald-400">84% Ready</span></div>
-                      <div class="w-full h-1.5 rounded-full bg-gray-800 overflow-hidden"><div class="h-full bg-emerald-400" style="width:84%"></div></div>
-                    </div>
-                    <div class="p-2.5 rounded-xl bg-[#12161D] border border-gray-800 space-y-1">
-                      <div class="flex justify-between font-bold"><span>Quads & Hamstrings</span><span class="text-amber-400">42% Fatigue</span></div>
-                      <div class="w-full h-1.5 rounded-full bg-gray-800 overflow-hidden"><div class="h-full bg-amber-400" style="width:42%"></div></div>
-                    </div>
-                  </div>
-                  <div class="p-3 rounded-2xl bg-[#12161D] border border-gray-800 space-y-2">
-                    <div class="flex justify-between items-center text-[10px] text-gray-400">
-                      <span>ESTIMATED 1RM · BENCH</span>
-                      <span class="text-[#C8FF3D] font-bold">+12.5 kg (90d)</span>
-                    </div>
-                    <p class="text-xl font-black text-white">125.0 kg</p>
-                    <div class="flex items-end gap-1.5 h-14 pt-2">
-                      <div class="flex-1 bg-gray-800 rounded-t h-6"></div>
-                      <div class="flex-1 bg-gray-800 rounded-t h-8"></div>
-                      <div class="flex-1 bg-gray-700 rounded-t h-9"></div>
-                      <div class="flex-1 bg-gray-700 rounded-t h-11"></div>
-                      <div class="flex-1 bg-[#C8FF3D]/60 rounded-t h-12"></div>
-                      <div class="flex-1 bg-[#C8FF3D] rounded-t h-14"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="text-center text-[10px] text-gray-500 font-mono">Algorithmic Decay Model v2.4</div>
+              <!-- Screen 3: Exercise Guide & Anatomy Screenshot -->
+              <div id="spot-scr-3" class="spot-screen hidden w-full h-full">
+                <img src="/images/spot_screen_3.png" alt="SPOT Exercise Guide & Anatomy" class="w-full h-full object-cover object-top">
               </div>
             </div>
           </div>
 
           <!-- Interactive Screen Switcher Pills -->
           <div class="mt-5 inline-flex items-center gap-1.5 p-1 rounded-2xl bg-[#0F1218] border border-gray-800 shadow-lg relative z-10">
-            <button type="button" onclick="switchSpotScreen(1)" id="spot-tab-1" class="px-3 py-1.5 rounded-xl text-xs font-bold transition bg-[#C8FF3D] text-black">
+            <button type="button" onclick="switchSpotScreen(1)" id="spot-tab-1" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-[#C8FF3D] text-black shadow">
               <span>1. Readiness</span>
             </button>
-            <button type="button" onclick="switchSpotScreen(2)" id="spot-tab-2" class="px-3 py-1.5 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">
-              <span>2. Live Logger</span>
+            <button type="button" onclick="switchSpotScreen(2)" id="spot-tab-2" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
+              <span>2. Rest Timer</span>
             </button>
-            <button type="button" onclick="switchSpotScreen(3)" id="spot-tab-3" class="px-3 py-1.5 rounded-xl text-xs font-bold transition text-gray-400 hover:text-white">
-              <span>3. PR Analytics</span>
+            <button type="button" onclick="switchSpotScreen(3)" id="spot-tab-3" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
+              <span>3. Exercise Guide</span>
             </button>
           </div>
         </div>
@@ -577,16 +505,19 @@
         <span>Download SPOT on Google Play and start logging with algorithmic precision today.</span>
       </p>
 
-      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-5">
         <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.spot" target="_blank" rel="noopener noreferrer" onclick="if(window.posthog)posthog.capture('spot_bottom_cta_clicked')" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#C8FF3D] hover:bg-[#B6EE2C] text-black font-extrabold text-sm sm:text-base transition shadow-xl neon-glow">
           <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
           <span><span>Get SPOT on Google Play</span></span>
         </a>
-        <div class="hidden sm:flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-black/60 border border-gray-800 text-left">
-          <img src="/images/qr_spot.png" alt="QR Code" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
-          <div class="leading-tight">
-            <p class="text-[10px] font-bold uppercase tracking-wider text-[#C8FF3D]"><span>Scan QR</span></p>
-            <p class="text-[11px] text-gray-400"><span>Install on phone</span></p>
+        <div class="hidden sm:flex items-center gap-3.5 p-2.5 pr-5 rounded-2xl bg-black/60 border border-gray-800 text-left">
+          <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+            <img src="/images/qr_spot.png" alt="Scan to install SPOT" class="w-24 h-24 rounded-lg block">
+          </div>
+          <div class="leading-tight space-y-1">
+            <p class="text-xs font-bold uppercase tracking-wider text-[#C8FF3D]"><span>Scan QR Code</span></p>
+            <p class="text-xs text-gray-300"><span>Install on phone</span></p>
+            <p class="text-[11px] text-gray-500 font-mono">Google Play Store</p>
           </div>
         </div>
       </div>
@@ -687,12 +618,10 @@
         if (!scr || !tab) continue;
         if (i === index) {
           scr.classList.remove('hidden');
-          scr.classList.add('flex');
-          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-bold bg-[#C8FF3D] text-black transition shadow';
+          tab.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#C8FF3D] text-black transition shadow';
         } else {
           scr.classList.add('hidden');
-          scr.classList.remove('flex');
-          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition';
+          tab.className = 'px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition';
         }
       }
       if (window.posthog) {
@@ -717,13 +646,13 @@
       'An intelligent, dark-aesthetic strength training companion for lifters and athletes. Algorithmic muscle recovery tracking, custom splits, and frictionless live logging with zero distractions.':
         'Преміальний фітнес-застосунок у темній естетиці для силових тренувань. Розумний алгоритм відновлення мʼязових груп, персональні спліт-програми та фокусований трекер підходів без зайвого спаму.',
       'Download on Google Play': 'Завантажити в Google Play',
-      'Explore Features': 'Переглянути можливості',
-      'Scan to Install': 'Скануй для встановлення',
-      'Point phone camera at QR to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
-      'Scan QR': 'Скануй QR',
+      'Scan to install': 'Скануй для встановлення',
+      'Point phone camera to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
+      'Scan QR Code': 'Скануй QR-код',
       'Install on phone': 'Встановити на смартфон',
-      '1. Dashboard': '1. Дашборд',
-      '2. Recovery Map': '2. Відновлення',
+      '1. Readiness': '1. Готовність',
+      '2. Rest Timer': '2. Таймер відпочинку',
+      '3. Exercise Guide': '3. База вправ',
       '3. Live Logger': '3. Лайв-трекер',
       'Interactive Preview': 'Інтерактивний огляд',
       'Muscle Readiness': 'Готовність мʼязів',

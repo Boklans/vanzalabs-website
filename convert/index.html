@@ -199,24 +199,26 @@
             <span>Fast, private photo compressor, format converter, and encrypted PDF studio. Free up gigabytes of smartphone storage, convert iPhone HEIC photos in bulk, and secure PDF files with AES-256 without uploading anything to the web.</span>
           </p>
 
-          <!-- Main CTA Buttons + Desktop QR Bridge -->
-          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+          <!-- Main CTA Buttons + Desktop QR Card -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
             <a href="https://play.google.com/store/apps/details?id=tech.vanzalabs.convertcompress" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl bg-[#10B981] hover:bg-[#059669] text-black font-extrabold text-sm transition shadow-lg neon-glow group">
               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
               <span><span>Download on Google Play</span></span>
               <span class="group-hover:translate-x-1 transition-transform">→</span>
             </a>
 
-            <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-sm transition">
-              <span><span>Explore Features</span></span>
-            </a>
-
-            <!-- Desktop QR Quick-Install -->
-            <div class="hidden xl:flex items-center gap-3 pl-3 pr-4 py-2 rounded-2xl bg-[#0F1218]/90 border border-gray-800 hover:border-[#10B981]/40 transition">
-              <img src="/images/qr_convert.png" alt="Scan to install Convert & Compress" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
-              <div class="text-left leading-tight">
-                <p class="text-[10px] font-bold uppercase tracking-wider text-[#10B981]"><span>Scan to Install</span></p>
-                <p class="text-[11px] text-gray-400"><span>Point phone camera at QR to open Google Play</span></p>
+            <!-- Desktop QR Quick-Install Card (Large, easy to scan with phone) -->
+            <div class="hidden sm:flex items-center gap-3.5 p-2.5 pr-4 rounded-2xl bg-[#0F1218]/90 border border-white/10 shadow-lg">
+              <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+                <img src="/images/qr_convert.png" alt="Scan to install Convert & Compress" class="w-24 h-24 rounded-lg block">
+              </div>
+              <div class="text-left space-y-1">
+                <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#10B981]/15 text-[#10B981] text-[10px] font-bold uppercase tracking-wider">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse"></span>
+                  <span>QR Scan</span>
+                </div>
+                <p class="text-xs font-bold text-white"><span>Scan to install</span></p>
+                <p class="text-[11px] text-gray-400 max-w-[130px] leading-tight"><span>Point phone camera to open Google Play</span></p>
               </div>
             </div>
           </div>
@@ -247,88 +249,32 @@
           <div class="relative w-full max-w-[280px] sm:max-w-[305px] rounded-[36px] p-2.5 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-2xl border border-gray-700/60">
             <div class="rounded-[28px] overflow-hidden bg-black aspect-[9/19.5] border border-gray-900/80 shadow-inner relative flex items-center justify-center">
               <!-- Screen 1: Main Screenshot -->
-              <img id="cv-scr-1" src="/images/convert_screenshot.png" alt="Convert & Compress Interface" class="w-full h-full object-cover object-top transition-opacity duration-300">
-
-              <!-- Screen 2: Interactive Live Compression Calculator -->
-              <div id="cv-scr-2" class="hidden absolute inset-0 bg-[#0B0F17] p-4 flex-col justify-between text-left select-none">
-                <div>
-                  <div class="flex items-center justify-between border-b border-gray-800 pb-3">
-                    <div>
-                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#10B981]"><span>Interactive Preview</span></p>
-                      <h4 class="text-sm font-black text-white"><span>Smart Compressor</span></h4>
-                    </div>
-                    <span class="px-2 py-0.5 rounded-full bg-[#10B981]/15 text-[#10B981] text-[10px] font-bold">−92% Saved</span>
-                  </div>
-                  <div class="mt-3 bg-[#131926] border border-gray-800 rounded-2xl p-3 space-y-2.5">
-                    <div class="flex justify-between items-center text-xs">
-                      <span class="text-gray-400"><span>Original (24 HEIC Photos)</span></span>
-                      <span class="font-mono font-bold text-rose-400 line-through">148.4 MB</span>
-                    </div>
-                    <div class="flex justify-between items-center text-xs">
-                      <span class="text-gray-300 font-semibold"><span>Forecast Output (JPG)</span></span>
-                      <span class="font-mono font-black text-[#10B981] text-sm">11.8 MB</span>
-                    </div>
-                    <div class="pt-1">
-                      <div class="flex justify-between text-[10px] text-gray-400 mb-1">
-                        <span><span>Quality Preset: Smart Lossless</span></span>
-                        <span class="text-[#10B981] font-bold">86%</span>
-                      </div>
-                      <div class="h-2 rounded-full bg-gray-800 overflow-hidden">
-                        <div class="h-full bg-[#10B981] w-[86%] rounded-full"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mt-3 bg-[#10B981]/10 border border-[#10B981]/30 rounded-xl p-2.5 text-[11px] text-gray-300">
-                    <span class="text-[#10B981] font-bold">● Dart Isolate:</span> <span>100% local CPU processing. Zero cloud upload.</span>
-                  </div>
-                </div>
-                <div class="py-2.5 rounded-xl bg-[#10B981] text-black font-extrabold text-xs text-center">
-                  <span>⚡ Compress 24 Photos Now</span>
-                </div>
+              <div id="cv-scr-1" class="cv-screen w-full h-full">
+                <img src="/images/convert_screenshot.png" alt="Convert & Compress Interface" class="w-full h-full object-cover object-top">
               </div>
 
-              <!-- Screen 3: Interactive AES-256 PDF Studio -->
-              <div id="cv-scr-3" class="hidden absolute inset-0 bg-[#0B0F17] p-4 flex-col justify-between text-left select-none">
-                <div>
-                  <div class="flex items-center justify-between border-b border-gray-800 pb-3">
-                    <div>
-                      <p class="text-[10px] font-bold uppercase tracking-widest text-[#10B981]"><span>Security Vault</span></p>
-                      <h4 class="text-sm font-black text-white"><span>AES-256 PDF Studio</span></h4>
-                    </div>
-                    <span class="px-2 py-0.5 rounded-full bg-teal-500/15 text-teal-400 text-[10px] font-bold">256-Bit</span>
-                  </div>
-                  <div class="mt-3 space-y-2">
-                    <div class="bg-[#131926] border border-gray-800 rounded-xl p-2.5 flex items-center justify-between text-xs">
-                      <span class="text-white font-semibold">Passport_Scan_2026.pdf</span>
-                      <span class="text-[10px] text-gray-400">3 pages</span>
-                    </div>
-                    <div class="bg-[#131926] border border-gray-800 rounded-xl p-2.5 flex items-center justify-between text-xs">
-                      <span class="text-white font-semibold">Tax_Statement_Q3.pdf</span>
-                      <span class="text-[10px] text-gray-400">5 pages</span>
-                    </div>
-                    <div class="bg-[#131926] border border-[#10B981]/40 rounded-xl p-3 space-y-1.5">
-                      <p class="text-[10px] text-[#10B981] font-bold uppercase"><span>Encryption Password</span></p>
-                      <p class="text-xs font-mono tracking-widest text-white">••••••••••••••</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="py-2.5 rounded-xl bg-[#10B981] text-black font-extrabold text-xs text-center">
-                  <span>🔒 Merge & Encrypt PDF Offline</span>
-                </div>
+              <!-- Screen 2: PDF Tools Screenshot -->
+              <div id="cv-scr-2" class="cv-screen hidden w-full h-full">
+                <img src="/images/convert_screen_2.png" alt="Convert & Compress PDF Tools" class="w-full h-full object-cover object-top">
+              </div>
+
+              <!-- Screen 3: Processing Result Screenshot -->
+              <div id="cv-scr-3" class="cv-screen hidden w-full h-full">
+                <img src="/images/convert_screen_3.png" alt="Convert & Compress Processing Result" class="w-full h-full object-cover object-top">
               </div>
             </div>
           </div>
 
           <!-- 3-Screen Switcher Pills -->
           <div class="mt-5 flex items-center gap-2 bg-[#0F1218] p-1.5 rounded-2xl border border-gray-800 relative z-10">
-            <button type="button" onclick="switchCvScreen(1)" id="cv-tab-1" class="px-3 py-1.5 rounded-xl text-[11px] font-bold bg-[#10B981] text-black transition shadow">
+            <button type="button" onclick="switchCvScreen(1)" id="cv-tab-1" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#10B981] text-black transition shadow">
               <span>1. Studio Home</span>
             </button>
-            <button type="button" onclick="switchCvScreen(2)" id="cv-tab-2" class="px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
-              <span>2. Compress -90%</span>
+            <button type="button" onclick="switchCvScreen(2)" id="cv-tab-2" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
+              <span>2. PDF Tools</span>
             </button>
-            <button type="button" onclick="switchCvScreen(3)" id="cv-tab-3" class="px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
-              <span>3. AES-256 PDF</span>
+            <button type="button" onclick="switchCvScreen(3)" id="cv-tab-3" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition">
+              <span>3. Processing Result</span>
             </button>
           </div>
         </div>
@@ -549,16 +495,19 @@
         <span>Download Vanza Convert & Compress on Google Play and start optimizing photos with zero cloud uploads.</span>
       </p>
 
-      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-5">
         <a href="https://play.google.com/store/apps/details?id=tech.vanzalabs.convertcompress" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#10B981] hover:bg-[#059669] text-black font-extrabold text-sm sm:text-base transition shadow-xl neon-glow">
           <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
           <span><span>Get Convert & Compress on Google Play</span></span>
         </a>
-        <div class="hidden sm:flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-black/60 border border-gray-800 text-left">
-          <img src="/images/qr_convert.png" alt="QR Code" class="w-11 h-11 rounded-lg bg-white p-0.5 shrink-0">
-          <div class="leading-tight">
-            <p class="text-[10px] font-bold uppercase tracking-wider text-[#10B981]"><span>Scan QR</span></p>
-            <p class="text-[11px] text-gray-400"><span>Install on phone</span></p>
+        <div class="hidden sm:flex items-center gap-3.5 p-2.5 pr-5 rounded-2xl bg-black/60 border border-gray-800 text-left">
+          <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+            <img src="/images/qr_convert.png" alt="Scan to install Convert & Compress" class="w-24 h-24 rounded-lg block">
+          </div>
+          <div class="leading-tight space-y-1">
+            <p class="text-xs font-bold uppercase tracking-wider text-[#10B981]"><span>Scan QR Code</span></p>
+            <p class="text-xs text-gray-300"><span>Install on phone</span></p>
+            <p class="text-[11px] text-gray-500 font-mono">Google Play Store</p>
           </div>
         </div>
       </div>
@@ -686,12 +635,10 @@
         if (!scr || !tab) continue;
         if (i === index) {
           scr.classList.remove('hidden');
-          scr.classList.add('flex');
-          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-bold bg-[#10B981] text-black transition shadow';
+          tab.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#10B981] text-black transition shadow';
         } else {
           scr.classList.add('hidden');
-          scr.classList.remove('flex');
-          tab.className = 'px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition';
+          tab.className = 'px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#131720] text-gray-400 hover:text-white border border-gray-800 transition';
         }
       }
       if (window.posthog) {
@@ -716,14 +663,13 @@
       'Fast, private photo compressor, format converter, and encrypted PDF studio. Free up gigabytes of smartphone storage, convert iPhone HEIC photos in bulk, and secure PDF files with AES-256 without uploading anything to the web.':
         'Швидкий приватний компресор фотографій, пакетний конвертер та захищена PDF-студія. Звільняйте гігабайти пам\'яті смартфона, конвертуйте файли Apple HEIC та шифруйте PDF банківським стандартом AES-256 без вивантаження файлів в інтернет.',
       'Download on Google Play': 'Завантажити в Google Play',
-      'Explore Features': 'Переглянути можливості',
-      'Scan to Install': 'Скануй для встановлення',
-      'Point phone camera at QR to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
-      'Scan QR': 'Скануй QR',
+      'Scan to install': 'Скануй для встановлення',
+      'Point phone camera to open Google Play': 'Наведіть камеру смартфона, щоб відкрити в Google Play',
+      'Scan QR Code': 'Скануй QR-код',
       'Install on phone': 'Встановити на смартфон',
-      '1. Studio Home': '1. Головна',
-      '2. Compress -90%': '2. Стиснення',
-      '3. AES-256 PDF': '3. Захист PDF',
+      '1. Studio Home': '1. Головна студія',
+      '2. PDF Tools': '2. Інструменти PDF',
+      '3. Processing Result': '3. Результат стиснення',
       'Interactive Preview': 'Інтерактивний огляд',
       'Smart Compressor': 'Розумний компресор',
       'Original (24 HEIC Photos)': 'Оригінал (24 HEIC фото)',
