@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPOT — Precision Workout Tracker & Muscle Recovery Engine</title>
+  <meta name="description" content="An intelligent, dark-aesthetic strength training companion for lifters and athletes. Algorithmic muscle recovery tracking, custom splits, and frictionless live session logging.">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:title" content="SPOT — Precision Workout Tracker & Muscle Recovery Engine">
+  <meta property="og:description" content="Intelligent muscle readiness tracking, custom workout splits, and tactile live session logging. Dark aesthetic for focused athletes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vanzalabs.tech/spot">
+  <meta property="og:image" content="https://vanzalabs.tech/og-image.jpg?v=2">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SPOT — Precision Workout Tracker & Muscle Recovery Engine">
+  <meta name="twitter:description" content="Intelligent muscle readiness tracking, custom splits, and focused workout logging.">
+  <meta name="twitter:image" content="https://vanzalabs.tech/og-image.jpg?v=2">
+  <link rel="canonical" href="https://vanzalabs.tech/spot">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0D0F">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu pu gu mu init Gu Qu Hu Wu Xu il Vu Yu ju oc ac lc uc cc hc capture getExtension Zu hu gc calculateEventProperties vc register register_once register_for_session unregister unregister_for_session zu mc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync wc identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset kc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty yc nc createPersonProfile setInternalOrTestUser bc xu ku opt_in_capturing opt_out_capturing Su has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing tc debug nl Os getPageViewId captureTraceFeedback captureTraceMetric Du".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_q5gM7VmNh57nCNKfKQx7KZDNgqaY7UK2mdXjrAzKDRey', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'always'
+    });
+  </script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            spot: {
+              lime: '#C8FF3D',
+              limeHover: '#B6EE2C',
+              limeGlow: 'rgba(200, 255, 61, 0.15)',
+              dark: '#08090C',
+              card: '#0F1218',
+              cardBorder: '#1A1F2B',
+              surface: '#151922'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #08090C;
+      color: #F3F4F6;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .neon-glow {
+      box-shadow: 0 0 50px -10px rgba(200, 255, 61, 0.25);
+    }
+    .neon-text-glow {
+      text-shadow: 0 0 24px rgba(200, 255, 61, 0.4);
+    }
+    .grid-bg {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-[#C8FF3D] selection:text-black">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-[#08090C]/85 backdrop-blur-md border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo + Studio Badge -->
+      <div class="flex items-center gap-3">
+        <a href="#hero" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-black border border-gray-800 flex items-center justify-center p-1.5 shadow-inner transition group-hover:border-[#C8FF3D]/50">
+            <img src="/spot_logo.png" alt="SPOT Logo" class="w-full h-auto object-contain">
+          </div>
+          <div>
+            <span class="font-black text-lg tracking-tight text-white group-hover:text-[#C8FF3D] transition">SPOT</span>
+            <span class="hidden sm:inline-block ml-2 text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-gray-400">Workout Tracker</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center Links (Desktop) -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider text-gray-400">
+        <a href="#features" class="hover:text-white transition"><span>Features</span></a>
+        <a href="#readiness" class="hover:text-white transition"><span>Recovery Engine</span></a>
+        <a href="#comparison" class="hover:text-white transition"><span>Why SPOT</span></a>
+        <a href="#faq" class="hover:text-white transition"><span>FAQ</span></a>
+      </nav>
+
+      <!-- Right Actions: Language Switcher + Download CTA -->
+      <div class="flex items-center gap-3">
+        <!-- Language Switcher -->
+        <button type="button" onclick="toggleSpotLang()" id="langBtn" class="px-2.5 py-1.5 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:text-white hover:border-gray-700 transition">
+          <span id="langLabel">UA</span>
+        </button>
+
+        <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.spot" target="_blank" rel="noopener noreferrer" onclick="if(window.posthog)posthog.capture('spot_top_cta_clicked')" class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-[#C8FF3D] hover:bg-[#B6EE2C] text-black text-xs font-bold transition shadow-sm">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span class="hidden sm:inline"><span>Get on Google Play</span></span>
+          <span class="sm:hidden">Install</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="relative pt-12 sm:pt-20 lg:pt-24 pb-16 sm:pb-24 overflow-hidden grid-bg">
+    <!-- Ambient Glow Orbs -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#C8FF3D]/10 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="absolute top-1/3 right-10 w-80 h-80 bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Copy -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs">
+            <span class="w-2 h-2 rounded-full bg-[#C8FF3D] animate-pulse"></span>
+            <span class="text-[#C8FF3D] font-semibold"><span>Precision Workout Companion</span></span>
+            <span class="text-gray-500">•</span>
+            <span class="text-gray-300"><span>Built for Lifters</span></span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+            <span>Train smarter.</span><br>
+            <span class="text-[#C8FF3D] neon-text-glow"><span>Recover faster.</span></span><br>
+            <span>Hit every single PR.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <span>An intelligent, dark-aesthetic strength training companion for lifters and athletes. Algorithmic muscle recovery tracking, custom splits, and frictionless live logging with zero distractions.</span>
+          </p>
+
+          <!-- Main CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.spot" target="_blank" rel="noopener noreferrer" onclick="if(window.posthog)posthog.capture('spot_hero_google_play_clicked')" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl bg-[#C8FF3D] hover:bg-[#B6EE2C] text-black font-extrabold text-sm transition shadow-lg neon-glow group">
+              <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+              <span><span>Download on Google Play</span></span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+
+            <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-sm transition">
+              <span><span>Explore Features</span></span>
+            </a>
+          </div>
+
+          <!-- Feature badges row -->
+          <div class="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs text-gray-400">
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#C8FF3D]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>100% Focused · 0 Ads</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#C8FF3D]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Offline Gym Ready</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#C8FF3D]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>Privacy First</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Visual Mockup -->
+        <div class="lg:col-span-5 flex justify-center items-center relative">
+          <!-- Subtle Frame Glow -->
+          <div class="absolute inset-0 max-w-[320px] mx-auto bg-gradient-to-b from-[#C8FF3D]/25 via-emerald-500/10 to-transparent rounded-[42px] blur-2xl pointer-events-none"></div>
+
+          <!-- Phone Device Frame -->
+          <div class="relative w-full max-w-[280px] sm:max-w-[305px] rounded-[36px] p-2.5 bg-gradient-to-b from-gray-700 via-gray-900 to-black shadow-2xl border border-gray-700/60">
+            <div class="rounded-[28px] overflow-hidden bg-black aspect-[9/19.5] border border-gray-900/80 shadow-inner flex items-center justify-center">
+              <img src="/screen_spot.jpg" alt="SPOT Workout Interface" class="w-full h-full object-cover object-top">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK STATS & ARCHITECTURE BAR -->
+  <section class="py-10 bg-[#0F1218] border-y border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="space-y-1">
+          <p class="text-2xl sm:text-3xl font-extrabold text-[#C8FF3D]">0–100%</p>
+          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold"><span>Readiness Engine</span></p>
+        </div>
+        <div class="space-y-1">
+          <p class="text-2xl sm:text-3xl font-extrabold text-white">Push/Pull/Legs</p>
+          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold"><span>Adaptive Splits</span></p>
+        </div>
+        <div class="space-y-1">
+          <p class="text-2xl sm:text-3xl font-extrabold text-[#C8FF3D]">1-Tap</p>
+          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold"><span>Set & Rep Logging</span></p>
+        </div>
+        <div class="space-y-1">
+          <p class="text-2xl sm:text-3xl font-extrabold text-white">100% Offline</p>
+          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold"><span>Works Anywhere</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 CORE FEATURES GRID (Like openGym) -->
+  <section id="features" class="py-20 sm:py-28 bg-[#08090C] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <p class="text-xs font-bold uppercase tracking-widest text-[#C8FF3D] mb-3"><span>Core Architecture</span></p>
+        <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
+          <span>Everything serious lifters need. Nothing they don't.</span>
+        </h2>
+        <p class="text-sm sm:text-base text-gray-400 mt-4 leading-relaxed">
+          <span>Most fitness apps are bloated social networks with ads and useless clutter. SPOT is built by engineers and lifters to maximize mechanical tension and recovery.</span>
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+        
+        <!-- Card 1: Muscle Recovery -->
+        <div id="readiness" class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#C8FF3D]/40 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-[#C8FF3D]/10 border border-[#C8FF3D]/30 flex items-center justify-center text-[#C8FF3D] font-bold text-xl">
+            ⚡
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#C8FF3D] transition">
+            <span>Muscle Readiness Engine</span>
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            <span>Algorithmic recovery tracking (0–100%) per individual muscle group using mathematical time-decay models. Know precisely when your chest, lats, or hamstrings are fully regenerated to train at maximum intensity without overtraining.</span>
+          </p>
+          <ul class="space-y-2 text-xs text-gray-400 pt-2">
+            <li class="flex items-center gap-2"><span class="text-[#C8FF3D]">✓</span> <span>Prevents junk volume & central nervous system burnout</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#C8FF3D]">✓</span> <span>Visual anatomical readiness breakdown</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Adaptive Routine Generator -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#C8FF3D]/40 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-[#C8FF3D]/10 border border-[#C8FF3D]/30 flex items-center justify-center text-[#C8FF3D] font-bold text-xl">
+            🎯
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#C8FF3D] transition">
+            <span>Adaptive Split & Routine Generator</span>
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            <span>Auto-generated custom training programs (Push/Pull/Legs, Upper/Lower, Full Body, Arnold Split) adapted to your weekly availability, training age, and available gym equipment.</span>
+          </p>
+          <ul class="space-y-2 text-xs text-gray-400 pt-2">
+            <li class="flex items-center gap-2"><span class="text-[#C8FF3D]">✓</span> <span>Optimal exercise sequencing & warm-up sets</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#C8FF3D]">✓</span> <span>Dynamic exercise replacement when equipment is busy</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Focused Live Session Tracker -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#C8FF3D]/40 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-[#C8FF3D]/10 border border-[#C8FF3D]/30 flex items-center justify-center text-[#C8FF3D] font-bold text-xl">
+            ⏱️
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#C8FF3D] transition">
+            <span>Frictionless Live Session Tracker</span>
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            <span>Effortless set/rep logging with large touch targets. Includes an automated rest timer with subtle tactile haptic cues and audio beeps so you don't stare at your phone between sets.</span>
+          </p>
+          <ul class="space-y-2 text-xs text-gray-400 pt-2">
+            <li class="flex items-center gap-2"><span class="text-[#C8FF3D]">✓</span> <span>Seamless background continuity if app is minimized</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#C8FF3D]">✓</span> <span>Auto-calculation of recommended weight for next set</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 4: Deep Analytics & PR Tracking -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-7 sm:p-9 space-y-4 hover:border-[#C8FF3D]/40 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-[#C8FF3D]/10 border border-[#C8FF3D]/30 flex items-center justify-center text-[#C8FF3D] font-bold text-xl">
+            🏆
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#C8FF3D] transition">
+            <span>Deep Analytics & PR Detection</span>
+          </h3>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            <span>Automated Personal Record (PR) recognition across 1RM, volume, and rep maxes. Track progressive overload trends, muscle group volume distribution, and total workout tonnage.</span>
+          </p>
+          <ul class="space-y-2 text-xs text-gray-400 pt-2">
+            <li class="flex items-center gap-2"><span class="text-[#C8FF3D]">✓</span> <span>Interactive progression graphs over weeks & months</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#C8FF3D]">✓</span> <span>Accurate RPE / RIR (Reps in Reserve) calculation</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE: SPOT VS GENERIC APPS -->
+  <section id="comparison" class="py-16 sm:py-24 bg-[#0F1218] border-y border-gray-800/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <span>Why lifters switch to SPOT</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-400 mt-2">
+          <span>Designed with high density information and zero clutter.</span>
+        </p>
+      </div>
+
+      <div class="bg-[#08090C] border border-gray-800 rounded-3xl overflow-hidden shadow-xl">
+        <div class="grid grid-cols-3 p-4 sm:p-6 bg-white/5 border-b border-gray-800 text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-300">
+          <div><span>Feature</span></div>
+          <div class="text-center text-[#C8FF3D]">SPOT</div>
+          <div class="text-center text-gray-400"><span>Generic Gym Apps</span></div>
+        </div>
+
+        <div class="divide-y divide-gray-800/80 text-xs sm:text-sm text-gray-300">
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center">
+            <div class="font-semibold text-white"><span>Muscle Recovery Algorithm</span></div>
+            <div class="text-center text-[#C8FF3D] font-bold">✓ Algorithmic Decay (0–100%)</div>
+            <div class="text-center text-gray-500">✗ None (guesswork)</div>
+          </div>
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center bg-white/[0.02]">
+            <div class="font-semibold text-white"><span>Distraction & Ads</span></div>
+            <div class="text-center text-[#C8FF3D] font-bold">✓ Zero Ads · Pure Focus</div>
+            <div class="text-center text-gray-500">✗ Video ads & popups</div>
+          </div>
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center">
+            <div class="font-semibold text-white"><span>Offline Gym Reliability</span></div>
+            <div class="text-center text-[#C8FF3D] font-bold">✓ 100% Offline Capable</div>
+            <div class="text-center text-gray-500">✗ Fails in gym basements</div>
+          </div>
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center bg-white/[0.02]">
+            <div class="font-semibold text-white"><span>Dark Aesthetic UI</span></div>
+            <div class="text-center text-[#C8FF3D] font-bold">✓ True OLED Dark + Lime</div>
+            <div class="text-center text-gray-500">✗ Blinding white themes</div>
+          </div>
+          <div class="grid grid-cols-3 p-4 sm:p-5 items-center">
+            <div class="font-semibold text-white"><span>Tactile Rest Timer</span></div>
+            <div class="text-center text-[#C8FF3D] font-bold">✓ Haptic + Sound cues</div>
+            <div class="text-center text-gray-500">✗ Basic stopwatch</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" class="py-16 sm:py-24 bg-[#08090C]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <p class="text-xs font-bold uppercase tracking-widest text-[#C8FF3D] mb-2">FAQ</p>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight"><span>Frequently Asked Questions</span></h2>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5 sm:p-6">
+          <h3 class="text-base font-bold text-white mb-2"><span>How does the Muscle Recovery Engine calculate readiness?</span></h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+            <span>SPOT models muscle fatigue based on volume, intensity, and time-decay curves. Different muscle groups have different recovery windows (e.g., small muscle groups recover in ~36–48h while spinal erectors and quads take longer). SPOT estimates this to help you pick the best day for each split.</span>
+          </p>
+        </div>
+
+        <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5 sm:p-6">
+          <h3 class="text-base font-bold text-white mb-2"><span>Does SPOT work without an internet connection?</span></h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+            <span>Yes. Gym basements frequently have zero mobile signal. SPOT stores your workout routines, logs, and timer locally on device so you never lose a set.</span>
+          </p>
+        </div>
+
+        <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5 sm:p-6">
+          <h3 class="text-base font-bold text-white mb-2"><span>Is my workout data private?</span></h3>
+          <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+            <span>Completely. We do not sell your biometric, health, or workout data to any advertisers or third-party brokers.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA BANNER -->
+  <section class="py-16 sm:py-20 bg-gradient-to-b from-[#0F1218] to-[#08090C] border-t border-gray-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[#C8FF3D]/5 pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
+      
+      <div class="w-16 h-16 rounded-2xl bg-black border border-gray-800 mx-auto flex items-center justify-center p-3 shadow-xl">
+        <img src="/spot_logo.png" alt="SPOT" class="w-full h-auto object-contain">
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+        <span>Ready to elevate your training?</span>
+      </h2>
+
+      <p class="text-sm sm:text-base text-gray-300 max-w-xl mx-auto">
+        <span>Download SPOT on Google Play and start logging with algorithmic precision today.</span>
+      </p>
+
+      <div class="pt-2">
+        <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.spot" target="_blank" rel="noopener noreferrer" onclick="if(window.posthog)posthog.capture('spot_bottom_cta_clicked')" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#C8FF3D] hover:bg-[#B6EE2C] text-black font-extrabold text-sm sm:text-base transition shadow-xl neon-glow">
+          <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span><span>Get SPOT on Google Play</span></span>
+        </a>
+      </div>
+      <p class="text-xs text-gray-500 font-mono">com.vanzalabs.spot</p>
+    </div>
+  </section>
+
+  <!-- STUDIO ATTRIBUTION & INBOUND LEAD BANNER -->
+  <section class="py-12 bg-black border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4 text-left">
+          <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-2 shrink-0">
+            <img src="/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="w-full h-auto object-contain">
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-[#C8FF3D]"><span>Engineered by VanzaLabs Studio</span></p>
+            <p class="text-sm text-gray-300"><span>Need a custom mobile app or MVP built with this level of polish?</span></p>
+          </div>
+        </div>
+        <a href="https://vanzalabs.tech/#contact" target="_blank" onclick="if(window.posthog)posthog.capture('spot_studio_banner_clicked')" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white text-xs font-bold transition shrink-0 group">
+          <span><span>Hire VanzaLabs to Build Your App</span></span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#08090C] border-t border-gray-900 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 SPOT by VanzaLabs. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href="/privacy-policy.html" class="hover:text-gray-300 transition"><span>Privacy Policy</span></a>
+        <a href="mailto:contact@vanzalabs.tech" class="hover:text-gray-300 transition"><span>Support: contact@vanzalabs.tech</span></a>
+        <a href="https://vanzalabs.tech" class="hover:text-gray-300 transition"><span>VanzaLabs Main Site</span></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bilingual Translations Dictionary -->
+  <script>
+    const spotTranslations = {
+      // Nav
+      'Features': 'Функції',
+      'Recovery Engine': 'Відновлення мʼязів',
+      'Why SPOT': 'Чому SPOT',
+      'FAQ': 'Часті питання',
+      'Get on Google Play': 'Завантажити в Google Play',
+
+      // Hero
+      'Precision Workout Companion': 'Точний трекер тренувань',
+      'Built for Lifters': 'Створено для атлетів',
+      'Train smarter.': 'Тренуйся розумніше.',
+      'Recover faster.': 'Відновлюйся швидше.',
+      'Hit every single PR.': 'Бий кожен новий рекорд.',
+      'An intelligent, dark-aesthetic strength training companion for lifters and athletes. Algorithmic muscle recovery tracking, custom splits, and frictionless live logging with zero distractions.':
+        'Преміальний фітнес-застосунок у темній естетиці для силових тренувань. Розумний алгоритм відновлення мʼязових груп, персональні спліт-програми та фокусований трекер підходів без зайвого спаму.',
+      'Download on Google Play': 'Завантажити в Google Play',
+      'Explore Features': 'Переглянути можливості',
+      '100% Focused · 0 Ads': '100% Фокус · Без реклами',
+      'Offline Gym Ready': 'Працює без інтернету',
+      'Privacy First': 'Повна приватність даних',
+
+      // Stats
+      'Readiness Engine': 'Алгоритм відновлення',
+      'Adaptive Splits': 'Адаптивні спліти',
+      'Set & Rep Logging': 'Запис підходів в 1 дотик',
+      'Works Anywhere': 'Працює будь-де',
+
+      // Features
+      'Core Architecture': 'Ключова архітектура',
+      'Everything serious lifters need. Nothing they don\'t.': 'Усе, що потрібно для результату. І нічого зайвого.',
+      'Most fitness apps are bloated social networks with ads and useless clutter. SPOT is built by engineers and lifters to maximize mechanical tension and recovery.':
+        'Більшість фітнес-додатків перевантажені рекламою та соцмережами. SPOT створений інженерами для атлетів — щоб прогресувати в робочих вагах і відновленні.',
+      'Muscle Readiness Engine': 'Алгоритм відновлення мʼязів',
+      'Algorithmic recovery tracking (0–100%) per individual muscle group using mathematical time-decay models. Know precisely when your chest, lats, or hamstrings are fully regenerated to train at maximum intensity without overtraining.':
+        'Розрахунок відновлення кожної групи мʼязів (0–100%) на базі математичної моделі часового спаду навантаження. Точно знайте, коли груди, спина чи ноги повністю готові до нового важкого тренування.',
+      'Prevents junk volume & central nervous system burnout': 'Захищає від «сміттєвого» обʼєму та виснаження ЦНС',
+      'Visual anatomical readiness breakdown': 'Наочна анатомічна карта готовності мʼязів',
+      'Adaptive Split & Routine Generator': 'Адаптивний генератор спліт-програм',
+      'Auto-generated custom training programs (Push/Pull/Legs, Upper/Lower, Full Body, Arnold Split) adapted to your weekly availability, training age, and available gym equipment.':
+        'Автоматична генерація персональних тренувальних програм (Push/Pull/Legs, Верх/Низ, Full Body) під ваші цілі, досвід та доступні дні на тиждень.',
+      'Optimal exercise sequencing & warm-up sets': 'Оптимальна послідовність вправ і розминки',
+      'Dynamic exercise replacement when equipment is busy': 'Швидка заміна вправи, якщо тренажер зайнятий',
+      'Frictionless Live Session Tracker': 'Фокусований лайв-трекер підходів',
+      'Effortless set/rep logging with large touch targets. Includes an automated rest timer with subtle tactile haptic cues and audio beeps so you don\'t stare at your phone between sets.':
+        'Миттєвий запис ваги та повторень з великими кнопками. Вбудований розумний таймер відпочинку з тактильним haptic-відгуком, щоб не залипати в екран між підходами.',
+      'Seamless background continuity if app is minimized': 'Фонова робота таймера без втрати даних',
+      'Auto-calculation of recommended weight for next set': 'Підказка робочої ваги для наступного сету',
+      'Deep Analytics & PR Detection': 'Аналітика та фіксація рекордів',
+      'Automated Personal Record (PR) recognition across 1RM, volume, and rep maxes. Track progressive overload trends, muscle group volume distribution, and total workout tonnage.':
+        'Автоматична фіксація особистих рекордів (PR), розрахунок 1RM, баланс мʼязових груп та динаміка робочого тоннажу тренувань.',
+      'Interactive progression graphs over weeks & months': 'Графіки прогресу за тижні й місяці',
+      'Accurate RPE / RIR (Reps in Reserve) calculation': 'Розрахунок запасу повторень (RPE / RIR)',
+
+      // Comparison
+      'Why lifters switch to SPOT': 'Чому атлети обирають SPOT',
+      'Designed with high density information and zero clutter.': 'Висока щільність корисної інформації без візуального шуму.',
+      'Feature': 'Можливість',
+      'Generic Gym Apps': 'Звичайні фітнес-додатки',
+      'Muscle Recovery Algorithm': 'Алгоритм відновлення мʼязів',
+      'Distraction & Ads': 'Реклама та відволікання',
+      'Offline Gym Reliability': 'Робота в підвальних залах',
+      'Dark Aesthetic UI': 'Темна естетика UI',
+      'Tactile Rest Timer': 'Тактильний таймер відпочинку',
+
+      // FAQ
+      'Frequently Asked Questions': 'Часті запитання',
+      'How does the Muscle Recovery Engine calculate readiness?': 'Як розраховується готовність мʼязів до тренування?',
+      'SPOT models muscle fatigue based on volume, intensity, and time-decay curves. Different muscle groups have different recovery windows (e.g., small muscle groups recover in ~36–48h while spinal erectors and quads take longer). SPOT estimates this to help you pick the best day for each split.':
+        'SPOT моделює мʼязову втому на основі робочого тоннажу, інтенсивності та часових кривих відновлення. Різні групи відновлюються з різною швидкістю (руки швидше, ніж ноги чи спина), що допомагає тренуватись без перетренованості.',
+      'Does SPOT work without an internet connection?': 'Чи працює SPOT без інтернету?',
+      'Yes. Gym basements frequently have zero mobile signal. SPOT stores your workout routines, logs, and timer locally on device so you never lose a set.':
+        'Так, на 100%. У спортзалах часто зникає звʼязок, тому SPOT зберігає тренування локально на смартфоні — жоден підхід не пропаде.',
+      'Is my workout data private?': 'Чи захищені мої персональні дані?',
+      'Completely. We do not sell your biometric, health, or workout data to any advertisers or third-party brokers.':
+        'Абсолютно. Ми не продаємо ваші тренувальні чи біометричні дані третім сторонам або рекламним мережам.',
+
+      // Bottom CTA
+      'Ready to elevate your training?': 'Готові вийти на новий рівень у залі?',
+      'Download SPOT on Google Play and start logging with algorithmic precision today.':
+        'Завантажуйте SPOT у Google Play та тренуйтеся з алгоритмічною точністю вже сьогодні.',
+      'Get SPOT on Google Play': 'Отримати SPOT у Google Play',
+
+      // Studio Attribution
+      'Engineered by VanzaLabs Studio': 'Створено інженерною студією VanzaLabs',
+      'Need a custom mobile app or MVP built with this level of polish?':
+        'Потрібен власний мобільний застосунок або MVP такого ж рівня якості?',
+      'Hire VanzaLabs to Build Your App': 'Замовити розробку у VanzaLabs',
+
+      // Footer
+      'Privacy Policy': 'Політика конфіденційності',
+      'VanzaLabs Main Site': 'Головний сайт VanzaLabs'
+    };
+
+    let currentLang = 'en';
+
+    function setSpotLang(lang) {
+      currentLang = lang;
+      const isUa = lang === 'uk';
+      document.documentElement.lang = isUa ? 'uk' : 'en';
+      document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+
+      const spans = document.querySelectorAll('span');
+      spans.forEach(span => {
+        const text = span.textContent.trim();
+        if (isUa && spotTranslations[text]) {
+          span.dataset.original = text;
+          span.textContent = spotTranslations[text];
+        } else if (!isUa && span.dataset.original) {
+          span.textContent = span.dataset.original;
+        }
+      });
+
+      if (window.posthog) {
+        window.posthog.capture('spot_lang_switched', { lang: lang });
+      }
+    }
+
+    function toggleSpotLang() {
+      setSpotLang(currentLang === 'en' ? 'uk' : 'en');
+    }
+  </script>
+</body>
+</html>
