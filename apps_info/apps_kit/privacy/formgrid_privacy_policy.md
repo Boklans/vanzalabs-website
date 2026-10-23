@@ -7,6 +7,8 @@
 
 This Privacy Policy explains what information FormGrid ("the App", "we") accesses, how it is used, and the choices you have. FormGrid is a mobile client for Google Forms™ and Google Sheets™. It is not affiliated with or endorsed by Google LLC.
 
+The use of raw or derived user data received from Workspace APIs will adhere to the Google User Data Policy, including the Limited Use requirements. FormGrid does not use, transfer, or disclose raw, aggregated, or derived Google user data to develop, train, or improve foundational or generalized machine learning and artificial intelligence (AI/ML) models.
+
 ## 1. Summary
 - FormGrid has **no backend servers of its own**. The App communicates **directly** from your device with official Google APIs over encrypted HTTPS.
 - We (Vanza Labs) **never receive, see, store or sell** your forms, spreadsheets, responses or Google account data.
@@ -37,6 +39,8 @@ If you use the system "Share" menu to send a file to FormGrid, the file is uploa
 
 ## 3. Google API Services User Data Policy — Limited Use disclosure
 FormGrid's use and transfer to any other app of information received from Google APIs will adhere to the **Google API Services User Data Policy**, including the **Limited Use** requirements: https://developers.google.com/terms/api-services-user-data-policy
+
+The use of raw or derived user data received from Workspace APIs will adhere to the Google User Data Policy, including the Limited Use requirements. FormGrid does not use, transfer, or disclose raw, aggregated, or derived Google user data to develop, train, or improve foundational or generalized machine learning and artificial intelligence (AI/ML) models.
 
 Specifically:
 - Google user data is used **only** to provide and improve the user-facing features of the App that you request.
@@ -82,6 +86,8 @@ Vanza Labs · contact@vanzalabs.tech · https://vanzalabs.tech
 
 FormGrid — мобільний клієнт для Google Forms™ та Google Sheets™. Застосунок не пов'язаний із Google LLC.
 
+The use of raw or derived user data received from Workspace APIs will adhere to the Google User Data Policy, including the Limited Use requirements. FormGrid does not use, transfer, or disclose raw, aggregated, or derived Google user data to develop, train, or improve foundational or generalized machine learning and artificial intelligence (AI/ML) models.
+
 **1. Коротко.** FormGrid не має власних серверів: застосунок звертається **напряму** до офіційних Google API через HTTPS. Vanza Labs **не отримує, не бачить, не зберігає і не продає** ваші форми, таблиці, відповіді чи дані Google-акаунта. Немає реклами та сторонньої аналітики.
 
 **2. До яких даних є доступ.**
@@ -90,7 +96,7 @@ FormGrid — мобільний клієнт для Google Forms™ та Google 
 - *Покупки:* обробляє **Google Play Billing** (дані картки ми не отримуємо). Для перевірки й відновлення покупок використовується **RevenueCat**, який отримує анонімний ідентифікатор користувача, дані транзакції та базову інформацію про пристрій/версію застосунку. https://www.revenuecat.com/privacy
 - *Файли через «Поділитися»:* завантажуються лише у ваш власний Google Drive на ваш запит.
 
-**3. Розкриття Limited Use.** Використання та передача FormGrid будь-якому іншому застосунку інформації, отриманої з Google API, відповідає **Google API Services User Data Policy**, включно з вимогами **Limited Use**. Дані Google використовуються лише для функцій, які ви запитуєте; не передаються третім особам, не використовуються для реклами чи навчання AI-моделей, не продаються і не переглядаються людьми.
+**3. Розкриття Limited Use.** Використання та передача FormGrid будь-якому іншому застосунку інформації, отриманої з Google API, відповідає **Google API Services User Data Policy**, включно з вимогами **Limited Use**. The use of raw or derived user data received from Workspace APIs will adhere to the Google User Data Policy, including the Limited Use requirements. FormGrid does not use, transfer, or disclose raw, aggregated, or derived Google user data to develop, train, or improve foundational or generalized machine learning and artificial intelligence (AI/ML) models. Дані Google використовуються лише для функцій, які ви запитуєте; не передаються третім особам, не використовуються для реклами чи навчання AI-моделей, не продаються і не переглядаються людьми.
 
 **4. Передача даних.** Лише Google (для виконання ваших дій) та RevenueCat / Google Play (для покупок). Ми не продаємо і не передаємо персональні дані.
 
