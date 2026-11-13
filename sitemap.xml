@@ -75,4 +75,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://vanzalabs.tech/blog/how-to-shrink-4k-videos-smartphone-photos-email-without-losing-detail</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
