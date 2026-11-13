@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Science of Muscle Recovery Windows: Optimizing Push/Pull/Legs Splits & Offline Workout Tracking | VanzaLabs Blog</title>
+  <meta name="description" content="Explore physiological muscle recovery curves (36h vs 72h muscle groups), RPE-based fatigue decay, and how to track gym workouts offline with SPOT Workout Tracker.">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:title" content="The Science of Muscle Recovery Windows: Optimizing Push/Pull/Legs Splits & Offline Workout Tracking">
+  <meta property="og:description" content="Why generic 7-day gym calendars cause plateaus. Learn how 36h–72h muscle recovery heatmaps and offline workout logging optimize hypertrophy.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://vanzalabs.tech/blog/science-of-muscle-recovery-offline-workout-tracker">
+  <meta property="og:image" content="https://vanzalabs.tech/spot-og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Science of Muscle Recovery Windows & Offline Workout Tracking">
+  <meta name="twitter:description" content="Optimize Push/Pull/Legs splits with 36h–72h physiological recovery windows and SPOT Workout Tracker.">
+  <link rel="canonical" href="https://vanzalabs.tech/blog/science-of-muscle-recovery-offline-workout-tracker">
+  <meta name="p:domain_verify" content="90f814ccab954bd60bf020b0af5c7022"/>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="512x512" href="/spot_logo.png">
+  <meta name="theme-color" content="#08090C">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background-color: #08090C;
+      color: #F3F4F6;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .lime-glow {
+      box-shadow: 0 0 40px -10px rgba(163, 230, 53, 0.35);
+    }
+    .prose-custom h2 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .prose-custom h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      margin-top: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .prose-custom p {
+      color: #d1d5db;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      font-size: 1.02rem;
+    }
+    .prose-custom ul, .prose-custom ol {
+      color: #d1d5db;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      line-height: 1.75;
+    }
+    .prose-custom li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu pu gu mu init Gu Qu Hu Wu Xu il Vu Yu ju oc ac lc uc cc hc capture getExtension Zu hu gc calculateEventProperties vc register register_once register_for_session unregister unregister_for_session zu mc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync wc identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset kc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty yc nc createPersonProfile setInternalOrTestUser bc xu ku opt_in_capturing opt_out_capturing Su has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing tc debug nl Os getPageViewId captureTraceFeedback captureTraceMetric Du".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_q5gM7VmNh57nCNKfKQx7KZDNgqaY7UK2mdXjrAzKDRey', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'always'
+    });
+  </script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "The Science of Muscle Recovery Windows: Optimizing Push/Pull/Legs Splits & Offline Workout Tracking",
+        "description": "Learn how physiological muscle recovery windows (36h to 72h), RPE-based fatigue decay, and offline gym tracking help lifters avoid plateaus and overtraining.",
+        "image": "https://vanzalabs.tech/screen_spot.jpg",
+        "datePublished": "2026-10-21",
+        "dateModified": "2026-11-13",
+        "author": {
+          "@type": "Organization",
+          "name": "VanzaLabs Engineering",
+          "url": "https://vanzalabs.tech"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "VanzaLabs",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://vanzalabs.tech/vanzalabs_logo_white_text.png"
+          }
+        },
+        "mainEntityOfPage": "https://vanzalabs.tech/blog/science-of-muscle-recovery-offline-workout-tracker"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How many hours does a muscle group need to recover after hypertrophy training?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Recovery time depends on muscle size, fiber architecture, and set intensity. Smaller muscle groups (biceps, lateral delts, calves, abs) typically recover within 36 to 48 hours, while larger compound structures (quads, hamstrings, lats, lower back, pectorals) require 60 to 72+ hours after high-volume training."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does SPOT Workout Tracker work in basement gyms without internet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. SPOT is engineered with an offline-first architecture. All workout logs, rest timers, 1RM calculations, and muscle recovery heatmaps compute locally on your phone with zero cloud lag."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "VanzaLabs", "item": "https://vanzalabs.tech/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://vanzalabs.tech/blog" },
+          { "@type": "ListItem", "position": 3, "name": "Science of Muscle Recovery & Offline Workout Tracker", "item": "https://vanzalabs.tech/blog/science-of-muscle-recovery-offline-workout-tracker" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="antialiased selection:bg-lime-400 selection:text-black">
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#08090C]/85 border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-1">
+            <img src="/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="w-full h-auto object-contain">
+          </div>
+          <span class="font-black text-base sm:text-lg text-white group-hover:text-lime-400 transition">VanzaLabs</span>
+        </a>
+        <span class="text-gray-700">/</span>
+        <a href="/blog" class="text-xs font-bold text-gray-300 hover:text-lime-400 transition">
+          <span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleArticleLang()" class="px-3 py-1.5 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:text-white hover:border-gray-700 transition">
+          <span id="langLabel">UA</span>
+        </button>
+        <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.spot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-lime-400 hover:bg-lime-300 text-black text-xs font-extrabold transition">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span class="ui-en">Get SPOT Tracker</span><span class="ui-uk hidden">Завантажити SPOT</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <!-- Breadcrumbs -->
+    <nav class="text-xs text-gray-500 mb-6 flex items-center gap-2 flex-wrap">
+      <a href="/" class="hover:text-gray-300">VanzaLabs</a>
+      <span>→</span>
+      <a href="/blog" class="hover:text-gray-300"><span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span></a>
+      <span>→</span>
+      <span class="text-lime-400 font-medium"><span class="ui-en">Science of Muscle Recovery & Offline Workout Tracking</span><span class="ui-uk hidden">Наука відновлення мʼязів та офлайн-трекер</span></span>
+    </nav>
+
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+
+      <!-- LEFT COLUMN: ARTICLE CONTENT -->
+      <div class="lg:col-span-8">
+
+        <!-- ================= ENGLISH ARTICLE ================= -->
+        <article id="lang-en" class="prose-custom">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-lime-400/15 border border-lime-400/30 text-lime-400 font-bold">Sports Science & Offline Tech</span>
+            <span class="text-gray-400">9 min read</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-10-21" class="text-gray-400">Updated Nov 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] mb-6">
+            The Science of Muscle Recovery Windows: Optimizing Push/Pull/Legs Splits & Offline Workout Tracking
+          </h1>
+
+          <p class="text-lg text-gray-300 leading-relaxed mb-8">
+            Most lifters organize their training around a rigid 7-day calendar ("Monday is International Chest Day") rather than human physiology. Yet sports physiology research consistently shows that <strong>muscle protein synthesis (MPS) and neuromuscular recovery do not follow a 7-day clock</strong> — lateral deltoids and biceps recover in roughly 36 to 48 hours, while heavy compound work on quadriceps, hamstrings, and spinal erectors can demand 60 to 72+ hours of recovery.
+          </p>
+
+          <div class="bg-[#0F1218] border-l-4 border-lime-400 rounded-r-2xl p-6 mb-8">
+            <p class="text-xs font-bold uppercase tracking-wider text-lime-400 mb-2">Training Intelligence</p>
+            <p class="text-sm text-gray-300 mb-0">
+              We engineered <strong><a href="/spot" class="text-lime-400 underline">SPOT Workout Tracker</a></strong> to replace guesswork with real-time recovery modeling. By combining primary and synergist muscle mapping (36h–72h windows) with tactile, distraction-free offline logging, SPOT tells you exactly which muscle groups are primed for progressive overload today.
+            </p>
+          </div>
+
+          <h2>1. Why Different Muscle Groups Recover at Different Speeds</h2>
+          <p>
+            When you perform resistance training close to failure, two forms of fatigue accumulate: <strong>peripheral myofibrillar damage</strong> inside the muscle fibers and <strong>central nervous system (CNS) fatigue</strong>. Three variables dictate how long it takes a muscle group to return to 90%+ readiness:
+          </p>
+          <ul class="list-disc">
+            <li><strong>Muscle Mass & Architecture:</strong> Large pennate and multipennate muscles capable of generating high absolute force (quads, glutes, lats) experience greater structural micro-trauma than smaller fusiform muscles (biceps, calves, rear delts).</li>
+            <li><strong>Synergist Overlap in Splits:</strong> Every heavy bench press or overhead press taxes the anterior deltoids and triceps. Every barbell row or pull-up taxes the biceps and brachialis. Ignoring synergist load leads to chronic elbow and shoulder inflammation.</li>
+            <li><strong>Proximity to Failure (RPE / RIR):</strong> Four sets taken to 0 RIR (true muscular failure) require almost double the recovery window of four sets stopped at 2–3 reps in reserve.</li>
+          </ul>
+
+          <h2>2. Reference Table: Physiological Recovery Windows by Muscle Group</h2>
+          <div class="overflow-x-auto my-6 rounded-2xl border border-gray-800">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-[#131722] text-gray-300 border-b border-gray-800">
+                  <th class="p-4 font-bold">Muscle Group</th>
+                  <th class="p-4 font-bold text-lime-400">Baseline Recovery Window</th>
+                  <th class="p-4 font-bold text-gray-400">Optimal Weekly Frequency</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-800/80 bg-[#0F1218]">
+                <tr>
+                  <td class="p-4 font-semibold text-white">Biceps, Forearms, Calves, Abs</td>
+                  <td class="p-4 text-lime-400 font-medium">36 – 48 Hours</td>
+                  <td class="p-4 text-gray-300">2.5x – 4x per week</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Lateral & Rear Deltoids, Triceps</td>
+                  <td class="p-4 text-lime-400 font-medium">42 – 54 Hours</td>
+                  <td class="p-4 text-gray-300">2x – 3x per week</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Pectorals (Chest) & Upper Back / Lats</td>
+                  <td class="p-4 text-lime-400 font-medium">48 – 64 Hours</td>
+                  <td class="p-4 text-gray-300">2x per week (e.g., Push/Pull or Upper/Lower)</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Quadriceps, Hamstrings, Glutes, Lower Back</td>
+                  <td class="p-4 text-lime-400 font-medium">60 – 72+ Hours</td>
+                  <td class="p-4 text-gray-300">1.5x – 2x per week</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>3. How SPOT Models Muscle Readiness & Progressive Overload Offline</h2>
+          <p>
+            Most gym apps are either glorified note-taking pads or bloated social networks that fail to load when you walk into a thick-walled basement gym. <strong>SPOT</strong> focuses strictly on hypertrophy and strength progression:
+          </p>
+
+          <!-- Real App Screenshots Showcase -->
+          <div class="my-8 bg-[#0F1218] border border-gray-800 rounded-3xl p-6">
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div>
+                <img src="/screen_spot.jpg" alt="SPOT Muscle Recovery Heatmap" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">1. Live muscle readiness & split dashboard</p>
+              </div>
+              <div>
+                <img src="/images/spot_screen_2.png" alt="SPOT Live Workout Logger" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">2. Tactile 1-handed set logger & rest timer</p>
+              </div>
+              <div>
+                <img src="/images/spot_screen_3.png" alt="SPOT Analytics & Volume" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">3. Volume tonnage & 1RM strength trends</p>
+              </div>
+            </div>
+          </div>
+
+          <ol class="list-decimal">
+            <li><strong>Primary + Synergist Load Calculation:</strong> Every exercise logged in SPOT distributes fatigue across primary movers (100% weight) and secondary synergists (35%–50% weight), updating your recovery percentages hour by hour.</li>
+            <li><strong>Zero-Signal Basement Gym Reliability:</strong> Built with a 100% local database, SPOT never spins loading wheels between sets. Your previous session weights, reps, and rest timer trigger instantaneously.</li>
+            <li><strong>Automated Progressive Overload Cues:</strong> See your previous best set right inside the active workout screen so you know whether to add +2.5 kg or push for 1 extra rep.</li>
+          </ol>
+
+          <h2>Frequently Asked Questions</h2>
+          <div class="space-y-4 my-6">
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Should I train a muscle if its recovery is at 80%?</h3>
+              <p class="text-sm text-gray-400 mb-0">At 80%–85% recovery, most lifters can perform productive volume work, though peak 1RM strength is typically highest between 92% and 100% recovery. If a muscle is below 60%, training it heavily increases joint strain and blunts hypertrophy.</p>
+            </div>
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Can I build my own custom Push/Pull/Legs or Upper/Lower split in SPOT?</h3>
+              <p class="text-sm text-gray-400 mb-0">Yes. You can start with proven built-in templates (Push/Pull/Legs, Upper/Lower, Full Body) or construct custom routines with your favorite exercises and custom target rep ranges.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ================= UKRAINIAN ARTICLE ================= -->
+        <article id="lang-uk" class="prose-custom hidden">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-lime-400/15 border border-lime-400/30 text-lime-400 font-bold">Спортивна наука та фітнес-технології</span>
+            <span class="text-gray-400">9 хв читання</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-10-21" class="text-gray-400">Оновлено: Листопад 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] mb-6">
+            Наука відновлення мʼязів: як оптимізувати спліт Push/Pull/Legs та вести трекер у залі без інтернету
+          </h1>
+
+          <p class="text-lg text-gray-300 leading-relaxed mb-8">
+            Більшість відвідувачів тренажерного залу планують тренування за жорстким 7-денним календарем («понеділок — день грудей»), ігноруючи реальну фізіологію. Проте дослідження спортивної медицини доводять: <strong>синтез мʼязового білка (MPS) та відновлення центральної нервової системи не підпорядковуються тижневому календарю</strong>. Середні дельти та біцепс відновлюються за 36–48 годин, тоді як важкі базові підходи на квадрицепс, біцепс стегна чи спину вимагають від 60 до 72+ годин.
+          </p>
+
+          <div class="bg-[#0F1218] border-l-4 border-lime-400 rounded-r-2xl p-6 mb-8">
+            <p class="text-xs font-bold uppercase tracking-wider text-lime-400 mb-2">Розумний підхід до прогресії</p>
+            <p class="text-sm text-gray-300 mb-0">
+              Ми створили <strong><a href="/spot" class="text-lime-400 underline">SPOT Workout Tracker</a></strong>, щоб замінити здогадки точним математичним розрахунком відновлення. Враховуючи роботу як основних мʼязів, так і мʼязів-синергістів (вікна 36–72 год), SPOT у реальному часі показує відсоток готовності кожної мʼязової групи та працює на 100% офлайн у будь-якому підвальному залі.
+            </p>
+          </div>
+
+          <h2>1. Чому різні мʼязові групи відновлюються з різною швидкістю</h2>
+          <p>
+            Під час силового тренування поблизу відмови накопичується два типи втоми: <strong>периферичні мікропошкодження волокон</strong> та <strong>втома центральної нервової системи (ЦНС)</strong>. Швидкість відновлення залежить від трьох факторів:
+          </p>
+          <ul class="list-disc">
+            <li><strong>Обʼєм та будова мʼяза:</strong> Великі мʼязові масиви, здатні генерувати максимальне зусилля (ноги, сідниці, найширші мʼязи спини), отримують значно більше мікротравм, ніж дрібні групи (біцепс, литки, задня дельта).</li>
+            <li><strong>Навантаження на синергісти:</strong> Кожен важкий жим лежачи навантажує передню дельту та трицепс. Кожна тяга штанги чи підтягування втомлює біцепс. Якщо трекер не рахує непряме навантаження, виникає хронічне перевантаження суглобів і звʼязок.</li>
+            <li><strong>Близькість до відмови (RPE / RIR):</strong> Чотири підходи «у повну відмову» вимагають майже вдвічі більше часу на регенерацію, ніж підходи із запасом у 2 повторення.</li>
+          </ul>
+
+          <h2>2. Таблиця фізіологічних вікон відновлення мʼязів</h2>
+          <div class="overflow-x-auto my-6 rounded-2xl border border-gray-800">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-[#131722] text-gray-300 border-b border-gray-800">
+                  <th class="p-4 font-bold">Мʼязова група</th>
+                  <th class="p-4 font-bold text-lime-400">Час повного відновлення</th>
+                  <th class="p-4 font-bold text-gray-400">Оптимальна частота на тиждень</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-800/80 bg-[#0F1218]">
+                <tr>
+                  <td class="p-4 font-semibold text-white">Біцепс, передпліччя, литки, прес</td>
+                  <td class="p-4 text-lime-400 font-medium">36 – 48 годин</td>
+                  <td class="p-4 text-gray-300">2.5 – 4 рази на тиждень</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Середня й задня дельта, трицепс</td>
+                  <td class="p-4 text-lime-400 font-medium">42 – 54 години</td>
+                  <td class="p-4 text-gray-300">2 – 3 рази на тиждень</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Грудні мʼязи та найширші мʼязи спини</td>
+                  <td class="p-4 text-lime-400 font-medium">48 – 64 години</td>
+                  <td class="p-4 text-gray-300">2 рази на тиждень (Push/Pull або Upper/Lower)</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Квадрицепс, біцепс стегна, сідниці, розгиначі спини</td>
+                  <td class="p-4 text-lime-400 font-medium">60 – 72+ годин</td>
+                  <td class="p-4 text-gray-300">1.5 – 2 рази на тиждень</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>3. Як SPOT автоматизує прогресію навантажень та працює офлайн</h2>
+          <p>
+            Більшість популярних фітнес-додатків перевантажені соцмережевими стрічками, відеорекламою і зависають, щойно ви заходите в підвальний спортзал зі слабким мобільним інтернетом. <strong>SPOT</strong> створений виключно для результату в залі:
+          </p>
+
+          <div class="my-8 bg-[#0F1218] border border-gray-800 rounded-3xl p-6">
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div>
+                <img src="/screen_spot.jpg" alt="SPOT Відновлення мʼязів" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">1. Жива шкала відновлення та спліт-програми</p>
+              </div>
+              <div>
+                <img src="/images/spot_screen_2.png" alt="SPOT Запис підходів" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">2. Швидкий запис ваги, повторів і таймер</p>
+              </div>
+              <div>
+                <img src="/images/spot_screen_3.png" alt="SPOT Графіки прогресу" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">3. Аналітика тоннажу та ріст робочих ваг</p>
+              </div>
+            </div>
+          </div>
+
+          <ol class="list-decimal">
+            <li><strong>Облік основних мʼязів та синергістів:</strong> Кожна вправа у базі SPOT розподіляє навантаження між цільовим мʼязом (100%) та допоміжними групами (35%–50%), що дає чесну картину готовності тіла до наступного тренування.</li>
+            <li><strong>Миттєва робота без інтернету:</strong> Уся історія підходів, робочі ваги та таймери відпочинку зберігаються локально на пристрої. Жодних затримок між підходами.</li>
+            <li><strong>Контроль прогресивного перевантаження:</strong> Під час виконання вправи ви одразу бачите результат минулого тренування, щоб додати +2.5 кг або зробити на 1 повторення більше.</li>
+          </ol>
+
+          <h2>Часті запитання (FAQ)</h2>
+          <div class="space-y-4 my-6">
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Чи можна тренувати мʼяз, якщо індикатор відновлення показує 80%?</h3>
+              <p class="text-sm text-gray-400 mb-0">На рівні 80%–85% мʼяз вже готовий до помірного обʼємного навантаження, проте пікові силові рекорди найкраще йдуть при 92%–100% відновлення. Якщо ж показник нижче 60%, важке тренування цієї групи лише поглибить втому.</p>
+            </div>
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Чи можна створити власну програму тренувань у SPOT?</h3>
+              <p class="text-sm text-gray-400 mb-0">Так! Ви можете обрати готові науково збалансовані спліти (Push/Pull/Legs, Upper/Lower, Full Body) або зібрати власну програму під свій графік і обладнання.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- RIGHT COLUMN: STICKY APP DOWNLOAD & QR CARD -->
+      <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+        <div class="bg-gradient-to-b from-[#0F1218] to-[#0B0E14] border border-lime-400/40 rounded-3xl p-6 shadow-2xl lime-glow">
+          <div class="flex items-center gap-3.5 mb-4">
+            <img src="/spot_logo.png" alt="SPOT Workout Tracker" class="w-14 h-14 rounded-2xl border border-gray-700 object-cover shrink-0">
+            <div>
+              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-lime-400/15 text-lime-400 mb-1">
+                <span class="ui-en">Smart Gym Tracker</span><span class="ui-uk hidden">Розумний трекер залу</span>
+              </span>
+              <h3 class="text-lg font-black text-white leading-tight">SPOT Workout Tracker</h3>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-300 leading-relaxed mb-5">
+            <span class="ui-en">Algorithmic muscle recovery tracking, custom splits, tactile set logger, and strength analytics. 100% offline-ready.</span>
+            <span class="ui-uk hidden">Алгоритм відновлення мʼязів, персональні спліт-програми, зручний таймер та аналітика силових. Працює без інтернету.</span>
+          </p>
+
+          <div class="space-y-2.5 mb-5">
+            <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.spot" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-lime-400 hover:bg-lime-300 text-black font-extrabold text-xs sm:text-sm transition shadow-lg">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+              <span class="ui-en">Download on Google Play</span><span class="ui-uk hidden">Завантажити в Google Play</span>
+            </a>
+
+            <a href="/spot" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-white transition">
+              <span class="ui-en">Explore SPOT Page →</span><span class="ui-uk hidden">Детальніше про SPOT →</span>
+            </a>
+          </div>
+
+          <!-- Large Scannable QR Box -->
+          <div class="pt-4 border-t border-gray-800/80 flex items-center gap-3.5">
+            <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+              <img src="/images/qr_spot.png" alt="QR Code SPOT" class="w-24 h-24 rounded-lg block">
+            </div>
+            <div class="space-y-1">
+              <p class="text-xs font-bold text-white">
+                <span class="ui-en">Scan to install SPOT</span><span class="ui-uk hidden">Скануйте для встановлення</span>
+              </p>
+              <p class="text-[11px] text-gray-400 leading-snug">
+                <span class="ui-en">Point your phone camera to open SPOT in Google Play.</span>
+                <span class="ui-uk hidden">Наведіть камеру смартфона, щоб відкрити Google Play.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- More Guides Sidebar Box -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 space-y-4">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400">
+            <span class="ui-en">More VanzaLabs Guides</span><span class="ui-uk hidden">Інші гайди у блозі</span>
+          </h4>
+          <div class="space-y-3 text-xs">
+            <a href="/blog/compress-photos-convert-heic-offline-android" class="block p-3 rounded-xl bg-[#08090C] hover:border-[#10B981]/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">Vanza Convert • Photo & PDF</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">Compress photos by 90%, convert HEIC to JPG & lock PDFs offline.</span><span class="ui-uk hidden">Як стиснути фото на 90%, конвертувати HEIC та захистити PDF офлайн.</span></p>
+            </a>
+            <a href="/blog/google-forms-sheets-offline-mobile-workflow" class="block p-3 rounded-xl bg-[#08090C] hover:border-blue-500/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">FormGrid • Google Forms & Sheets</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">Manage Google Forms & Sheets offline on mobile with QR check-ins.</span><span class="ui-uk hidden">Як керувати Google Формами та Таблицями зі смартфона офлайн.</span></p>
+            </a>
+            <a href="/blog/offline-invoice-estimate-maker-for-contractors" class="block p-3 rounded-xl bg-[#08090C] hover:border-indigo-500/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">Vanza Docs • B2B Invoicing</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">Generate signed PDF invoices & estimates on job sites in 60 seconds.</span><span class="ui-uk hidden">Як створювати PDF-рахунки та кошториси з підписом на екрані за 60 секунд.</span></p>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#08090C] border-t border-gray-900 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 VanzaLabs Engineering Studio. All rights reserved.</p>
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="/" class="hover:text-white transition">VanzaLabs</a>
+        <a href="/blog" class="text-lime-400 font-semibold">Blog</a>
+        <a href="/spot" class="hover:text-white transition">SPOT</a>
+        <a href="/privacy-policy" class="hover:text-white transition">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = 'en';
+    function setArticleLang(lang, save = true) {
+      currentLang = lang;
+      const isUa = lang === 'uk';
+      document.documentElement.lang = isUa ? 'uk' : 'en';
+      document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+      document.getElementById('lang-en').classList.toggle('hidden', isUa);
+      document.getElementById('lang-uk').classList.toggle('hidden', !isUa);
+      document.querySelectorAll('.ui-en').forEach(el => el.classList.toggle('hidden', isUa));
+      document.querySelectorAll('.ui-uk').forEach(el => el.classList.toggle('hidden', !isUa));
+      if (save) {
+        try { localStorage.setItem('vanza_lang', lang); } catch(e) {}
+      }
+    }
+    function toggleArticleLang() {
+      setArticleLang(currentLang === 'en' ? 'uk' : 'en', true);
+    }
+    (function init() {
+      try {
+        const saved = localStorage.getItem('vanza_lang');
+        if (saved === 'uk' || saved === 'en') {
+          if (saved === 'uk') setArticleLang('uk', false);
+          return;
+        }
+        const sysLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (sysLang.startsWith('uk') || sysLang.startsWith('ru')) setArticleLang('uk', false);
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>

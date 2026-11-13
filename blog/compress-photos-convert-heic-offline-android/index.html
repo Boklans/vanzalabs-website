@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Compress Photos by 90%, Convert HEIC to JPG & Lock PDFs Offline on Android | VanzaLabs Blog</title>
+  <meta name="description" content="Learn how to shrink 12 MB photos down to 600 KB, batch-convert Apple HEIC images to universal JPG/PNG, and encrypt sensitive PDFs with AES-256 on Android — 100% offline with zero cloud uploads.">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:title" content="How to Compress Photos by 90%, Convert HEIC to JPG & Lock PDFs Offline on Android">
+  <meta property="og:description" content="Stop uploading personal photos and IDs to cloud web converters. Here is how on-device image compression and AES-256 PDF encryption work offline.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://vanzalabs.tech/blog/compress-photos-convert-heic-offline-android">
+  <meta property="og:image" content="https://vanzalabs.tech/convert-og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Compress Photos by 90% & Convert HEIC Offline on Android">
+  <meta name="twitter:description" content="100% local photo compression, batch HEIC to JPG conversion, and AES-256 PDF protection.">
+  <link rel="canonical" href="https://vanzalabs.tech/blog/compress-photos-convert-heic-offline-android">
+  <meta name="p:domain_verify" content="90f814ccab954bd60bf020b0af5c7022"/>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="512x512" href="/images/convert_icon_512.png">
+  <meta name="theme-color" content="#08090C">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background-color: #08090C;
+      color: #F3F4F6;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .neon-glow {
+      box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.35);
+    }
+    .prose-custom h2 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .prose-custom h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      margin-top: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .prose-custom p {
+      color: #d1d5db;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      font-size: 1.02rem;
+    }
+    .prose-custom ul, .prose-custom ol {
+      color: #d1d5db;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      line-height: 1.75;
+    }
+    .prose-custom li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu pu gu mu init Gu Qu Hu Wu Xu il Vu Yu ju oc ac lc uc cc hc capture getExtension Zu hu gc calculateEventProperties vc register register_once register_for_session unregister unregister_for_session zu mc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync wc identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset kc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty yc nc createPersonProfile setInternalOrTestUser bc xu ku opt_in_capturing opt_out_capturing Su has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing tc debug nl Os getPageViewId captureTraceFeedback captureTraceMetric Du".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_q5gM7VmNh57nCNKfKQx7KZDNgqaY7UK2mdXjrAzKDRey', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'always'
+    });
+  </script>
+
+  <!-- JSON-LD Structured Data (Article + FAQPage + BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "How to Compress Photos by 90%, Convert HEIC to JPG & Lock PDFs Offline on Android (Zero Cloud Uploads)",
+        "description": "Step-by-step guide to shrinking 12 MB camera photos down to 600 KB, batch-converting Apple HEIC files to JPG/PNG, and encrypting PDFs with AES-256 on Android without uploading files to cloud servers.",
+        "image": "https://vanzalabs.tech/images/convert_screen_1.png",
+        "datePublished": "2026-10-18",
+        "dateModified": "2026-11-13",
+        "author": {
+          "@type": "Organization",
+          "name": "VanzaLabs Engineering",
+          "url": "https://vanzalabs.tech"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "VanzaLabs",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://vanzalabs.tech/vanzalabs_logo_white_text.png"
+          }
+        },
+        "mainEntityOfPage": "https://vanzalabs.tech/blog/compress-photos-convert-heic-offline-android"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is it safe to compress passport scans or contracts using online photo compressors?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Online web compressors require uploading your files to remote third-party servers where copies may be cached, logged, or exposed. Using an offline on-device tool like Vanza Convert & Compress ensures zero bytes ever leave your phone."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How can I convert iPhone HEIC photos to JPG on Android offline?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open Vanza Convert & Compress, select 'Convert Photos', pick up to 30 HEIC files at once, choose JPG or PNG as the target format, and tap Start Processing. The conversion finishes in seconds directly on your phone processor."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does compressing a photo by 80–90% ruin its visual sharpness?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When using smart quantization (75%–85% quality preset), a 12 MB smartphone camera photo shrinks to roughly 600–900 KB with virtually no visible difference on phone or laptop screens, while keeping original files untouched."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "VanzaLabs", "item": "https://vanzalabs.tech/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://vanzalabs.tech/blog" },
+          { "@type": "ListItem", "position": 3, "name": "Compress Photos & Convert HEIC Offline", "item": "https://vanzalabs.tech/blog/compress-photos-convert-heic-offline-android" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="antialiased selection:bg-[#10B981] selection:text-black">
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#08090C]/85 border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-1">
+            <img src="/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="w-full h-auto object-contain">
+          </div>
+          <span class="font-black text-base sm:text-lg text-white group-hover:text-[#10B981] transition">VanzaLabs</span>
+        </a>
+        <span class="text-gray-700">/</span>
+        <a href="/blog" class="text-xs font-bold text-gray-300 hover:text-[#10B981] transition">
+          <span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleArticleLang()" class="px-3 py-1.5 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:text-white hover:border-gray-700 transition">
+          <span id="langLabel">UA</span>
+        </button>
+        <a href="https://play.google.com/store/apps/details?id=tech.vanzalabs.convertcompress" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black text-xs font-extrabold transition">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span class="ui-en">Get Vanza Convert</span><span class="ui-uk hidden">Завантажити Convert</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN ARTICLE CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <!-- Breadcrumbs -->
+    <nav class="text-xs text-gray-500 mb-6 flex items-center gap-2 flex-wrap">
+      <a href="/" class="hover:text-gray-300">VanzaLabs</a>
+      <span>→</span>
+      <a href="/blog" class="hover:text-gray-300"><span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span></a>
+      <span>→</span>
+      <span class="text-[#10B981] font-medium"><span class="ui-en">Offline Photo Compression & HEIC Conversion</span><span class="ui-uk hidden">Офлайн стиснення фото та конвертація HEIC</span></span>
+    </nav>
+
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+
+      <!-- LEFT COLUMN: FULL ARTICLE CONTENT -->
+      <div class="lg:col-span-8">
+
+        <!-- ================= ENGLISH ARTICLE ================= -->
+        <article id="lang-en" class="prose-custom">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-[#10B981]/15 border border-[#10B981]/30 text-[#10B981] font-bold">Privacy & Media Engineering</span>
+            <span class="text-gray-400">7 min read</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-10-18" class="text-gray-400">Updated Nov 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] mb-6">
+            How to Compress Photos by 90%, Convert HEIC to JPG & Lock PDFs Offline on Android (Zero Cloud Uploads)
+          </h1>
+
+          <p class="text-lg text-gray-300 leading-relaxed mb-8">
+            Modern smartphones shoot 48 MP and 108 MP photos that easily weigh <strong>8 MB to 15 MB per image</strong>, or save pictures in Apple's proprietary <code>.HEIC</code> format that refuses to open on Windows PCs, government portals, and older devices. When people need to shrink a photo below a 2 MB portal limit or turn ID scans into a password-protected PDF, they usually make one dangerous mistake: <strong>they upload their private files to random "free online converter" websites.</strong>
+          </p>
+
+          <!-- Key Takeaway Box -->
+          <div class="bg-[#0F1218] border-l-4 border-[#10B981] rounded-r-2xl p-6 mb-8">
+            <p class="text-xs font-bold uppercase tracking-wider text-[#10B981] mb-2">Key Takeaway</p>
+            <p class="text-sm text-gray-300 mb-0">
+              Every time you use a web-based image compressor or PDF merger, your passport scans, tax records, or family photos are transmitted to a remote server outside your control. With <strong><a href="/convert" class="text-[#10B981] underline">Vanza Convert & Compress</a></strong>, all image quantization, HEIC decoding, and AES-256 PDF encryption run 100% locally inside an isolated thread on your phone's processor — even in Airplane Mode.
+            </p>
+          </div>
+
+          <h2>1. The Hidden Danger of "Free Online" Photo & PDF Converters</h2>
+          <p>
+            Search Google for <em>"compress photo to 500kb"</em> or <em>"merge photos to PDF"</em> and you will find dozens of ad-heavy websites. While convenient for public stock graphics, using cloud converters on a smartphone creates three major problems:
+          </p>
+          <ul class="list-disc">
+            <li><strong>Zero Privacy Guarantee:</strong> Sensitive documents — driver's licenses, medical records, signed contracts, bank statements, and private family photos — are uploaded to remote cloud buckets. Even if a site claims files are deleted after 2 hours, you have zero cryptographic proof.</li>
+            <li><strong>Slow Mobile Upload Bottlenecks:</strong> Uploading 25 high-resolution photos (250+ MB total) over unstable 4G or crowded Wi-Fi drains battery and often fails mid-upload.</li>
+            <li><strong>Intrusive Full-Screen Ads & File Limits:</strong> Most free utilities cap you at 2–3 files or force you to watch 30-second video ads between downloads.</li>
+          </ul>
+
+          <h2>2. Comparison: Local On-Device Engine vs. Cloud Web Converters</h2>
+          <div class="overflow-x-auto my-6 rounded-2xl border border-gray-800">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-[#131722] text-gray-300 border-b border-gray-800">
+                  <th class="p-4 font-bold">Capability</th>
+                  <th class="p-4 font-bold text-[#10B981]">Vanza Convert & Compress (On-Device)</th>
+                  <th class="p-4 font-bold text-gray-400">Online Web Converters</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-800/80 bg-[#0F1218]">
+                <tr>
+                  <td class="p-4 font-semibold text-white">File Privacy</td>
+                  <td class="p-4 text-[#10B981] font-medium">100% Local CPU (Zero bytes leave phone)</td>
+                  <td class="p-4 text-gray-400">Uploaded to external third-party servers</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Works Offline (Airplane Mode)</td>
+                  <td class="p-4 text-[#10B981] font-medium">Yes — works anywhere with zero signal</td>
+                  <td class="p-4 text-gray-400">No — requires fast upload/download connection</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Batch Processing Speed</td>
+                  <td class="p-4 text-[#10B981] font-medium">Up to 30 photos in 2–4 seconds via Dart Isolate</td>
+                  <td class="p-4 text-gray-400">30–120 seconds waiting on network upload</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Original File Safety</td>
+                  <td class="p-4 text-[#10B981] font-medium">Originals never touched; saves new copies</td>
+                  <td class="p-4 text-gray-400">Manual ZIP downloads clutter Downloads folder</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">PDF Password Security</td>
+                  <td class="p-4 text-[#10B981] font-medium">Bank-grade AES-256 local encryption</td>
+                  <td class="p-4 text-gray-400">Password sent over network to remote server</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>3. How to Shrink Photo Size by up to 90% Without Losing Sharpness</h2>
+          <p>
+            Why is a single smartphone photo 12 MB in the first place? Camera sensors store uncompressed chrominance data and verbose EXIF metadata. By applying smart chroma subsampling and adjustable quantization, you can reduce file weight by <strong>75% to 90%</strong> while keeping text and edges razor-sharp.
+          </p>
+
+          <!-- Real App Screenshots Showcase -->
+          <div class="my-8 bg-[#0F1218] border border-gray-800 rounded-3xl p-6">
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div>
+                <img src="/images/convert_screen_1.png" alt="Vanza Convert Home Studio" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">1. Choose Convert, Compress, or PDF Studio</p>
+              </div>
+              <div>
+                <img src="/images/convert_screen_2.png" alt="Live Size Estimation Slider" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">2. Set quality slider & see live size forecast</p>
+              </div>
+              <div>
+                <img src="/images/convert_screen_3.png" alt="Saved 88% Result Screen" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">3. 12.5 MB reduced to 1.4 MB (−88%) locally</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>Recommended Quality Presets inside Vanza Convert:</h3>
+          <ol class="list-decimal">
+            <li><strong>High (92% Quality):</strong> Best for photography archives and printing. Reduces a 10 MB file to ~2.2 MB with zero perceptible artifacting.</li>
+            <li><strong>Balanced (75%–80% Quality):</strong> The sweet spot for everyday storage recovery, WhatsApp/Telegram sharing, and CRM uploads. Turns a 12.5 MB batch into ~1.4 MB (nearly 90% saved).</li>
+            <li><strong>Max Compression (40% Quality):</strong> Engineered for strict government, visa, and university portals that enforce a hard 200 KB–500 KB upload limit per image.</li>
+          </ol>
+
+          <h2>4. Batch Converting Apple HEIC Photos to Universal JPG or PNG</h2>
+          <p>
+            If you receive photos from an iPhone user via AirDrop alternatives, Google Drive, or email, they often arrive as <code>.HEIC</code> (High Efficiency Image Container). Many Windows laptops, older Android apps, and web forms reject HEIC outright.
+          </p>
+          <p>
+            Instead of converting images one by one, <strong>Vanza Convert & Compress</strong> lets you select up to 30 files in a single batch and convert between <strong>HEIC, JPG, PNG, and WebP</strong> in seconds — or bundle all selected images directly into a single, neatly formatted multi-page PDF.
+          </p>
+
+          <h2>5. Locking Sensitive Documents with AES-256 Encrypted PDF Studio</h2>
+          <p>
+            When sending ID scans, tax returns, or signed B2B agreements over email or messengers, leaving the PDF unlocked means anyone who intercepts the chat history can open it. Inside Vanza Convert's <strong>PDF Tools</strong> tab, you can:
+          </p>
+          <ul class="list-disc">
+            <li><strong>Convert Photos to PDF:</strong> Combine receipts, whiteboard notes, or multipage contracts into one clean PDF document.</li>
+            <li><strong>Merge & Split PDFs:</strong> Combine multiple PDF files or extract specific pages offline.</li>
+            <li><strong>Lock with AES-256 Encryption:</strong> Apply a strong password using the industry-standard AES-256 cipher directly on your device chipset, or unlock an existing password-protected PDF when you know the credentials.</li>
+          </ul>
+
+          <h2>Frequently Asked Questions</h2>
+          <div class="space-y-4 my-6">
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Are my original photos overwritten when I compress them?</h3>
+              <p class="text-sm text-gray-400 mb-0">Never. Vanza Convert & Compress strictly leaves your original gallery files untouched. All compressed or converted files are saved as new copies so you never risk losing an original shot.</p>
+            </div>
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Can I verify that the app works 100% offline?</h3>
+              <p class="text-sm text-gray-400 mb-0">Yes! Turn on Airplane Mode (disable both Wi-Fi and mobile data) and compress a batch of 20 photos or lock a PDF with AES-256. Everything runs at full speed because all codecs execute locally on your phone's CPU.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ================= UKRAINIAN ARTICLE ================= -->
+        <article id="lang-uk" class="prose-custom hidden">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-[#10B981]/15 border border-[#10B981]/30 text-[#10B981] font-bold">Приватність та робота з медіа</span>
+            <span class="text-gray-400">7 хв читання</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-10-18" class="text-gray-400">Оновлено: Листопад 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] mb-6">
+            Як стиснути фото на 90%, конвертувати HEIC у JPG та захистити PDF паролем офлайн на Android (без хмар)
+          </h1>
+
+          <p class="text-lg text-gray-300 leading-relaxed mb-8">
+            Сучасні камери смартфонів роблять знімки роздільною здатністю 48 МП або 108 МП, де один файл легко займає <strong>від 8 до 15 МБ</strong>, або ж зберігають кадри у форматі Apple <code>.HEIC</code>, який не відкривається на більшості ПК з Windows, державних порталах чи в робочих CRM. Коли потрібно швидко зменшити розмір фото до 1 МБ або обʼєднати скани документів у захищений PDF, більшість користувачів роблять небезпечну помилку — <strong>завантажують особисті файли на перші-ліпші «безкоштовні онлайн-конвертери».</strong>
+          </p>
+
+          <div class="bg-[#0F1218] border-l-4 border-[#10B981] rounded-r-2xl p-6 mb-8">
+            <p class="text-xs font-bold uppercase tracking-wider text-[#10B981] mb-2">Головний висновок</p>
+            <p class="text-sm text-gray-300 mb-0">
+              Коли ви користуєтеся веб-конвертером, ваші фото паспортів, ІПН, договорів чи сімейні знімки передаються на чужий сервер. У застосунку <strong><a href="/convert" class="text-[#10B981] underline">Vanza Convert & Compress</a></strong> усі алгоритми стиснення, декодування HEIC та шифрування PDF стандартом AES-256 працюють на 100% локально на процесорі вашого смартфона — навіть у режимі польоту без інтернету.
+            </p>
+          </div>
+
+          <h2>1. Чому онлайн-конвертери — це ризик для ваших документів і фото</h2>
+          <p>
+            Достатньо ввести в пошук <em>«стиснути фото онлайн»</em> або <em>«обʼєднати фото в PDF»</em>, і ви потрапите на десятки сайтів, переповнених рекламними банерами. Використання таких веб-сервісів зі смартфона створює три серйозні проблеми:
+          </p>
+          <ul class="list-disc">
+            <li><strong>Загроза витоку приватних даних:</strong> Скани документів, банківські довідки, договори та особисті фотографії завантажуються на невідомі хмарні сервери. Навіть якщо сайт обіцяє «видалити файли через годину», перевірити це неможливо.</li>
+            <li><strong>Повільне вивантаження через мобільний інтернет:</strong> Щоб обробити 20 фотографій по 10 МБ у дорозі чи при слабкому звʼязку, доведеться чекати кілька хвилин лише на передачу файлів туди й назад.</li>
+            <li><strong>Агресивна реклама та ліміти:</strong> Більшість веб-утиліт обмежують пакет до 2–3 файлів або змушують переглядати повноекранну рекламу перед кожним скачуванням.</li>
+          </ul>
+
+          <h2>2. Порівняння: Локальна обробка на смартфоні проти веб-конвертерів</h2>
+          <div class="overflow-x-auto my-6 rounded-2xl border border-gray-800">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-[#131722] text-gray-300 border-b border-gray-800">
+                  <th class="p-4 font-bold">Критерій</th>
+                  <th class="p-4 font-bold text-[#10B981]">Vanza Convert & Compress (Локально)</th>
+                  <th class="p-4 font-bold text-gray-400">Онлайн веб-конвертери</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-800/80 bg-[#0F1218]">
+                <tr>
+                  <td class="p-4 font-semibold text-white">Приватність файлів</td>
+                  <td class="p-4 text-[#10B981] font-medium">100% на чіпі телефона (0 байтів у мережу)</td>
+                  <td class="p-4 text-gray-400">Файли завантажуються на сторонній сервер</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Робота без інтернету</td>
+                  <td class="p-4 text-[#10B981] font-medium">Так — працює в літаку, укритті чи в дорозі</td>
+                  <td class="p-4 text-gray-400">Ні — потрібен стабільний інтернет</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Швидкість пакетної обробки</td>
+                  <td class="p-4 text-[#10B981] font-medium">До 30 фото за 2–4 секунди в потоці Dart Isolate</td>
+                  <td class="p-4 text-gray-400">30–120 секунд очікування завантаження</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Збереження оригіналів</td>
+                  <td class="p-4 text-[#10B981] font-medium">Оригінали недоторканні, створюються копії</td>
+                  <td class="p-4 text-gray-400">Скачування ZIP-архівів вручну</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Захист PDF паролем</td>
+                  <td class="p-4 text-[#10B981] font-medium">Локальне банківське шифрування AES-256</td>
+                  <td class="p-4 text-gray-400">Пароль передається через інтернет</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>3. Як зменшити вагу фото до −90% без помітної втрати якості</h2>
+          <p>
+            Чому звичайне фото зі смартфона важить 12 МБ? Камера записує надлишкову колірну інформацію та технічні метадані. Розумна оптимізація квантування у <strong>Vanza Convert & Compress</strong> дозволяє зменшити розмір файлу на <strong>75%–90%</strong> так, що на екрані смартфона чи ноутбука різниця у чіткості буде непомітною.
+          </p>
+
+          <div class="my-8 bg-[#0F1218] border border-gray-800 rounded-3xl p-6">
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div>
+                <img src="/images/convert_screen_1.png" alt="Vanza Convert Головний екран" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">1. Оберіть Конвертацію, Стиснення або PDF</p>
+              </div>
+              <div>
+                <img src="/images/convert_screen_2.png" alt="Налаштування стиснення" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">2. Живий прогноз розміру ще до старту</p>
+              </div>
+              <div>
+                <img src="/images/convert_screen_3.png" alt="Результат -88%" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">3. З 12.5 МБ до 1.4 МБ (−88%) за секунди</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>Який режим стиснення обрати:</h3>
+          <ol class="list-decimal">
+            <li><strong>High (92% якості):</strong> Ідеально для портфоліо та друку. Зменшує 10 МБ до ~2.2 МБ без жодних візуальних втрат.</li>
+            <li><strong>Balanced (75%–80% якості):</strong> Оптимальний баланс для очищення памʼяті телефона та месенджерів. Пачка з 3 фото (12.5 МБ) зменшується до 1.4 МБ (економія 88%).</li>
+            <li><strong>Max (40% якості):</strong> Спеціально для державних сайтів, анкет та кабінетів, де стоїть жорстке обмеження «файл до 500 КБ».</li>
+          </ol>
+
+          <h2>4. Пакетна конвертація HEIC (iPhone) у стандартні JPG, PNG та WebP</h2>
+          <p>
+            Якщо вам переслали фотографії з iPhone, вони часто мають розширення <code>.HEIC</code>. У Vanza Convert ви можете вибрати одразу до 30 таких файлів і за один дотик перетворити їх на універсальні <strong>JPG, PNG або WebP</strong>, або ж одразу зібрати всі вибрані фото в один охайний PDF-документ.
+          </p>
+
+          <h2>5. Захищена PDF-студія з шифруванням AES-256</h2>
+          <p>
+            Пересилати відкриті PDF-копії паспорта чи фінансових документів у месенджерах небезпечно. У вкладці <strong>PDF Tools</strong> ви можете обʼєднати кілька PDF-файлів в один, розділити документ на сторінки або <strong>встановити надійний пароль із шифруванням AES-256</strong> прямо на пристрої.
+          </p>
+
+          <h2>Часті запитання (FAQ)</h2>
+          <div class="space-y-4 my-6">
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Чи не зіпсуються мої оригінальні фото в галереї?</h3>
+              <p class="text-sm text-gray-400 mb-0">Ніколи. Оригінальні файли залишаються недоторканими. Застосунок створює нові оброблені копії, які ви зберігаєте або одразу шерите в потрібний месенджер.</p>
+            </div>
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Як переконатися, що файли справді не відправляються в інтернет?</h3>
+              <p class="text-sm text-gray-400 mb-0">Увімкніть на телефоні «Авіарежим» (вимкніть Wi-Fi та мобільні дані) і спробуйте стиснути 20 фото або зашифрувати PDF. Усе спрацює миттєво, оскільки обробка виконується виключно процесором смартфона.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- RIGHT COLUMN: STICKY APP DOWNLOAD & QR CARD -->
+      <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+        <div class="bg-gradient-to-b from-[#0F1218] to-[#0B0E14] border border-[#10B981]/40 rounded-3xl p-6 shadow-2xl neon-glow">
+          <div class="flex items-center gap-3.5 mb-4">
+            <img src="/images/convert_icon_512.png" alt="Vanza Convert & Compress" class="w-14 h-14 rounded-2xl border border-gray-700 object-cover shrink-0">
+            <div>
+              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#10B981]/15 text-[#10B981] mb-1">
+                <span class="ui-en">100% Offline App</span><span class="ui-uk hidden">100% Офлайн-утиліта</span>
+              </span>
+              <h3 class="text-lg font-black text-white leading-tight">Vanza Convert & Compress</h3>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-300 leading-relaxed mb-5">
+            <span class="ui-en">Compress photos up to −90%, batch convert HEIC/PNG/WebP, and lock PDFs with AES-256 encryption. Zero cloud uploads, zero ads.</span>
+            <span class="ui-uk hidden">Стискайте фото до −90%, пакетно конвертуйте HEIC/PNG/WebP та захищайте PDF паролем AES-256. Без хмар та без реклами.</span>
+          </p>
+
+          <div class="space-y-2.5 mb-5">
+            <a href="https://play.google.com/store/apps/details?id=tech.vanzalabs.convertcompress" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-[#10B981] hover:bg-[#059669] text-black font-extrabold text-xs sm:text-sm transition shadow-lg">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+              <span class="ui-en">Download on Google Play</span><span class="ui-uk hidden">Завантажити в Google Play</span>
+            </a>
+
+            <a href="/convert" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-white transition">
+              <span class="ui-en">Explore App Overview →</span><span class="ui-uk hidden">Детальніше про застосунок →</span>
+            </a>
+          </div>
+
+          <!-- Large Scannable QR Box -->
+          <div class="pt-4 border-t border-gray-800/80 flex items-center gap-3.5">
+            <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+              <img src="/images/qr_convert.png" alt="QR Code Vanza Convert" class="w-24 h-24 rounded-lg block">
+            </div>
+            <div class="space-y-1">
+              <p class="text-xs font-bold text-white">
+                <span class="ui-en">Scan with phone camera</span><span class="ui-uk hidden">Скануйте камерою телефона</span>
+              </p>
+              <p class="text-[11px] text-gray-400 leading-snug">
+                <span class="ui-en">Opens directly in Google Play Store on your Android device.</span>
+                <span class="ui-uk hidden">Миттєво відкриває сторінку встановлення в Google Play.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- More Guides Sidebar Box -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 space-y-4">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400">
+            <span class="ui-en">More VanzaLabs Guides</span><span class="ui-uk hidden">Інші гайди у блозі</span>
+          </h4>
+          <div class="space-y-3 text-xs">
+            <a href="/blog/google-forms-sheets-offline-mobile-workflow" class="block p-3 rounded-xl bg-[#08090C] hover:border-blue-500/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">FormGrid • Google Forms & Sheets</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">Manage Google Forms & Sheets offline on mobile with QR check-ins.</span><span class="ui-uk hidden">Як керувати Google Формами та Таблицями зі смартфона офлайн.</span></p>
+            </a>
+            <a href="/blog/offline-invoice-estimate-maker-for-contractors" class="block p-3 rounded-xl bg-[#08090C] hover:border-indigo-500/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">Vanza Docs • B2B Invoicing</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">Generate signed PDF invoices & estimates on job sites in 60 seconds.</span><span class="ui-uk hidden">Як створювати PDF-рахунки та кошториси з підписом на екрані за 60 секунд.</span></p>
+            </a>
+            <a href="/blog/science-of-muscle-recovery-offline-workout-tracker" class="block p-3 rounded-xl bg-[#08090C] hover:border-lime-400/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">SPOT • Muscle Recovery Science</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">36h–72h muscle recovery windows & offline gym workout tracking.</span><span class="ui-uk hidden">Наука відновлення мʼязів та офлайн-щоденник тренувань для залу.</span></p>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#08090C] border-t border-gray-900 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 VanzaLabs Engineering Studio. All rights reserved.</p>
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="/" class="hover:text-white transition">VanzaLabs</a>
+        <a href="/blog" class="text-[#10B981] font-semibold">Blog</a>
+        <a href="/convert" class="hover:text-white transition">Vanza Convert</a>
+        <a href="/privacy/convert" class="hover:text-white transition">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = 'en';
+    function setArticleLang(lang, save = true) {
+      currentLang = lang;
+      const isUa = lang === 'uk';
+      document.documentElement.lang = isUa ? 'uk' : 'en';
+      document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+      document.getElementById('lang-en').classList.toggle('hidden', isUa);
+      document.getElementById('lang-uk').classList.toggle('hidden', !isUa);
+      document.querySelectorAll('.ui-en').forEach(el => el.classList.toggle('hidden', isUa));
+      document.querySelectorAll('.ui-uk').forEach(el => el.classList.toggle('hidden', !isUa));
+      if (save) {
+        try { localStorage.setItem('vanza_lang', lang); } catch(e) {}
+      }
+    }
+    function toggleArticleLang() {
+      setArticleLang(currentLang === 'en' ? 'uk' : 'en', true);
+    }
+    (function init() {
+      try {
+        const saved = localStorage.getItem('vanza_lang');
+        if (saved === 'uk' || saved === 'en') {
+          if (saved === 'uk') setArticleLang('uk', false);
+          return;
+        }
+        const sysLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (sysLang.startsWith('uk') || sysLang.startsWith('ru')) setArticleLang('uk', false);
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>

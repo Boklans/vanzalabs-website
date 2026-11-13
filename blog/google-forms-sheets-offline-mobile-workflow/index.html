@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Manage Google Forms & Sheets on Mobile with Offline Sync & QR Check-Ins | VanzaLabs Blog</title>
+  <meta name="description" content="Learn how to build and edit Google Forms on Android, inspect thousands of Google Sheets rows as mobile cards, scan QR tickets for instant check-ins, and work offline with FormGrid.">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:title" content="How to Manage Google Forms & Sheets on Mobile with Offline Sync & QR Check-Ins">
+  <meta property="og:description" content="Stop pinching and zooming Google Forms & Sheets inside slow mobile browsers. Turn your spreadsheets into a fast offline-first mobile workspace.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://vanzalabs.tech/blog/google-forms-sheets-offline-mobile-workflow">
+  <meta property="og:image" content="https://vanzalabs.tech/formgrid-og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Manage Google Forms & Sheets Offline on Mobile with QR Check-Ins">
+  <meta name="twitter:description" content="Turn Google Forms & Sheets into a native mobile workspace with offline caching and QR scanning.">
+  <link rel="canonical" href="https://vanzalabs.tech/blog/google-forms-sheets-offline-mobile-workflow">
+  <meta name="p:domain_verify" content="90f814ccab954bd60bf020b0af5c7022"/>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="512x512" href="/images/formgrid_icon_512.png">
+  <meta name="theme-color" content="#08090C">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background-color: #08090C;
+      color: #F3F4F6;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .blue-glow {
+      box-shadow: 0 0 40px -10px rgba(59, 130, 246, 0.35);
+    }
+    .prose-custom h2 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .prose-custom h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      margin-top: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .prose-custom p {
+      color: #d1d5db;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      font-size: 1.02rem;
+    }
+    .prose-custom ul, .prose-custom ol {
+      color: #d1d5db;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      line-height: 1.75;
+    }
+    .prose-custom li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu pu gu mu init Gu Qu Hu Wu Xu il Vu Yu ju oc ac lc uc cc hc capture getExtension Zu hu gc calculateEventProperties vc register register_once register_for_session unregister unregister_for_session zu mc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync wc identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset kc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty yc nc createPersonProfile setInternalOrTestUser bc xu ku opt_in_capturing opt_out_capturing Su has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing tc debug nl Os getPageViewId captureTraceFeedback captureTraceMetric Du".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_q5gM7VmNh57nCNKfKQx7KZDNgqaY7UK2mdXjrAzKDRey', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'always'
+    });
+  </script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "How to Manage Google Forms & Sheets on Mobile with Offline Sync & QR Check-Ins (Without Slow Mobile Browsers)",
+        "description": "Step-by-step workflow for managing Google Forms and Google Sheets natively on Android with offline SQLite caching, QR code scanning, and non-intrusive drive.file permissions.",
+        "image": "https://vanzalabs.tech/images/formgrid_screenshot.jpg",
+        "datePublished": "2026-10-19",
+        "dateModified": "2026-11-13",
+        "author": {
+          "@type": "Organization",
+          "name": "VanzaLabs Engineering",
+          "url": "https://vanzalabs.tech"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "VanzaLabs",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://vanzalabs.tech/vanzalabs_logo_white_text.png"
+          }
+        },
+        "mainEntityOfPage": "https://vanzalabs.tech/blog/google-forms-sheets-offline-mobile-workflow"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why is there no official Google Forms app on Google Play?",
+            "acceptedAnswer": {
+              "text": "Google only provides a web-based editor for Google Forms. On smartphone browsers, dragging fields, checking response charts, or cross-referencing Google Sheets rows requires constant pinching and zooming. FormGrid solves this with a native Android interface connected directly to the official Google Forms & Sheets APIs.",
+              "@type": "Answer"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can FormGrid read all files in my Google Drive?",
+            "acceptedAnswer": {
+              "text": "No. Unlike third-party form wrappers that demand full access to your entire Google Drive, FormGrid uses the strict non-intrusive drive.file scope. It can only access the specific forms and spreadsheets you explicitly create or pick.",
+              "@type": "Answer"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "VanzaLabs", "item": "https://vanzalabs.tech/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://vanzalabs.tech/blog" },
+          { "@type": "ListItem", "position": 3, "name": "Google Forms & Sheets Mobile Workflow", "item": "https://vanzalabs.tech/blog/google-forms-sheets-offline-mobile-workflow" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="antialiased selection:bg-blue-500 selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#08090C]/85 border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-1">
+            <img src="/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="w-full h-auto object-contain">
+          </div>
+          <span class="font-black text-base sm:text-lg text-white group-hover:text-blue-400 transition">VanzaLabs</span>
+        </a>
+        <span class="text-gray-700">/</span>
+        <a href="/blog" class="text-xs font-bold text-gray-300 hover:text-blue-400 transition">
+          <span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleArticleLang()" class="px-3 py-1.5 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:text-white hover:border-gray-700 transition">
+          <span id="langLabel">UA</span>
+        </button>
+        <a href="https://play.google.com/store/apps/details?id=com.vanza.formgrid" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-extrabold transition">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span class="ui-en">Get FormGrid</span><span class="ui-uk hidden">Завантажити FormGrid</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <!-- Breadcrumbs -->
+    <nav class="text-xs text-gray-500 mb-6 flex items-center gap-2 flex-wrap">
+      <a href="/" class="hover:text-gray-300">VanzaLabs</a>
+      <span>→</span>
+      <a href="/blog" class="hover:text-gray-300"><span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span></a>
+      <span>→</span>
+      <span class="text-blue-400 font-medium"><span class="ui-en">Google Forms & Sheets Offline Mobile Workflow</span><span class="ui-uk hidden">Google Форми та Таблиці офлайн на смартфоні</span></span>
+    </nav>
+
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+
+      <!-- LEFT COLUMN: ARTICLE CONTENT -->
+      <div class="lg:col-span-8">
+
+        <!-- ================= ENGLISH ARTICLE ================= -->
+        <article id="lang-en" class="prose-custom">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-400 font-bold">Google Forms & Field Workflows</span>
+            <span class="text-gray-400">8 min read</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-10-19" class="text-gray-400">Updated Nov 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] mb-6">
+            How to Manage Google Forms & Sheets on Mobile with Offline Sync & QR Check-Ins (Without Slow Mobile Browsers)
+          </h1>
+
+          <p class="text-lg text-gray-300 leading-relaxed mb-8">
+            Google Forms and Google Sheets power millions of event registrations, warehouse inventory checks, client intake pipelines, and field inspections. Yet anyone who has tried to edit a Google Form or search through a 1,500-row spreadsheet on a smartphone knows the frustration: <strong>Google never built a dedicated native mobile app for Google Forms</strong>, and horizontal scrolling through tiny spreadsheet cells on a 6-inch screen leads to accidental edits and wasted time.
+          </p>
+
+          <div class="bg-[#0F1218] border-l-4 border-blue-500 rounded-r-2xl p-6 mb-8">
+            <p class="text-xs font-bold uppercase tracking-wider text-blue-400 mb-2">Workflow Summary</p>
+            <p class="text-sm text-gray-300 mb-0">
+              <strong><a href="/formgrid" class="text-blue-400 underline">FormGrid</a></strong> bridges the gap between Google Forms and Google Sheets on Android. It renders wide spreadsheet rows as readable mobile cards, lets you build and edit forms natively, caches data in an encrypted local SQLite database for offline fieldwork, and turns your camera into a live QR/barcode scanner for instant event check-ins.
+            </p>
+          </div>
+
+          <h2>1. Why Mobile Browsers Fail for Field Teams & Event Organizers</h2>
+          <p>
+            When you manage operations away from a desk — at a conference entrance, inside a retail warehouse, or on a delivery route — relying on mobile Chrome or Safari to manage Google Forms and Sheets breaks down in three ways:
+          </p>
+          <ul class="list-disc">
+            <li><strong>Tiny 20-Column Grids:</strong> A single form submission with 15 questions stretches across five screen-widths in Google Sheets. Finding a respondent's phone number or status column requires endless horizontal scrolling.</li>
+            <li><strong>Dead Zones Kill Cloud Editors:</strong> If your connection drops in a basement venue or warehouse aisle, web-based Google Forms fails to load responses or loses unsaved edits.</li>
+            <li><strong>Over-Permissive Third-Party Wrapper Apps:</strong> Most third-party "Forms apps" on the Play Store ask for full read/write access to your <em>entire</em> Google Drive (`drive` scope) or inject invasive ad SDKs.</li>
+          </ul>
+
+          <h2>2. Comparison: FormGrid Native Workspace vs. Mobile Browser & Generic Wrappers</h2>
+          <div class="overflow-x-auto my-6 rounded-2xl border border-gray-800">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-[#131722] text-gray-300 border-b border-gray-800">
+                  <th class="p-4 font-bold">Feature</th>
+                  <th class="p-4 font-bold text-blue-400">FormGrid (Native Android)</th>
+                  <th class="p-4 font-bold text-gray-400">Mobile Web Browser</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-800/80 bg-[#0F1218]">
+                <tr>
+                  <td class="p-4 font-semibold text-white">Row Inspection UI</td>
+                  <td class="p-4 text-blue-400 font-medium">Clean vertical mobile cards + instant search</td>
+                  <td class="p-4 text-gray-400">Tiny horizontal spreadsheet cells</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Offline Access</td>
+                  <td class="p-4 text-blue-400 font-medium">Local SQLite cache with auto-sync queue</td>
+                  <td class="p-4 text-gray-400">Fails when mobile signal drops</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">QR & Barcode Check-In</td>
+                  <td class="p-4 text-blue-400 font-medium">Built-in camera scanner finds & updates row in 1s</td>
+                  <td class="p-4 text-gray-400">Requires manual copy-paste & Ctrl+F</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Google Drive Security</td>
+                  <td class="p-4 text-blue-400 font-medium">Strict <code>drive.file</code> scope (only selected files)</td>
+                  <td class="p-4 text-gray-400">Full browser session exposure</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>3. Inside the FormGrid Mobile Workflow</h2>
+          <p>
+            Instead of forcing a desktop spreadsheet UI onto a vertical phone screen, FormGrid treats your Google Forms and Google Sheets as a structured mobile database:
+          </p>
+
+          <!-- Real App Screenshots Showcase -->
+          <div class="my-8 bg-[#0F1218] border border-gray-800 rounded-3xl p-6">
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div>
+                <img src="/images/formgrid_screenshot.jpg" alt="FormGrid Forms & Sheets Hub" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">1. Unified Forms & Sheets hub with live status</p>
+              </div>
+              <div>
+                <img src="/images/formgrid_screen_2.png" alt="FormGrid Analytics & Charts" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">2. Visual response analytics & breakdowns</p>
+              </div>
+              <div>
+                <img src="/images/formgrid_screen_3.png" alt="FormGrid Templates & Builder" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">3. Ready-to-use templates & native builder</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>Step 1: Connect Only What You Need (`drive.file` Privacy)</h3>
+          <p>
+            When you sign in with Google, FormGrid uses the restricted <code>drive.file</code> permission scope. That means the app cannot see or touch your personal Google Drive folders — it only accesses the specific Forms or Sheets you create in FormGrid or explicitly select via the official Google Picker.
+          </p>
+
+          <h3>Step 2: Inspect Responses as Structured Cards & Charts</h3>
+          <p>
+            Every spreadsheet row or form submission opens as a clean, vertically stacked card. You can filter by status, inspect visual distribution charts in the <strong>Analytics</strong> tab, or edit cells without accidentally breaking adjacent formulas.
+          </p>
+
+          <h3>Step 3: Scan QR Codes for Instant Event Check-In or Inventory Lookup</h3>
+          <p>
+            Running a workshop, conference, or equipment rental desk? Tap the built-in QR scanner, point your camera at an attendee's ticket or an item's barcode, and FormGrid immediately pulls up the matching Google Sheet row so you can mark it <em>"Checked In"</em> or update stock quantity in one tap.
+          </p>
+
+          <h2>Frequently Asked Questions</h2>
+          <div class="space-y-4 my-6">
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">What happens if I edit a sheet row while offline?</h3>
+              <p class="text-sm text-gray-400 mb-0">FormGrid stores your cached tables in a local SQLite database on your device. Any changes made without internet are queued locally and synced back to Google Sheets automatically as soon as connectivity returns.</p>
+            </div>
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Can I export filtered records to PDF or CSV on my phone?</h3>
+              <p class="text-sm text-gray-400 mb-0">Yes. You can export any filtered view or response summary directly to a clean CSV or formatted PDF report to share with clients or teammates on Telegram, WhatsApp, or email.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ================= UKRAINIAN ARTICLE ================= -->
+        <article id="lang-uk" class="prose-custom hidden">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-400 font-bold">Google Форми та Таблиці</span>
+            <span class="text-gray-400">8 хв читання</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-10-19" class="text-gray-400">Оновлено: Листопад 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] mb-6">
+            Як зручно керувати Google Формами та Таблицями зі смартфона офлайн і проводити QR-чек-ін без браузера
+          </h1>
+
+          <p class="text-lg text-gray-300 leading-relaxed mb-8">
+            На Google Forms та Google Sheets тримаються тисячі бізнес-процесів: реєстрація учасників на події, збір замовлень, складський облік, опитування клієнтів та виїзні інспекції. Проте кожен, хто намагався відредагувати Google Форму або знайти потрібний рядок у таблиці на 1 500 записів з екрана смартфона, знає головну проблему: <strong>офіційного мобільного застосунку Google Forms просто не існує</strong>, а горизонтальне гортання дрібних клітинок таблиці на телефоні перетворюється на муку.
+          </p>
+
+          <div class="bg-[#0F1218] border-l-4 border-blue-500 rounded-r-2xl p-6 mb-8">
+            <p class="text-xs font-bold uppercase tracking-wider text-blue-400 mb-2">Коротко про рішення</p>
+            <p class="text-sm text-gray-300 mb-0">
+              <strong><a href="/formgrid" class="text-blue-400 underline">FormGrid</a></strong> обʼєднує Google Форми та Google Таблиці в одному нативному Android-застосунку. Він відображає широкі рядки таблиць у вигляді зручних мобільних карток, дозволяє створювати форми з нуля, кешує дані локально в SQLite для роботи без інтернету та має вбудований QR-сканер для миттєвого чек-іну.
+            </p>
+          </div>
+
+          <h2>1. Чому мобільний браузер не підходить для операційної роботи</h2>
+          <p>
+            Коли ви працюєте «в полі» — на вході на івент, на складі, у точці видачі або на виїзді до клієнта — відкривати Google Forms у мобільному Chrome незручно з трьох причин:
+          </p>
+          <ul class="list-disc">
+            <li><strong>Нечитабельні широкі таблиці:</strong> Відповідь на анкету з 15 питань розтягується в Google Таблиці на пʼять екранів завширшки. Знайти телефон клієнта та поставити відмітку про оплату однією рукою майже неможливо.</li>
+            <li><strong>Втрата звʼязку зупиняє роботу:</strong> Якщо інтернет зникає в підвальному приміщенні чи під час відключень світла, веб-версія Google Forms просто перестає завантажуватися.</li>
+            <li><strong>Сумнівні дозволи сторонніх додатків:</strong> Більшість неофіційних застосунків у Play Маркеті вимагають повний доступ до всього вашого Google Диска та переповнені рекламою.</li>
+          </ul>
+
+          <h2>2. Порівняння: Нативний простір FormGrid проти мобільного браузера</h2>
+          <div class="overflow-x-auto my-6 rounded-2xl border border-gray-800">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-[#131722] text-gray-300 border-b border-gray-800">
+                  <th class="p-4 font-bold">Можливість</th>
+                  <th class="p-4 font-bold text-blue-400">FormGrid (Нативний Android)</th>
+                  <th class="p-4 font-bold text-gray-400">Мобільний браузер</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-800/80 bg-[#0F1218]">
+                <tr>
+                  <td class="p-4 font-semibold text-white">Перегляд записів</td>
+                  <td class="p-4 text-blue-400 font-medium">Зручні вертикальні картки + миттєвий пошук</td>
+                  <td class="p-4 text-gray-400">Дрібні клітинки з горизонтальним скролом</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Офлайн-режим</td>
+                  <td class="p-4 text-blue-400 font-medium">Локальний кеш SQLite з чергою синхронізації</td>
+                  <td class="p-4 text-gray-400">Не працює без стабільного інтернету</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">QR-сканер та чек-ін</td>
+                  <td class="p-4 text-blue-400 font-medium">Пошук та оновлення статусу за 1 секунду камерою</td>
+                  <td class="p-4 text-gray-400">Ручне копіювання коду та пошук по сторінці</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Безпека Google Диска</td>
+                  <td class="p-4 text-blue-400 font-medium">Ізольований дозвіл <code>drive.file</code> (лише вибрані файли)</td>
+                  <td class="p-4 text-gray-400">Повна браузерна сесія</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>3. Як побудований робочий процес у FormGrid</h2>
+          <p>
+            Замість того щоб втискати десктопну таблицю в екран телефона, FormGrid перетворює ваші Google Форми та Таблиці на швидку мобільну CRM і базу даних:
+          </p>
+
+          <div class="my-8 bg-[#0F1218] border border-gray-800 rounded-3xl p-6">
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div>
+                <img src="/images/formgrid_screenshot.jpg" alt="FormGrid Головний екран" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">1. Єдиний хаб Google Форм і Таблиць</p>
+              </div>
+              <div>
+                <img src="/images/formgrid_screen_2.png" alt="FormGrid Аналітика" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">2. Наочна аналітика відповідей та графіки</p>
+              </div>
+              <div>
+                <img src="/images/formgrid_screen_3.png" alt="FormGrid Шаблони" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">3. Готові шаблони для реєстрацій та обліку</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>Крок 1: Максимальна приватність через <code>drive.file</code></h3>
+          <p>
+            Під час авторизації FormGrid використовує вузький захищений дозвіл <code>drive.file</code>. Це означає, що застосунок технічно не бачить ваші особисті файли на Google Диску — він працює виключно з тими формами й таблицями, які ви самі вибрали або створили в застосунку.
+          </p>
+
+          <h3>Крок 2: Картковий перегляд рядків та миттєва аналітика</h3>
+          <p>
+            Кожна відповідь або рядок таблиці відкривається як охайна картка, де всі поля підписані й зручно читаються. У вкладці <strong>Analytics</strong> ви одразу бачите графіки розподілу відповідей, конверсію та динаміку заповнення.
+          </p>
+
+          <h3>Крок 3: QR-сканер для реєстрації гостей та інвентаризації</h3>
+          <p>
+            Проводите захід або видаєте замовлення? Наведіть вбудований сканер FormGrid на QR-код квитка чи штрихкод товару — застосунок за долю секунди знайде відповідний рядок у Google Таблиці та дозволить змінити статус на <em>«Присутній / Видано»</em> одним натисканням.
+          </p>
+
+          <h2>Часті запитання (FAQ)</h2>
+          <div class="space-y-4 my-6">
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Що буде, якщо під час роботи зникне інтернет?</h3>
+              <p class="text-sm text-gray-400 mb-0">Усі завантажені таблиці та відповіді зберігаються в локальній базі SQLite на смартфоні. Ви можете переглядати записи, шукати клієнтів і вносити правки офлайн — щойно зʼявиться звʼязок, зміни автоматично синхронізуються з Google Sheets.</p>
+            </div>
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Чи можна вивантажити звіт у PDF або CSV прямо з телефона?</h3>
+              <p class="text-sm text-gray-400 mb-0">Так, ви можете відфільтрувати потрібні записи та за секунду експортувати їх у чистий CSV-файл або готовий PDF-звіт для відправки в Telegram чи на пошту.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- RIGHT COLUMN: STICKY APP DOWNLOAD & QR CARD -->
+      <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+        <div class="bg-gradient-to-b from-[#0F1218] to-[#0B0E14] border border-blue-500/40 rounded-3xl p-6 shadow-2xl blue-glow">
+          <div class="flex items-center gap-3.5 mb-4">
+            <img src="/images/formgrid_icon_512.png" alt="FormGrid" class="w-14 h-14 rounded-2xl border border-gray-700 object-cover shrink-0">
+            <div>
+              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 mb-1">
+                <span class="ui-en">Forms & Sheets App</span><span class="ui-uk hidden">Форми та Таблиці</span>
+              </span>
+              <h3 class="text-lg font-black text-white leading-tight">FormGrid Workspace</h3>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-300 leading-relaxed mb-5">
+            <span class="ui-en">Native mobile workspace for Google Forms & Sheets with offline SQLite sync, response analytics, and QR check-in scanner.</span>
+            <span class="ui-uk hidden">Нативний мобільний простір для Google Форм та Таблиць з офлайн-кешем, аналітикою відповідей та QR-сканером.</span>
+          </p>
+
+          <div class="space-y-2.5 mb-5">
+            <a href="https://play.google.com/store/apps/details?id=com.vanza.formgrid" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs sm:text-sm transition shadow-lg">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+              <span class="ui-en">Download on Google Play</span><span class="ui-uk hidden">Завантажити в Google Play</span>
+            </a>
+
+            <a href="/formgrid" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-white transition">
+              <span class="ui-en">Explore FormGrid Page →</span><span class="ui-uk hidden">Детальніше про FormGrid →</span>
+            </a>
+          </div>
+
+          <!-- Large Scannable QR Box -->
+          <div class="pt-4 border-t border-gray-800/80 flex items-center gap-3.5">
+            <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+              <img src="/images/qr_formgrid.png" alt="QR Code FormGrid" class="w-24 h-24 rounded-lg block">
+            </div>
+            <div class="space-y-1">
+              <p class="text-xs font-bold text-white">
+                <span class="ui-en">Scan to install FormGrid</span><span class="ui-uk hidden">Скануйте для встановлення</span>
+              </p>
+              <p class="text-[11px] text-gray-400 leading-snug">
+                <span class="ui-en">Point your phone camera to open FormGrid in Google Play.</span>
+                <span class="ui-uk hidden">Наведіть камеру смартфона, щоб відкрити Google Play.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- More Guides Sidebar Box -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 space-y-4">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400">
+            <span class="ui-en">More VanzaLabs Guides</span><span class="ui-uk hidden">Інші гайди у блозі</span>
+          </h4>
+          <div class="space-y-3 text-xs">
+            <a href="/blog/compress-photos-convert-heic-offline-android" class="block p-3 rounded-xl bg-[#08090C] hover:border-[#10B981]/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">Vanza Convert • Photo & PDF</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">Compress photos by 90%, convert HEIC to JPG & lock PDFs offline.</span><span class="ui-uk hidden">Як стиснути фото на 90%, конвертувати HEIC та захистити PDF офлайн.</span></p>
+            </a>
+            <a href="/blog/offline-invoice-estimate-maker-for-contractors" class="block p-3 rounded-xl bg-[#08090C] hover:border-indigo-500/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">Vanza Docs • B2B Invoicing</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">Generate signed PDF invoices & estimates on job sites in 60 seconds.</span><span class="ui-uk hidden">Як створювати PDF-рахунки та кошториси з підписом на екрані за 60 секунд.</span></p>
+            </a>
+            <a href="/blog/science-of-muscle-recovery-offline-workout-tracker" class="block p-3 rounded-xl bg-[#08090C] hover:border-lime-400/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">SPOT • Muscle Recovery Science</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">36h–72h muscle recovery windows & offline gym workout tracking.</span><span class="ui-uk hidden">Наука відновлення мʼязів та офлайн-щоденник тренувань для залу.</span></p>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#08090C] border-t border-gray-900 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 VanzaLabs Engineering Studio. All rights reserved.</p>
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="/" class="hover:text-white transition">VanzaLabs</a>
+        <a href="/blog" class="text-blue-400 font-semibold">Blog</a>
+        <a href="/formgrid" class="hover:text-white transition">FormGrid</a>
+        <a href="/privacy/formgrid" class="hover:text-white transition">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = 'en';
+    function setArticleLang(lang, save = true) {
+      currentLang = lang;
+      const isUa = lang === 'uk';
+      document.documentElement.lang = isUa ? 'uk' : 'en';
+      document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+      document.getElementById('lang-en').classList.toggle('hidden', isUa);
+      document.getElementById('lang-uk').classList.toggle('hidden', !isUa);
+      document.querySelectorAll('.ui-en').forEach(el => el.classList.toggle('hidden', isUa));
+      document.querySelectorAll('.ui-uk').forEach(el => el.classList.toggle('hidden', !isUa));
+      if (save) {
+        try { localStorage.setItem('vanza_lang', lang); } catch(e) {}
+      }
+    }
+    function toggleArticleLang() {
+      setArticleLang(currentLang === 'en' ? 'uk' : 'en', true);
+    }
+    (function init() {
+      try {
+        const saved = localStorage.getItem('vanza_lang');
+        if (saved === 'uk' || saved === 'en') {
+          if (saved === 'uk') setArticleLang('uk', false);
+          return;
+        }
+        const sysLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (sysLang.startsWith('uk') || sysLang.startsWith('ru')) setArticleLang('uk', false);
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>
