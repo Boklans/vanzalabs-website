@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume | VanzaLabs Blog</title>
+  <meta name="description" content="Learn how to engineer your workout splits by mapping physiological recovery windows to weekly volume using local-first tools like SPOT.">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:title" content="Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume">
+  <meta property="og:description" content="Learn how to engineer your workout splits by mapping physiological recovery windows to weekly volume using local-first tools like SPOT.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://vanzalabs.tech/blog/optimizing-hypertrophy-recovery-cycles-local-first">
+  <meta property="og:image" content="https://vanzalabs.tech/screen_spot.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume">
+  <meta name="twitter:description" content="Learn how to engineer your workout splits by mapping physiological recovery windows to weekly volume using local-first tools like SPOT.">
+  <link rel="canonical" href="https://vanzalabs.tech/blog/optimizing-hypertrophy-recovery-cycles-local-first">
+  <meta name="p:domain_verify" content="90f814ccab954bd60bf020b0af5c7022"/>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="512x512" href="/spot_logo.png">
+  <meta name="theme-color" content="#08090C">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background-color: #08090C;
+      color: #F3F4F6;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .accent-glow {
+      box-shadow: 0 0 40px -10px rgba(163, 230, 53, 0.30);
+    }
+    .prose-custom h2 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .prose-custom h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      margin-top: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .prose-custom p {
+      color: #d1d5db;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      font-size: 1.02rem;
+    }
+    .prose-custom ul, .prose-custom ol {
+      color: #d1d5db;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      space-y: 0.5rem;
+    }
+    .prose-custom li {
+      margin-bottom: 0.55rem;
+      line-height: 1.7;
+    }
+    .prose-custom strong {
+      color: #ffffff;
+    }
+    .prose-custom a {
+      color: #A3E635;
+      text-decoration: underline;
+    }
+    .prose-custom th {
+      background: #141923;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #1f2937;
+    }
+    .prose-custom td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #1f2937;
+      color: #d1d5db;
+    }
+  </style>
+
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu pu gu mu init Gu Qu Hu Wu Xu il Vu Yu ju oc ac lc uc cc hc capture getExtension Zu hu gc calculateEventProperties vc register register_once register_for_session unregister unregister_for_session zu mc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync wc identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset kc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty yc nc createPersonProfile setInternalOrTestUser bc xu ku opt_in_capturing opt_out_capturing Su has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing tc debug nl Os getPageViewId captureTraceFeedback captureTraceMetric Du".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_q5gM7VmNh57nCNKfKQx7KZDNgqaY7UK2mdXjrAzKDRey', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'always'
+    });
+  </script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume",
+      "description": "Learn how to engineer your workout splits by mapping physiological recovery windows to weekly volume using local-first tools like SPOT.",
+      "image": "https://vanzalabs.tech/screen_spot.jpg",
+      "datePublished": "2026-11-14",
+      "dateModified": "2026-11-14",
+      "author": {
+        "@type": "Organization",
+        "name": "VanzaLabs Engineering",
+        "url": "https://vanzalabs.tech"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VanzaLabs",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vanzalabs.tech/vanzalabs_logo_white_text.png"
+        }
+      },
+      "mainEntityOfPage": "https://vanzalabs.tech/blog/optimizing-hypertrophy-recovery-cycles-local-first"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does SPOT track recovery without external sensors?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SPOT uses algorithmic modeling based on your logged intensity, volume, and muscle group specificity to estimate physiological recovery phases locally."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my workout data truly stored offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, all data in SPOT is stored in an encrypted local database on your device, ensuring zero dependency on cloud sync or internet connectivity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do some muscles require 72 hours for recovery?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Larger muscle groups with higher motor unit recruitment induce more systemic fatigue and require longer protein synthesis cycles to fully repair micro-tears."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "VanzaLabs",
+          "item": "https://vanzalabs.tech/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://vanzalabs.tech/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Recovery Optimization Guide",
+          "item": "https://vanzalabs.tech/blog/optimizing-hypertrophy-recovery-cycles-local-first"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="antialiased selection:bg-[#10B981] selection:text-black">
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#08090C]/85 border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-1">
+            <img src="/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="w-full h-auto object-contain">
+          </div>
+          <span class="font-black text-base sm:text-lg text-white group-hover:text-[#10B981] transition">VanzaLabs</span>
+        </a>
+        <span class="text-gray-700">/</span>
+        <a href="/blog" class="text-xs font-bold text-gray-300 hover:text-[#10B981] transition">
+          <span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleArticleLang()" class="px-3 py-1.5 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:text-white hover:border-gray-700 transition">
+          <span id="langLabel">UA</span>
+        </button>
+        <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.spot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-lime-400 hover:bg-lime-300 text-black text-xs font-extrabold transition">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span class="ui-en">Get SPOT</span><span class="ui-uk hidden">Завантажити SPOT</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN ARTICLE CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <nav class="text-xs text-gray-500 mb-6 flex items-center gap-2 flex-wrap">
+      <a href="/" class="hover:text-gray-300">VanzaLabs</a>
+      <span>→</span>
+      <a href="/blog" class="hover:text-gray-300"><span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span></a>
+      <span>→</span>
+      <span class="text-lime-400 font-medium"><span class="ui-en">Recovery Optimization Guide</span><span class="ui-uk hidden">Посібник з оптимізації відновлення</span></span>
+    </nav>
+
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+      <div class="lg:col-span-8">
+
+        <!-- ENGLISH ARTICLE -->
+        <article id="lang-en" class="prose-custom">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-lime-400/15 border border-lime-400/30 text-lime-400 font-bold">Fitness & Recovery Science</span>
+            <span class="text-gray-400">8 min read</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-11-14" class="text-gray-400">Nov 14, 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+            Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume
+          </h1>
+
+          <h2>The Mathematics of Localized Muscle Fatigue</h2><p>Training volume is often oversimplified as total sets per week. However, muscle growth isn't linear—it's tethered to the physiological recovery cycle of specific muscle fibers. When you train a muscle, you induce micro-trauma, initiating a protein synthesis cycle that typically lasts 36 to 72 hours. Ignoring this window leads to 'junk volume' where you stress an already inflamed muscle without providing the necessary recovery for growth.</p><p>In <a href="/spot">SPOT</a>, we treat recovery as a data-driven constraint. By logging your intensity and local fatigue, the app helps you visualize the recovery gap, ensuring you don't return to a muscle group until it has cleared its acute inflammatory phase. This is the cornerstone of sustainable progressive overload.</p><h2>Mapping 36-72 Hour Windows in Your Split</h2><p>Not all muscles recover at the same rate. Larger muscle groups like the quads and back naturally require more time to recover from high-intensity output than smaller, peripheral muscles like the lateral delts or calves. A standard push-pull-legs (PPL) split often fails because it forces arbitrary recovery days that don't account for individual stimulus response.</p><p>By utilizing a 48-hour baseline for most compound movements, you can optimize your schedule to prevent systemic central nervous system (CNS) fatigue. Using a tactile logger allows you to record RPE (Rate of Perceived Exertion) directly in the gym—even in subterranean facilities where connectivity dies—so you can adjust your next session based on real-time physiological readiness.</p><div class="overflow-x-auto my-6 rounded-2xl border border-gray-800 bg-[#0F1218]"><table class="w-full text-left border-collapse text-sm"><thead class="bg-gray-800"><tr><th class="p-3">Muscle Group</th><th class="p-3">Recommended Recovery</th><th class="p-3">Training Frequency</th></tr></thead><tbody><tr><td class="p-3 border-t border-gray-700">Quads / Back</td><td class="p-3 border-t border-gray-700">60-72 Hours</td><td class="p-3 border-t border-gray-700">1.5x - 2x/week</td></tr><tr><td class="p-3 border-t border-gray-700">Chest / Shoulders</td><td class="p-3 border-t border-gray-700">48-60 Hours</td><td class="p-3 border-t border-gray-700">2x/week</td></tr><tr><td class="p-3 border-t border-gray-700">Arms / Calves</td><td class="p-3 border-t border-gray-700">36-48 Hours</td><td class="p-3 border-t border-gray-700">2x - 3x/week</td></tr></tbody></table></div><h2>Why Local-First Tracking Prevents Data Drift</h2><p>Cloud-based fitness apps suffer from latency, but more importantly, they suffer from analytical distraction. When your tracking tool is tethered to a remote server, you become susceptible to the UI patterns designed to keep you online rather than focused. <a href="https://play.google.com/store">SPOT</a> operates entirely on-device, meaning your strength analytics and recovery histograms remain accessible without the need for an active data connection. This privacy-first approach ensures that your training history—your most valuable intellectual property—is never offloaded to a third-party server.</p><h2>Implementing Progressive Overload with Recovery Constraints</h2><p>Effective programming isn't about doing more; it's about doing the right amount at the right time. If your recovery logs indicate that your chest is still at 80% readiness at the 48-hour mark, pushing for a new rep max will likely result in stagnant progress or injury. Instead, use that window to prioritize recovery or switch to low-impact accessory movements. By tracking these variables in <a href="/spot">SPOT</a>, you can correlate your total weekly volume with strength gains, effectively engineering a bespoke training cycle that fits your specific biology rather than a generic template.</p>
+
+          <h2>Frequently Asked Questions (FAQ)</h2>
+<div class="space-y-4 my-6">
+<div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">How does SPOT track recovery without external sensors?</h3>
+  <p class="text-sm text-gray-400 mb-0">SPOT uses algorithmic modeling based on your logged intensity, volume, and muscle group specificity to estimate physiological recovery phases locally.</p>
+</div><div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Is my workout data truly stored offline?</h3>
+  <p class="text-sm text-gray-400 mb-0">Yes, all data in SPOT is stored in an encrypted local database on your device, ensuring zero dependency on cloud sync or internet connectivity.</p>
+</div><div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Why do some muscles require 72 hours for recovery?</h3>
+  <p class="text-sm text-gray-400 mb-0">Larger muscle groups with higher motor unit recruitment induce more systemic fatigue and require longer protein synthesis cycles to fully repair micro-tears.</p>
+</div>
+</div>
+        </article>
+
+        <!-- UKRAINIAN ARTICLE -->
+        <article id="lang-uk" class="prose-custom hidden">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-lime-400/15 border border-lime-400/30 text-lime-400 font-bold">Фітнес та наука відновлення</span>
+            <span class="text-gray-400">8 хв читання</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-11-14" class="text-gray-400">Nov 14, 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+            Точна гіпертрофія: Розрахунок вікон відновлення для оптимального обсягу тренувань
+          </h1>
+
+          <h2>Математика локальної м'язової втоми</h2><p>Обсяг тренувань часто надмірно спрощують, рахуючи лише загальну кількість підходів на тиждень. Однак ріст м'язів не є лінійним процесом — він прив'язаний до фізіологічного циклу відновлення окремих м'язових волокон. Коли ви тренуєте м'яз, ви створюєте мікротравми, що запускає цикл синтезу білка, який зазвичай триває від 36 до 72 годин. Ігнорування цього вікна призводить до «марного обсягу», коли ви навантажуєте вже запалений м'яз, не даючи йому часу на відновлення.</p><p>У <a href="/spot">SPOT</a> ми розглядаємо відновлення як обмеження, що базується на даних. Записуючи інтенсивність і локальну втому, додаток допомагає візуалізувати розрив у відновленні, гарантуючи, що ви не повернетеся до м'язової групи, поки вона не пройде фазу гострого запалення. Це фундамент сталого прогресивного перевантаження.</p><h2>Робота з вікнами 36-72 години у вашому спліті</h2><p>Не всі м'язи відновлюються з однаковою швидкістю. Великі групи, такі як квадрицепси чи спина, потребують більше часу на відновлення після високої інтенсивності, ніж дрібні м'язи, як-от латеральні дельти чи литки. Стандартний спліт (Push-Pull-Legs) часто не працює, бо нав'язує довільні дні відпочинку, які не враховують індивідуальну реакцію організму.</p><p>Використовуючи 48-годинний базовий показник для більшості базових вправ, ви можете оптимізувати графік, щоб запобігти системній втомі центральної нервової системи (ЦНС). Завдяки тактильному логеру ви можете записувати RPE (рівень зусиль) прямо в залі — навіть у підвальних приміщеннях, де немає зв'язку — і коригувати наступне тренування на основі реальної фізіологічної готовності.</p><div class="overflow-x-auto my-6 rounded-2xl border border-gray-800 bg-[#0F1218]"><table class="w-full text-left border-collapse text-sm"><thead class="bg-gray-800"><tr><th class="p-3">Група м'язів</th><th class="p-3">Рекомендоване відновлення</th><th class="p-3">Частота тренувань</th></tr></thead><tbody><tr><td class="p-3 border-t border-gray-700">Квадрицепси / Спина</td><td class="p-3 border-t border-gray-700">60-72 години</td><td class="p-3 border-t border-gray-700">1.5x - 2x/тижд.</td></tr><tr><td class="p-3 border-t border-gray-700">Груди / Плечі</td><td class="p-3 border-t border-gray-700">48-60 годин</td><td class="p-3 border-t border-gray-700">2x/тижд.</td></tr><tr><td class="p-3 border-t border-gray-700">Руки / Литки</td><td class="p-3 border-t border-gray-700">36-48 годин</td><td class="p-3 border-t border-gray-700">2x - 3x/тижд.</td></tr></tbody></table></div><h2>Чому локальний підхід запобігає втраті даних</h2><p>Хмарні фітнес-додатки страждають від затримок, але, що важливіше, від аналітичного відволікання. Коли ваш інструмент прив'язаний до сервера, ви стаєте вразливими до шаблонів інтерфейсу, розроблених для того, щоб тримати вас онлайн. <a href="https://play.google.com/store">SPOT</a> працює виключно на вашому пристрої, а це означає, що ваша силова аналітика залишається доступною без активного підключення до мережі. Такий підхід забезпечує приватність вашої історії тренувань, яка ніколи не потрапляє на сторонні сервери.</p><h2>Прогресивне перевантаження з урахуванням відновлення</h2><p>Ефективне програмування — це не про виконання більшої кількості вправ, а про виконання правильного обсягу в потрібний час. Якщо журнали відновлення вказують, що ваші груди готові лише на 80% через 48 годин, спроба встановити новий рекорд призведе до стагнації або травми. Використовуйте цей час для відновлення або перейдіть на легкі допоміжні вправи. Відстежуючи ці змінні у <a href="/spot">SPOT</a>, ви зможете корелювати загальний тижневий обсяг із силовими показниками, створюючи індивідуальний тренувальний цикл, що відповідає вашій біології, а не шаблонним порадам.</p>
+
+          <h2>Часті запитання (FAQ)</h2>
+<div class="space-y-4 my-6">
+<div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Як SPOT відстежує відновлення без зовнішніх датчиків?</h3>
+  <p class="text-sm text-gray-400 mb-0">SPOT використовує алгоритмічне моделювання на основі введеної інтенсивності, обсягу та специфіки груп м&#x27;язів для локальної оцінки фаз відновлення.</p>
+</div><div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Чи справді мої дані тренувань зберігаються офлайн?</h3>
+  <p class="text-sm text-gray-400 mb-0">Так, усі дані у SPOT зберігаються в зашифрованій локальній базі даних на вашому пристрої, що усуває залежність від хмарної синхронізації.</p>
+</div><div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Чому деяким м&#x27;язам потрібно 72 години для відновлення?</h3>
+  <p class="text-sm text-gray-400 mb-0">Більші м&#x27;язові групи з вищим залученням рухових одиниць викликають більшу системну втому та потребують триваліших циклів синтезу білка для відновлення мікротравм.</p>
+</div>
+</div>
+        </article>
+
+      </div>
+
+      <!-- RIGHT COLUMN: STICKY APP WIDGET -->
+      <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+        <div class="bg-gradient-to-b from-[#0F1218] to-[#0B0E14] border border-lime-400/40 rounded-3xl p-6 shadow-2xl accent-glow">
+          <div class="flex items-center gap-3.5 mb-4">
+            <img src="/spot_logo.png" alt="SPOT Workout Tracker" class="w-14 h-14 rounded-2xl border border-gray-700 object-cover shrink-0">
+            <div>
+              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-lime-400/15 border border-lime-400/30 text-lime-400 mb-1">
+                <span class="ui-en">Smart Gym Tracker</span><span class="ui-uk hidden">Розумний трекер залу</span>
+              </span>
+              <h3 class="text-lg font-black text-white leading-tight">SPOT Workout Tracker</h3>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-300 leading-relaxed mb-5">
+            <span class="ui-en">Algorithmic muscle recovery tracking, custom splits, tactile set logger, and strength analytics. 100% offline-ready.</span>
+            <span class="ui-uk hidden">Алгоритм відновлення мʼязів, персональні спліт-програми, зручний таймер та аналітика силових. Працює без інтернету.</span>
+          </p>
+
+          <div class="space-y-2.5 mb-5">
+            <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.spot" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-lime-400 hover:bg-lime-300 text-black font-extrabold text-xs sm:text-sm transition shadow-lg">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+              <span class="ui-en">Download on Google Play</span><span class="ui-uk hidden">Завантажити в Google Play</span>
+            </a>
+
+            <a href="/spot" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-white transition">
+              <span class="ui-en">Explore App Overview →</span><span class="ui-uk hidden">Детальніше про застосунок →</span>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-gray-800/80 flex items-center gap-3.5">
+            <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+              <img src="/images/qr_spot.png" alt="QR Code SPOT Workout Tracker" class="w-24 h-24 rounded-lg block">
+            </div>
+            <div class="space-y-1">
+              <p class="text-xs font-bold text-white">
+                <span class="ui-en">Scan with phone camera</span><span class="ui-uk hidden">Скануйте камерою телефона</span>
+              </p>
+              <p class="text-[11px] text-gray-400 leading-snug">
+                <span class="ui-en">Opens directly in Google Play Store on your Android device.</span>
+                <span class="ui-uk hidden">Миттєво відкриває сторінку встановлення в Google Play.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- More Guides Sidebar Box -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 space-y-4">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400">
+            <span class="ui-en">More VanzaLabs Guides</span><span class="ui-uk hidden">Інші гайди у блозі</span>
+          </h4>
+          <div class="space-y-3 text-xs">
+            <a href="/blog/compress-photos-convert-heic-offline-android" class="block p-3 rounded-xl bg-[#08090C] hover:border-[#10B981]/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">Vanza Convert • Privacy & Media</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">Compress photos by 90%, convert HEIC & lock PDFs offline.</span><span class="ui-uk hidden">Стиснення фото, конвертація HEIC та AES-256 PDF офлайн.</span></p>
+            </a>
+            <a href="/blog/google-forms-sheets-offline-mobile-workflow" class="block p-3 rounded-xl bg-[#08090C] hover:border-blue-500/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">FormGrid • Google Forms & Sheets</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">Manage Google Forms & Sheets offline on mobile with QR check-ins.</span><span class="ui-uk hidden">Як керувати Google Формами та Таблицями зі смартфона офлайн.</span></p>
+            </a>
+            <a href="/blog/offline-invoice-estimate-maker-for-contractors" class="block p-3 rounded-xl bg-[#08090C] hover:border-indigo-500/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">Vanza Docs • B2B Invoicing</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">Generate signed PDF invoices & estimates on job sites in 60 seconds.</span><span class="ui-uk hidden">Як створювати PDF-рахунки та кошториси з підписом на екрані за 60 секунд.</span></p>
+            </a>
+            <a href="/blog/science-of-muscle-recovery-offline-workout-tracker" class="block p-3 rounded-xl bg-[#08090C] hover:border-lime-400/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">SPOT • Muscle Recovery Science</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">36h–72h muscle recovery windows & offline gym workout tracking.</span><span class="ui-uk hidden">Наука відновлення мʼязів та офлайн-щоденник тренувань для залу.</span></p>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#08090C] border-t border-gray-900 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 VanzaLabs Engineering Studio. All rights reserved.</p>
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="/" class="hover:text-white transition">VanzaLabs</a>
+        <a href="/blog" class="text-[#10B981] font-semibold">Blog</a>
+        <a href="/spot" class="hover:text-white transition">SPOT</a>
+        <a href="/privacy-policy" class="hover:text-white transition">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = 'en';
+    function setArticleLang(lang, save = true) {
+      currentLang = lang;
+      const isUa = lang === 'uk';
+      document.documentElement.lang = isUa ? 'uk' : 'en';
+      document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+      document.getElementById('lang-en').classList.toggle('hidden', isUa);
+      document.getElementById('lang-uk').classList.toggle('hidden', !isUa);
+      document.querySelectorAll('.ui-en').forEach(el => el.classList.toggle('hidden', isUa));
+      document.querySelectorAll('.ui-uk').forEach(el => el.classList.toggle('hidden', !isUa));
+      if (save) {
+        try { localStorage.setItem('vanza_lang', lang); } catch(e) {}
+      }
+    }
+    function toggleArticleLang() {
+      setArticleLang(currentLang === 'en' ? 'uk' : 'en', true);
+    }
+    (function init() {
+      try {
+        const saved = localStorage.getItem('vanza_lang');
+        if (saved === 'uk' || saved === 'en') {
+          if (saved === 'uk') setArticleLang('uk', false);
+          return;
+        }
+        const sysLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (sysLang.startsWith('uk') || sysLang.startsWith('ru')) setArticleLang('uk', false);
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>

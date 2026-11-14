@@ -101,6 +101,7 @@
           }
         },
         "blogPost": [
+          {"@type": "BlogPosting", "headline": "Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume", "url": "https://vanzalabs.tech/blog/optimizing-hypertrophy-recovery-cycles-local-first", "datePublished": "2026-11-14", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Beyond Volume: Engineering Muscle Recovery Windows in SPOT", "url": "https://vanzalabs.tech/blog/optimizing-weekly-training-volume-recovery-windows", "datePublished": "2026-11-13", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "How to Shrink 4K Videos and Heavy Photos for Email Without Quality Loss", "url": "https://vanzalabs.tech/blog/how-to-shrink-4k-videos-smartphone-photos-email-without-losing-detail", "datePublished": "2026-11-13", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Securing Sensitive PDFs: Why Local AES-256 Encryption Beats Cloud Services", "url": "https://vanzalabs.tech/blog/securing-sensitive-pdfs-offline-aes-256-encryption", "datePublished": "2026-11-13", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
@@ -223,7 +224,7 @@
       <div class="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4 border-t border-gray-800/80">
         <div class="flex flex-wrap items-center gap-2" id="categoryPills">
           <button type="button" onclick="filterCategory('all')" data-cat="all" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-[#10B981] text-black transition">
-            <span>All Guides (7)</span>
+            <span>All Guides (8)</span>
           </button>
           <button type="button" onclick="filterCategory('privacy')" data-cat="privacy" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#0F1218] text-gray-300 hover:text-white border border-gray-800 transition">
             <span>Privacy & Media</span>
@@ -326,10 +327,51 @@
         <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
           <span>All Product & Engineering Guides</span>
         </h2>
-        <span id="resultsCounter" class="text-xs font-mono text-gray-400">7 articles</span>
+        <span id="resultsCounter" class="text-xs font-mono text-gray-400">8 articles</span>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8" id="articlesGrid">
+
+        <!-- AUTO CARD: optimizing-hypertrophy-recovery-cycles-local-first -->
+        <article data-category="fitness" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-lime-400/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-400 font-semibold"><span>Fitness & Recovery Science</span></span>
+              <span class="text-gray-500">8 min read • Nov 14, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-lime-400 transition leading-snug">
+              <a href="/blog/optimizing-hypertrophy-recovery-cycles-local-first">
+                <span data-i18n="art_optimizing_hypertrophy_recovery_cycles_l_title">Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_optimizing_hypertrophy_recovery_cycles_l_excerpt">
+              Stop guessing your recovery. Learn how to map muscle fatigue windows to your weekly volume for more effective hypertrophy training.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Hypertrophy Engineering</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Recovery Windows</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Training Volume</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/spot" class="flex items-center gap-2.5 group/app">
+              <img src="/spot_logo.png" alt="SPOT" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-lime-400 transition">SPOT</p>
+                <p class="text-[10px] text-gray-500"><span>Smart Gym Tracker</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/optimizing-hypertrophy-recovery-cycles-local-first" class="inline-flex items-center gap-1.5 text-xs font-bold text-lime-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
 
         <!-- AUTO CARD: optimizing-weekly-training-volume-recovery-windows -->
         <article data-category="fitness" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-lime-400/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
@@ -773,7 +815,7 @@
       'Discuss a Project': 'Обговорити проєкт',
       'VanzaLabs Knowledge Hub': 'База знань VanzaLabs',
       'Engineering, Privacy & Mobile Workflows': 'Інженерія, приватність та мобільні інструменти',
-      'All Guides (7)': 'Усі статті (4)',
+      'All Guides (8)': 'Усі статті (4)',
       'Privacy & Media': 'Приватність та медіа',
       'Google Forms & Data': 'Google Форми та таблиці',
       'Contractors & Invoicing': 'Документи та рахунки',
@@ -809,6 +851,14 @@
     };
 
     const i18nBlocks = {
+      art_optimizing_hypertrophy_recovery_cycles_l_title: {
+        en: "Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume",
+        uk: "Точна гіпертрофія: Розрахунок вікон відновлення для оптимального обсягу тренувань"
+      },
+      art_optimizing_hypertrophy_recovery_cycles_l_excerpt: {
+        en: "Stop guessing your recovery. Learn how to map muscle fatigue windows to your weekly volume for more effective hypertrophy training.",
+        uk: "Припиніть гадати з відновленням. Навчіться узгоджувати вікна м'язової втоми з тижневим обсягом для ефективнішої гіпертрофії."
+      },
       art_optimizing_weekly_training_volume_recove_title: {
         en: "Beyond Volume: Engineering Muscle Recovery Windows in SPOT",
         uk: "Оптимізація обсягу тренувань та вікон відновлення м'язів у SPOT"
