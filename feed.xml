@@ -5,8 +5,16 @@
     <link>https://vanzalabs.tech/blog</link>
     <description>Practical guides on offline-first mobile apps, data privacy, and engineering.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Nov 2026 21:35:12 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 15 Nov 2026 21:36:07 +0000</lastBuildDate>
     <atom:link href="https://vanzalabs.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Locking PDF Scans with AES-256 Offline Before Sending on Chat Apps</title>
+      <link>https://vanzalabs.tech/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram</guid>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to secure sensitive PDF documents with military-grade AES-256 encryption completely offline before sharing them via WhatsApp or Telegram.</description>
+      <enclosure url="https://vanzalabs.tech/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram/cover.png" type="image/png" length="0" />
+    </item>
     <item>
       <title>Why Trade Contractors Are Ditching SaaS Invoicing Subscriptions</title>
       <link>https://vanzalabs.tech/blog/why-contractors-are-ditching-saas-invoicing-subscriptions</link>

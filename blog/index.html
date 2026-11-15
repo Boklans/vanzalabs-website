@@ -102,6 +102,7 @@
           }
         },
         "blogPost": [
+          {"@type": "BlogPosting", "headline": "Locking PDF Scans with AES-256 Offline Before Sending on Chat Apps", "url": "https://vanzalabs.tech/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram", "datePublished": "2026-11-15", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Why Trade Contractors Are Ditching SaaS Invoicing Subscriptions", "url": "https://vanzalabs.tech/blog/why-contractors-are-ditching-saas-invoicing-subscriptions", "datePublished": "2026-11-15", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume", "url": "https://vanzalabs.tech/blog/optimizing-hypertrophy-recovery-cycles-local-first", "datePublished": "2026-11-14", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Beyond Volume: Engineering Muscle Recovery Windows in SPOT", "url": "https://vanzalabs.tech/blog/optimizing-weekly-training-volume-recovery-windows", "datePublished": "2026-11-13", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
@@ -226,7 +227,7 @@
       <div class="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4 border-t border-gray-800/80">
         <div class="flex flex-wrap items-center gap-2" id="categoryPills">
           <button type="button" onclick="filterCategory('all')" data-cat="all" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-[#10B981] text-black transition">
-            <span>All Guides (9)</span>
+            <span>All Guides (10)</span>
           </button>
           <button type="button" onclick="filterCategory('privacy')" data-cat="privacy" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#0F1218] text-gray-300 hover:text-white border border-gray-800 transition">
             <span>Privacy & Media</span>
@@ -329,10 +330,51 @@
         <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
           <span>All Product & Engineering Guides</span>
         </h2>
-        <span id="resultsCounter" class="text-xs font-mono text-gray-400">9 articles</span>
+        <span id="resultsCounter" class="text-xs font-mono text-gray-400">10 articles</span>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8" id="articlesGrid">
+
+        <!-- AUTO CARD: locking-pdf-scans-aes-256-offline-whatsapp-telegram -->
+        <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-semibold"><span>Privacy & Media</span></span>
+              <span class="text-gray-500">7 min read • Nov 15, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition leading-snug">
+              <a href="/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram">
+                <span data-i18n="art_locking_pdf_scans_aes_256_offline_whatsa_title">Locking PDF Scans with AES-256 Offline Before Sending on Chat Apps</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_locking_pdf_scans_aes_256_offline_whatsa_excerpt">
+              Stop leaking private tax files and ID scans. Discover how to apply AES-256 PDF encryption locally on your device before sending files through chat apps.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">AES-256 Encryption</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Offline PDF Security</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Secure Chat Sharing</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/convert" class="flex items-center gap-2.5 group/app">
+              <img src="/images/convert_icon_512.png" alt="Vanza Convert" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-[#10B981] transition">Vanza Convert</p>
+                <p class="text-[10px] text-gray-500"><span>Offline Media Studio</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
 
         <!-- AUTO CARD: why-contractors-are-ditching-saas-invoicing-subscriptions -->
         <article data-category="b2b" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-indigo-500/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
@@ -858,7 +900,7 @@
       'Discuss a Project': 'Обговорити проєкт',
       'VanzaLabs Knowledge Hub': 'База знань VanzaLabs',
       'Engineering, Privacy & Mobile Workflows': 'Інженерія, приватність та мобільні інструменти',
-      'All Guides (9)': 'Усі статті (4)',
+      'All Guides (10)': 'Усі статті (4)',
       'Privacy & Media': 'Приватність та медіа',
       'Google Forms & Data': 'Google Форми та таблиці',
       'Contractors & Invoicing': 'Документи та рахунки',
@@ -894,6 +936,14 @@
     };
 
     const i18nBlocks = {
+      art_locking_pdf_scans_aes_256_offline_whatsa_title: {
+        en: "Locking PDF Scans with AES-256 Offline Before Sending on Chat Apps",
+        uk: "Захист PDF-сканів AES-256 офлайн перед відправкою в месенджерах"
+      },
+      art_locking_pdf_scans_aes_256_offline_whatsa_excerpt: {
+        en: "Stop leaking private tax files and ID scans. Discover how to apply AES-256 PDF encryption locally on your device before sending files through chat apps.",
+        uk: "Припиніть виток приватних податкових файлів та сканів паспортів. Дізнайтеся, як застосувати шифрування PDF локально на пристрої перед відправкою."
+      },
       art_why_contractors_are_ditching_saas_invoic_title: {
         en: "Why Trade Contractors Are Ditching SaaS Invoicing Subscriptions",
         uk: "Чому будівельники та підрядники відмовляються від SaaS підписок"
