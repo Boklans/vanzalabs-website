@@ -5,8 +5,16 @@
     <link>https://vanzalabs.tech/blog</link>
     <description>Practical guides on offline-first mobile apps, data privacy, and engineering.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Nov 2026 21:36:07 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 21:36:54 +0000</lastBuildDate>
     <atom:link href="https://vanzalabs.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Frictionless Progressive Overload: Why 2-Tap Logging Beats Social Fitness Bloat</title>
+      <link>https://vanzalabs.tech/blog/frictionless-progressive-overload-tracking-tactile-logger</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/frictionless-progressive-overload-tracking-tactile-logger</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Discover why low-friction tactile logging outperforms social fitness apps for accurate progressive overload tracking. Built for serious strength training.</description>
+      <enclosure url="https://vanzalabs.tech/blog/frictionless-progressive-overload-tracking-tactile-logger/cover.png" type="image/png" length="0" />
+    </item>
     <item>
       <title>Locking PDF Scans with AES-256 Offline Before Sending on Chat Apps</title>
       <link>https://vanzalabs.tech/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram</link>

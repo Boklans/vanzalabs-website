@@ -102,6 +102,7 @@
           }
         },
         "blogPost": [
+          {"@type": "BlogPosting", "headline": "Frictionless Progressive Overload: Why 2-Tap Logging Beats Social Fitness Bloat", "url": "https://vanzalabs.tech/blog/frictionless-progressive-overload-tracking-tactile-logger", "datePublished": "2026-11-16", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Locking PDF Scans with AES-256 Offline Before Sending on Chat Apps", "url": "https://vanzalabs.tech/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram", "datePublished": "2026-11-15", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Why Trade Contractors Are Ditching SaaS Invoicing Subscriptions", "url": "https://vanzalabs.tech/blog/why-contractors-are-ditching-saas-invoicing-subscriptions", "datePublished": "2026-11-15", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume", "url": "https://vanzalabs.tech/blog/optimizing-hypertrophy-recovery-cycles-local-first", "datePublished": "2026-11-14", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
@@ -227,7 +228,7 @@
       <div class="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4 border-t border-gray-800/80">
         <div class="flex flex-wrap items-center gap-2" id="categoryPills">
           <button type="button" onclick="filterCategory('all')" data-cat="all" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-[#10B981] text-black transition">
-            <span>All Guides (10)</span>
+            <span>All Guides (11)</span>
           </button>
           <button type="button" onclick="filterCategory('privacy')" data-cat="privacy" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#0F1218] text-gray-300 hover:text-white border border-gray-800 transition">
             <span>Privacy & Media</span>
@@ -330,10 +331,51 @@
         <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
           <span>All Product & Engineering Guides</span>
         </h2>
-        <span id="resultsCounter" class="text-xs font-mono text-gray-400">10 articles</span>
+        <span id="resultsCounter" class="text-xs font-mono text-gray-400">11 articles</span>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8" id="articlesGrid">
+
+        <!-- AUTO CARD: frictionless-progressive-overload-tracking-tactile-logger -->
+        <article data-category="fitness" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-lime-400/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-400 font-semibold"><span>Fitness & Recovery Science</span></span>
+              <span class="text-gray-500">7 min read • Nov 16, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-lime-400 transition leading-snug">
+              <a href="/blog/frictionless-progressive-overload-tracking-tactile-logger">
+                <span data-i18n="art_frictionless_progressive_overload_tracki_title">Frictionless Progressive Overload: Why 2-Tap Logging Beats Social Fitness Bloat</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_frictionless_progressive_overload_tracki_excerpt">
+              Stop fighting bloated social fitness apps between heavy sets. Learn why a streamlined, 2-tap tactile tracker delivers superior progressive overload data.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Progressive Overload</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Workout Tracker</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Strength Training</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/spot" class="flex items-center gap-2.5 group/app">
+              <img src="/spot_logo.png" alt="SPOT" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-lime-400 transition">SPOT</p>
+                <p class="text-[10px] text-gray-500"><span>Smart Gym Tracker</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/frictionless-progressive-overload-tracking-tactile-logger" class="inline-flex items-center gap-1.5 text-xs font-bold text-lime-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
 
         <!-- AUTO CARD: locking-pdf-scans-aes-256-offline-whatsapp-telegram -->
         <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
@@ -900,7 +942,7 @@
       'Discuss a Project': 'Обговорити проєкт',
       'VanzaLabs Knowledge Hub': 'База знань VanzaLabs',
       'Engineering, Privacy & Mobile Workflows': 'Інженерія, приватність та мобільні інструменти',
-      'All Guides (10)': 'Усі статті (4)',
+      'All Guides (11)': 'Усі статті (4)',
       'Privacy & Media': 'Приватність та медіа',
       'Google Forms & Data': 'Google Форми та таблиці',
       'Contractors & Invoicing': 'Документи та рахунки',
@@ -936,6 +978,14 @@
     };
 
     const i18nBlocks = {
+      art_frictionless_progressive_overload_tracki_title: {
+        en: "Frictionless Progressive Overload: Why 2-Tap Logging Beats Social Fitness Bloat",
+        uk: "Прогресивне перевантаження без зайвих рухів: чому логування у 2 дотики краще за соціальний фітнес"
+      },
+      art_frictionless_progressive_overload_tracki_excerpt: {
+        en: "Stop fighting bloated social fitness apps between heavy sets. Learn why a streamlined, 2-tap tactile tracker delivers superior progressive overload data.",
+        uk: "Досить боротися з роздутими соціальними додатками між важкими підходами. Дізнайтеся, чому швидкий трекер забезпечує найкращі дані про прогрес."
+      },
       art_locking_pdf_scans_aes_256_offline_whatsa_title: {
         en: "Locking PDF Scans with AES-256 Offline Before Sending on Chat Apps",
         uk: "Захист PDF-сканів AES-256 офлайн перед відправкою в месенджерах"
