@@ -5,8 +5,16 @@
     <link>https://vanzalabs.tech/blog</link>
     <description>Practical guides on offline-first mobile apps, data privacy, and engineering.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Nov 2026 21:36:54 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 17 Nov 2026 21:37:50 +0000</lastBuildDate>
     <atom:link href="https://vanzalabs.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Hidden GDPR and Identity Risks of Online File Converters</title>
+      <link>https://vanzalabs.tech/blog/why-online-file-converters-risk-gdpr-identity-theft</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/why-online-file-converters-risk-gdpr-identity-theft</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Discover why uploading sensitive IDs and contracts to free online file converters violates GDPR and exposes you to severe identity theft risks.</description>
+      <enclosure url="https://vanzalabs.tech/blog/why-online-file-converters-risk-gdpr-identity-theft/cover.png" type="image/png" length="0" />
+    </item>
     <item>
       <title>Frictionless Progressive Overload: Why 2-Tap Logging Beats Social Fitness Bloat</title>
       <link>https://vanzalabs.tech/blog/frictionless-progressive-overload-tracking-tactile-logger</link>
