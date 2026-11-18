@@ -102,6 +102,7 @@
           }
         },
         "blogPost": [
+          {"@type": "BlogPosting", "headline": "Mastering Local Media Compression: Shrinking 4K Video and RAW Photos Offline", "url": "https://vanzalabs.tech/blog/client-side-media-compression-email-messaging-guide", "datePublished": "2026-11-18", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "The Hidden GDPR and Identity Risks of Online File Converters", "url": "https://vanzalabs.tech/blog/why-online-file-converters-risk-gdpr-identity-theft", "datePublished": "2026-11-17", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Frictionless Progressive Overload: Why 2-Tap Logging Beats Social Fitness Bloat", "url": "https://vanzalabs.tech/blog/frictionless-progressive-overload-tracking-tactile-logger", "datePublished": "2026-11-16", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Locking PDF Scans with AES-256 Offline Before Sending on Chat Apps", "url": "https://vanzalabs.tech/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram", "datePublished": "2026-11-15", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
@@ -229,7 +230,7 @@
       <div class="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4 border-t border-gray-800/80">
         <div class="flex flex-wrap items-center gap-2" id="categoryPills">
           <button type="button" onclick="filterCategory('all')" data-cat="all" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-[#10B981] text-black transition">
-            <span>All Guides (12)</span>
+            <span>All Guides (13)</span>
           </button>
           <button type="button" onclick="filterCategory('privacy')" data-cat="privacy" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#0F1218] text-gray-300 hover:text-white border border-gray-800 transition">
             <span>Privacy & Media</span>
@@ -332,10 +333,51 @@
         <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
           <span>All Product & Engineering Guides</span>
         </h2>
-        <span id="resultsCounter" class="text-xs font-mono text-gray-400">12 articles</span>
+        <span id="resultsCounter" class="text-xs font-mono text-gray-400">13 articles</span>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8" id="articlesGrid">
+
+        <!-- AUTO CARD: client-side-media-compression-email-messaging-guide -->
+        <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-semibold"><span>Privacy & Media</span></span>
+              <span class="text-gray-500">7 min read • Nov 18, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition leading-snug">
+              <a href="/blog/client-side-media-compression-email-messaging-guide">
+                <span data-i18n="art_client_side_media_compression_email_mess_title">Mastering Local Media Compression: Shrinking 4K Video and RAW Photos Offline</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_client_side_media_compression_email_mess_excerpt">
+              Discover how to compress heavy 4K videos and massive photos locally on your device before sending them via email or chat, maintaining pristine visual clarity.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Local Media Compression</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Zero Cloud Uploads</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Offline Batch Conversion</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/convert" class="flex items-center gap-2.5 group/app">
+              <img src="/images/convert_icon_512.png" alt="Vanza Convert" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-[#10B981] transition">Vanza Convert</p>
+                <p class="text-[10px] text-gray-500"><span>Offline Media Studio</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/client-side-media-compression-email-messaging-guide" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
 
         <!-- AUTO CARD: why-online-file-converters-risk-gdpr-identity-theft -->
         <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
@@ -984,7 +1026,7 @@
       'Discuss a Project': 'Обговорити проєкт',
       'VanzaLabs Knowledge Hub': 'База знань VanzaLabs',
       'Engineering, Privacy & Mobile Workflows': 'Інженерія, приватність та мобільні інструменти',
-      'All Guides (12)': 'Усі статті (4)',
+      'All Guides (13)': 'Усі статті (4)',
       'Privacy & Media': 'Приватність та медіа',
       'Google Forms & Data': 'Google Форми та таблиці',
       'Contractors & Invoicing': 'Документи та рахунки',
@@ -1020,6 +1062,14 @@
     };
 
     const i18nBlocks = {
+      art_client_side_media_compression_email_mess_title: {
+        en: "Mastering Local Media Compression: Shrinking 4K Video and RAW Photos Offline",
+        uk: "Оптимізація медіаконтенту без хмари: як стискати 4K відео та важкі фото офлайн"
+      },
+      art_client_side_media_compression_email_mess_excerpt: {
+        en: "Discover how to compress heavy 4K videos and massive photos locally on your device before sending them via email or chat, maintaining pristine visual clarity.",
+        uk: "Дізнайтеся, як зменшувати розмір 4K відео та великих фотографій прямо на пристрої перед надсиланням у месенджерах, зберігаючи максимальну якість."
+      },
       art_why_online_file_converters_risk_gdpr_ide_title: {
         en: "The Hidden GDPR and Identity Risks of Online File Converters",
         uk: "Приховані ризики GDPR та крадіжки особистих даних у конвертерах"

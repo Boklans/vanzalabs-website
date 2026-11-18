@@ -5,8 +5,16 @@
     <link>https://vanzalabs.tech/blog</link>
     <description>Practical guides on offline-first mobile apps, data privacy, and engineering.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Nov 2026 21:37:50 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Nov 2026 21:38:47 +0000</lastBuildDate>
     <atom:link href="https://vanzalabs.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mastering Local Media Compression: Shrinking 4K Video and RAW Photos Offline</title>
+      <link>https://vanzalabs.tech/blog/client-side-media-compression-email-messaging-guide</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/client-side-media-compression-email-messaging-guide</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to compress 4K videos and massive smartphone photos locally on your device for email and chat apps without sacrificing visual fidelity or privacy.</description>
+      <enclosure url="https://vanzalabs.tech/blog/client-side-media-compression-email-messaging-guide/cover.png" type="image/png" length="0" />
+    </item>
     <item>
       <title>The Hidden GDPR and Identity Risks of Online File Converters</title>
       <link>https://vanzalabs.tech/blog/why-online-file-converters-risk-gdpr-identity-theft</link>
