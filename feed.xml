@@ -5,8 +5,16 @@
     <link>https://vanzalabs.tech/blog</link>
     <description>Practical guides on offline-first mobile apps, data privacy, and engineering.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Nov 2026 21:38:47 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Nov 2026 21:39:42 +0000</lastBuildDate>
     <atom:link href="https://vanzalabs.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hardware-Accelerated HEIC Batch Conversion: Processing Photos Locally</title>
+      <link>https://vanzalabs.tech/blog/hardware-accelerated-heic-batch-conversion-local-pipeline</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/hardware-accelerated-heic-batch-conversion-local-pipeline</guid>
+      <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to batch convert HEIC photos to JPG, PNG, and WebP completely offline using local hardware acceleration without any cloud uploads.</description>
+      <enclosure url="https://vanzalabs.tech/blog/hardware-accelerated-heic-batch-conversion-local-pipeline/cover.png" type="image/png" length="0" />
+    </item>
     <item>
       <title>Mastering Local Media Compression: Shrinking 4K Video and RAW Photos Offline</title>
       <link>https://vanzalabs.tech/blog/client-side-media-compression-email-messaging-guide</link>
