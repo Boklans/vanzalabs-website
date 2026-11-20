@@ -5,8 +5,16 @@
     <link>https://vanzalabs.tech/blog</link>
     <description>Practical guides on offline-first mobile apps, data privacy, and engineering.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Nov 2026 21:39:42 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Nov 2026 21:40:34 +0000</lastBuildDate>
     <atom:link href="https://vanzalabs.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exposing the Silent Data Harvest of Online File Converters</title>
+      <link>https://vanzalabs.tech/blog/exposing-the-silent-data-harvest-of-web-converters</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/exposing-the-silent-data-harvest-of-web-converters</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Discover why dropping passports and contracts into free online converters violates GDPR and risks identity theft. Secure your files with local-first processing.</description>
+      <enclosure url="https://vanzalabs.tech/blog/exposing-the-silent-data-harvest-of-web-converters/cover.png" type="image/png" length="0" />
+    </item>
     <item>
       <title>Hardware-Accelerated HEIC Batch Conversion: Processing Photos Locally</title>
       <link>https://vanzalabs.tech/blog/hardware-accelerated-heic-batch-conversion-local-pipeline</link>
