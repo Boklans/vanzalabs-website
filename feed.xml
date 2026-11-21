@@ -5,8 +5,16 @@
     <link>https://vanzalabs.tech/blog</link>
     <description>Practical guides on offline-first mobile apps, data privacy, and engineering.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Nov 2026 21:40:34 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 21 Nov 2026 21:41:28 +0000</lastBuildDate>
     <atom:link href="https://vanzalabs.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Killing Unpaid Scope Creep: Capturing Client Signatures On Estimates Instantly</title>
+      <link>https://vanzalabs.tech/blog/killing-unpaid-scope-creep-with-mobile-signatures</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/killing-unpaid-scope-creep-with-mobile-signatures</guid>
+      <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Stop losing money to unapproved extra work. Learn how capturing on-screen client signatures on estimates before starting tasks eliminates disputes.</description>
+      <enclosure url="https://vanzalabs.tech/blog/killing-unpaid-scope-creep-with-mobile-signatures/cover.png" type="image/png" length="0" />
+    </item>
     <item>
       <title>Exposing the Silent Data Harvest of Online File Converters</title>
       <link>https://vanzalabs.tech/blog/exposing-the-silent-data-harvest-of-web-converters</link>

@@ -102,6 +102,7 @@
           }
         },
         "blogPost": [
+          {"@type": "BlogPosting", "headline": "Killing Unpaid Scope Creep: Capturing Client Signatures On Estimates Instantly", "url": "https://vanzalabs.tech/blog/killing-unpaid-scope-creep-with-mobile-signatures", "datePublished": "2026-11-21", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Exposing the Silent Data Harvest of Online File Converters", "url": "https://vanzalabs.tech/blog/exposing-the-silent-data-harvest-of-web-converters", "datePublished": "2026-11-20", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Hardware-Accelerated HEIC Batch Conversion: Processing Photos Locally", "url": "https://vanzalabs.tech/blog/hardware-accelerated-heic-batch-conversion-local-pipeline", "datePublished": "2026-11-19", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Mastering Local Media Compression: Shrinking 4K Video and RAW Photos Offline", "url": "https://vanzalabs.tech/blog/client-side-media-compression-email-messaging-guide", "datePublished": "2026-11-18", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
@@ -232,7 +233,7 @@
       <div class="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4 border-t border-gray-800/80">
         <div class="flex flex-wrap items-center gap-2" id="categoryPills">
           <button type="button" onclick="filterCategory('all')" data-cat="all" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-[#10B981] text-black transition">
-            <span>All Guides (15)</span>
+            <span>All Guides (16)</span>
           </button>
           <button type="button" onclick="filterCategory('privacy')" data-cat="privacy" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#0F1218] text-gray-300 hover:text-white border border-gray-800 transition">
             <span>Privacy & Media</span>
@@ -335,10 +336,51 @@
         <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
           <span>All Product & Engineering Guides</span>
         </h2>
-        <span id="resultsCounter" class="text-xs font-mono text-gray-400">15 articles</span>
+        <span id="resultsCounter" class="text-xs font-mono text-gray-400">16 articles</span>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8" id="articlesGrid">
+
+        <!-- AUTO CARD: killing-unpaid-scope-creep-with-mobile-signatures -->
+        <article data-category="b2b" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-indigo-500/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 font-semibold"><span>Contractors & Invoicing</span></span>
+              <span class="text-gray-500">7 min read • Nov 21, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-indigo-400 transition leading-snug">
+              <a href="/blog/killing-unpaid-scope-creep-with-mobile-signatures">
+                <span data-i18n="art_killing_unpaid_scope_creep_with_mobile_s_title">Killing Unpaid Scope Creep: Capturing Client Signatures On Estimates Instantly</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_killing_unpaid_scope_creep_with_mobile_s_excerpt">
+              Eliminate unpaid scope creep for good by capturing instant on-screen client signatures on itemized estimates right from your phone.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Scope Creep</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Client Signatures</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Field Estimating</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/invoices" class="flex items-center gap-2.5 group/app">
+              <img src="/images/invoices_icon_512.png" alt="Vanza Docs" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-indigo-400 transition">Vanza Docs</p>
+                <p class="text-[10px] text-gray-500"><span>Offline B2B Invoicing</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/killing-unpaid-scope-creep-with-mobile-signatures" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
 
         <!-- AUTO CARD: exposing-the-silent-data-harvest-of-web-converters -->
         <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
@@ -1110,7 +1152,7 @@
       'Discuss a Project': 'Обговорити проєкт',
       'VanzaLabs Knowledge Hub': 'База знань VanzaLabs',
       'Engineering, Privacy & Mobile Workflows': 'Інженерія, приватність та мобільні інструменти',
-      'All Guides (15)': 'Усі статті (4)',
+      'All Guides (16)': 'Усі статті (4)',
       'Privacy & Media': 'Приватність та медіа',
       'Google Forms & Data': 'Google Форми та таблиці',
       'Contractors & Invoicing': 'Документи та рахунки',
@@ -1146,6 +1188,14 @@
     };
 
     const i18nBlocks = {
+      art_killing_unpaid_scope_creep_with_mobile_s_title: {
+        en: "Killing Unpaid Scope Creep: Capturing Client Signatures On Estimates Instantly",
+        uk: "Знищення неоплачуваного розширення обсягу робіт за допомогою мобільних підписів"
+      },
+      art_killing_unpaid_scope_creep_with_mobile_s_excerpt: {
+        en: "Eliminate unpaid scope creep for good by capturing instant on-screen client signatures on itemized estimates right from your phone.",
+        uk: "Назавжди позбудьтеся неоплачуваного розширення обсягу робіт, збираючи миттєві підписи клієнтів на кошторисах просто з телефона."
+      },
       art_exposing_the_silent_data_harvest_of_web__title: {
         en: "Exposing the Silent Data Harvest of Online File Converters",
         uk: "Викриття прихованого збору даних онлайн-конвертерами файлів"
