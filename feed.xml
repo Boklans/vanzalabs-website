@@ -5,8 +5,16 @@
     <link>https://vanzalabs.tech/blog</link>
     <description>Practical guides on offline-first mobile apps, data privacy, and engineering.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Nov 2026 21:41:28 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 22 Nov 2026 21:42:11 +0000</lastBuildDate>
     <atom:link href="https://vanzalabs.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Batch Converting iPhone HEIC Photos Locally via Hardware Acceleration</title>
+      <link>https://vanzalabs.tech/blog/local-heic-batch-conversion-hardware-acceleration</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/local-heic-batch-conversion-hardware-acceleration</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to batch convert iPhone HEIC photos to JPG, PNG, and WebP completely offline using device hardware acceleration. Zero cloud uploads.</description>
+      <enclosure url="https://vanzalabs.tech/blog/local-heic-batch-conversion-hardware-acceleration/cover.png" type="image/png" length="0" />
+    </item>
     <item>
       <title>Killing Unpaid Scope Creep: Capturing Client Signatures On Estimates Instantly</title>
       <link>https://vanzalabs.tech/blog/killing-unpaid-scope-creep-with-mobile-signatures</link>
