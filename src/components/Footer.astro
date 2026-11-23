@@ -1,0 +1,74 @@
+---
+import { homeCopy, siteConfig, type Lang } from '../data/i18n';
+import { products } from '../data/products';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = homeCopy[lang].footer;
+const nav = homeCopy[lang].nav;
+const homeBase = lang === 'uk' ? '/uk' : '/';
+---
+
+<footer class="border-t border-white/[0.06] bg-[#050608] text-gray-400 pt-12 sm:pt-16 pb-8 sm:pb-10 mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-12">
+      <div class="col-span-2 md:col-span-1">
+        <a href={homeBase} class="inline-block mb-4">
+          <img src="/images/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="h-4 w-auto" loading="lazy" />
+        </a>
+        <p class="text-sm text-gray-400 leading-relaxed mb-4">{t.tagline}</p>
+        <p class="text-xs font-mono text-gray-500">Ukraine · UTC+2 · Worldwide</p>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-gray-500 mb-4">{t.navTitle}</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href={`${homeBase}#story`} class="hover:text-emerald-400 transition">{nav.story}</a></li>
+          <li><a href={`${homeBase}#simulator`} class="hover:text-emerald-400 transition">{nav.simulator}</a></li>
+          <li><a href={`${homeBase}#estimator`} class="hover:text-emerald-400 transition">{nav.estimator}</a></li>
+          <li><a href={`${homeBase}#lab`} class="hover:text-emerald-400 transition">{nav.products}</a></li>
+          <li><a href={`${homeBase}#founders`} class="hover:text-emerald-400 transition">{nav.founders}</a></li>
+          <li><a href="/blog/" class="hover:text-emerald-400 transition">{lang === 'uk' ? 'Блог' : 'Blog'}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-gray-500 mb-4">{t.productsTitle}</h4>
+        <ul class="space-y-2.5 text-sm">
+          {products.map((p) => (
+            <li>
+              <a href={lang === 'uk' ? `/uk/${p.slug}` : `/${p.slug}`} class="hover:text-emerald-400 transition">{p.name}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-gray-500 mb-4">{t.contactTitle}</h4>
+        <ul class="space-y-2.5 text-sm mb-4">
+          <li><a href={siteConfig.phoneHref} class="hover:text-emerald-400 transition">{siteConfig.phone}</a></li>
+          <li><a href={siteConfig.telegram} target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition">Telegram: {siteConfig.telegramHandle}</a></li>
+          <li><a href={`mailto:${siteConfig.email}`} class="hover:text-emerald-400 transition break-all">{siteConfig.email}</a></li>
+        </ul>
+        <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+          <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition">LinkedIn</a>
+          <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition">IG</a>
+          <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition">WA</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+      <p>{t.rights}</p>
+      <div class="flex items-center gap-5">
+        <a href="/privacy-policy" class="hover:text-gray-300 transition">{t.privacy}</a>
+        <a href={lang === 'en' ? '/uk' : '/'} class="font-mono text-emerald-400 hover:text-emerald-300 transition">
+          {lang === 'en' ? 'Українська' : 'English'}
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

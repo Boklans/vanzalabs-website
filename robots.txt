@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /thank-you.html
-Disallow: /thank-you
-
-Sitemap: https://vanzalabs.tech/sitemap.xml
-

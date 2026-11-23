@@ -1,0 +1,104 @@
+---
+import { homeCopy, type Lang } from '../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = homeCopy[lang].hero;
+---
+
+<section data-hero-section class="relative overflow-hidden border-b swiss-frame">
+  <!-- Restrained Real-Time WebGL Topographic Silk-Light Shader with subtle luminous emerald lines -->
+  <canvas id="heroWebglCanvas" class="absolute inset-0 w-full h-full pointer-events-none blur-[0.8px]" aria-hidden="true"></canvas>
+
+  <!-- Subtle dark reading scrim behind editorial headline -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#050507]/38 via-[#050507]/22 to-[#050507]/82 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
+    <div class="border-x swiss-frame lg:min-h-[calc(100vh-8.25rem)] flex flex-col gap-7 sm:gap-10 lg:gap-0 lg:justify-between py-6 sm:py-12 lg:py-16 px-4 sm:px-8 lg:px-14">
+      <!-- Top Metadata Strip -->
+      <div
+        data-hero-animate
+        class="flex items-center justify-between gap-3 pb-4 sm:pb-6 border-b swiss-frame font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.12em] sm:tracking-[0.16em] text-zinc-400"
+      >
+        <span class="inline-flex items-center gap-2 text-zinc-300 leading-snug">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#00E599] shrink-0"></span>
+          <span>{t.badge}</span>
+        </span>
+        <span class="hidden sm:inline text-zinc-500 shrink-0">UKRAINE · WORLDWIDE</span>
+      </div>
+
+      <!-- Centerpiece Monumental Editorial Typography -->
+      <div class="lg:my-auto py-2 sm:py-8 lg:py-14 lg:min-h-[280px] flex items-center">
+        <h1
+          data-hero-animate
+          class:list={[
+            'font-display font-extrabold tracking-[-0.04em] leading-[1.06] sm:leading-[1.03] text-white max-w-5xl break-words',
+            lang === 'uk'
+              ? 'text-[clamp(2.05rem,8.4vw,5.2rem)]'
+              : 'text-[clamp(2.2rem,8.2vw,5.65rem)]',
+          ]}
+        >
+          <span class="text-gradient-metallic">{t.titleStart}</span><br />
+          <span class="editorial-italic text-[#00E599] font-normal text-[1.15em] sm:text-[1.16em] pr-1">{t.titleHighlight}</span>{' '}
+          <span class="text-white">{t.titleEnd}</span>
+        </h1>
+      </div>
+
+      <!-- Bottom Split Row: Vertically Centered Subtitle + Crisp Aligned CTAs -->
+      <div
+        data-hero-animate
+        class="pt-5 sm:pt-7 border-t swiss-frame grid lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-center"
+      >
+        <p class="lg:col-span-6 text-zinc-300/90 text-[15px] sm:text-[17px] leading-relaxed max-w-xl m-0">
+          {t.subtitle}
+        </p>
+
+        <div class="lg:col-span-6 flex flex-col sm:flex-row sm:flex-wrap lg:justify-end items-stretch sm:items-center gap-3 sm:gap-3.5">
+          <a
+            href="#contact"
+            data-prefill-service="blueprint"
+            class="prefill-cta magnetic-btn w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-sm sm:text-[15px] leading-none transition-colors duration-200 whitespace-nowrap"
+          >
+            <span>{t.primaryCta}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a
+            href="#estimator"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-white/15 bg-black/45 hover:bg-white/[0.08] backdrop-blur-md text-zinc-100 font-semibold text-sm sm:text-[15px] leading-none transition whitespace-nowrap"
+          >
+            <span>{t.secondaryCta}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calm Static Swiss Grid Bar on Desktop + Slow Marquee only on Mobile -->
+  <div class="relative z-10 border-t swiss-frame bg-[#050507]/90 backdrop-blur-md">
+    <div class="hidden lg:grid lg:grid-cols-5 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 divide-x divide-white/[0.08]">
+      {t.trustRibbon.map((item) => (
+        <div class="py-3.5 px-4 text-center font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-400">
+          {item}
+        </div>
+      ))}
+    </div>
+
+    <div class="lg:hidden py-3.5 overflow-hidden">
+      <div class="marquee-track font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-400" style="animation-duration: 52s;">
+        {[0, 1].map(() => (
+          <div class="flex items-center shrink-0">
+            {t.trustRibbon.map((item) => (
+              <span class="inline-flex items-center gap-5 px-5">
+                <span>{item}</span>
+                <span class="text-white/25">+</span>
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

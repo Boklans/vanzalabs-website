@@ -1,0 +1,89 @@
+---
+import { siteConfig, type Lang } from '../data/i18n';
+import { products } from '../data/products';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const homeBase = lang === 'uk' ? '/uk' : '/';
+
+const commands = [
+  {
+    group: lang === 'uk' ? 'Швидкі дії' : 'Quick Actions',
+    items: [
+      { id: 'blueprint', label: lang === 'uk' ? 'Замовити безкоштовний техрозбір за 48 год' : 'Request Free 48h Technical Blueprint', hint: '0$ risk', href: `${homeBase}#contact`, action: 'blueprint' },
+      { id: 'estimator', label: lang === 'uk' ? 'Відкрити калькулятор проєкту' : 'Launch Interactive Scope Estimator', hint: '20 sec', href: `${homeBase}#estimator` },
+      { id: 'simulator', label: lang === 'uk' ? 'Запустити AI Workflow Simulator' : 'Run Live AI Workflow Simulator', hint: 'Demo', href: `${homeBase}#simulator` },
+      { id: 'copy-email', label: lang === 'uk' ? `Скопіювати email (${siteConfig.email})` : `Copy email (${siteConfig.email})`, hint: 'Copy', copy: siteConfig.email },
+      { id: 'telegram', label: lang === 'uk' ? 'Написати в Telegram (@vanzalabs)' : 'Message on Telegram (@vanzalabs)', hint: '↗', href: siteConfig.telegram, external: true },
+      { id: 'switch-lang', label: lang === 'uk' ? 'Перемкнути мову → English' : 'Switch language → Українська', hint: lang === 'uk' ? 'EN' : 'UA', href: lang === 'uk' ? '/' : '/uk' },
+    ],
+  },
+  {
+    group: 'R&D Lab Apps',
+    items: products.map((p) => ({
+      id: `app-${p.slug}`,
+      label: p.name,
+      hint: p.packageId,
+      href: lang === 'uk' ? `/uk/${p.slug}` : `/${p.slug}`,
+    })),
+  },
+];
+---
+
+<div
+  id="cmdPaletteBackdrop"
+  class="fixed inset-0 z-[80] hidden items-start justify-center bg-black/75 backdrop-blur-md px-4 pt-[12vh]"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Command Palette"
+>
+  <div class="w-full max-w-xl rounded-2xl border border-white/15 bg-[#0B0C10]/95 shadow-[0_30px_100px_rgba(0,0,0,0.85)] overflow-hidden">
+    <!-- Search Input -->
+    <div class="flex items-center gap-3 px-4 py-3.5 border-b border-white/[0.08]">
+      <span class="font-mono text-xs text-[#00E599]">⌘</span>
+      <input
+        id="cmdSearchInput"
+        type="text"
+        autocomplete="off"
+        placeholder={lang === 'uk' ? 'Пошук дій, калькулятора або продуктів...' : 'Search actions, estimator, AI demo, or apps...'}
+        class="w-full bg-transparent text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none"
+      />
+      <kbd class="px-2 py-0.5 rounded bg-white/[0.06] border border-white/10 font-mono text-[10px] text-zinc-400">ESC</kbd>
+    </div>
+
+    <!-- Command List -->
+    <div id="cmdList" class="max-h-[360px] overflow-y-auto p-2 space-y-3">
+      {commands.map((group) => (
+        <div class="cmd-group">
+          <p class="px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-zinc-500">{group.group}</p>
+          <div class="space-y-0.5">
+            {group.items.map((item) => (
+              <button
+                type="button"
+                data-cmd-label={item.label.toLowerCase()}
+                data-cmd-href={item.href || ''}
+                data-cmd-external={item.external ? 'true' : ''}
+                data-cmd-copy={item.copy || ''}
+                data-cmd-action={item.action || ''}
+                class="cmd-item w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl text-left text-sm text-zinc-200 hover:bg-white/[0.07] hover:text-white transition cursor-pointer"
+              >
+                <span class="truncate">{item.label}</span>
+                <span class="font-mono text-[11px] text-zinc-500 shrink-0">{item.hint}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Footer hints -->
+    <div class="px-4 py-2.5 border-t border-white/[0.07] bg-black/40 flex items-center justify-between text-[11px] font-mono text-zinc-500">
+      <span>VanzaLabs Command OS</span>
+      <span id="cmdToast" class="text-[#00E599] hidden">{lang === 'uk' ? 'Скопійовано!' : 'Copied!'}</span>
+      <span class="hidden sm:inline">↑↓ navigate · ↵ select</span>
+    </div>
+  </div>
+</div>
