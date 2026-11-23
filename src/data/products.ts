@@ -52,9 +52,9 @@ export const products: ProductData[] = [
     icon: '/images/spot_logo.png',
     qr: '/images/qr_spot.png',
     screens: [
-      { src: '/images/screen_spot.jpg', labelEn: 'Live Workout', labelUk: 'Лайв-тренування' },
-      { src: '/images/spot_screen_2.png', labelEn: 'Muscle Recovery', labelUk: 'Відновлення м’язів' },
-      { src: '/images/spot_screen_3.png', labelEn: 'Analytics & PRs', labelUk: 'Аналітика і PR' },
+      { src: '/images/screen_spot.jpg?v=2', labelEn: 'Live Workout', labelUk: 'Лайв-тренування' },
+      { src: '/images/spot_screen_2.png?v=2', labelEn: 'Muscle Recovery', labelUk: 'Відновлення м’язів' },
+      { src: '/images/spot_screen_3.png?v=2', labelEn: 'Analytics & PRs', labelUk: 'Аналітика і PR' },
     ],
     stack: ['React Native', 'Expo Router', 'Zustand', 'Supabase', 'RevenueCat'],
     en: {
@@ -121,7 +121,7 @@ export const products: ProductData[] = [
     icon: '/images/formgrid_icon_512.png',
     qr: '/images/qr_formgrid.png',
     screens: [
-      { src: '/images/formgrid_screenshot.jpg', labelEn: 'Workspace', labelUk: 'Робочий простір' },
+      { src: '/images/screen_formgrid.png', labelEn: 'Workspace', labelUk: 'Робочий простір' },
       { src: '/images/formgrid_screen_2.png', labelEn: 'Sheets Builder', labelUk: 'Google Таблиці' },
       { src: '/images/formgrid_screen_3.png', labelEn: 'Import & Hub', labelUk: 'Імпорт і форми' },
     ],
@@ -190,7 +190,7 @@ export const products: ProductData[] = [
     icon: '/images/invoices_icon_512.png',
     qr: '/images/qr_invoices.png',
     screens: [
-      { src: '/images/invoices_screenshot.png', labelEn: 'Document Editor', labelUk: 'Редактор PDF' },
+      { src: '/images/screen_invoices.png', labelEn: 'Document Editor', labelUk: 'Редактор PDF' },
       { src: '/images/invoices_screen_2.png', labelEn: 'Documents & Acts', labelUk: 'Документи і акти' },
       { src: '/images/invoices_screen_3.png', labelEn: 'Clients Directory', labelUk: 'База клієнтів' },
     ],
