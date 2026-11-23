@@ -1,0 +1,111 @@
+---
+import { homeCopy, type Lang } from '../data/i18n';
+
+interface Props {
+  lang: Lang;
+  enHref?: string;
+  ukHref?: string;
+}
+
+const { lang, enHref = '/', ukHref = '/uk' } = Astro.props;
+const t = homeCopy[lang].nav;
+const homeBase = lang === 'uk' ? '/uk' : '/';
+---
+
+<header class="sticky top-0 z-50 border-b border-white/[0.06] bg-[#07080B]/80 backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+    <a href={homeBase} class="flex items-center gap-2.5 shrink-0" aria-label="VanzaLabs home">
+      <img src="/images/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="h-4 w-auto" width="110" height="16" />
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-gray-400">
+      <a href={`${homeBase}#products`} class="hover:text-white transition">{t.products}</a>
+      <a href={`${homeBase}#estimator`} class="hover:text-white transition">{t.estimator}</a>
+      <a href={`${homeBase}#services`} class="hover:text-white transition">{t.services}</a>
+      <a href={`${homeBase}#process`} class="hover:text-white transition">{t.process}</a>
+      <a href={`${homeBase}#founders`} class="hover:text-white transition">{t.founders}</a>
+      <a href={`${homeBase}#faq`} class="hover:text-white transition">{t.faq}</a>
+    </nav>
+
+    <div class="hidden lg:flex items-center gap-3">
+      <div class="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] p-0.5 text-[11px] font-mono font-semibold">
+        <a
+          href={enHref}
+          class:list={[
+            'px-2.5 py-1 rounded-full transition',
+            lang === 'en' ? 'bg-emerald-500 text-gray-950' : 'text-gray-400 hover:text-white',
+          ]}
+        >
+          EN
+        </a>
+        <a
+          href={ukHref}
+          class:list={[
+            'px-2.5 py-1 rounded-full transition',
+            lang === 'uk' ? 'bg-emerald-500 text-gray-950' : 'text-gray-400 hover:text-white',
+          ]}
+        >
+          UA
+        </a>
+      </div>
+
+      <a
+        href={`${homeBase}#contact`}
+        class="inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-semibold text-sm px-4 py-2 transition glow-emerald"
+      >
+        <span>{t.cta}</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <button
+      id="mobileMenuBtn"
+      type="button"
+      class="lg:hidden p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-white/[0.06] bg-[#0B0D12]">
+    <div class="px-4 py-4 space-y-3 text-sm font-medium text-gray-300">
+      <a href={`${homeBase}#products`} class="mobile-nav-link block py-1.5 hover:text-white">{t.products}</a>
+      <a href={`${homeBase}#estimator`} class="mobile-nav-link block py-1.5 hover:text-white">{t.estimator}</a>
+      <a href={`${homeBase}#services`} class="mobile-nav-link block py-1.5 hover:text-white">{t.services}</a>
+      <a href={`${homeBase}#process`} class="mobile-nav-link block py-1.5 hover:text-white">{t.process}</a>
+      <a href={`${homeBase}#founders`} class="mobile-nav-link block py-1.5 hover:text-white">{t.founders}</a>
+      <a href={`${homeBase}#faq`} class="mobile-nav-link block py-1.5 hover:text-white">{t.faq}</a>
+      <div class="flex items-center justify-between pt-3 border-t border-white/10">
+        <div class="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] p-0.5 text-xs font-mono font-semibold">
+          <a href={enHref} class:list={['px-3 py-1 rounded-full', lang === 'en' ? 'bg-emerald-500 text-gray-950' : 'text-gray-400']}>EN</a>
+          <a href={ukHref} class:list={['px-3 py-1 rounded-full', lang === 'uk' ? 'bg-emerald-500 text-gray-950' : 'text-gray-400']}>UA</a>
+        </div>
+        <a href={`${homeBase}#contact`} class="mobile-nav-link inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 text-gray-950 font-semibold px-4 py-2 text-xs">
+          {t.cta} →
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById('mobileMenuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+    menu.querySelectorAll('.mobile-nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>

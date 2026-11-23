@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+import { products, type ProductData } from '../data/products';
+import { siteConfig, type Lang } from '../data/i18n';
+
+interface Props {
+  product: ProductData;
+  lang: Lang;
+}
+
+const { product, lang } = Astro.props;
+const copy = product[lang];
+const otherProducts = products.filter((p) => p.slug !== product.slug);
+const enPath = `/${product.slug}`;
+const ukPath = `/uk/${product.slug}`;
+const canonicalPath = lang === 'uk' ? ukPath : enPath;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: product.name,
+      operatingSystem: 'Android',
+      applicationCategory: product.category,
+      description: copy.metaDesc,
+      url: `${siteConfig.url}${canonicalPath}`,
+      downloadUrl: product.playStoreUrl,
+      author: {
+        '@type': 'Organization',
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: copy.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={copy.metaTitle}
+  description={copy.metaDesc}
+  lang={lang}
+  canonicalPath={canonicalPath}
+  alternates={{ en: enPath, uk: ukPath }}
+  jsonLd={jsonLd}
+>
+  <Navbar lang={lang} enHref={enPath} ukHref={ukPath} />
+
+  <main class="flex-1">
+    <!-- Hero -->
+    <section class="relative overflow-hidden bg-grid-pattern py-16 lg:py-24">
+      <div
+        class="absolute -top-24 right-1/4 w-[520px] h-[300px] blur-[120px] rounded-full pointer-events-none opacity-20"
+        style={`background: ${product.accentHex};`}
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-7 space-y-6">
+            <div class="flex flex-wrap items-center gap-2.5">
+              <span class:list={['px-3 py-1 rounded-full text-xs font-mono font-semibold border', product.accentBgClass, product.accentTextClass, product.accentBorderClass]}>
+                {copy.badge}
+              </span>
+              <span class="text-xs font-mono text-gray-500">{product.packageId}</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <img src={product.icon} alt={product.name} class="w-16 h-16 rounded-2xl object-cover bg-black border border-white/15 p-1 shrink-0" />
+              <div>
+                <h1 class="text-3xl sm:text-5xl font-bold text-white tracking-tight">{product.name}</h1>
+                <p class="text-sm sm:text-base text-gray-400 mt-1">{copy.tagline}</p>
+              </div>
+            </div>
+
+            <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl">{copy.summary}</p>
+
+            <!-- Highlights -->
+            <div class="grid grid-cols-3 gap-3 max-w-lg">
+              {copy.highlights.map((h) => (
+                <div class="glass-panel rounded-2xl p-3.5 text-center">
+                  <p class="text-lg sm:text-xl font-display font-bold text-white">{h.value}</p>
+                  <p class="text-[11px] text-gray-400 mt-0.5">{h.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <!-- CTAs + QR Bridge -->
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a
+                href={product.playStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-sm transition glow-emerald"
+              >
+                <span>{lang === 'uk' ? 'Завантажити в Google Play' : 'Get it on Google Play'}</span>
+                <span>↗</span>
+              </a>
+              <a
+                href={product.privacyUrl}
+                class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-white/15 bg-white/[0.03] hover:bg-white/[0.08] text-gray-200 font-semibold text-sm transition"
+              >
+                <span>{lang === 'uk' ? 'Політика конфіденційності' : 'Privacy Policy'}</span>
+              </a>
+            </div>
+
+            <div class="hidden sm:inline-flex items-center gap-4 p-3 rounded-2xl bg-white/[0.03] border border-white/10">
+              <img src={product.qr} alt={`QR code for ${product.name}`} class="w-16 h-16 rounded-lg bg-white p-1" />
+              <div class="text-xs text-gray-400 max-w-[200px]">
+                <p class="font-semibold text-white mb-0.5">{lang === 'uk' ? 'Скануйте зі смартфона' : 'Scan with your phone'}</p>
+                <p>{lang === 'uk' ? 'Миттєвий перехід на сторінку додатку в Google Play.' : 'Jump straight to Google Play on Android.'}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive 3-Screen Phone Stage -->
+          <div class="lg:col-span-5 flex flex-col items-center">
+            <div class="w-full max-w-[285px] rounded-[2.25rem] overflow-hidden border-2 border-white/15 bg-black shadow-2xl aspect-[9/19] mb-5">
+              <img
+                id="activeProductScreen"
+                src={product.screens[0].src}
+                alt={product.screens[0].labelEn}
+                class="w-full h-full object-cover object-top transition-opacity duration-200"
+              />
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2">
+              {product.screens.map((s, idx) => (
+                <button
+                  type="button"
+                  data-screen-src={s.src}
+                  class:list={[
+                    'screen-switch-btn px-3.5 py-1.5 rounded-full text-xs font-mono font-medium border transition cursor-pointer',
+                    idx === 0
+                      ? 'bg-white/15 border-white/30 text-white'
+                      : 'bg-white/[0.03] border-white/10 text-gray-400 hover:text-white',
+                  ]}
+                >
+                  {lang === 'uk' ? s.labelUk : s.labelEn}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-20 border-t border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8">
+          {lang === 'uk' ? 'Ключові можливості та архітектура' : 'Key Capabilities & Architecture'}
+        </h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+          {copy.features.map((f) => (
+            <div class="glass-panel rounded-2xl p-6">
+              <h3 class="text-base font-bold text-white mb-2">{f.title}</h3>
+              <p class="text-sm text-gray-400 leading-relaxed">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-mono text-gray-500 mr-2">Tech stack:</span>
+          {product.stack.map((tech) => (
+            <span class="px-3 py-1 rounded-lg bg-white/[0.05] border border-white/10 text-xs font-mono text-gray-300">{tech}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 border-t border-white/[0.06] bg-[#0A0C11]">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8 text-center">FAQ</h2>
+        <div class="space-y-3">
+          {copy.faq.map((item) => (
+            <details class="group rounded-2xl border border-white/[0.08] bg-white/[0.02] open:border-emerald-500/35">
+              <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer list-none font-semibold text-white text-sm sm:text-base">
+                <span>{item.q}</span>
+                <span class="text-emerald-400 font-mono text-lg transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <div class="px-6 pb-4 text-sm text-gray-400 leading-relaxed">{item.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Ecosystem Cross-Nav & B2B CTA -->
+    <section class="py-16 border-t border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <h2 class="text-xl font-bold text-white">
+            {lang === 'uk' ? 'Інші продукти VanzaLabs' : 'More Apps by VanzaLabs'}
+          </h2>
+          <a href={lang === 'uk' ? '/uk#estimator' : '/#estimator'} class="text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition">
+            {lang === 'uk' ? 'Потрібен подібний продукт для вашого бізнесу? →' : 'Need a similar app for your business? →'}
+          </a>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-4">
+          {otherProducts.map((op) => (
+            <a
+              href={lang === 'uk' ? `/uk/${op.slug}` : `/${op.slug}`}
+              class="glass-panel rounded-2xl p-5 flex items-center gap-4 hover:border-emerald-500/35 transition"
+            >
+              <img src={op.icon} alt={op.shortName} class="w-12 h-12 rounded-xl object-cover bg-black border border-white/10 p-1 shrink-0" loading="lazy" />
+              <div class="min-w-0">
+                <p class="font-bold text-white text-sm truncate">{op.name}</p>
+                <p class="text-xs text-gray-400 truncate mt-0.5">{op[lang].tagline}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</BaseLayout>
+
+<script is:inline>
+  (() => {
+    const img = document.getElementById('activeProductScreen');
+    const btns = document.querySelectorAll('.screen-switch-btn');
+    if (!img || !btns.length) return;
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const src = btn.dataset.screenSrc;
+        if (!src) return;
+        img.src = src;
+        btns.forEach((b) => {
+          const active = b === btn;
+          b.className = `screen-switch-btn px-3.5 py-1.5 rounded-full text-xs font-mono font-medium border transition cursor-pointer ${
+            active
+              ? 'bg-white/15 border-white/30 text-white'
+              : 'bg-white/[0.03] border-white/10 text-gray-400 hover:text-white'
+          }`;
+        });
+      });
+    });
+  })();
+</script>

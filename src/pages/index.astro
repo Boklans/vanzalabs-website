@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomePage from '../components/HomePage.astro';
+import { homeCopy, siteConfig } from '../data/i18n';
+
+const t = homeCopy.en;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: siteConfig.name,
+  url: siteConfig.url,
+  description: t.meta.description,
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'UA',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: siteConfig.email,
+    contactType: 'sales',
+  },
+};
+---
+
+<BaseLayout
+  title={t.meta.title}
+  description={t.meta.description}
+  lang="en"
+  canonicalPath="/"
+  alternates={{ en: '/', uk: '/uk' }}
+  jsonLd={jsonLd}
+>
+  <HomePage lang="en" />
+</BaseLayout>

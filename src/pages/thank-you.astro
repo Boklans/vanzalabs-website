@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/i18n';
+---
+
+<BaseLayout
+  title="Thank you — VanzaLabs"
+  description="Thank you for reaching out to VanzaLabs. We will reply within 1 business day."
+  lang="en"
+  canonicalPath="/thank-you"
+  noindex={true}
+>
+  <Navbar lang="en" enHref="/thank-you?lang=en" ukHref="/thank-you?lang=uk" />
+
+  <main class="flex-1 flex items-center justify-center px-4 py-20">
+    <div class="glass-panel rounded-3xl p-8 sm:p-12 max-w-xl w-full text-center space-y-6">
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl font-bold">
+        ✓
+      </div>
+      <h1 id="tyTitle" class="text-3xl font-bold text-white">Inquiry received!</h1>
+      <p id="tyDesc" class="text-gray-400 text-base leading-relaxed">
+        Thank you for reaching out to VanzaLabs. Igor or Ruslan will review your project details and reply within 1 business day.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <a id="tyHomeBtn" href="/" class="px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-sm transition">
+          ← Back to homepage
+        </a>
+        <a
+          id="tyTgBtn"
+          href={siteConfig.telegram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-6 py-3 rounded-xl border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-white font-semibold text-sm transition"
+        >
+          Message on Telegram
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer lang="en" />
+
+  <script is:inline>
+    (() => {
+      const lang = new URLSearchParams(window.location.search).get('lang');
+      if (lang === 'uk') {
+        document.documentElement.lang = 'uk';
+        const title = document.getElementById('tyTitle');
+        const desc = document.getElementById('tyDesc');
+        const homeBtn = document.getElementById('tyHomeBtn');
+        const tgBtn = document.getElementById('tyTgBtn');
+        if (title) title.textContent = 'Заявку отримано!';
+        if (desc) desc.textContent = 'Дякуємо за звернення до VanzaLabs. Ігор або Руслан переглянуть деталі проєкту та відповідять протягом 1 робочого дня.';
+        if (homeBtn) {
+          homeBtn.textContent = '← Повернутися на головну';
+          homeBtn.setAttribute('href', '/uk');
+        }
+        if (tgBtn) tgBtn.textContent = 'Написати в Telegram';
+      }
+    })();
+  </script>
+</BaseLayout>

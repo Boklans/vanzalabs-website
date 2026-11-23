@@ -1,0 +1,601 @@
+---
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+import ScopeEstimator from './ScopeEstimator.astro';
+import { homeCopy, siteConfig, type Lang } from '../data/i18n';
+import { products } from '../data/products';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = homeCopy[lang];
+---
+
+<Navbar lang={lang} enHref="/" ukHref="/uk" />
+
+<main class="flex-1">
+  <!-- 1. HERO SECTION -->
+  <section class="relative overflow-hidden bg-grid-pattern pt-16 pb-20 lg:pt-24 lg:pb-28">
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[820px] h-[340px] bg-emerald-500/15 blur-[110px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/25 bg-emerald-500/10 text-emerald-300 text-xs font-mono font-medium mb-8">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>{t.hero.badge}</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl lg:text-[4.25rem] font-bold tracking-tight leading-[1.06] text-white mb-6">
+          {t.hero.titleStart}{' '}
+          <span class="text-gradient-brand">{t.hero.titleHighlight}</span>{' '}
+          {t.hero.titleEnd}
+        </h1>
+
+        <p class="text-gray-400 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
+          {t.hero.subtitle}
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-14">
+          <a
+            href="#estimator"
+            class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-sm sm:text-base transition glow-emerald"
+          >
+            <span>{t.hero.primaryCta}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a
+            href="#products"
+            class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-white/15 bg-white/[0.03] hover:bg-white/[0.08] text-white font-semibold text-sm sm:text-base transition"
+          >
+            <span>{t.hero.secondaryCta}</span>
+          </a>
+        </div>
+
+        <!-- Compact 4-KPI glass bar -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
+          {t.hero.trustItems.map((item) => (
+            <div class="glass-panel rounded-2xl px-4 py-4 text-center">
+              <p class="text-xl sm:text-2xl font-display font-bold text-emerald-400">{item.value}</p>
+              <p class="text-xs text-gray-400 mt-0.5">{item.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. BENTO PRODUCT & AI PROOF SHOWCASE -->
+  <section id="products" class="py-20 lg:py-28 border-t border-white/[0.06]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3">{t.showcase.eyebrow}</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{t.showcase.title}</h2>
+        <p class="text-gray-400 text-base leading-relaxed">{t.showcase.subtitle}</p>
+      </div>
+
+      <!-- 4 Live App Tabs -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+        {products.map((p, idx) => (
+          <button
+            type="button"
+            data-showcase-tab={p.slug}
+            aria-pressed={idx === 0 ? 'true' : 'false'}
+            class:list={[
+              'showcase-tab text-left p-3.5 rounded-2xl border transition cursor-pointer flex items-center gap-3',
+              idx === 0
+                ? 'bg-[#121722] border-emerald-400/50 text-white shadow-lg'
+                : 'bg-white/[0.02] border-white/[0.08] text-gray-400 hover:border-white/20 hover:text-white',
+            ]}
+          >
+            <img src={p.icon} alt={p.shortName} class="w-10 h-10 rounded-xl object-cover shrink-0 bg-black p-0.5 border border-white/10" loading="lazy" />
+            <div class="min-w-0">
+              <p class="font-display font-bold text-sm truncate text-white">{p.shortName}</p>
+              <p class="text-[11px] text-gray-400 truncate">{p[lang].badge.split('·')[1]?.trim() || p.category}</p>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <!-- Active Product Panels -->
+      <div class="mb-8">
+        {products.map((p, idx) => {
+          const copy = p[lang];
+          return (
+            <div
+              data-showcase-panel={p.slug}
+              class:list={[
+                'showcase-panel glass-panel rounded-3xl p-6 sm:p-8 lg:p-10 relative overflow-hidden',
+                idx !== 0 && 'hidden',
+              ]}
+            >
+              <div class="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
+                <div class="lg:col-span-7 space-y-6">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class:list={['px-3 py-1 rounded-full text-xs font-mono font-semibold border', p.accentBgClass, p.accentTextClass, p.accentBorderClass]}>
+                      {copy.badge}
+                    </span>
+                    <span class="px-2.5 py-1 rounded-full bg-white/5 text-gray-400 text-xs font-mono">{p.packageId}</span>
+                  </div>
+
+                  <div>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2">{p.name}</h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">{copy.summary}</p>
+                  </div>
+
+                  <div class="grid sm:grid-cols-2 gap-3">
+                    {copy.features.map((f) => (
+                      <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
+                        <p class="text-xs font-bold text-white mb-1">{f.title}</p>
+                        <p class="text-xs text-gray-400 leading-relaxed">{f.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div class="flex flex-wrap gap-1.5">
+                    {p.stack.map((tech) => (
+                      <span class="px-2.5 py-1 rounded-md bg-white/[0.05] text-gray-300 text-xs font-mono">{tech}</span>
+                    ))}
+                  </div>
+
+                  <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <a
+                      href={`/${p.slug}`}
+                      class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold transition"
+                    >
+                      <span>{t.showcase.visitProduct}</span>
+                      <span>↗</span>
+                    </a>
+                    <a
+                      href={p.playStoreUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-white/15 hover:border-white/30 text-gray-200 text-xs font-semibold transition"
+                    >
+                      <span>Google Play ↗</span>
+                    </a>
+                    <button
+                      type="button"
+                      data-prefill-service="mobile"
+                      data-prefill-product={p.shortName}
+                      class="prefill-cta inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 text-xs font-bold transition cursor-pointer"
+                    >
+                      <span>{t.showcase.buildSimilar}</span>
+                      <span>→</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center">
+                  <div class="w-full max-w-[260px] rounded-[2rem] overflow-hidden border border-white/15 bg-black shadow-2xl aspect-[9/19]">
+                    <img
+                      src={p.screens[0].src}
+                      alt={`${p.name} screenshot`}
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- B2B AI & Automation Pipeline Blueprint -->
+      <div class="rounded-3xl border border-emerald-500/20 bg-gradient-to-r from-[#0C1414] via-[#0E121B] to-[#111220] p-6 sm:p-8 lg:p-10">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-3">
+            <span class="inline-block font-mono text-xs uppercase tracking-wider text-emerald-400">{t.showcase.aiCard.badge}</span>
+            <h3 class="text-2xl font-bold text-white">{t.showcase.aiCard.title}</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">{t.showcase.aiCard.desc}</p>
+            <div class="pt-2">
+              <button
+                type="button"
+                data-prefill-service="automation"
+                class="prefill-cta inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-white text-xs font-semibold transition cursor-pointer"
+              >
+                <span>{t.showcase.aiCard.cta}</span>
+                <span>→</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {t.showcase.aiCard.steps.map((step, i) => (
+                <div class="p-3.5 rounded-2xl bg-black/40 border border-white/10 flex flex-col justify-between min-h-[96px]">
+                  <span class="font-mono text-[11px] text-emerald-400">0{i + 1}</span>
+                  <p class="text-xs font-semibold text-gray-200 leading-snug">{step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. INTERACTIVE SCOPE ESTIMATOR -->
+  <ScopeEstimator lang={lang} />
+
+  <!-- 4. ENGAGEMENT MODELS -->
+  <section id="services" class="py-20 lg:py-28 border-t border-white/[0.06]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3">{t.services.eyebrow}</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{t.services.title}</h2>
+        <p class="text-gray-400 text-base">{t.services.subtitle}</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {t.services.items.map((svc) => (
+          <div class="glass-panel rounded-3xl p-7 flex flex-col justify-between hover:border-emerald-500/30 transition">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <span class="font-mono text-xs text-emerald-400 font-semibold">{svc.num} / {svc.tag}</span>
+                <span class="font-mono text-[11px] px-2.5 py-1 rounded-full bg-white/[0.05] text-gray-300">{svc.timeline}</span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3">{svc.title}</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-6">{svc.desc}</p>
+              <ul class="space-y-2.5 text-sm text-gray-300 mb-8">
+                {svc.bullets.map((b) => (
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-emerald-400 font-bold mt-0.5">✓</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="pt-5 border-t border-white/[0.08] flex items-center justify-between gap-3">
+              <span class="text-xs font-mono text-gray-500">{svc.model}</span>
+              <button
+                type="button"
+                data-prefill-service={svc.id}
+                class="prefill-cta text-xs font-bold text-emerald-400 hover:text-emerald-300 transition cursor-pointer"
+              >
+                {svc.cta} →
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PROCESS & GUARANTEES -->
+  <section id="process" class="py-20 lg:py-28 border-t border-white/[0.06] bg-[#0A0C11]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-14">
+        <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3">{t.process.eyebrow}</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">{t.process.title}</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        {t.process.steps.map((step) => (
+          <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.07]">
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-sm font-bold text-emerald-400">{step.num}</span>
+              <span class="font-mono text-[11px] text-gray-500">{step.time}</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">{step.title}</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {t.process.guarantees.map((g) => (
+          <div class="p-5 rounded-2xl border border-emerald-500/15 bg-emerald-500/[0.04]">
+            <p class="text-sm font-bold text-emerald-300 mb-1">{g.title}</p>
+            <p class="text-xs text-gray-400 leading-relaxed">{g.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. FOUNDERS & CORE STACK -->
+  <section id="founders" class="py-20 lg:py-28 border-t border-white/[0.06]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-start mb-16">
+        <div class="lg:col-span-5">
+          <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3">{t.founders.eyebrow}</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">{t.founders.title}</h2>
+          <p class="text-gray-400 text-base leading-relaxed">{t.founders.subtitle}</p>
+        </div>
+
+        <div class="lg:col-span-7 grid sm:grid-cols-2 gap-5">
+          {t.founders.people.map((person) => (
+            <div class="glass-panel rounded-3xl p-6 flex flex-col">
+              <div class="flex items-center gap-4 mb-4">
+                <img
+                  src={person.img}
+                  alt={person.name}
+                  loading="lazy"
+                  decoding="async"
+                  class="w-16 h-16 rounded-2xl object-cover object-top border border-white/15 shrink-0"
+                />
+                <div>
+                  <h3 class="text-lg font-bold text-white">{person.name}</h3>
+                  <p class="text-xs font-mono text-emerald-400">{person.role}</p>
+                </div>
+              </div>
+              <p class="text-sm text-gray-400 leading-relaxed">{person.bio}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Compact Stack Grid -->
+      <div class="pt-12 border-t border-white/[0.06]">
+        <p class="font-mono text-xs uppercase tracking-widest text-gray-500 mb-6">{t.founders.stackTitle}</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {t.founders.stackGroups.map((group) => (
+            <div class="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+              <p class="text-xs font-semibold text-white mb-3">{group.label}</p>
+              <div class="flex flex-wrap gap-1.5">
+                {group.items.map((tech) => (
+                  <span class="px-2.5 py-1 rounded-md bg-white/[0.05] text-gray-300 text-xs font-mono">{tech}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FAQ & CONTACT -->
+  <section id="faq" class="py-20 border-t border-white/[0.06] bg-[#0A0C11]">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3">{t.faq.eyebrow}</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white">{t.faq.title}</h2>
+      </div>
+
+      <div class="space-y-3">
+        {t.faq.items.map((item) => (
+          <details class="group rounded-2xl border border-white/[0.08] bg-white/[0.02] open:border-emerald-500/35 transition">
+            <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none font-semibold text-white text-sm sm:text-base">
+              <span>{item.q}</span>
+              <span class="text-emerald-400 font-mono text-lg transition-transform group-open:rotate-45">+</span>
+            </summary>
+            <div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">{item.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-20 lg:py-28 border-t border-white/[0.06] relative overflow-hidden">
+    <div class="absolute bottom-0 right-0 w-[560px] h-[360px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-5 space-y-6">
+          <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400">{t.contact.eyebrow}</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">{t.contact.title}</h2>
+          <p class="text-gray-400 text-base leading-relaxed">{t.contact.subtitle}</p>
+
+          <ul class="space-y-3 text-sm text-gray-300">
+            {t.contact.perks.map((perk) => (
+              <li class="flex items-center gap-2.5">
+                <span class="text-emerald-400 font-bold">✓</span>
+                <span>{perk}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="pt-6 border-t border-white/10 space-y-3">
+            <p class="text-xs font-mono text-gray-500 uppercase tracking-wider">{t.contact.directLabel}</p>
+            <div class="flex flex-wrap gap-3">
+              <a
+                href={siteConfig.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#229ED9]/20 hover:bg-[#229ED9]/30 border border-[#229ED9]/40 text-sky-300 text-sm font-semibold transition"
+              >
+                <span>{t.contact.telegramCta} ({siteConfig.telegramHandle})</span>
+              </a>
+              <a
+                href={`mailto:${siteConfig.email}`}
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 text-sm font-medium transition"
+              >
+                <span>{siteConfig.email}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 glass-panel rounded-3xl p-6 sm:p-8">
+          <form
+            id="contactForm"
+            action={siteConfig.formspreeAction}
+            method="POST"
+            data-lang={lang}
+            data-sending={t.contact.form.sending}
+            data-error={t.contact.form.error}
+            class="space-y-4"
+          >
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-gray-400 mb-1.5" for="f-name">{t.contact.form.name}</label>
+                <input
+                  id="f-name"
+                  type="text"
+                  name="name"
+                  required
+                  placeholder={t.contact.form.namePh}
+                  class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-sm"
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-gray-400 mb-1.5" for="f-email">{t.contact.form.email}</label>
+                <input
+                  id="f-email"
+                  type="email"
+                  name="email"
+                  required
+                  placeholder={t.contact.form.emailPh}
+                  class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-sm"
+                />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-gray-400 mb-1.5" for="f-company">{t.contact.form.company}</label>
+                <input
+                  id="f-company"
+                  type="text"
+                  name="company"
+                  placeholder={t.contact.form.companyPh}
+                  class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-sm"
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-gray-400 mb-1.5" for="f-service">{t.contact.form.service}</label>
+                <select
+                  id="f-service"
+                  name="service"
+                  required
+                  class="w-full px-4 py-3 rounded-xl bg-[#0B0E14] border border-white/10 text-white focus:border-emerald-400 focus:outline-none text-sm"
+                >
+                  <option value="">{t.contact.form.servicePlaceholder}</option>
+                  {t.contact.form.options.map((opt) => (
+                    <option value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-gray-400 mb-1.5" for="f-message">{t.contact.form.message}</label>
+              <textarea
+                id="f-message"
+                name="message"
+                rows="5"
+                required
+                placeholder={t.contact.form.messagePh}
+                class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-sm resize-y"
+              ></textarea>
+            </div>
+
+            <div class="flex items-start gap-2.5">
+              <input
+                type="checkbox"
+                id="f-privacy"
+                name="privacy"
+                required
+                class="mt-0.5 w-4 h-4 accent-emerald-500 rounded"
+              />
+              <label for="f-privacy" class="text-xs text-gray-400 leading-relaxed">
+                {t.contact.form.privacyPrefix}{' '}
+                <a href="/privacy-policy" class="text-emerald-400 hover:underline">{t.contact.form.privacyLink}</a>
+              </label>
+            </div>
+
+            <button
+              id="submitBtn"
+              type="submit"
+              class="w-full py-3.5 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-sm transition cursor-pointer glow-emerald"
+            >
+              {t.contact.form.submit} →
+            </button>
+            <p class="text-xs text-gray-500 text-center">{t.contact.form.note}</p>
+            <p id="formStatus" class="hidden text-center text-sm text-red-400"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<Footer lang={lang} />
+
+<script is:inline>
+  (() => {
+    // Product Showcase Tabs
+    document.querySelectorAll('.showcase-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const slug = tab.dataset.showcaseTab;
+        document.querySelectorAll('.showcase-tab').forEach((b) => {
+          const active = b.dataset.showcaseTab === slug;
+          b.setAttribute('aria-pressed', String(active));
+          b.className = `showcase-tab text-left p-3.5 rounded-2xl border transition cursor-pointer flex items-center gap-3 ${
+            active
+              ? 'bg-[#121722] border-emerald-400/50 text-white shadow-lg'
+              : 'bg-white/[0.02] border-white/[0.08] text-gray-400 hover:border-white/20 hover:text-white'
+          }`;
+        });
+        document.querySelectorAll('.showcase-panel').forEach((panel) => {
+          panel.classList.toggle('hidden', panel.dataset.showcasePanel !== slug);
+        });
+        if (window.posthog) window.posthog.capture('app_showcase_switched', { app: slug });
+      });
+    });
+
+    // Prefill service CTA buttons
+    document.querySelectorAll('.prefill-cta').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const svc = btn.dataset.prefillService;
+        const prod = btn.dataset.prefillProduct;
+        const select = document.querySelector('select[name="service"]');
+        if (select && svc) select.value = svc;
+        if (prod) {
+          const msg = document.querySelector('textarea[name="message"]');
+          if (msg && !msg.value.trim()) {
+            const isUk = document.documentElement.lang === 'uk';
+            msg.value = isUk
+              ? `Цікавить розробка продукту, подібного до ${prod}. `
+              : `Interested in building a product similar to ${prod}. `;
+          }
+        }
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Formspree AJAX handler
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const status = document.getElementById('formStatus');
+    if (form && submitBtn) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = form.dataset.sending || 'Sending...';
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { Accept: 'application/json' },
+          });
+          if (!res.ok) throw new Error('Submit failed');
+          if (window.posthog) {
+            window.posthog.capture('lead_form_submitted', {
+              service: form.querySelector('select[name="service"]')?.value || 'general',
+              lang: form.dataset.lang,
+            });
+          }
+          window.location.href = `/thank-you?lang=${form.dataset.lang || 'en'}`;
+        } catch {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          if (status) {
+            status.textContent = form.dataset.error || 'Error submitting form.';
+            status.classList.remove('hidden');
+          }
+        }
+      });
+    }
+  })();
+</script>

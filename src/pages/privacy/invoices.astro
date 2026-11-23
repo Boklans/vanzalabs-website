@@ -1,0 +1,92 @@
+---
+import PrivacyLayout from '../../layouts/PrivacyLayout.astro';
+---
+
+<PrivacyLayout
+  title="Privacy Policy — Vanza: Invoices & Contracts"
+  description="Privacy Policy for Vanza: Invoices & Contracts by Vanza Labs."
+  canonicalPath="/privacy/invoices"
+  appName="Vanza: Invoices & Contracts"
+  packageId="app.vanza.docs"
+  icon="/images/invoices_icon_512.png"
+  backHref="/invoices"
+  backLabel="← Back to App"
+>
+  <Fragment slot="en">
+    <h1>Privacy Policy — Vanza: Invoices &amp; Contracts</h1>
+    <p>
+      <strong>App:</strong> Vanza: Invoices &amp; Contracts (<code>app.vanza.docs</code>)<br />
+      <strong>Developer:</strong> Vanza Labs — https://vanzalabs.tech<br />
+      <strong>Contact:</strong> contact@vanzalabs.tech<br />
+      <strong>Effective date:</strong> October 15, 2026
+    </p>
+    <p>This Privacy Policy explains how Vanza: Invoices &amp; Contracts ("Vanza", "the App", "we") handles your information.</p>
+
+    <h2>1. Summary</h2>
+    <ul>
+      <li>Vanza is <strong>offline-first</strong>: your business profile, clients, catalog, documents and signatures are stored <strong>only on your device</strong>.</li>
+      <li><strong>No registration</strong> is required. We have <strong>no servers</strong> that store your business data.</li>
+      <li><strong>No ads</strong>, <strong>no third-party analytics or tracking SDKs</strong>.</li>
+      <li>Internet is used only for two optional/necessary features: <strong>Google Drive backup</strong> (if you turn it on) and <strong>in-app purchases</strong>.</li>
+    </ul>
+
+    <h2>2. Data stored locally on your device</h2>
+    <p>The App stores your company/business profile, client directory, goods/services catalog, documents (estimates, contracts, invoices, receipts, delivery notes) including captured client signatures, and settings in its private local database (IndexedDB). This data stays on your device and is <strong>never sent to Vanza Labs</strong>.</p>
+
+    <h2>3. Optional Google Drive backup</h2>
+    <p>If you choose to connect Google Drive in the App's settings, Vanza uses Google Sign-In and requests these scopes:</p>
+    <table>
+      <thead>
+        <tr><th>Scope</th><th>Why it is needed</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>https://www.googleapis.com/auth/drive.file</code></td>
+          <td>Create, update and read <strong>only the backup file created by Vanza</strong> (<code>vanza_drive_backup.json</code>) in your own Google Drive. The App cannot see your other Drive files.</td>
+        </tr>
+        <tr>
+          <td><code>userinfo.email</code>, <code>userinfo.profile</code></td>
+          <td>Show which Google account is connected.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Limited Use disclosure:</strong> Vanza's use and transfer to any other app of information received from Google APIs will adhere to the <strong>Google API Services User Data Policy</strong>, including the <strong>Limited Use</strong> requirements (<a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">https://developers.google.com/terms/api-services-user-data-policy</a>). Google user data is used solely to provide the backup/restore feature; it is not shared with third parties, not used for advertising or AI/ML training, not sold, and not read by humans.</p>
+
+    <h2>4. Purchases (RevenueCat &amp; Google Play Billing)</h2>
+    <p>Vanza PRO purchases are processed by <strong>Google Play Billing</strong>; we never receive your payment card details. To validate purchases, manage the trial and restore purchases, the App uses <strong>RevenueCat</strong> (<a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">https://www.revenuecat.com/privacy</a>).</p>
+
+    <h2>5. Device permissions</h2>
+    <ul>
+      <li><strong>Internet</strong> — only for Google Drive backup and purchases. All document features work offline.</li>
+      <li><strong>Billing</strong> — for in-app purchases via Google Play.</li>
+      <li><strong>Files / Share</strong> — to save generated PDFs and send them through the system share sheet when you tap "Share".</li>
+    </ul>
+
+    <h2>6. Data sharing</h2>
+    <p>We do not sell, rent or share your personal or business data. Data leaves your device only to your own Google Drive (if backup is enabled), RevenueCat / Google Play (purchases), or recipients you choose when sharing a PDF.</p>
+
+    <h2>7. Data retention and deletion</h2>
+    <p>Delete items anytime or use <strong>Menu → Account → Delete all data</strong> (or uninstall the App). Delete <code>vanza_drive_backup.json</code> from your Google Drive to remove cloud backups. For RevenueCat purchase record deletion, email <a href="mailto:contact@vanzalabs.tech">contact@vanzalabs.tech</a>.</p>
+
+    <h2>8. Security, Children &amp; Rights</h2>
+    <p>Local data is protected by your device OS sandbox and network traffic uses HTTPS/TLS. Not directed at children under 13. For GDPR/CCPA inquiries, email <a href="mailto:contact@vanzalabs.tech">contact@vanzalabs.tech</a>.</p>
+
+    <h2>9. Contact</h2>
+    <p>Vanza Labs · <a href="mailto:contact@vanzalabs.tech">contact@vanzalabs.tech</a> · https://vanzalabs.tech</p>
+  </Fragment>
+
+  <Fragment slot="uk">
+    <h1>Політика конфіденційності — Vanza: Рахунки та Договори</h1>
+    <p>
+      <strong>Застосунок:</strong> Vanza: Invoices &amp; Contracts (<code>app.vanza.docs</code>)<br />
+      <strong>Розробник:</strong> Vanza Labs — https://vanzalabs.tech · contact@vanzalabs.tech<br />
+      <strong>Дата набрання чинності:</strong> 15 жовтня 2026 р.
+    </p>
+    <p><strong>1. Коротко.</strong> Vanza працює за принципом «офлайн насамперед»: профіль бізнесу, клієнти, каталог, документи та підписи зберігаються <strong>лише на вашому пристрої</strong>. Реєстрація не потрібна, власних серверів для ваших даних у нас немає. Без реклами та трекерів.</p>
+    <p><strong>2. Локальні дані.</strong> У приватній базі застосунку (IndexedDB) зберігаються профіль компанії, клієнти, каталог, документи та підписи. Дані ніколи не надсилаються Vanza Labs.</p>
+    <p><strong>3. Опційний бекап у Google Drive.</strong> Застосунок запитує <code>drive.file</code> (доступ лише до <code>vanza_drive_backup.json</code>) та базовий профіль. <em>Limited Use:</em> використання та передача інформації, отриманої з Google API, відповідає <strong>Google API Services User Data Policy</strong>, включно з вимогами <strong>Limited Use</strong>. Дані використовуються лише для бекапу/відновлення, не передаються третім особам, не використовуються для реклами чи навчання AI і не продаються.</p>
+    <p><strong>4. Покупки.</strong> Обробляє Google Play Billing та RevenueCat (<a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">https://www.revenuecat.com/privacy</a>).</p>
+    <p><strong>5. Видалення та права.</strong> Використовуйте <strong>Меню → Акаунт → Видалити всі дані</strong> або видаліть застосунок. З питань прав (GDPR/CCPA) та видалення даних покупок — <a href="mailto:contact@vanzalabs.tech">contact@vanzalabs.tech</a>.</p>
+    <p><strong>6. Контакти.</strong> Vanza Labs · <a href="mailto:contact@vanzalabs.tech">contact@vanzalabs.tech</a> · https://vanzalabs.tech</p>
+  </Fragment>
+</PrivacyLayout>
