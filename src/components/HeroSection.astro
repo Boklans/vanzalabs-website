@@ -1,0 +1,162 @@
+---
+import { homeCopy, type Lang } from '../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = homeCopy[lang].hero;
+---
+
+<section data-hero-section class="relative overflow-hidden border-b border-white/[0.06] pt-14 pb-16 lg:pt-20 lg:pb-24">
+  <!-- Interactive Spatial Mesh Canvas -->
+  <canvas id="heroMeshCanvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-80" aria-hidden="true"></canvas>
+
+  <!-- Ambient Parallax Aurora -->
+  <div
+    data-parallax-orb
+    class="absolute -top-40 left-1/3 w-[760px] h-[420px] bg-gradient-to-r from-emerald-500/20 via-teal-400/12 to-sky-500/15 blur-[120px] rounded-full pointer-events-none"
+  ></div>
+
+  <div data-hero-stage class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      <!-- Left Editorial Copy (7 cols) -->
+      <div class="lg:col-span-7 space-y-7">
+        <div
+          data-hero-animate
+          class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 text-xs font-mono font-medium"
+        >
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+          </span>
+          <span>{t.badge}</span>
+        </div>
+
+        <h1
+          data-hero-animate
+          class="text-4xl sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem] font-bold tracking-tight leading-[1.05] text-white"
+        >
+          {t.titleStart}{' '}
+          <span class="text-gradient-brand">{t.titleHighlight}</span>{' '}
+          {t.titleEnd}
+        </h1>
+
+        <p data-hero-animate class="text-gray-400 text-base sm:text-lg leading-relaxed max-w-xl">
+          {t.subtitle}
+        </p>
+
+        <div data-hero-animate class="flex flex-wrap items-center gap-3.5 pt-1">
+          <a
+            href="#contact"
+            data-prefill-service="blueprint"
+            class="prefill-cta magnetic-btn inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-sm sm:text-base transition glow-emerald"
+          >
+            <span>{t.primaryCta}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a
+            href="#estimator"
+            class="inline-flex items-center gap-2 px-6 py-4 rounded-xl border border-white/15 bg-white/[0.03] hover:bg-white/[0.08] text-white font-semibold text-sm sm:text-base transition"
+          >
+            <span>{t.secondaryCta}</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Live 3D Engineering Telemetry Card (5 cols) -->
+      <div data-hero-animate class="lg:col-span-5 perspective-stage" data-phone-stage>
+        <div
+          data-phone-frame
+          class="phone-3d spotlight-card rounded-3xl border border-white/12 bg-[#0B0E15]/90 backdrop-blur-2xl p-6 shadow-[0_25px_80px_-20px_rgba(16,185,129,0.28)]"
+        >
+          <!-- Window Top Bar -->
+          <div class="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.08]">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-rose-500/70"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-400/70"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
+              <span class="ml-2 text-[11px] font-mono text-gray-400 truncate max-w-[190px]">{t.telemetry.repo}</span>
+            </div>
+            <span class="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-[10px] font-semibold">
+              {t.telemetry.branch}
+            </span>
+          </div>
+
+          <!-- Status Banner -->
+          <div class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-emerald-500/[0.07] border border-emerald-500/20 mb-5">
+            <span class="flex items-center gap-2 font-mono text-[11px] font-semibold text-emerald-300">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              {t.telemetry.status}
+            </span>
+            <span class="font-mono text-[11px] text-gray-400">v2.4.0 · edge</span>
+          </div>
+
+          <!-- Live 3 Metrics -->
+          <div class="grid grid-cols-3 gap-2.5 mb-5">
+            <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center">
+              <p class="font-display text-xl font-bold text-white">{t.telemetry.latency}</p>
+              <p class="text-[10px] font-mono text-gray-400 mt-0.5">{t.telemetry.latencyLabel}</p>
+            </div>
+            <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center">
+              <p class="font-display text-xl font-bold text-emerald-400">{t.telemetry.lighthouse}</p>
+              <p class="text-[10px] font-mono text-gray-400 mt-0.5">{t.telemetry.lighthouseLabel}</p>
+            </div>
+            <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center">
+              <p class="font-display text-xl font-bold text-sky-400">{t.telemetry.ownership}</p>
+              <p class="text-[10px] font-mono text-gray-400 mt-0.5">{t.telemetry.ownershipLabel}</p>
+            </div>
+          </div>
+
+          <!-- Animated Throughput Sparkline SVG -->
+          <div class="p-3.5 rounded-2xl bg-black/45 border border-white/[0.06] mb-5">
+            <div class="flex items-center justify-between text-[10px] font-mono text-gray-500 mb-2">
+              <span>PIPELINE VELOCITY</span>
+              <span class="text-emerald-400">↑ 3.4x faster to MVP</span>
+            </div>
+            <svg viewBox="0 0 320 56" class="w-full h-14 overflow-visible" fill="none">
+              <defs>
+                <linearGradient id="heroSparkFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#10B981" stop-opacity="0.35" />
+                  <stop offset="100%" stop-color="#10B981" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M0 46 C 35 44, 52 30, 88 32 C 120 34, 140 16, 178 20 C 216 24, 244 8, 282 10 C 300 11, 312 6, 320 4 L 320 56 L 0 56 Z"
+                fill="url(#heroSparkFill)"
+              />
+              <path
+                d="M0 46 C 35 44, 52 30, 88 32 C 120 34, 140 16, 178 20 C 216 24, 244 8, 282 10 C 300 11, 312 6, 320 4"
+                stroke="#34D399"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <circle cx="320" cy="4" r="4" fill="#34D399" class="animate-pulse" />
+            </svg>
+          </div>
+
+          <!-- Build Verification Logs -->
+          <div class="space-y-2 font-mono text-[11px] text-gray-300">
+            {t.telemetry.logs.map((line) => (
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.025] border border-white/[0.04]">
+                <span class="text-emerald-400 shrink-0">{line.slice(0, 1)}</span>
+                <span class="truncate">{line.slice(2)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Trust Ribbon -->
+    <div data-hero-animate class="mt-14 pt-7 border-t border-white/[0.07] flex flex-wrap items-center justify-between gap-y-3 gap-x-6 text-xs font-mono text-gray-400">
+      {t.trustRibbon.map((item) => (
+        <span class="inline-flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400/80"></span>
+          <span>{item}</span>
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

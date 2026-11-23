@@ -1,0 +1,202 @@
+---
+import { homeCopy, type Lang } from '../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = homeCopy[lang].story;
+---
+
+<section id="story" class="relative border-b border-white/[0.06] bg-[#080A0F]">
+  <!-- Desktop Pinned Scroll Container (320vh) -->
+  <div id="scrollStoryTrack" class="relative lg:min-h-[320vh]">
+    <div class="lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:flex lg:items-center py-20 lg:py-0 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <!-- Section Header -->
+        <div class="max-w-2xl mb-10 lg:mb-8">
+          <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-2">{t.eyebrow}</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-2">{t.title}</h2>
+          <p class="text-gray-400 text-sm sm:text-base">{t.subtitle}</p>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <!-- Left: 4 Synchronized Chapters (5 cols) -->
+          <div class="lg:col-span-5 relative pl-6">
+            <!-- Vertical Glowing Rail -->
+            <div class="absolute left-0 top-1 bottom-1 w-[2px] bg-white/10 rounded-full overflow-hidden">
+              <div
+                id="storyRailFill"
+                class="w-full h-full origin-top scale-y-25 bg-gradient-to-b from-emerald-400 via-teal-300 to-sky-400 shadow-[0_0_12px_rgba(52,211,153,0.9)]"
+              ></div>
+            </div>
+
+            <div class="space-y-4">
+              {t.chapters.map((ch, idx) => (
+                <button
+                  type="button"
+                  data-story-step={idx}
+                  class:list={[
+                    'story-step-card w-full text-left p-4 rounded-2xl border transition-all duration-300 cursor-pointer',
+                    idx === 0
+                      ? 'bg-emerald-500/[0.08] border-emerald-400/45 opacity-100'
+                      : 'bg-white/[0.015] border-white/[0.06] opacity-55 hover:opacity-85',
+                  ]}
+                >
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-mono text-[11px] font-bold text-emerald-400">{ch.num} · {ch.tag}</span>
+                    <span class="font-mono text-[11px] text-gray-500">{ch.time}</span>
+                  </div>
+                  <h3 class="text-base font-bold text-white mb-1">{ch.title}</h3>
+                  <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">{ch.desc}</p>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <!-- Right: Morphing 4-Stage Engineering Canvas (7 cols) -->
+          <div class="lg:col-span-7">
+            <div class="relative rounded-3xl border border-white/12 bg-[#0B0F17] p-6 sm:p-8 min-h-[380px] sm:min-h-[430px] flex items-center justify-center overflow-hidden shadow-2xl">
+              <div class="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none"></div>
+
+              <!-- STAGE 0: System Architecture Blueprint SVG -->
+              <div data-story-stage="0" class="story-stage-pane relative z-10 w-full transition-all duration-500 opacity-100 scale-100">
+                <div class="flex items-center justify-between font-mono text-[11px] text-emerald-400 mb-5">
+                  <span>BLUEPRINT // SYSTEM_ARCHITECTURE.SVG</span>
+                  <span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30">01 / 04</span>
+                </div>
+                <svg viewBox="0 0 560 270" class="w-full h-auto" fill="none">
+                  <!-- Connecting lines -->
+                  <path d="M130 135 H 215" stroke="#34D399" stroke-width="2" stroke-dasharray="6 4" />
+                  <path d="M345 135 C 385 135, 385 60, 425 60" stroke="#34D399" stroke-width="2" />
+                  <path d="M345 135 H 425" stroke="#60A5FA" stroke-width="2" />
+                  <path d="M345 135 C 385 135, 385 210, 425 210" stroke="#A78BFA" stroke-width="2" />
+
+                  <!-- Node 1: Client App -->
+                  <rect x="10" y="95" width="120" height="80" rx="14" fill="#111827" stroke="#34D399" stroke-opacity="0.6" stroke-width="1.5" />
+                  <text x="70" y="130" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="700" font-family="Inter">Web / Mobile</text>
+                  <text x="70" y="150" text-anchor="middle" fill="#9CA3AF" font-size="10" font-family="JetBrains Mono">Next.js · Flutter</text>
+
+                  <!-- Node 2: Edge API Gateway -->
+                  <rect x="215" y="88" width="130" height="94" rx="16" fill="#064E3B" fill-opacity="0.35" stroke="#34D399" stroke-width="2" />
+                  <text x="280" y="128" text-anchor="middle" fill="#6EE7B7" font-size="13" font-weight="700" font-family="Inter">Edge API Core</text>
+                  <text x="280" y="148" text-anchor="middle" fill="#D1FAE5" font-size="10" font-family="JetBrains Mono">Auth · Rate Limit</text>
+                  <text x="280" y="164" text-anchor="middle" fill="#A7F3D0" font-size="10" font-family="JetBrains Mono">Type-Safe RPC</text>
+
+                  <!-- Node 3a: Postgres -->
+                  <rect x="425" y="25" width="125" height="68" rx="12" fill="#111827" stroke="#34D399" stroke-opacity="0.5" stroke-width="1.5" />
+                  <text x="487" y="56" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700" font-family="Inter">PostgreSQL</text>
+                  <text x="487" y="74" text-anchor="middle" fill="#9CA3AF" font-size="10" font-family="JetBrains Mono">RLS · Backups</text>
+
+                  <!-- Node 3b: AI / RAG -->
+                  <rect x="425" y="101" width="125" height="68" rx="12" fill="#111827" stroke="#60A5FA" stroke-opacity="0.6" stroke-width="1.5" />
+                  <text x="487" y="132" text-anchor="middle" fill="#93C5FD" font-size="12" font-weight="700" font-family="Inter">LLM + RAG</text>
+                  <text x="487" y="150" text-anchor="middle" fill="#9CA3AF" font-size="10" font-family="JetBrains Mono">OpenAI · Vector</text>
+
+                  <!-- Node 3c: Stripe / CRM -->
+                  <rect x="425" y="177" width="125" height="68" rx="12" fill="#111827" stroke="#A78BFA" stroke-opacity="0.6" stroke-width="1.5" />
+                  <text x="487" y="208" text-anchor="middle" fill="#DDD6FE" font-size="12" font-weight="700" font-family="Inter">CRM &amp; Stripe</text>
+                  <text x="487" y="226" text-anchor="middle" fill="#9CA3AF" font-size="10" font-family="JetBrains Mono">Webhooks · Sync</text>
+                </svg>
+              </div>
+
+              <!-- STAGE 1: Clean Type-Safe Engineering Code -->
+              <div data-story-stage="1" class="story-stage-pane absolute inset-6 sm:inset-8 z-10 flex flex-col justify-center transition-all duration-500 opacity-0 scale-95 pointer-events-none">
+                <div class="flex items-center justify-between font-mono text-[11px] text-sky-400 mb-4">
+                  <span>GITHUB // client-org/core/pipeline.ts</span>
+                  <span class="px-2 py-0.5 rounded bg-sky-500/15 border border-sky-500/30">02 / 04</span>
+                </div>
+                <pre class="p-4 sm:p-5 rounded-2xl bg-black/70 border border-white/10 font-mono text-xs sm:text-[13px] leading-relaxed text-gray-300 overflow-x-auto"><code><span class="text-purple-400">export async function</span> <span class="text-sky-300">processClientOrder</span>(payload: <span class="text-emerald-300">OrderDTO</span>) &#123;
+  <span class="text-gray-500">// 1. Validate schema &amp; enrich via RAG</span>
+  <span class="text-purple-400">const</span> verified = OrderSchema.<span class="text-sky-300">parse</span>(payload);
+  <span class="text-purple-400">const</span> quote = <span class="text-purple-400">await</span> aiEngine.<span class="text-sky-300">estimate</span>(verified);
+
+  <span class="text-gray-500">// 2. Atomic write + CRM webhook</span>
+  <span class="text-purple-400">await</span> db.<span class="text-sky-300">transaction</span>(tx =&gt; tx.<span class="text-sky-300">insert</span>(orders).<span class="text-sky-300">values</span>(quote));
+  <span class="text-purple-400">return</span> &#123; status: <span class="text-emerald-300">'shipped'</span>, latencyMs: <span class="text-amber-300">38</span> &#125;;
+&#125;</code></pre>
+                <div class="mt-4 flex flex-wrap gap-2 font-mono text-[11px]">
+                  <span class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">✓ tsc --noEmit (0 errors)</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">✓ 42 unit tests passed</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white/5 text-gray-300 border border-white/10">PR #18 merged → main</span>
+                </div>
+              </div>
+
+              <!-- STAGE 2: High-Craft Product UI Dashboard -->
+              <div data-story-stage="2" class="story-stage-pane absolute inset-6 sm:inset-8 z-10 flex flex-col justify-center transition-all duration-500 opacity-0 scale-95 pointer-events-none">
+                <div class="flex items-center justify-between font-mono text-[11px] text-emerald-400 mb-4">
+                  <span>UI_SYSTEM // CONVERSION_DASHBOARD</span>
+                  <span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30">03 / 04</span>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-black/65 p-5 space-y-4">
+                  <div class="grid grid-cols-3 gap-3">
+                    <div class="p-3 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                      <p class="text-[10px] font-mono text-gray-400">MRR GROWTH</p>
+                      <p class="text-xl font-display font-bold text-white mt-1">$48.2k</p>
+                      <p class="text-[10px] text-emerald-400 font-mono">+34% MoM</p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                      <p class="text-[10px] font-mono text-gray-400">AUTO-HANDLED</p>
+                      <p class="text-xl font-display font-bold text-emerald-400 mt-1">94.6%</p>
+                      <p class="text-[10px] text-gray-400 font-mono">AI Pipeline</p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                      <p class="text-[10px] font-mono text-gray-400">RESPONSE</p>
+                      <p class="text-xl font-display font-bold text-sky-400 mt-1">0.4s</p>
+                      <p class="text-[10px] text-gray-400 font-mono">p99 Edge</p>
+                    </div>
+                  </div>
+                  <!-- Animated Mini Bar Chart -->
+                  <div class="flex items-end gap-2 h-24 pt-2 px-2">
+                    <div class="flex-1 bg-emerald-500/25 rounded-t-md h-[35%]"></div>
+                    <div class="flex-1 bg-emerald-500/35 rounded-t-md h-[48%]"></div>
+                    <div class="flex-1 bg-emerald-500/45 rounded-t-md h-[56%]"></div>
+                    <div class="flex-1 bg-emerald-500/60 rounded-t-md h-[70%]"></div>
+                    <div class="flex-1 bg-emerald-500/75 rounded-t-md h-[82%]"></div>
+                    <div class="flex-1 bg-emerald-400 rounded-t-md h-[100%] shadow-[0_0_20px_rgba(52,211,153,0.45)]"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STAGE 3: Production Launch Command Center -->
+              <div data-story-stage="3" class="story-stage-pane absolute inset-6 sm:inset-8 z-10 flex flex-col justify-center transition-all duration-500 opacity-0 scale-95 pointer-events-none">
+                <div class="flex items-center justify-between font-mono text-[11px] text-emerald-400 mb-4">
+                  <span>PRODUCTION // LIVE_RELEASE_VERIFIED</span>
+                  <span class="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30">04 / 04</span>
+                </div>
+                <div class="rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.05] p-6 text-center space-y-5">
+                  <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 text-2xl font-bold">
+                    ✓
+                  </div>
+                  <div>
+                    <p class="text-xl font-display font-bold text-white">Production Deployed Globally</p>
+                    <p class="text-xs font-mono text-emerald-300 mt-1">Cloudflare Edge · SSL Strict · PostHog Telemetry Active</p>
+                  </div>
+                  <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs font-mono">
+                    <div class="p-2.5 rounded-xl bg-black/50 border border-white/10">
+                      <span class="block text-emerald-400 font-bold">99.98%</span>
+                      <span class="text-[10px] text-gray-400">Uptime SLA</span>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-black/50 border border-white/10">
+                      <span class="block text-emerald-400 font-bold">100/100</span>
+                      <span class="text-[10px] text-gray-400">Core Vitals</span>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-black/50 border border-white/10">
+                      <span class="block text-sky-400 font-bold">100% IP</span>
+                      <span class="text-[10px] text-gray-400">Client Repo</span>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-black/50 border border-white/10">
+                      <span class="block text-amber-300 font-bold">30 Days</span>
+                      <span class="text-[10px] text-gray-400">Bug Warranty</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

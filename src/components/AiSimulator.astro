@@ -1,0 +1,212 @@
+---
+import { homeCopy, type Lang } from '../data/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = homeCopy[lang].simulator;
+const simConfigJson = JSON.stringify({
+  runBtn: t.runBtn,
+  runningBtn: t.runningBtn,
+  scenarios: t.scenarios,
+});
+---
+
+<section id="simulator" class="py-20 lg:py-28 border-b border-white/[0.06] relative overflow-hidden">
+  <div class="absolute top-1/2 left-0 -translate-y-1/2 w-[520px] h-[360px] bg-sky-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div data-reveal class="max-w-2xl mb-10">
+      <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3">{t.eyebrow}</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{t.title}</h2>
+      <p class="text-gray-400 text-base leading-relaxed">{t.subtitle}</p>
+    </div>
+
+    <div
+      id="aiSimRoot"
+      data-config={simConfigJson}
+      class="glass-panel spotlight-card rounded-3xl p-6 sm:p-8 lg:p-10 space-y-8"
+    >
+      <!-- Scenario Selector Tabs + Run Button -->
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
+        <div class="flex flex-wrap gap-2">
+          {t.scenarios.map((sc, idx) => (
+            <button
+              type="button"
+              data-sim-scenario={sc.id}
+              class:list={[
+                'sim-scenario-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border transition cursor-pointer',
+                idx === 0
+                  ? 'bg-emerald-500/15 border-emerald-400/60 text-white'
+                  : 'bg-white/[0.03] border-white/10 text-gray-400 hover:text-white hover:border-white/25',
+              ]}
+            >
+              {sc.label}
+            </button>
+          ))}
+        </div>
+
+        <button
+          id="simRunBtn"
+          type="button"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-xs sm:text-sm transition cursor-pointer glow-emerald"
+        >
+          <span id="simRunIcon">▶</span>
+          <span id="simRunLabel">{t.runBtn}</span>
+        </button>
+      </div>
+
+      <!-- 4-Node Animated Pipeline Bar -->
+      <div class="relative">
+        <div class="hidden sm:block absolute top-6 left-8 right-8 h-[2px] bg-white/10 rounded-full overflow-hidden">
+          <div id="simBeam" class="h-full w-full origin-left scale-x-100 bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-400 transition-transform duration-500"></div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 relative z-10">
+          {t.nodes.map((node, i) => (
+            <div
+              data-sim-node={i}
+              class="sim-node p-4 rounded-2xl bg-[#0B0F17] border border-emerald-500/35 transition-all duration-300"
+            >
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-mono text-[11px] font-bold text-emerald-400">0{i + 1}</span>
+                <span class="sim-dot w-2 h-2 rounded-full bg-emerald-400"></span>
+              </div>
+              <p class="text-xs sm:text-sm font-semibold text-white">{node}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Input → Structured JSON Output Grid -->
+      <div class="grid lg:grid-cols-12 gap-6 items-stretch">
+        <!-- Incoming Trigger Payload (5 cols) -->
+        <div class="lg:col-span-5 flex flex-col justify-between p-5 rounded-2xl bg-black/45 border border-white/[0.08] space-y-4">
+          <div>
+            <span id="simInputBadge" class="inline-block font-mono text-[11px] px-2.5 py-1 rounded-md bg-sky-500/15 text-sky-300 border border-sky-500/30 mb-3">
+              {t.scenarios[0].inputBadge}
+            </span>
+            <p id="simInputText" class="text-sm text-gray-200 leading-relaxed font-medium">
+              {t.scenarios[0].inputText}
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono">
+            <span class="text-gray-400">Latency: <strong id="simLatency" class="text-emerald-400">{t.scenarios[0].latency}</strong></span>
+            <span id="simSaved" class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/25">
+              {t.scenarios[0].saved}
+            </span>
+          </div>
+        </div>
+
+        <!-- Extracted AI JSON + Action Result (7 cols) -->
+        <div class="lg:col-span-7 flex flex-col justify-between p-5 rounded-2xl bg-black/65 border border-emerald-500/20 space-y-4">
+          <div>
+            <div class="flex items-center justify-between text-[11px] font-mono text-gray-500 mb-2">
+              <span>AGENT_OUTPUT.JSON</span>
+              <span class="text-emerald-400">200 OK · Autonomous</span>
+            </div>
+            <pre id="simJsonOut" class="font-mono text-xs text-emerald-200/90 leading-relaxed overflow-x-auto whitespace-pre-wrap">{t.scenarios[0].json}</pre>
+          </div>
+
+          <div class="pt-4 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <p id="simReplyOut" class="text-xs text-gray-300 leading-relaxed">{t.scenarios[0].reply}</p>
+            <button
+              type="button"
+              data-prefill-service="automation"
+              class="prefill-cta shrink-0 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-emerald-300 font-semibold text-xs transition cursor-pointer"
+            >
+              {t.cta}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const root = document.getElementById('aiSimRoot');
+    if (!root) return;
+    const cfg = JSON.parse(root.dataset.config || '{}');
+    let activeId = cfg.scenarios[0].id;
+    let running = false;
+
+    const inputBadge = document.getElementById('simInputBadge');
+    const inputText = document.getElementById('simInputText');
+    const latencyEl = document.getElementById('simLatency');
+    const savedEl = document.getElementById('simSaved');
+    const jsonOut = document.getElementById('simJsonOut');
+    const replyOut = document.getElementById('simReplyOut');
+    const beam = document.getElementById('simBeam');
+    const runBtn = document.getElementById('simRunBtn');
+    const runLabel = document.getElementById('simRunLabel');
+    const nodes = root.querySelectorAll('.sim-node');
+
+    function renderScenario(sc) {
+      if (inputBadge) inputBadge.textContent = sc.inputBadge;
+      if (inputText) inputText.textContent = sc.inputText;
+      if (latencyEl) latencyEl.textContent = sc.latency;
+      if (savedEl) savedEl.textContent = sc.saved;
+      if (jsonOut) jsonOut.textContent = sc.json;
+      if (replyOut) replyOut.textContent = sc.reply;
+    }
+
+    async function playSimulation(scenarioId) {
+      if (running) return;
+      running = true;
+      activeId = scenarioId;
+      const sc = cfg.scenarios.find((s) => s.id === scenarioId) || cfg.scenarios[0];
+
+      // Update tabs
+      root.querySelectorAll('.sim-scenario-btn').forEach((b) => {
+        const isAct = b.dataset.simScenario === activeId;
+        b.className = `sim-scenario-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border transition cursor-pointer ${
+          isAct
+            ? 'bg-emerald-500/15 border-emerald-400/60 text-white'
+            : 'bg-white/[0.03] border-white/10 text-gray-400 hover:text-white hover:border-white/25'
+        }`;
+      });
+
+      if (runLabel) runLabel.textContent = cfg.runningBtn;
+      if (inputBadge) inputBadge.textContent = sc.inputBadge;
+      if (inputText) inputText.textContent = sc.inputText;
+      if (jsonOut) jsonOut.textContent = '// Routing event through LLM + RAG pipeline...';
+      if (replyOut) replyOut.textContent = '...';
+
+      // Reset beam and nodes
+      if (beam) beam.style.transform = 'scaleX(0)';
+      nodes.forEach((n) => {
+        n.classList.remove('border-emerald-400', 'bg-emerald-500/10', 'shadow-[0_0_24px_rgba(16,185,129,0.25)]');
+        n.classList.add('border-white/10', 'opacity-45');
+      });
+
+      const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+      for (let i = 0; i < nodes.length; i++) {
+        await wait(240);
+        nodes[i].classList.remove('border-white/10', 'opacity-45');
+        nodes[i].classList.add('border-emerald-400', 'bg-emerald-500/10', 'shadow-[0_0_24px_rgba(16,185,129,0.25)]');
+        if (beam) beam.style.transform = `scaleX(${(i + 1) / nodes.length})`;
+      }
+
+      await wait(160);
+      renderScenario(sc);
+      if (runLabel) runLabel.textContent = cfg.runBtn;
+      running = false;
+
+      if (window.posthog) {
+        window.posthog.capture('ai_simulator_run', { scenario: activeId });
+      }
+    }
+
+    root.querySelectorAll('.sim-scenario-btn').forEach((btn) => {
+      btn.addEventListener('click', () => playSimulation(btn.dataset.simScenario));
+    });
+
+    if (runBtn) {
+      runBtn.addEventListener('click', () => playSimulation(activeId));
+    }
+  })();
+</script>

@@ -18,14 +18,13 @@ const homeBase = lang === 'uk' ? '/uk' : '/';
       <img src="/images/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="h-4 w-auto" width="110" height="16" />
     </a>
 
-    <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-gray-400">
-      <a href={`${homeBase}#products`} class="hover:text-white transition">{t.products}</a>
+    <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-400">
+      <a href={`${homeBase}#story`} class="hover:text-white transition">{t.story}</a>
+      <a href={`${homeBase}#simulator`} class="hover:text-white transition">{t.simulator}</a>
       <a href={`${homeBase}#estimator`} class="hover:text-white transition">{t.estimator}</a>
-      <a href={`${homeBase}#services`} class="hover:text-white transition">{t.services}</a>
-      <a href={`${homeBase}#process`} class="hover:text-white transition">{t.process}</a>
+      <a href={`${homeBase}#lab`} class="hover:text-white transition">{t.products}</a>
       <a href={`${homeBase}#founders`} class="hover:text-white transition">{t.founders}</a>
       <a href="/blog/" class="hover:text-white transition">{lang === 'uk' ? 'Блог' : 'Blog'}</a>
-      <a href={`${homeBase}#faq`} class="hover:text-white transition">{t.faq}</a>
     </nav>
 
     <div class="hidden lg:flex items-center gap-3">
@@ -74,12 +73,12 @@ const homeBase = lang === 'uk' ? '/uk' : '/';
 
   <div id="mobileMenu" class="hidden lg:hidden border-t border-white/[0.06] bg-[#0B0D12]">
     <div class="px-4 py-4 space-y-3 text-sm font-medium text-gray-300">
-      <a href={`${homeBase}#products`} class="mobile-nav-link block py-1.5 hover:text-white">{t.products}</a>
+      <a href={`${homeBase}#story`} class="mobile-nav-link block py-1.5 hover:text-white">{t.story}</a>
+      <a href={`${homeBase}#simulator`} class="mobile-nav-link block py-1.5 hover:text-white">{t.simulator}</a>
       <a href={`${homeBase}#estimator`} class="mobile-nav-link block py-1.5 hover:text-white">{t.estimator}</a>
-      <a href={`${homeBase}#services`} class="mobile-nav-link block py-1.5 hover:text-white">{t.services}</a>
-      <a href={`${homeBase}#process`} class="mobile-nav-link block py-1.5 hover:text-white">{t.process}</a>
+      <a href={`${homeBase}#lab`} class="mobile-nav-link block py-1.5 hover:text-white">{t.products}</a>
       <a href={`${homeBase}#founders`} class="mobile-nav-link block py-1.5 hover:text-white">{t.founders}</a>
-      <a href={`${homeBase}#faq`} class="mobile-nav-link block py-1.5 hover:text-white">{t.faq}</a>
+      <a href="/blog/" class="mobile-nav-link block py-1.5 hover:text-white">{lang === 'uk' ? 'Блог' : 'Blog'}</a>
       <div class="flex items-center justify-between pt-3 border-t border-white/10">
         <div class="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] p-0.5 text-xs font-mono font-semibold">
           <a href={enHref} class:list={['px-3 py-1 rounded-full', lang === 'en' ? 'bg-emerald-500 text-gray-950' : 'text-gray-400']}>EN</a>
