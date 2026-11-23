@@ -69,29 +69,29 @@ const FRAGMENT_SHADER = `
     float f = fbm(p * 1.55 + r * 1.15 - (p - m) * mousePull);
     float fShift = fbm((p + vec2(0.014, -0.01)) * 1.55 + r * 1.15 - (p - m) * mousePull);
 
-    // Soft, luminous emerald topographic contour lines
+    // Soft, restrained luminous emerald topographic contour lines
     float contour = abs(fract(f * 8.5) - 0.5);
-    float ridge = smoothstep(0.095, 0.0, contour) * 0.165;
+    float ridge = smoothstep(0.088, 0.0, contour) * 0.122;
 
     vec3 colObsidian = vec3(0.019, 0.019, 0.027);
     vec3 colGraphite = vec3(0.045, 0.056, 0.078);
-    vec3 colEmerald  = vec3(0.04, 0.94, 0.65);
+    vec3 colEmerald  = vec3(0.01, 0.91, 0.61);
     vec3 colCyan     = vec3(0.14, 0.65, 0.92);
-    vec3 colSilver   = vec3(0.84, 0.96, 0.94);
+    vec3 colSilver   = vec3(0.82, 0.93, 0.95);
 
     vec3 color = mix(colObsidian, colGraphite, smoothstep(0.24, 0.76, f));
 
-    // Subtle luminous silk depth with gently brighter emerald contour lines
+    // Restrained dark luxury silk depth with subtly visible emerald contour lines
     float silk = smoothstep(0.54, 0.80, f) * (1.0 - smoothstep(0.80, 0.96, f));
     float caustic = clamp((f - fShift) * 5.0, 0.0, 1.0) * smoothstep(0.46, 0.84, f);
 
-    color += colEmerald * silk * 0.275 * breath;
-    color += colCyan * smoothstep(0.48, 0.80, r.x) * smoothstep(0.45, 0.78, f) * 0.115;
-    color += colSilver * caustic * 0.145;
-    color += mix(colEmerald, colSilver, 0.34) * ridge * smoothstep(0.24, 0.76, f);
+    color += colEmerald * silk * 0.242 * breath;
+    color += colCyan * smoothstep(0.48, 0.80, r.x) * smoothstep(0.45, 0.78, f) * 0.105;
+    color += colSilver * caustic * 0.125;
+    color += mix(colEmerald, colSilver, 0.42) * ridge * smoothstep(0.28, 0.78, f);
 
     // Delicate cursor luminance
-    color += colEmerald * exp(-mDist * 2.5) * 0.095;
+    color += colEmerald * exp(-mDist * 2.5) * 0.085;
 
     // Strong headline-first vignette & smooth bottom fade
     float vig = 1.0 - smoothstep(0.28, 1.08, length(uv - vec2(0.55, 0.46)));
