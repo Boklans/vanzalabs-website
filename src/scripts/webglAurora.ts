@@ -1,4 +1,4 @@
-// Pure WebGL GLSL Volumetric Silk-Light & Chromatic Topographic Fluid Shader (v2)
+// Restrained Luxury WebGL GLSL Topographic Silk-Light Shader (v3 — Calm Studio Edition)
 
 const VERTEX_SHADER = `
   attribute vec2 a_position;
@@ -33,9 +33,9 @@ const FRAGMENT_SHADER = `
     float v = 0.0;
     float a = 0.5;
     mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
       v += a * noise(p);
-      p = rot * p * 2.03;
+      p = rot * p * 2.02;
       a *= 0.5;
     }
     return v;
@@ -46,65 +46,63 @@ const FRAGMENT_SHADER = `
     float aspect = u_resolution.x / min(u_resolution.x, u_resolution.y);
     vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / min(u_resolution.x, u_resolution.y);
 
-    // Subtle scroll depth zoom
-    p *= (1.0 - u_scroll * 0.22);
+    // Subtle slow parallax zoom on scroll
+    p *= (1.0 - u_scroll * 0.09);
 
     vec2 m = (u_mouse - 0.5) * vec2(aspect, 1.0);
     float mDist = length(p - m);
-    float ripple = sin(mDist * 14.0 - u_time * 2.2) * exp(-mDist * 3.8) * 0.035;
-    float mousePull = exp(-mDist * 2.2) * 0.42;
+    float mousePull = exp(-mDist * 1.9) * 0.14;
 
-    float t = u_time * 0.13;
+    // Meditative ~55-65s cycle
+    float t = u_time * 0.042;
+    float breath = 0.88 + 0.12 * sin(u_time * 0.22);
 
-    // Two-pass domain warping for silky liquid glass folds
     vec2 q = vec2(
-      fbm(p * 1.45 + vec2(t, -t * 0.55)),
-      fbm(p * 1.45 + vec2(-t * 0.7, t * 0.45) + 5.2)
+      fbm(p * 1.3 + vec2(t, -t * 0.5)),
+      fbm(p * 1.3 + vec2(-t * 0.6, t * 0.4) + 5.2)
     );
     vec2 r = vec2(
-      fbm(p * 1.85 + 2.2 * q + vec2(1.7, 9.2) + t * 0.35),
-      fbm(p * 1.85 + 2.2 * q + vec2(8.3, 2.8) - t * 0.28)
+      fbm(p * 1.65 + 1.8 * q + vec2(1.7, 9.2) + t * 0.25),
+      fbm(p * 1.65 + 1.8 * q + vec2(8.3, 2.8) - t * 0.2)
     );
 
-    float f = fbm(p * 1.7 + r * 1.35 - (p - m) * mousePull + ripple);
+    float f = fbm(p * 1.55 + r * 1.15 - (p - m) * mousePull);
+    float fShift = fbm((p + vec2(0.014, -0.01)) * 1.55 + r * 1.15 - (p - m) * mousePull);
 
-    // Chromatic offset sample for luxury prismatic silk edge
-    float fShift = fbm((p + vec2(0.015, -0.01)) * 1.7 + r * 1.35 - (p - m) * mousePull);
-
-    // Crisp topographic contour filaments
-    float contour = abs(fract(f * 10.0) - 0.5);
-    float ridge = smoothstep(0.048, 0.0, contour) * 0.18;
+    // Soft, restrained topographic texture lines
+    float contour = abs(fract(f * 8.5) - 0.5);
+    float ridge = smoothstep(0.085, 0.0, contour) * 0.095;
 
     vec3 colObsidian = vec3(0.019, 0.019, 0.027);
-    vec3 colGraphite = vec3(0.055, 0.068, 0.095);
+    vec3 colGraphite = vec3(0.045, 0.056, 0.078);
     vec3 colEmerald  = vec3(0.0, 0.898, 0.60);
-    vec3 colCyan     = vec3(0.14, 0.68, 0.98);
-    vec3 colSilver   = vec3(0.86, 0.95, 1.0);
+    vec3 colCyan     = vec3(0.14, 0.65, 0.92);
+    vec3 colSilver   = vec3(0.82, 0.92, 0.98);
 
-    vec3 color = mix(colObsidian, colGraphite, smoothstep(0.20, 0.72, f));
+    vec3 color = mix(colObsidian, colGraphite, smoothstep(0.24, 0.76, f));
 
-    // Specular silk ribbons + chromatic highlight
-    float silk = smoothstep(0.52, 0.78, f) * (1.0 - smoothstep(0.78, 0.95, f));
-    float caustic = clamp((f - fShift) * 6.5, 0.0, 1.0) * smoothstep(0.42, 0.82, f);
+    // Restrained luminous depth (~38% softer than tech-demo intensity)
+    float silk = smoothstep(0.54, 0.80, f) * (1.0 - smoothstep(0.80, 0.96, f));
+    float caustic = clamp((f - fShift) * 5.0, 0.0, 1.0) * smoothstep(0.46, 0.84, f);
 
-    color += colEmerald * silk * 0.42;
-    color += colCyan * smoothstep(0.45, 0.78, r.x) * smoothstep(0.42, 0.74, f) * 0.22;
-    color += colSilver * caustic * 0.28;
-    color += mix(colEmerald, colSilver, 0.5) * ridge * smoothstep(0.28, 0.78, f);
+    color += colEmerald * silk * 0.23 * breath;
+    color += colCyan * smoothstep(0.48, 0.80, r.x) * smoothstep(0.45, 0.78, f) * 0.11;
+    color += colSilver * caustic * 0.13;
+    color += mix(colEmerald, colSilver, 0.55) * ridge * smoothstep(0.32, 0.80, f);
 
-    // Cursor luminous aura
-    color += mix(colEmerald, colCyan, 0.35) * exp(-mDist * 2.8) * 0.22;
+    // Ultra-delicate cursor luminance
+    color += colEmerald * exp(-mDist * 2.5) * 0.085;
 
-    // Seamless vignette & bottom obsidian melt
-    float vig = 1.0 - smoothstep(0.32, 1.18, length(uv - vec2(0.5, 0.45)));
-    color = mix(colObsidian, color, clamp(vig * 1.18, 0.0, 1.0));
-    color = mix(colObsidian, color, smoothstep(0.0, 0.22, uv.y));
+    // Strong headline-first vignette & smooth bottom fade
+    float vig = 1.0 - smoothstep(0.28, 1.08, length(uv - vec2(0.55, 0.46)));
+    color = mix(colObsidian, color, clamp(vig * 1.05, 0.0, 1.0));
+    color = mix(colObsidian, color, smoothstep(0.0, 0.26, uv.y));
 
     gl_FragColor = vec4(color, 1.0);
   }
 `;
 
-export function mountWebglAurora(canvasId: string): () => void {
+export function mountWebglAurora(canvasId: string, staticOnly = false): () => void {
   const canvas = document.getElementById(canvasId) as HTMLCanvasElement | null;
   if (!canvas) return () => {};
 
@@ -149,10 +147,10 @@ export function mountWebglAurora(canvasId: string): () => void {
   const uMouse = gl.getUniformLocation(program, 'u_mouse');
   const uScroll = gl.getUniformLocation(program, 'u_scroll');
 
-  let targetMouseX = 0.56;
-  let targetMouseY = 0.54;
-  let curMouseX = 0.56;
-  let curMouseY = 0.54;
+  let targetMouseX = 0.62;
+  let targetMouseY = 0.52;
+  let curMouseX = 0.62;
+  let curMouseY = 0.52;
   let isVisible = true;
   let rafId = 0;
   const startTime = performance.now();
@@ -168,6 +166,34 @@ export function mountWebglAurora(canvasId: string): () => void {
     }
   };
 
+  const drawFrame = (elapsedSec: number) => {
+    const scrollRatio = Math.min(1, window.scrollY / Math.max(1, window.innerHeight));
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uTime, elapsedSec);
+    gl.uniform2f(uMouse, curMouseX, curMouseY);
+    gl.uniform1f(uScroll, scrollRatio);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+  };
+
+  resize();
+
+  // Static high-craft topographic frame for prefers-reduced-motion
+  if (staticOnly) {
+    drawFrame(12.0);
+    const onResizeStatic = () => {
+      resize();
+      drawFrame(12.0);
+    };
+    window.addEventListener('resize', onResizeStatic, { passive: true });
+    return () => {
+      window.removeEventListener('resize', onResizeStatic);
+      gl.deleteBuffer(buf);
+      gl.deleteProgram(program);
+      gl.deleteShader(vs);
+      gl.deleteShader(fs);
+    };
+  }
+
   const onPointerMove = (e: PointerEvent) => {
     const rect = canvas.getBoundingClientRect();
     if (rect.width > 0 && rect.height > 0) {
@@ -176,7 +202,6 @@ export function mountWebglAurora(canvasId: string): () => void {
     }
   };
 
-  resize();
   window.addEventListener('resize', resize, { passive: true });
   window.addEventListener('pointermove', onPointerMove, { passive: true });
 
@@ -192,16 +217,9 @@ export function mountWebglAurora(canvasId: string): () => void {
     rafId = requestAnimationFrame(render);
     if (!isVisible) return;
 
-    curMouseX += (targetMouseX - curMouseX) * 0.065;
-    curMouseY += (targetMouseY - curMouseY) * 0.065;
-    const scrollRatio = Math.min(1, window.scrollY / Math.max(1, window.innerHeight));
-
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.uniform1f(uTime, (now - startTime) * 0.001);
-    gl.uniform2f(uMouse, curMouseX, curMouseY);
-    gl.uniform1f(uScroll, scrollRatio);
-
-    gl.drawArrays(gl.TRIANGLES, 0, 6);
+    curMouseX += (targetMouseX - curMouseX) * 0.035;
+    curMouseY += (targetMouseY - curMouseY) * 0.035;
+    drawFrame((now - startTime) * 0.001 + 12.0);
   };
 
   rafId = requestAnimationFrame(render);

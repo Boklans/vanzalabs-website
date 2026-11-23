@@ -287,7 +287,7 @@ const simConfigJson = JSON.stringify({
 
             <div id="simHumanView" class="space-y-3">
               {ui.scenarios[0].cards.map((card, i) => (
-                <div data-sim-card={i} class="sim-result-card p-4 border border-[#00E599]/30 bg-[#00E599]/[0.04] transition-all duration-300">
+                <div data-sim-card={i} class="sim-result-card p-4 border border-white/12 bg-white/[0.02] transition-all duration-300">
                   <div class="flex items-center justify-between font-mono text-[10px] mb-1">
                     <span class="text-zinc-200 font-semibold">{card.app}</span>
                     <span class="sim-card-status text-[#00E599]">✓ {card.ms}</span>
@@ -507,7 +507,7 @@ const simConfigJson = JSON.stringify({
           await wait(200);
           const cardEl = cardEls[i];
           const cardData = sc.cards[i];
-          cardEl.className = 'sim-result-card p-4 border border-[#00E599]/40 bg-[#00E599]/[0.05] opacity-100 translate-y-0 transition-all duration-300';
+          cardEl.className = 'sim-result-card p-4 border border-white/15 bg-white/[0.03] opacity-100 translate-y-0 transition-all duration-300';
           const statusSpan = cardEl.querySelector('.sim-card-status');
           if (statusSpan) {
             statusSpan.textContent = `✓ ${cardData.ms}`;

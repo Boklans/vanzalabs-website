@@ -318,13 +318,13 @@ export function mountMotionEngine() {
 
   initCommandPalette(scrollToHash);
 
+  // Pure WebGL GLSL silk-light shader in Hero (renders a crisp static frame if prefers-reduced-motion)
+  const unmountGl = mountWebglAurora('heroWebglCanvas', prefersReduced);
+  activeCleanupFns.push(unmountGl);
+
   if (prefersReduced) return;
 
   initInstantReveals();
-
-  // Pure WebGL GLSL silk-light shader in Hero
-  const unmountGl = mountWebglAurora('heroWebglCanvas');
-  activeCleanupFns.push(unmountGl);
 
   // Lenis buttery smooth scroll synced with GSAP
   lenis = new Lenis({
