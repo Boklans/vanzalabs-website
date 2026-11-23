@@ -89,7 +89,15 @@ const t = homeCopy[lang];
                 : 'bg-white/[0.02] border-white/[0.08] text-gray-400 hover:border-white/20 hover:text-white',
             ]}
           >
-            <img src={p.icon} alt={p.shortName} class="w-10 h-10 rounded-xl object-cover shrink-0 bg-black p-0.5 border border-white/10" loading="lazy" />
+            <img
+              src={p.icon}
+              alt={p.shortName}
+              class:list={[
+                'w-10 h-10 rounded-xl shrink-0 bg-black border border-white/10',
+                p.slug === 'spot' ? 'object-contain p-1.5' : 'object-cover',
+              ]}
+              loading="lazy"
+            />
             <div class="min-w-0">
               <p class="font-display font-bold text-sm truncate text-white">{p.shortName}</p>
               <p class="text-[11px] text-gray-400 truncate">{p[lang].badge.split('·')[1]?.trim() || p.category}</p>
