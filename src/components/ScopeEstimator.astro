@@ -16,58 +16,68 @@ const configJson = JSON.stringify({
 });
 ---
 
-<section id="estimator" class="py-14 sm:py-20 lg:py-28 border-t border-white/[0.06] relative overflow-hidden">
+<section id="estimator" class="py-16 sm:py-20 lg:py-28 border-t border-white/[0.06] relative overflow-hidden">
   <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[720px] h-72 bg-emerald-500/10 blur-3xl rounded-full pointer-events-none"></div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="max-w-2xl mb-8 sm:mb-12">
-      <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-2.5 sm:mb-3">{t.eyebrow}</p>
-      <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight mb-3 break-words">{t.title}</h2>
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+    <div data-reveal class="max-w-2xl mb-7 sm:mb-12">
+      <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-2 sm:mb-3">{t.eyebrow}</p>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight mb-2.5 sm:mb-3 break-words">{t.title}</h2>
       <p class="text-gray-400 text-sm sm:text-base leading-relaxed">{t.subtitle}</p>
     </div>
 
     <div
       id="scopeEstimatorRoot"
       data-config={configJson}
-      class="grid lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-start"
+      data-reveal
+      class="grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-start"
     >
       <!-- Left controls (7 cols) -->
-      <div class="lg:col-span-7 glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-6 sm:space-y-8">
+      <div class="lg:col-span-7 glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-5 sm:space-y-8">
         <!-- Step 1: Project Type -->
         <div>
-          <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mb-2.5 sm:mb-3">{t.step1}</p>
-          <div class="grid sm:grid-cols-3 gap-2 sm:gap-2.5" role="radiogroup" aria-label={t.step1}>
-            {t.types.map((item, idx) => (
-              <button
-                type="button"
-                data-est-type={item.id}
-                aria-pressed={idx === 0 ? 'true' : 'false'}
-                class:list={[
-                  'est-type-btn text-left p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border text-xs sm:text-sm font-semibold transition cursor-pointer',
-                  idx === 0
-                    ? 'bg-emerald-500/15 border-emerald-400/60 text-white'
-                    : 'bg-white/[0.02] border-white/10 text-gray-300 hover:border-white/25 hover:text-white',
-                ]}
-              >
-                {item.label}
-              </button>
-            ))}
+          <p class="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-gray-400 mb-2 sm:mb-3">{t.step1}</p>
+          <div class="grid grid-cols-3 gap-1.5 sm:gap-2.5" role="radiogroup" aria-label={t.step1}>
+            {t.types.map((item, idx) => {
+              const shortLabel =
+                item.id === 'mvp'
+                  ? (lang === 'uk' ? 'Веб / MVP' : 'Web / MVP')
+                  : item.id === 'mobile'
+                    ? (lang === 'uk' ? 'Мобільний' : 'Mobile App')
+                    : (lang === 'uk' ? 'AI & CRM' : 'AI & CRM');
+              return (
+                <button
+                  type="button"
+                  data-est-type={item.id}
+                  aria-pressed={idx === 0 ? 'true' : 'false'}
+                  class:list={[
+                    'est-type-btn text-center sm:text-left px-2 py-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border text-[11px] sm:text-sm font-semibold transition cursor-pointer',
+                    idx === 0
+                      ? 'bg-[#00E599]/15 border-[#00E599]/60 text-white'
+                      : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/25 hover:text-white',
+                  ]}
+                >
+                  <span class="sm:hidden">{shortLabel}</span>
+                  <span class="hidden sm:inline">{item.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
         <!-- Step 2: Modules -->
         <div>
-          <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mb-2.5 sm:mb-3">{t.step2}</p>
-          <div class="grid grid-cols-2 gap-2 sm:gap-2.5">
+          <p class="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-gray-400 mb-2 sm:mb-3">{t.step2}</p>
+          <div class="flex flex-wrap gap-1.5 sm:grid sm:grid-cols-2 sm:gap-2.5">
             {t.modules.map((mod) => (
               <button
                 type="button"
                 data-est-mod={mod.id}
                 aria-pressed="false"
-                class="est-mod-btn flex items-center justify-between gap-2 p-2.5 sm:p-3.5 rounded-xl border bg-white/[0.02] border-white/10 text-gray-300 hover:border-white/25 hover:text-white text-xs sm:text-sm font-medium transition cursor-pointer"
+                class="est-mod-btn inline-flex sm:flex items-center justify-between gap-2 px-3 py-2 sm:p-3.5 rounded-full sm:rounded-xl border bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/25 hover:text-white text-xs sm:text-sm font-medium transition cursor-pointer"
               >
                 <span class="text-left leading-snug">{mod.label}</span>
-                <span class="est-check w-4 h-4 sm:w-5 sm:h-5 shrink-0 rounded-md border border-white/20 flex items-center justify-center text-[10px] sm:text-xs text-transparent transition">✓</span>
+                <span class="est-check w-4 h-4 sm:w-5 sm:h-5 shrink-0 rounded-full sm:rounded-md border border-white/20 flex items-center justify-center text-[10px] sm:text-xs text-transparent transition">✓</span>
               </button>
             ))}
           </div>
@@ -75,18 +85,18 @@ const configJson = JSON.stringify({
 
         <!-- Step 3: Design -->
         <div>
-          <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mb-2.5 sm:mb-3">{t.step3}</p>
-          <div class="grid grid-cols-2 gap-2 sm:gap-2.5">
+          <p class="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-gray-400 mb-2 sm:mb-3">{t.step3}</p>
+          <div class="grid grid-cols-2 gap-1.5 sm:gap-2.5">
             {t.designs.map((d, idx) => (
               <button
                 type="button"
                 data-est-design={d.id}
                 aria-pressed={idx === 1 ? 'true' : 'false'}
                 class:list={[
-                  'est-design-btn text-left p-2.5 sm:p-3.5 rounded-xl border text-xs sm:text-sm font-medium leading-snug transition cursor-pointer',
+                  'est-design-btn text-left p-2.5 sm:p-3.5 rounded-xl border text-[11px] sm:text-sm font-medium leading-snug transition cursor-pointer',
                   idx === 1
-                    ? 'bg-emerald-500/15 border-emerald-400/60 text-white'
-                    : 'bg-white/[0.02] border-white/10 text-gray-300 hover:border-white/25 hover:text-white',
+                    ? 'bg-[#00E599]/15 border-[#00E599]/60 text-white'
+                    : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/25 hover:text-white',
                 ]}
               >
                 {d.label}
@@ -97,7 +107,7 @@ const configJson = JSON.stringify({
       </div>
 
       <!-- Right live summary card (5 cols) -->
-      <div class="lg:col-span-5 bg-gradient-to-b from-[#111622] to-[#0B0E15] rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-emerald-500/25 shadow-2xl space-y-5 sm:space-y-6 lg:sticky lg:top-24">
+      <div class="lg:col-span-5 bg-gradient-to-b from-[#111622] to-[#0B0E15] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-emerald-500/25 shadow-2xl space-y-4 sm:space-y-6 lg:sticky lg:top-24">
         <div class="flex items-center justify-between">
           <span class="font-mono text-xs uppercase tracking-wider text-emerald-400 font-semibold">{t.resultTitle}</span>
           <span class="inline-flex items-center gap-1.5 text-[11px] font-mono text-gray-400">
@@ -106,13 +116,13 @@ const configJson = JSON.stringify({
           </span>
         </div>
 
-        <div class="grid grid-cols-2 gap-3 sm:gap-4">
-          <div class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] min-w-0">
-            <p class="text-[11px] sm:text-xs text-gray-400 mb-1">{t.timelineLabel}</p>
+        <div class="grid grid-cols-2 gap-2.5 sm:gap-4">
+          <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/[0.06] min-w-0">
+            <p class="text-[11px] sm:text-xs text-gray-400 mb-0.5 sm:mb-1">{t.timelineLabel}</p>
             <p id="estTimelineOut" class="text-lg sm:text-2xl font-display font-bold text-white leading-tight">5–7 {t.weeksUnit}</p>
           </div>
-          <div class="p-3.5 sm:p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] min-w-0">
-            <p class="text-[11px] sm:text-xs text-gray-400 mb-1">{t.budgetLabel}</p>
+          <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/[0.06] min-w-0">
+            <p class="text-[11px] sm:text-xs text-gray-400 mb-0.5 sm:mb-1">{t.budgetLabel}</p>
             <p id="estBudgetOut" class="text-lg sm:text-2xl font-display font-bold text-emerald-400 leading-tight">$7.3k–$12.5k</p>
           </div>
         </div>
@@ -200,7 +210,7 @@ const configJson = JSON.stringify({
           root.querySelectorAll('.est-type-btn').forEach((b) => {
             const active = b.dataset.estType === selectedType;
             b.setAttribute('aria-pressed', String(active));
-            b.className = `est-type-btn text-left p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border text-xs sm:text-sm font-semibold transition cursor-pointer ${
+            b.className = `est-type-btn text-center sm:text-left px-2 py-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border text-[11px] sm:text-sm font-semibold transition cursor-pointer ${
               active
                 ? 'bg-[#00E599]/15 border-[#00E599]/60 text-white'
                 : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/25 hover:text-white'
@@ -217,14 +227,14 @@ const configJson = JSON.stringify({
           else selectedModules.add(id);
           const active = selectedModules.has(id);
           btn.setAttribute('aria-pressed', String(active));
-          btn.className = `est-mod-btn flex items-center justify-between gap-2 p-2.5 sm:p-3.5 rounded-xl border text-xs sm:text-sm font-medium transition cursor-pointer ${
+          btn.className = `est-mod-btn inline-flex sm:flex items-center justify-between gap-2 px-3 py-2 sm:p-3.5 rounded-full sm:rounded-xl border text-xs sm:text-sm font-medium transition cursor-pointer ${
             active
               ? 'bg-[#00E599]/15 border-[#00E599]/60 text-white'
               : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/25 hover:text-white'
           }`;
           const check = btn.querySelector('.est-check');
           if (check) {
-            check.className = `est-check w-4 h-4 sm:w-5 sm:h-5 shrink-0 rounded-md border flex items-center justify-center text-[10px] sm:text-xs transition ${
+            check.className = `est-check w-4 h-4 sm:w-5 sm:h-5 shrink-0 rounded-full sm:rounded-md border flex items-center justify-center text-[10px] sm:text-xs transition ${
               active ? 'bg-[#00E599] border-[#00E599] text-black font-bold' : 'border-white/20 text-transparent'
             }`;
           }
@@ -238,7 +248,7 @@ const configJson = JSON.stringify({
           root.querySelectorAll('.est-design-btn').forEach((b) => {
             const active = b.dataset.estDesign === selectedDesign;
             b.setAttribute('aria-pressed', String(active));
-            b.className = `est-design-btn text-left p-2.5 sm:p-3.5 rounded-xl border text-xs sm:text-sm font-medium leading-snug transition cursor-pointer ${
+            b.className = `est-design-btn text-left p-2.5 sm:p-3.5 rounded-xl border text-[11px] sm:text-sm font-medium leading-snug transition cursor-pointer ${
               active
                 ? 'bg-[#00E599]/15 border-[#00E599]/60 text-white'
                 : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/25 hover:text-white'

@@ -193,6 +193,7 @@ function initScrollStory(getLenis: () => Lenis | null) {
   const stepCards = track.querySelectorAll<HTMLElement>('.story-step-card');
   const stagePanes = track.querySelectorAll<HTMLElement>('.story-stage-pane');
   const railFill = document.getElementById('storyRailFill');
+  const mobileRailFill = document.getElementById('storyMobileRailFill');
   const mobileMeta = document.getElementById('storyMobileMeta');
   const mobileTitle = document.getElementById('storyMobileTitle');
   const mobileDesc = document.getElementById('storyMobileDesc');
@@ -200,6 +201,12 @@ function initScrollStory(getLenis: () => Lenis | null) {
   let currentIdx = -1;
   let activeSt: ScrollTrigger | null = null;
   let lockedUntil = 0;
+
+  const updateRails = (progress: number) => {
+    const clamped = Math.max(0.05, Math.min(1, progress));
+    if (railFill) railFill.style.transform = `scaleY(${clamped})`;
+    if (mobileRailFill) mobileRailFill.style.transform = `scaleX(${clamped})`;
+  };
 
   const setVisualStep = (idx: number) => {
     if (idx === currentIdx) return;
@@ -251,11 +258,9 @@ function initScrollStory(getLenis: () => Lenis | null) {
       const targetProgress =
         total <= 1 ? 0 : idx === 0 ? 0.04 : idx === total - 1 ? 0.9 : (idx + 0.35) / total;
 
-      if (railFill) {
-        railFill.style.transform = `scaleY(${Math.max(0.06, targetProgress)})`;
-      }
+      updateRails(targetProgress);
 
-      if (activeSt && window.innerWidth >= 1024) {
+      if (activeSt) {
         const range = activeSt.end - activeSt.start;
         if (range > 0) {
           const targetY = activeSt.start + targetProgress * range;
@@ -293,47 +298,43 @@ function initScrollStory(getLenis: () => Lenis | null) {
     activeCleanupFns.push(() => card.removeEventListener('click', onCardClick));
   });
 
-  const mm = gsap.matchMedia();
-  mm.add('(min-width: 1024px)', () => {
-    const st = ScrollTrigger.create({
+  // Scroll-driven sticky storytelling across ALL viewports (mobile + desktop)
+  const createTrigger = () => {
+    const navOffset = window.innerWidth >= 1024 ? 64 : 56;
+    return ScrollTrigger.create({
       trigger: track,
-      start: 'top top+=64',
+      start: `top top+=${navOffset}`,
       end: 'bottom bottom',
       scrub: true,
+      invalidateOnRefresh: true,
       onUpdate: (self) => {
         const p = Math.max(0, Math.min(1, self.progress));
-        if (railFill) {
-          railFill.style.transform = `scaleY(${Math.max(0.04, p)})`;
-        }
+        updateRails(p);
         if (performance.now() < lockedUntil) return;
         const idx = Math.min(total - 1, Math.floor(p * total));
         setVisualStep(idx);
       },
     });
-    activeSt = st;
-    return () => {
-      activeSt = null;
-      st.kill();
-    };
-  });
+  };
 
-  mm.add('(max-width: 1023px)', () => {
+  activeSt = createTrigger();
+  activeCleanupFns.push(() => {
+    activeSt?.kill();
     activeSt = null;
-    if (railFill) railFill.style.transform = `scaleY(${1 / total})`;
   });
 
-  activeCleanupFns.push(() => mm.revert());
   setVisualStep(0);
+  updateRails(0.05);
 }
 
-// Zero-drift instant IntersectionObserver reveals (immune to pinned ScrollTrigger height offsets)
+// Smooth, tactile viewport-entry IntersectionObserver reveals
 function initInstantReveals() {
   const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal], [data-stagger-item]'));
   if (!targets.length) return;
 
   targets.forEach((el) => {
     const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight + 120) {
+    if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
       el.classList.add('is-visible');
     } else {
       el.classList.add('reveal-ready');
@@ -349,14 +350,14 @@ function initInstantReveals() {
           if (el.hasAttribute('data-stagger-item') && parent) {
             const siblings = Array.from(parent.querySelectorAll<HTMLElement>('[data-stagger-item]'));
             const idx = Math.max(0, siblings.indexOf(el));
-            el.style.transitionDelay = `${idx * 55}ms`;
+            el.style.transitionDelay = `${Math.min(idx, 5) * 75}ms`;
           }
           el.classList.add('is-visible');
           io.unobserve(el);
         }
       });
     },
-    { rootMargin: '120px 0px 120px 0px', threshold: 0.01 }
+    { rootMargin: '0px 0px -6% 0px', threshold: 0.05 }
   );
 
   targets.forEach((el) => {
@@ -371,6 +372,19 @@ function initInstantReveals() {
 export function mountMotionEngine() {
   cleanupMotionEngine();
   initMobileMenu();
+
+  // Always start cleanly at the top on page load/reload unless an explicit #hash target is present
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  if (!window.location.hash) {
+    window.scrollTo(0, 0);
+  }
+
+  // Expose refresh hook so dynamic collapsible sections (like mobile AI demo) keep ScrollTrigger accurate
+  (window as unknown as { __refreshScrollTriggers?: () => void }).__refreshScrollTriggers = () => {
+    requestAnimationFrame(() => ScrollTrigger.refresh());
+  };
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;

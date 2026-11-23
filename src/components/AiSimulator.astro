@@ -142,10 +142,10 @@ const simConfigJson = JSON.stringify({
 });
 ---
 
-<section id="simulator" class="py-14 sm:py-20 lg:py-28 border-b swiss-frame relative overflow-hidden bg-[#050609]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<section id="simulator" class="py-16 sm:py-20 lg:py-28 border-b swiss-frame relative overflow-hidden bg-[#050609]">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
     <!-- Section Header -->
-    <div data-reveal class="flex flex-col lg:flex-row lg:items-end justify-between gap-3 sm:gap-4 pb-6 sm:pb-8 mb-7 sm:mb-10 border-b swiss-frame">
+    <div data-reveal class="flex flex-col lg:flex-row lg:items-end justify-between gap-3 sm:gap-4 pb-6 sm:pb-8 mb-6 sm:mb-10 border-b swiss-frame">
       <div>
         <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-[#00E599] mb-2">{ui.eyebrow}</p>
         <h2 class="text-2xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-[-0.03em] break-words">{ui.title}</h2>
@@ -153,7 +153,44 @@ const simConfigJson = JSON.stringify({
       <p class="text-zinc-400 text-sm sm:text-base max-w-md">{ui.subtitle}</p>
     </div>
 
-    <div id="aiSimRoot" data-config={simConfigJson} class="swiss-cell crosshair border overflow-hidden">
+    <!-- Mobile Compact AI Capabilities Summary + Optional Expandable Demo -->
+    <div data-reveal class="lg:hidden space-y-4">
+      <div class="divide-y divide-white/[0.07] border border-white/[0.09] rounded-2xl bg-white/[0.02] overflow-hidden">
+        {ui.scenarios.map((sc) => (
+          <div class="p-4 flex items-center justify-between gap-3">
+            <div class="min-w-0">
+              <p class="text-sm font-bold text-white truncate">{sc.tab}</p>
+              <p class="text-xs text-zinc-400 mt-0.5 truncate">{sc.impact}</p>
+            </div>
+            <span class="shrink-0 px-2.5 py-1 rounded-lg bg-[#00E599]/10 border border-[#00E599]/30 font-mono text-[11px] font-bold text-[#00E599]">
+              {sc.aiTime}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-2.5">
+        <button
+          id="simMobileToggle"
+          type="button"
+          aria-expanded="false"
+          data-open-label={isUk ? 'Спробувати інтерактивне демо ↓' : 'Try interactive AI demo ↓'}
+          data-close-label={isUk ? 'Згорнути інтерактивне демо ↑' : 'Hide interactive AI demo ↑'}
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-zinc-100 font-semibold text-sm transition cursor-pointer"
+        >
+          {isUk ? 'Спробувати інтерактивне демо ↓' : 'Try interactive AI demo ↓'}
+        </button>
+        <a
+          href="#contact"
+          data-prefill-service="automation"
+          class="prefill-cta w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#00E599] hover:bg-[#34F5B4] text-black font-bold text-sm transition glow-accent"
+        >
+          <span>{isUk ? 'Автоматизувати процеси →' : 'Automate my workflow →'}</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="aiSimRoot" data-config={simConfigJson} data-reveal class="hidden lg:block mt-5 lg:mt-0 swiss-cell crosshair border overflow-hidden">
       <!-- Top Bar: Presets + Custom Prompt Input -->
       <div class="p-3.5 sm:p-6 border-b swiss-frame bg-black/50 space-y-3 sm:space-y-4">
         <div class="flex flex-wrap items-center justify-between gap-2.5">
@@ -567,11 +604,27 @@ const simConfigJson = JSON.stringify({
         else target?.scrollIntoView({ behavior: 'smooth' });
       });
 
-      // Auto-run once smoothly when scrolled into view so visitors immediately witness the live AI scan!
+      // Mobile optional expand/collapse toggle so mobile stays clean & compact by default
+      const mobileToggle = document.getElementById('simMobileToggle');
+      if (mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+          const isOpen = mobileToggle.getAttribute('aria-expanded') === 'true';
+          mobileToggle.setAttribute('aria-expanded', String(!isOpen));
+          root.classList.toggle('hidden', isOpen);
+          root.classList.add('is-visible');
+          mobileToggle.textContent = isOpen
+            ? (mobileToggle.dataset.openLabel || 'Try interactive AI demo ↓')
+            : (mobileToggle.dataset.closeLabel || 'Hide interactive AI demo ↑');
+          if (!isOpen) executeScenario(activeScenario);
+          window.__refreshScrollTriggers?.();
+        });
+      }
+
+      // Auto-run once smoothly when scrolled into view on desktop
       let autoPlayed = false;
       const io = new IntersectionObserver(
         (entries) => {
-          if (!autoPlayed && entries[0]?.isIntersecting) {
+          if (!autoPlayed && entries[0]?.isIntersecting && window.innerWidth >= 1024) {
             autoPlayed = true;
             io.disconnect();
             executeScenario(cfg.scenarios[0]);

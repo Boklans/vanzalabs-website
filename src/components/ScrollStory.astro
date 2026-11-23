@@ -10,27 +10,37 @@ const t = homeCopy[lang].story;
 ---
 
 <section id="story" class="relative border-b swiss-frame bg-[#050507]">
-  <!-- Desktop Pinned Scroll Track (330vh) -->
-  <div id="scrollStoryTrack" class="relative lg:min-h-[330vh]">
-    <div class="lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] lg:flex lg:items-center py-14 sm:py-20 lg:py-0 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+  <!-- Scroll-Driven Pinned Track (Mobile 260svh + Desktop 330vh) -->
+  <div id="scrollStoryTrack" class="relative min-h-[260svh] lg:min-h-[330vh]">
+    <div class="sticky top-14 sm:top-16 h-[calc(100svh-3.5rem)] lg:h-[calc(100vh-4rem)] flex items-center py-4 sm:py-8 lg:py-0 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 w-full">
         <!-- Header Row -->
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-3 sm:gap-4 pb-6 sm:pb-8 mb-6 sm:mb-8 border-b swiss-frame">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-2 sm:gap-4 pb-3.5 sm:pb-6 lg:pb-8 mb-3.5 sm:mb-6 lg:mb-8 border-b swiss-frame">
           <div>
-            <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-[#00E599] mb-2">01 // {t.eyebrow}</p>
-            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-display font-bold tracking-[-0.03em] text-white break-words">{t.title}</h2>
+            <p class="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#00E599] mb-1.5 sm:mb-2">01 // {t.eyebrow}</p>
+            <h2 class="text-xl sm:text-4xl lg:text-5xl font-display font-bold tracking-[-0.03em] text-white break-words leading-tight">{t.title}</h2>
           </div>
-          <p class="text-zinc-400 text-sm max-w-md">{t.subtitle}</p>
+          <p class="hidden sm:block text-zinc-400 text-sm max-w-md">{t.subtitle}</p>
         </div>
 
-        <div class="grid lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-10 items-center">
+        <div class="grid lg:grid-cols-12 gap-3.5 sm:gap-7 lg:gap-10 items-center">
           <!-- Left: 4 Scroll-Synchronized Blueprint Chapters (5 cols) -->
           <div class="lg:col-span-5 min-w-0 relative lg:pl-6">
+            <!-- Desktop Vertical Progress Rail -->
             <div class="hidden lg:block absolute left-0 top-1 bottom-1 w-[3px] bg-white/10 overflow-hidden">
               <div
                 id="storyRailFill"
                 class="w-full h-full origin-top will-change-transform bg-gradient-to-b from-[#00E599] via-teal-300 to-sky-400 shadow-[0_0_14px_rgba(0,229,153,0.95)]"
                 style="transform: scaleY(0.06);"
+              ></div>
+            </div>
+
+            <!-- Mobile Horizontal Scroll Progress Rail -->
+            <div class="lg:hidden h-[2px] w-full bg-white/10 overflow-hidden mb-2.5">
+              <div
+                id="storyMobileRailFill"
+                class="h-full w-full origin-left will-change-transform bg-gradient-to-r from-[#00E599] via-teal-300 to-sky-400 shadow-[0_0_12px_rgba(0,229,153,0.9)]"
+                style="transform: scaleX(0.06);"
               ></div>
             </div>
 
@@ -45,7 +55,7 @@ const t = homeCopy[lang].story;
                   data-step-desc={ch.desc}
                   aria-pressed={idx === 0 ? 'true' : 'false'}
                   class:list={[
-                    'story-step-card min-w-0 w-full text-center lg:text-left px-2 py-2.5 lg:p-4 border transition-all duration-300 cursor-pointer',
+                    'story-step-card min-w-0 w-full text-center lg:text-left px-2 py-2 lg:p-4 border transition-all duration-300 cursor-pointer',
                     idx === 0
                       ? 'bg-white/[0.05] border-[#00E599]/50 opacity-100'
                       : 'bg-transparent border-white/[0.06] opacity-45 hover:opacity-85',
@@ -63,12 +73,12 @@ const t = homeCopy[lang].story;
             </div>
 
             <!-- Mobile/Tablet Active Step Details -->
-            <div class="lg:hidden mt-3 p-4 border border-white/[0.08] bg-white/[0.02] min-w-0">
-              <p id="storyMobileMeta" class="font-mono text-[10px] uppercase tracking-[0.14em] text-[#00E599] mb-1.5">
+            <div class="lg:hidden mt-2.5 p-3 sm:p-4 border border-white/[0.08] bg-white/[0.02] min-w-0">
+              <p id="storyMobileMeta" class="font-mono text-[10px] uppercase tracking-[0.14em] text-[#00E599] mb-1">
                 {t.chapters[0].num} // {t.chapters[0].tag} · {t.chapters[0].time}
               </p>
-              <p id="storyMobileTitle" class="text-base font-display font-bold text-white mb-1.5">{t.chapters[0].title}</p>
-              <p id="storyMobileDesc" class="text-xs sm:text-sm text-zinc-400 leading-relaxed">{t.chapters[0].desc}</p>
+              <p id="storyMobileTitle" class="text-sm sm:text-base font-display font-bold text-white mb-1">{t.chapters[0].title}</p>
+              <p id="storyMobileDesc" class="text-xs sm:text-sm text-zinc-400 leading-relaxed line-clamp-3">{t.chapters[0].desc}</p>
             </div>
           </div>
 
