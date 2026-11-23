@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import { siteConfig } from '../data/i18n';
+import CommandPalette from '../components/CommandPalette.astro';
 
 interface Props {
   title: string;
@@ -61,7 +63,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteConfig.url}${o
   <meta name="twitter:image" content={fullOgImage} />
 
   <meta name="p:domain_verify" content="90f814ccab954bd60bf020b0af5c7022" />
-  <meta name="theme-color" content="#07080B" />
+  <meta name="theme-color" content="#050507" />
 
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
@@ -71,9 +73,11 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteConfig.url}${o
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
     rel="stylesheet"
   />
+
+  <ClientRouter />
 
   <!-- PostHog Analytics -->
   <script is:inline>
@@ -87,14 +91,29 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteConfig.url}${o
 
   {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 </head>
-<body class="min-h-screen flex flex-col bg-[#07080B] text-gray-100 selection:bg-emerald-500/30 selection:text-emerald-200">
+<body class="min-h-screen flex flex-col bg-[#050507] text-zinc-100 selection:bg-[#00E599]/25 selection:text-[#00E599]">
+  <!-- Subtle tactile film grain -->
+  <div class="film-grain" aria-hidden="true"></div>
+
   <!-- Top Scroll Progress Beam -->
   <div class="fixed top-0 left-0 right-0 h-[2px] z-[60] pointer-events-none bg-white/[0.04]">
-    <div id="scrollProgressBar" class="h-full w-full origin-left scale-x-0 bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]"></div>
+    <div id="scrollProgressBar" class="h-full w-full origin-left scale-x-0 bg-gradient-to-r from-[#00E599] via-teal-300 to-sky-400 shadow-[0_0_12px_rgba(0,229,153,0.9)]"></div>
   </div>
+
   <slot />
+
+  <CommandPalette lang={lang} />
+
   <script>
-    import '../scripts/scrollMotion';
+    import { mountMotionEngine, cleanupMotionEngine } from '../scripts/scrollMotion';
+
+    document.addEventListener('astro:before-swap', () => {
+      cleanupMotionEngine();
+    });
+
+    document.addEventListener('astro:page-load', () => {
+      mountMotionEngine();
+    });
   </script>
 </body>
 </html>

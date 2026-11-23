@@ -257,23 +257,28 @@ const jsonLd = {
 
 <script is:inline>
   (() => {
-    const img = document.getElementById('activeProductScreen');
-    const btns = document.querySelectorAll('.screen-switch-btn');
-    if (!img || !btns.length) return;
-    btns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const src = btn.dataset.screenSrc;
-        if (!src) return;
-        img.src = src;
-        btns.forEach((b) => {
-          const active = b === btn;
-          b.className = `screen-switch-btn px-3.5 py-1.5 rounded-full text-xs font-mono font-medium border transition cursor-pointer ${
-            active
-              ? 'bg-white/15 border-white/30 text-white'
-              : 'bg-white/[0.03] border-white/10 text-gray-400 hover:text-white'
-          }`;
+    function bindProductScreens() {
+      const img = document.getElementById('activeProductScreen');
+      const btns = document.querySelectorAll('.screen-switch-btn');
+      if (!img || !btns.length || img.dataset.bound === 'true') return;
+      img.dataset.bound = 'true';
+      btns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const src = btn.dataset.screenSrc;
+          if (!src) return;
+          img.src = src;
+          btns.forEach((b) => {
+            const active = b === btn;
+            b.className = `screen-switch-btn px-3.5 py-1.5 rounded-full text-xs font-mono font-medium border transition cursor-pointer ${
+              active
+                ? 'bg-white/15 border-white/30 text-white'
+                : 'bg-white/[0.03] border-white/10 text-zinc-400 hover:text-white'
+            }`;
+          });
         });
       });
-    });
+    }
+    document.addEventListener('astro:page-load', bindProductScreens);
+    bindProductScreens();
   })();
 </script>

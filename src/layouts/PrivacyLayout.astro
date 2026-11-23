@@ -69,22 +69,27 @@ const {
 
   <script is:inline>
     (() => {
-      const enDiv = document.getElementById('privContentEn');
-      const uaDiv = document.getElementById('privContentUa');
-      const btnEn = document.getElementById('privBtnEn');
-      const btnUa = document.getElementById('privBtnUa');
-      if (!enDiv || !uaDiv || !btnEn || !btnUa) return;
+      function bindPrivacyLang() {
+        const enDiv = document.getElementById('privContentEn');
+        const uaDiv = document.getElementById('privContentUa');
+        const btnEn = document.getElementById('privBtnEn');
+        const btnUa = document.getElementById('privBtnUa');
+        if (!enDiv || !uaDiv || !btnEn || !btnUa || btnEn.dataset.bound === 'true') return;
+        btnEn.dataset.bound = 'true';
 
-      const setLang = (lang) => {
-        const isUa = lang === 'uk';
-        enDiv.classList.toggle('hidden', isUa);
-        uaDiv.classList.toggle('hidden', !isUa);
-        btnUa.className = `px-3 py-1 rounded-full transition cursor-pointer ${isUa ? 'bg-emerald-500 text-gray-950' : 'text-gray-400 hover:text-white'}`;
-        btnEn.className = `px-3 py-1 rounded-full transition cursor-pointer ${!isUa ? 'bg-emerald-500 text-gray-950' : 'text-gray-400 hover:text-white'}`;
-      };
+        const setLang = (lang) => {
+          const isUa = lang === 'uk';
+          enDiv.classList.toggle('hidden', isUa);
+          uaDiv.classList.toggle('hidden', !isUa);
+          btnUa.className = `px-3 py-1 rounded-full transition cursor-pointer ${isUa ? 'bg-[#00E599] text-black' : 'text-zinc-400 hover:text-white'}`;
+          btnEn.className = `px-3 py-1 rounded-full transition cursor-pointer ${!isUa ? 'bg-[#00E599] text-black' : 'text-zinc-400 hover:text-white'}`;
+        };
 
-      btnEn.addEventListener('click', () => setLang('en'));
-      btnUa.addEventListener('click', () => setLang('uk'));
+        btnEn.addEventListener('click', () => setLang('en'));
+        btnUa.addEventListener('click', () => setLang('uk'));
+      }
+      document.addEventListener('astro:page-load', bindPrivacyLang);
+      bindPrivacyLang();
     })();
   </script>
 </BaseLayout>

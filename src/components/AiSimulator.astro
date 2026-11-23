@@ -128,85 +128,89 @@ const simConfigJson = JSON.stringify({
 
 <script is:inline>
   (() => {
-    const root = document.getElementById('aiSimRoot');
-    if (!root) return;
-    const cfg = JSON.parse(root.dataset.config || '{}');
-    let activeId = cfg.scenarios[0].id;
-    let running = false;
+    function bindAiSimulator() {
+      const root = document.getElementById('aiSimRoot');
+      if (!root || root.dataset.bound === 'true') return;
+      root.dataset.bound = 'true';
+      const cfg = JSON.parse(root.dataset.config || '{}');
+      let activeId = cfg.scenarios[0].id;
+      let running = false;
 
-    const inputBadge = document.getElementById('simInputBadge');
-    const inputText = document.getElementById('simInputText');
-    const latencyEl = document.getElementById('simLatency');
-    const savedEl = document.getElementById('simSaved');
-    const jsonOut = document.getElementById('simJsonOut');
-    const replyOut = document.getElementById('simReplyOut');
-    const beam = document.getElementById('simBeam');
-    const runBtn = document.getElementById('simRunBtn');
-    const runLabel = document.getElementById('simRunLabel');
-    const nodes = root.querySelectorAll('.sim-node');
+      const inputBadge = document.getElementById('simInputBadge');
+      const inputText = document.getElementById('simInputText');
+      const latencyEl = document.getElementById('simLatency');
+      const savedEl = document.getElementById('simSaved');
+      const jsonOut = document.getElementById('simJsonOut');
+      const replyOut = document.getElementById('simReplyOut');
+      const beam = document.getElementById('simBeam');
+      const runBtn = document.getElementById('simRunBtn');
+      const runLabel = document.getElementById('simRunLabel');
+      const nodes = root.querySelectorAll('.sim-node');
 
-    function renderScenario(sc) {
-      if (inputBadge) inputBadge.textContent = sc.inputBadge;
-      if (inputText) inputText.textContent = sc.inputText;
-      if (latencyEl) latencyEl.textContent = sc.latency;
-      if (savedEl) savedEl.textContent = sc.saved;
-      if (jsonOut) jsonOut.textContent = sc.json;
-      if (replyOut) replyOut.textContent = sc.reply;
-    }
-
-    async function playSimulation(scenarioId) {
-      if (running) return;
-      running = true;
-      activeId = scenarioId;
-      const sc = cfg.scenarios.find((s) => s.id === scenarioId) || cfg.scenarios[0];
-
-      // Update tabs
-      root.querySelectorAll('.sim-scenario-btn').forEach((b) => {
-        const isAct = b.dataset.simScenario === activeId;
-        b.className = `sim-scenario-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border transition cursor-pointer ${
-          isAct
-            ? 'bg-emerald-500/15 border-emerald-400/60 text-white'
-            : 'bg-white/[0.03] border-white/10 text-gray-400 hover:text-white hover:border-white/25'
-        }`;
-      });
-
-      if (runLabel) runLabel.textContent = cfg.runningBtn;
-      if (inputBadge) inputBadge.textContent = sc.inputBadge;
-      if (inputText) inputText.textContent = sc.inputText;
-      if (jsonOut) jsonOut.textContent = '// Routing event through LLM + RAG pipeline...';
-      if (replyOut) replyOut.textContent = '...';
-
-      // Reset beam and nodes
-      if (beam) beam.style.transform = 'scaleX(0)';
-      nodes.forEach((n) => {
-        n.classList.remove('border-emerald-400', 'bg-emerald-500/10', 'shadow-[0_0_24px_rgba(16,185,129,0.25)]');
-        n.classList.add('border-white/10', 'opacity-45');
-      });
-
-      const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-      for (let i = 0; i < nodes.length; i++) {
-        await wait(240);
-        nodes[i].classList.remove('border-white/10', 'opacity-45');
-        nodes[i].classList.add('border-emerald-400', 'bg-emerald-500/10', 'shadow-[0_0_24px_rgba(16,185,129,0.25)]');
-        if (beam) beam.style.transform = `scaleX(${(i + 1) / nodes.length})`;
+      function renderScenario(sc) {
+        if (inputBadge) inputBadge.textContent = sc.inputBadge;
+        if (inputText) inputText.textContent = sc.inputText;
+        if (latencyEl) latencyEl.textContent = sc.latency;
+        if (savedEl) savedEl.textContent = sc.saved;
+        if (jsonOut) jsonOut.textContent = sc.json;
+        if (replyOut) replyOut.textContent = sc.reply;
       }
 
-      await wait(160);
-      renderScenario(sc);
-      if (runLabel) runLabel.textContent = cfg.runBtn;
-      running = false;
+      async function playSimulation(scenarioId) {
+        if (running) return;
+        running = true;
+        activeId = scenarioId;
+        const sc = cfg.scenarios.find((s) => s.id === scenarioId) || cfg.scenarios[0];
 
-      if (window.posthog) {
-        window.posthog.capture('ai_simulator_run', { scenario: activeId });
+        root.querySelectorAll('.sim-scenario-btn').forEach((b) => {
+          const isAct = b.dataset.simScenario === activeId;
+          b.className = `sim-scenario-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border transition cursor-pointer ${
+            isAct
+              ? 'bg-[#00E599]/15 border-[#00E599]/60 text-white'
+              : 'bg-white/[0.03] border-white/10 text-zinc-400 hover:text-white hover:border-white/25'
+          }`;
+        });
+
+        if (runLabel) runLabel.textContent = cfg.runningBtn;
+        if (inputBadge) inputBadge.textContent = sc.inputBadge;
+        if (inputText) inputText.textContent = sc.inputText;
+        if (jsonOut) jsonOut.textContent = '// Routing event through LLM + RAG pipeline...';
+        if (replyOut) replyOut.textContent = '...';
+
+        if (beam) beam.style.transform = 'scaleX(0)';
+        nodes.forEach((n) => {
+          n.classList.remove('border-[#00E599]', 'bg-[#00E599]/10', 'shadow-[0_0_24px_rgba(0,229,153,0.22)]');
+          n.classList.add('border-white/10', 'opacity-45');
+        });
+
+        const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+        for (let i = 0; i < nodes.length; i++) {
+          await wait(220);
+          nodes[i].classList.remove('border-white/10', 'opacity-45');
+          nodes[i].classList.add('border-[#00E599]', 'bg-[#00E599]/10', 'shadow-[0_0_24px_rgba(0,229,153,0.22)]');
+          if (beam) beam.style.transform = `scaleX(${(i + 1) / nodes.length})`;
+        }
+
+        await wait(140);
+        renderScenario(sc);
+        if (runLabel) runLabel.textContent = cfg.runBtn;
+        running = false;
+
+        if (window.posthog) {
+          window.posthog.capture('ai_simulator_run', { scenario: activeId });
+        }
+      }
+
+      root.querySelectorAll('.sim-scenario-btn').forEach((btn) => {
+        btn.addEventListener('click', () => playSimulation(btn.dataset.simScenario));
+      });
+
+      if (runBtn) {
+        runBtn.addEventListener('click', () => playSimulation(activeId));
       }
     }
 
-    root.querySelectorAll('.sim-scenario-btn').forEach((btn) => {
-      btn.addEventListener('click', () => playSimulation(btn.dataset.simScenario));
-    });
-
-    if (runBtn) {
-      runBtn.addEventListener('click', () => playSimulation(activeId));
-    }
+    document.addEventListener('astro:page-load', bindAiSimulator);
+    bindAiSimulator();
   })();
 </script>

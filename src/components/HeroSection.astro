@@ -9,153 +9,154 @@ const { lang } = Astro.props;
 const t = homeCopy[lang].hero;
 ---
 
-<section data-hero-section class="relative overflow-hidden border-b border-white/[0.06] pt-14 pb-16 lg:pt-20 lg:pb-24">
-  <!-- Interactive Spatial Mesh Canvas -->
-  <canvas id="heroMeshCanvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-80" aria-hidden="true"></canvas>
+<section data-hero-section class="relative overflow-hidden border-b swiss-frame">
+  <!-- Real-Time WebGL GLSL Silk-Light Topographic Fluid Shader -->
+  <canvas id="heroWebglCanvas" class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true"></canvas>
 
-  <!-- Ambient Parallax Aurora -->
-  <div
-    data-parallax-orb
-    class="absolute -top-40 left-1/3 w-[760px] h-[420px] bg-gradient-to-r from-emerald-500/20 via-teal-400/12 to-sky-500/15 blur-[120px] rounded-full pointer-events-none"
-  ></div>
-
-  <div data-hero-stage class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-      <!-- Left Editorial Copy (7 cols) -->
-      <div class="lg:col-span-7 space-y-7">
-        <div
-          data-hero-animate
-          class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 text-xs font-mono font-medium"
-        >
+  <!-- Subtle architectural vertical guide lines -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="border-x swiss-frame pt-14 pb-16 lg:pt-24 lg:pb-24 px-5 sm:px-8 lg:px-12">
+      <!-- Top Metadata Strip -->
+      <div
+        data-hero-animate
+        class="flex flex-wrap items-center justify-between gap-4 pb-8 mb-10 border-b swiss-frame font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-400"
+      >
+        <span class="inline-flex items-center gap-2.5 text-zinc-200">
           <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E599] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#00E599]"></span>
           </span>
           <span>{t.badge}</span>
-        </div>
-
-        <h1
-          data-hero-animate
-          class="text-4xl sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem] font-bold tracking-tight leading-[1.05] text-white"
+        </span>
+        <button
+          type="button"
+          data-open-cmd
+          class="hidden sm:inline-flex items-center gap-2 text-zinc-400 hover:text-white transition cursor-pointer"
         >
-          {t.titleStart}{' '}
-          <span class="text-gradient-brand">{t.titleHighlight}</span>{' '}
-          {t.titleEnd}
-        </h1>
-
-        <p data-hero-animate class="text-gray-400 text-base sm:text-lg leading-relaxed max-w-xl">
-          {t.subtitle}
-        </p>
-
-        <div data-hero-animate class="flex flex-wrap items-center gap-3.5 pt-1">
-          <a
-            href="#contact"
-            data-prefill-service="blueprint"
-            class="prefill-cta magnetic-btn inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-sm sm:text-base transition glow-emerald"
-          >
-            <span>{t.primaryCta}</span>
-            <span aria-hidden="true">→</span>
-          </a>
-          <a
-            href="#estimator"
-            class="inline-flex items-center gap-2 px-6 py-4 rounded-xl border border-white/15 bg-white/[0.03] hover:bg-white/[0.08] text-white font-semibold text-sm sm:text-base transition"
-          >
-            <span>{t.secondaryCta}</span>
-          </a>
-        </div>
+          <span>{lang === 'uk' ? 'Навігація' : 'Quick Nav'}</span>
+          <kbd class="px-1.5 py-0.5 rounded border border-white/15 bg-white/[0.04] text-[10px] text-zinc-200">⌘K</kbd>
+        </button>
       </div>
 
-      <!-- Right Live 3D Engineering Telemetry Card (5 cols) -->
-      <div data-hero-animate class="lg:col-span-5 perspective-stage" data-phone-stage>
-        <div
-          data-phone-frame
-          class="phone-3d spotlight-card rounded-3xl border border-white/12 bg-[#0B0E15]/90 backdrop-blur-2xl p-6 shadow-[0_25px_80px_-20px_rgba(16,185,129,0.28)]"
-        >
-          <!-- Window Top Bar -->
-          <div class="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.08]">
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-rose-500/70"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-amber-400/70"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
-              <span class="ml-2 text-[11px] font-mono text-gray-400 truncate max-w-[190px]">{t.telemetry.repo}</span>
-            </div>
-            <span class="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-[10px] font-semibold">
-              {t.telemetry.branch}
-            </span>
-          </div>
+      <!-- Main Editorial Grid -->
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-end">
+        <!-- Left Monumental Editorial Headline (7 cols) -->
+        <div class="lg:col-span-7 space-y-8">
+          <h1
+            data-hero-animate
+            class="text-[clamp(2.65rem,5.6vw,5.1rem)] font-display font-extrabold tracking-[-0.045em] leading-[0.98] text-white"
+          >
+            <span class="text-gradient-metallic">{t.titleStart}</span><br />
+            <span class="editorial-italic text-[#00E599] font-normal text-[1.12em] pr-1">{t.titleHighlight}</span>{' '}
+            <span class="text-white">{t.titleEnd}</span>
+          </h1>
 
-          <!-- Status Banner -->
-          <div class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-emerald-500/[0.07] border border-emerald-500/20 mb-5">
-            <span class="flex items-center gap-2 font-mono text-[11px] font-semibold text-emerald-300">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              {t.telemetry.status}
-            </span>
-            <span class="font-mono text-[11px] text-gray-400">v2.4.0 · edge</span>
-          </div>
+          <p data-hero-animate class="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-xl">
+            {t.subtitle}
+          </p>
 
-          <!-- Live 3 Metrics -->
-          <div class="grid grid-cols-3 gap-2.5 mb-5">
-            <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center">
-              <p class="font-display text-xl font-bold text-white">{t.telemetry.latency}</p>
-              <p class="text-[10px] font-mono text-gray-400 mt-0.5">{t.telemetry.latencyLabel}</p>
-            </div>
-            <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center">
-              <p class="font-display text-xl font-bold text-emerald-400">{t.telemetry.lighthouse}</p>
-              <p class="text-[10px] font-mono text-gray-400 mt-0.5">{t.telemetry.lighthouseLabel}</p>
-            </div>
-            <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center">
-              <p class="font-display text-xl font-bold text-sky-400">{t.telemetry.ownership}</p>
-              <p class="text-[10px] font-mono text-gray-400 mt-0.5">{t.telemetry.ownershipLabel}</p>
-            </div>
+          <div data-hero-animate class="flex flex-wrap items-center gap-3.5 pt-1">
+            <a
+              href="#contact"
+              data-prefill-service="blueprint"
+              class="prefill-cta magnetic-btn inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-sm sm:text-base transition-colors duration-200"
+            >
+              <span>{t.primaryCta}</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a
+              href="#estimator"
+              class="inline-flex items-center gap-2 px-6 py-4 rounded-xl border border-white/15 bg-black/40 hover:bg-white/[0.08] backdrop-blur-md text-zinc-100 font-semibold text-sm sm:text-base transition"
+            >
+              <span>{t.secondaryCta}</span>
+            </a>
           </div>
+        </div>
 
-          <!-- Animated Throughput Sparkline SVG -->
-          <div class="p-3.5 rounded-2xl bg-black/45 border border-white/[0.06] mb-5">
-            <div class="flex items-center justify-between text-[10px] font-mono text-gray-500 mb-2">
-              <span>PIPELINE VELOCITY</span>
-              <span class="text-emerald-400">↑ 3.4x faster to MVP</span>
+        <!-- Right Swiss Blueprint 3D Engineering Telemetry Module (5 cols) -->
+        <div data-hero-animate class="lg:col-span-5 perspective-stage" data-phone-stage>
+          <div
+            data-phone-frame
+            class="phone-3d swiss-cell crosshair spotlight-card border p-6 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85)]"
+          >
+            <!-- Top Repository Bar -->
+            <div class="flex items-center justify-between pb-4 mb-4 border-b swiss-frame font-mono text-[11px]">
+              <span class="text-zinc-300 truncate max-w-[200px]">{t.telemetry.repo}</span>
+              <span class="text-[#00E599] flex items-center gap-1.5 shrink-0">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#00E599] animate-pulse"></span>
+                {t.telemetry.branch}
+              </span>
             </div>
-            <svg viewBox="0 0 320 56" class="w-full h-14 overflow-visible" fill="none">
-              <defs>
-                <linearGradient id="heroSparkFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#10B981" stop-opacity="0.35" />
-                  <stop offset="100%" stop-color="#10B981" stop-opacity="0" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M0 46 C 35 44, 52 30, 88 32 C 120 34, 140 16, 178 20 C 216 24, 244 8, 282 10 C 300 11, 312 6, 320 4 L 320 56 L 0 56 Z"
-                fill="url(#heroSparkFill)"
-              />
-              <path
-                d="M0 46 C 35 44, 52 30, 88 32 C 120 34, 140 16, 178 20 C 216 24, 244 8, 282 10 C 300 11, 312 6, 320 4"
-                stroke="#34D399"
-                stroke-width="2.2"
-                stroke-linecap="round"
-              />
-              <circle cx="320" cy="4" r="4" fill="#34D399" class="animate-pulse" />
-            </svg>
-          </div>
 
-          <!-- Build Verification Logs -->
-          <div class="space-y-2 font-mono text-[11px] text-gray-300">
-            {t.telemetry.logs.map((line) => (
-              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.025] border border-white/[0.04]">
-                <span class="text-emerald-400 shrink-0">{line.slice(0, 1)}</span>
-                <span class="truncate">{line.slice(2)}</span>
+            <!-- 3 Precision Metrics separated by 1px hairlines -->
+            <div class="grid grid-cols-3 border swiss-frame divide-x divide-white/[0.08] mb-5 bg-black/40">
+              <div class="p-3.5 text-center">
+                <p class="font-display text-2xl font-bold text-white tracking-tight">{t.telemetry.latency}</p>
+                <p class="text-[10px] font-mono text-zinc-500 mt-1 uppercase">{t.telemetry.latencyLabel}</p>
               </div>
-            ))}
+              <div class="p-3.5 text-center">
+                <p class="font-display text-2xl font-bold text-[#00E599] tracking-tight">{t.telemetry.lighthouse}</p>
+                <p class="text-[10px] font-mono text-zinc-500 mt-1 uppercase">{t.telemetry.lighthouseLabel}</p>
+              </div>
+              <div class="p-3.5 text-center">
+                <p class="font-display text-2xl font-bold text-zinc-100 tracking-tight">{t.telemetry.ownership}</p>
+                <p class="text-[10px] font-mono text-zinc-500 mt-1 uppercase">{t.telemetry.ownershipLabel}</p>
+              </div>
+            </div>
+
+            <!-- Minimalist Velocity Waveform -->
+            <div class="p-3.5 border swiss-frame bg-black/50 mb-4">
+              <div class="flex items-center justify-between text-[10px] font-mono text-zinc-500 mb-2">
+                <span>BUILD VELOCITY // PRODUCTION</span>
+                <span class="text-[#00E599]">3.4x FASTER</span>
+              </div>
+              <svg viewBox="0 0 320 48" class="w-full h-12 overflow-visible" fill="none">
+                <defs>
+                  <linearGradient id="heroWaveGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#00E599" stop-opacity="0.28" />
+                    <stop offset="100%" stop-color="#00E599" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0 40 C 40 38, 65 24, 102 27 C 138 30, 162 14, 198 18 C 236 22, 268 7, 320 4 L 320 48 L 0 48 Z"
+                  fill="url(#heroWaveGrad)"
+                />
+                <path
+                  d="M0 40 C 40 38, 65 24, 102 27 C 138 30, 162 14, 198 18 C 236 22, 268 7, 320 4"
+                  stroke="#00E599"
+                  stroke-width="1.8"
+                />
+                <circle cx="320" cy="4" r="3.5" fill="#00E599" />
+              </svg>
+            </div>
+
+            <!-- Crisp Monospace Verification Logs -->
+            <div class="space-y-1.5 font-mono text-[11px] text-zinc-300">
+              {t.telemetry.logs.map((line) => (
+                <div class="flex items-center gap-2 py-1 border-b border-white/[0.04] last:border-b-0">
+                  <span class="text-[#00E599] shrink-0">{line.slice(0, 1)}</span>
+                  <span class="truncate">{line.slice(2)}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Bottom Trust Ribbon -->
-    <div data-hero-animate class="mt-14 pt-7 border-t border-white/[0.07] flex flex-wrap items-center justify-between gap-y-3 gap-x-6 text-xs font-mono text-gray-400">
-      {t.trustRibbon.map((item) => (
-        <span class="inline-flex items-center gap-2">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400/80"></span>
-          <span>{item}</span>
-        </span>
+  <!-- Continuous Architectural Marquee Ticker -->
+  <div class="relative z-10 border-t swiss-frame bg-[#050507]/85 backdrop-blur-md py-3.5 overflow-hidden">
+    <div class="marquee-track font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-400">
+      {[0, 1].map(() => (
+        <div class="flex items-center shrink-0">
+          {t.trustRibbon.map((item) => (
+            <span class="inline-flex items-center gap-6 px-6">
+              <span>{item}</span>
+              <span class="text-[#00E599]/70">+</span>
+            </span>
+          ))}
+        </div>
       ))}
     </div>
   </div>

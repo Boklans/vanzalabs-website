@@ -31,25 +31,27 @@ const t = homeCopy[lang];
   <!-- 4. INTERACTIVE SCOPE & BUDGET ESTIMATOR -->
   <ScopeEstimator lang={lang} />
 
-  <!-- 5. ZERO-RISK 48-HOUR FREE TECHNICAL BLUEPRINT OFFER -->
-  <section class="py-20 border-t border-white/[0.06]">
+  <!-- 5. ZERO-RISK 48-HOUR FREE TECHNICAL BLUEPRINT OFFER (SWISS ARCHITECTURAL GRID) -->
+  <section class="py-20 border-t swiss-frame bg-[#050507]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div data-reveal class="spotlight-card rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-[#0A1815] via-[#0C111A] to-[#0B0D14] p-7 sm:p-10 lg:p-12">
+      <div data-reveal class="swiss-cell crosshair spotlight-card border p-7 sm:p-10 lg:p-14">
         <div class="max-w-3xl mb-10">
-          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-xs font-semibold mb-4">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span class="inline-flex items-center gap-2 px-3 py-1 border border-[#00E599]/35 bg-[#00E599]/10 text-[#00E599] font-mono text-[11px] uppercase tracking-[0.14em] mb-5">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#00E599]"></span>
             {t.blueprintOffer.badge}
           </span>
-          <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{t.blueprintOffer.title}</h2>
-          <p class="text-gray-300 text-base leading-relaxed">{t.blueprintOffer.desc}</p>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-[-0.03em] leading-[1.05] mb-4">
+            {t.blueprintOffer.title}
+          </h2>
+          <p class="text-zinc-400 text-base leading-relaxed">{t.blueprintOffer.desc}</p>
         </div>
 
-        <div data-stagger-group class="grid md:grid-cols-3 gap-5 mb-9">
+        <div data-stagger-group class="grid md:grid-cols-3 border swiss-frame divide-y md:divide-y-0 md:divide-x divide-white/[0.08] bg-black/50 mb-10">
           {t.blueprintOffer.deliverables.map((d) => (
-            <div data-stagger-item class="p-5 rounded-2xl bg-black/45 border border-white/10">
-              <span class="font-mono text-xs font-bold text-emerald-400 block mb-2">{d.num}</span>
-              <h3 class="text-base font-bold text-white mb-1.5">{d.title}</h3>
-              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">{d.desc}</p>
+            <div data-stagger-item class="p-6">
+              <span class="font-mono text-xs font-bold text-[#00E599] block mb-3">{d.num} //</span>
+              <h3 class="text-base font-display font-bold text-white mb-2">{d.title}</h3>
+              <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">{d.desc}</p>
             </div>
           ))}
         </div>
@@ -57,7 +59,7 @@ const t = homeCopy[lang];
         <button
           type="button"
           data-prefill-service="blueprint"
-          class="prefill-cta magnetic-btn inline-flex items-center gap-2 px-7 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-sm sm:text-base transition cursor-pointer glow-emerald"
+          class="prefill-cta magnetic-btn inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-sm sm:text-base transition-colors cursor-pointer"
         >
           <span>{t.blueprintOffer.cta}</span>
         </button>
@@ -65,41 +67,43 @@ const t = homeCopy[lang];
     </div>
   </section>
 
-  <!-- 6. ENGAGEMENT MODELS -->
-  <section id="services" class="py-20 lg:py-24 border-t border-white/[0.06] bg-[#0A0C11]">
+  <!-- 6. ENGAGEMENT MODELS (EXPOSED 1PX SWISS GRID) -->
+  <section id="services" class="py-20 lg:py-24 border-t swiss-frame bg-[#07080B]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div data-reveal class="max-w-2xl mb-12">
-        <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3">{t.services.eyebrow}</p>
-        <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{t.services.title}</h2>
-        <p class="text-gray-400 text-base">{t.services.subtitle}</p>
+      <div data-reveal class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-12">
+        <div>
+          <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#00E599] mb-2">04 // {t.services.eyebrow}</p>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-[-0.03em]">{t.services.title}</h2>
+        </div>
+        <p class="text-zinc-400 text-sm max-w-md">{t.services.subtitle}</p>
       </div>
 
-      <div data-stagger-group class="grid md:grid-cols-3 gap-6">
+      <div data-stagger-group class="grid md:grid-cols-3 border swiss-frame divide-y md:divide-y-0 md:divide-x divide-white/[0.08]">
         {t.services.items.map((svc) => (
-          <div data-stagger-item class="glass-panel spotlight-card rounded-3xl p-7 flex flex-col justify-between hover:border-emerald-500/30 transition">
+          <div data-stagger-item class="swiss-cell spotlight-card p-8 flex flex-col justify-between hover:bg-white/[0.03] transition">
             <div>
-              <div class="flex items-center justify-between mb-5">
-                <span class="font-mono text-xs text-emerald-400 font-semibold">{svc.num} / {svc.tag}</span>
-                <span class="font-mono text-[11px] px-2.5 py-1 rounded-full bg-white/[0.05] text-gray-300">{svc.timeline}</span>
+              <div class="flex items-center justify-between mb-6 font-mono text-[11px]">
+                <span class="text-[#00E599] font-semibold">{svc.num} // {svc.tag}</span>
+                <span class="px-2.5 py-0.5 border border-white/10 text-zinc-300">{svc.timeline}</span>
               </div>
-              <h3 class="text-xl font-bold text-white mb-3">{svc.title}</h3>
-              <p class="text-sm text-gray-400 leading-relaxed mb-6">{svc.desc}</p>
-              <ul class="space-y-2.5 text-sm text-gray-300 mb-8">
+              <h3 class="text-xl font-display font-bold text-white mb-3">{svc.title}</h3>
+              <p class="text-sm text-zinc-400 leading-relaxed mb-6">{svc.desc}</p>
+              <ul class="space-y-2.5 text-sm text-zinc-300 mb-8">
                 {svc.bullets.map((b) => (
                   <li class="flex items-start gap-2.5">
-                    <span class="text-emerald-400 font-bold mt-0.5">✓</span>
+                    <span class="text-[#00E599] font-mono font-bold mt-0.5">+</span>
                     <span>{b}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div class="pt-5 border-t border-white/[0.08] flex items-center justify-between gap-3">
-              <span class="text-xs font-mono text-gray-500">{svc.model}</span>
+            <div class="pt-5 border-t swiss-frame flex items-center justify-between gap-3">
+              <span class="text-xs font-mono text-zinc-500">{svc.model}</span>
               <button
                 type="button"
                 data-prefill-service={svc.id}
-                class="prefill-cta text-xs font-bold text-emerald-400 hover:text-emerald-300 transition cursor-pointer"
+                class="prefill-cta text-xs font-mono font-bold uppercase tracking-wider text-white hover:text-[#00E599] transition cursor-pointer"
               >
                 {svc.cta} →
               </button>
@@ -463,91 +467,99 @@ const t = homeCopy[lang];
 
 <script is:inline>
   (() => {
-    // R&D Lab Showcase Tabs
-    document.querySelectorAll('.showcase-tab').forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const slug = tab.dataset.showcaseTab;
-        document.querySelectorAll('.showcase-tab').forEach((b) => {
-          const active = b.dataset.showcaseTab === slug;
-          b.setAttribute('aria-pressed', String(active));
-          b.className = `showcase-tab text-left p-3.5 rounded-2xl border transition cursor-pointer flex items-center gap-3 ${
-            active
-              ? 'bg-[#121722] border-emerald-400/50 text-white shadow-lg'
-              : 'bg-white/[0.02] border-white/[0.08] text-gray-400 hover:border-white/20 hover:text-white'
-          }`;
-        });
-        document.querySelectorAll('.showcase-panel').forEach((panel) => {
-          panel.classList.toggle('hidden', panel.dataset.showcasePanel !== slug);
-        });
-        if (window.posthog) window.posthog.capture('app_showcase_switched', { app: slug });
-      });
-    });
+    function bindHomeInteractions() {
+      const form = document.getElementById('contactForm');
+      if (form && form.dataset.bound === 'true') return;
+      if (form) form.dataset.bound = 'true';
 
-    // Prefill service CTA buttons
-    document.querySelectorAll('.prefill-cta').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        const svc = btn.dataset.prefillService;
-        const prod = btn.dataset.prefillProduct;
-        const select = document.querySelector('select[name="service"]');
-        if (select && svc) select.value = svc;
-        if (prod) {
-          const msg = document.querySelector('textarea[name="message"]');
-          if (msg && !msg.value.trim()) {
-            const isUk = document.documentElement.lang === 'uk';
-            msg.value = isUk
-              ? `Цікавить розробка продукту, подібного до ${prod}. `
-              : `Interested in building a product similar to ${prod}. `;
-          }
-        }
-        const target = document.getElementById('contact');
-        if (target) {
-          if (btn.tagName === 'A') e.preventDefault();
-          if (window.__lenis) {
-            window.__lenis.scrollTo(target, { offset: -64 });
-          } else {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      });
-    });
-
-    // Formspree AJAX handler
-    const form = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const status = document.getElementById('formStatus');
-    if (form && submitBtn) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-        const originalText = submitBtn.textContent;
-        submitBtn.disabled = true;
-        submitBtn.textContent = form.dataset.sending || 'Sending...';
-        try {
-          const res = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { Accept: 'application/json' },
+      // R&D Lab Showcase Tabs
+      document.querySelectorAll('.showcase-tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const slug = tab.dataset.showcaseTab;
+          document.querySelectorAll('.showcase-tab').forEach((b) => {
+            const active = b.dataset.showcaseTab === slug;
+            b.setAttribute('aria-pressed', String(active));
+            b.className = `showcase-tab text-left p-3.5 rounded-2xl border transition cursor-pointer flex items-center gap-3 ${
+              active
+                ? 'bg-[#121722] border-[#00E599]/50 text-white shadow-lg'
+                : 'bg-white/[0.02] border-white/[0.08] text-zinc-400 hover:border-white/20 hover:text-white'
+            }`;
           });
-          if (!res.ok) throw new Error('Submit failed');
-          if (window.posthog) {
-            window.posthog.capture('lead_form_submitted', {
-              service: form.querySelector('select[name="service"]')?.value || 'general',
-              lang: form.dataset.lang,
-            });
-          }
-          window.location.href = `/thank-you?lang=${form.dataset.lang || 'en'}`;
-        } catch {
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-          if (status) {
-            status.textContent = form.dataset.error || 'Error submitting form.';
-            status.classList.remove('hidden');
-          }
-        }
+          document.querySelectorAll('.showcase-panel').forEach((panel) => {
+            panel.classList.toggle('hidden', panel.dataset.showcasePanel !== slug);
+          });
+          if (window.posthog) window.posthog.capture('app_showcase_switched', { app: slug });
+        });
       });
+
+      // Prefill service CTA buttons
+      document.querySelectorAll('.prefill-cta').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          const svc = btn.dataset.prefillService;
+          const prod = btn.dataset.prefillProduct;
+          const select = document.querySelector('select[name="service"]');
+          if (select && svc) select.value = svc;
+          if (prod) {
+            const msg = document.querySelector('textarea[name="message"]');
+            if (msg && !msg.value.trim()) {
+              const isUk = document.documentElement.lang === 'uk';
+              msg.value = isUk
+                ? `Цікавить розробка продукту, подібного до ${prod}. `
+                : `Interested in building a product similar to ${prod}. `;
+            }
+          }
+          const target = document.getElementById('contact');
+          if (target) {
+            if (btn.tagName === 'A') e.preventDefault();
+            if (window.__lenis) {
+              window.__lenis.scrollTo(target, { offset: -64 });
+            } else {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+
+      // Formspree AJAX handler
+      const submitBtn = document.getElementById('submitBtn');
+      const status = document.getElementById('formStatus');
+      if (form && submitBtn) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+          const originalText = submitBtn.textContent;
+          submitBtn.disabled = true;
+          submitBtn.textContent = form.dataset.sending || 'Sending...';
+          try {
+            const res = await fetch(form.action, {
+              method: 'POST',
+              body: new FormData(form),
+              headers: { Accept: 'application/json' },
+            });
+            if (!res.ok) throw new Error('Submit failed');
+            if (window.posthog) {
+              window.posthog.capture('lead_form_submitted', {
+                service: form.querySelector('select[name="service"]')?.value || 'general',
+                lang: form.dataset.lang,
+              });
+            }
+            window.location.href = `/thank-you?lang=${form.dataset.lang || 'en'}`;
+          } catch {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+            if (status) {
+              status.textContent = form.dataset.error || 'Error submitting form.';
+              status.classList.remove('hidden');
+            }
+          }
+        });
+      }
     }
+
+    document.addEventListener('astro:page-load', bindHomeInteractions);
+    bindHomeInteractions();
   })();
 </script>

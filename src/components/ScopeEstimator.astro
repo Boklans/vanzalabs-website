@@ -142,150 +142,148 @@ const configJson = JSON.stringify({
 
 <script is:inline>
   (() => {
-    const root = document.getElementById('scopeEstimatorRoot');
-    if (!root) return;
-    const cfg = JSON.parse(root.dataset.config || '{}');
+    function bindScopeEstimator() {
+      const root = document.getElementById('scopeEstimatorRoot');
+      if (!root || root.dataset.bound === 'true') return;
+      root.dataset.bound = 'true';
+      const cfg = JSON.parse(root.dataset.config || '{}');
 
-    let selectedType = cfg.types[0].id;
-    const selectedModules = new Set();
-    let selectedDesign = cfg.designs[1]?.id || cfg.designs[0].id;
+      let selectedType = cfg.types[0].id;
+      const selectedModules = new Set();
+      let selectedDesign = cfg.designs[1]?.id || cfg.designs[0].id;
 
-    const timelineOut = document.getElementById('estTimelineOut');
-    const budgetOut = document.getElementById('estBudgetOut');
-    const stackOut = document.getElementById('estStackOut');
-    const applyBtn = document.getElementById('estApplyBtn');
+      const timelineOut = document.getElementById('estTimelineOut');
+      const budgetOut = document.getElementById('estBudgetOut');
+      const stackOut = document.getElementById('estStackOut');
+      const applyBtn = document.getElementById('estApplyBtn');
 
-    function formatK(val) {
-      return '$' + (val / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
-    }
-
-    function recalculate() {
-      const typeObj = cfg.types.find((x) => x.id === selectedType) || cfg.types[0];
-      const designObj = cfg.designs.find((x) => x.id === selectedDesign) || cfg.designs[0];
-
-      let weeks = typeObj.baseWeeks + designObj.weeks;
-      let minB = typeObj.baseMin + designObj.min;
-      let maxB = typeObj.baseMax + designObj.max;
-
-      const stack = new Set(typeObj.stack);
-      selectedModules.forEach((modId) => {
-        const mod = cfg.modules.find((m) => m.id === modId);
-        if (!mod) return;
-        weeks += mod.weeks;
-        minB += mod.min;
-        maxB += mod.max;
-        if (modId === 'ai') stack.add('OpenAI / RAG');
-        if (modId === 'payments') stack.add('Stripe');
-        if (modId === 'offline') stack.add('Local-First Sync');
-      });
-
-      const minW = Math.max(2, Math.floor(weeks));
-      const maxW = Math.ceil(weeks + 2);
-
-      if (timelineOut) timelineOut.textContent = `${minW}–${maxW} ${cfg.weeksUnit}`;
-      if (budgetOut) budgetOut.textContent = `${formatK(minB)}–${formatK(maxB)}`;
-      if (stackOut) {
-        stackOut.innerHTML = Array.from(stack)
-          .map((s) => `<span class="px-2.5 py-1 rounded-lg bg-white/[0.05] border border-white/10 text-xs font-mono text-gray-200">${s}</span>`)
-          .join('');
+      function formatK(val) {
+        return '$' + (val / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
       }
-      return { typeObj, designObj, minW, maxW, minB, maxB };
-    }
 
-    root.querySelectorAll('.est-type-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        selectedType = btn.dataset.estType;
-        root.querySelectorAll('.est-type-btn').forEach((b) => {
-          const active = b.dataset.estType === selectedType;
-          b.setAttribute('aria-pressed', String(active));
-          b.className = `est-type-btn text-left p-3.5 rounded-2xl border text-sm font-semibold transition cursor-pointer ${
-            active
-              ? 'bg-emerald-500/15 border-emerald-400/60 text-white'
-              : 'bg-white/[0.02] border-white/10 text-gray-300 hover:border-white/25 hover:text-white'
-          }`;
+      function recalculate() {
+        const typeObj = cfg.types.find((x) => x.id === selectedType) || cfg.types[0];
+        const designObj = cfg.designs.find((x) => x.id === selectedDesign) || cfg.designs[0];
+
+        let weeks = typeObj.baseWeeks + designObj.weeks;
+        let minB = typeObj.baseMin + designObj.min;
+        let maxB = typeObj.baseMax + designObj.max;
+
+        const stack = new Set(typeObj.stack);
+        selectedModules.forEach((modId) => {
+          const mod = cfg.modules.find((m) => m.id === modId);
+          if (!mod) return;
+          weeks += mod.weeks;
+          minB += mod.min;
+          maxB += mod.max;
+          if (modId === 'ai') stack.add('OpenAI / RAG');
+          if (modId === 'payments') stack.add('Stripe');
+          if (modId === 'offline') stack.add('Local-First Sync');
         });
-        recalculate();
-      });
-    });
 
-    root.querySelectorAll('.est-mod-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const id = btn.dataset.estMod;
-        if (selectedModules.has(id)) {
-          selectedModules.delete(id);
-        } else {
-          selectedModules.add(id);
+        const minW = Math.max(2, Math.floor(weeks));
+        const maxW = Math.ceil(weeks + 2);
+
+        if (timelineOut) timelineOut.textContent = `${minW}–${maxW} ${cfg.weeksUnit}`;
+        if (budgetOut) budgetOut.textContent = `${formatK(minB)}–${formatK(maxB)}`;
+        if (stackOut) {
+          stackOut.innerHTML = Array.from(stack)
+            .map((s) => `<span class="px-2.5 py-1 rounded-lg bg-white/[0.05] border border-white/10 text-xs font-mono text-zinc-200">${s}</span>`)
+            .join('');
         }
-        const active = selectedModules.has(id);
-        btn.setAttribute('aria-pressed', String(active));
-        btn.className = `est-mod-btn flex items-center justify-between gap-2 p-3.5 rounded-xl border text-sm font-medium transition cursor-pointer ${
-          active
-            ? 'bg-emerald-500/15 border-emerald-400/60 text-white'
-            : 'bg-white/[0.02] border-white/10 text-gray-300 hover:border-white/25 hover:text-white'
-        }`;
-        const check = btn.querySelector('.est-check');
-        if (check) {
-          check.className = `est-check w-5 h-5 rounded-md border flex items-center justify-center text-xs transition ${
-            active ? 'bg-emerald-500 border-emerald-400 text-gray-950 font-bold' : 'border-white/20 text-transparent'
-          }`;
-        }
-        recalculate();
-      });
-    });
+        return { typeObj, designObj, minW, maxW, minB, maxB };
+      }
 
-    root.querySelectorAll('.est-design-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        selectedDesign = btn.dataset.estDesign;
-        root.querySelectorAll('.est-design-btn').forEach((b) => {
-          const active = b.dataset.estDesign === selectedDesign;
-          b.setAttribute('aria-pressed', String(active));
-          b.className = `est-design-btn text-left p-3.5 rounded-xl border text-sm font-medium transition cursor-pointer ${
-            active
-              ? 'bg-emerald-500/15 border-emerald-400/60 text-white'
-              : 'bg-white/[0.02] border-white/10 text-gray-300 hover:border-white/25 hover:text-white'
-          }`;
-        });
-        recalculate();
-      });
-    });
-
-    if (applyBtn) {
-      applyBtn.addEventListener('click', () => {
-        const res = recalculate();
-        const modNames = Array.from(selectedModules)
-          .map((id) => cfg.modules.find((m) => m.id === id)?.label)
-          .filter(Boolean);
-
-        const summary =
-          cfg.lang === 'uk'
-            ? `Конфігурація з калькулятора:\n• Тип: ${res.typeObj.label}\n• Модулі: ${modNames.length ? modNames.join(', ') : 'Базовий функціонал'}\n• Дизайн: ${res.designObj.label}\n• Орієнтир: ${res.minW}–${res.maxW} ${cfg.weeksUnit}, ${formatK(res.minB)}–${formatK(res.maxB)}\n\nКоротко про задачу: `
-            : `Estimator Configuration:\n• Type: ${res.typeObj.label}\n• Modules: ${modNames.length ? modNames.join(', ') : 'Core scope'}\n• Design: ${res.designObj.label}\n• Estimate: ${res.minW}–${res.maxW} ${cfg.weeksUnit}, ${formatK(res.minB)}–${formatK(res.maxB)}\n\nProject notes: `;
-
-        const select = document.querySelector('select[name="service"]');
-        if (select) select.value = selectedType;
-
-        const msg = document.querySelector('textarea[name="message"]');
-        if (msg) {
-          msg.value = summary;
-        }
-
-        if (window.posthog) {
-          window.posthog.capture('estimator_cta_clicked', {
-            type: selectedType,
-            modules: Array.from(selectedModules),
-            design: selectedDesign,
+      root.querySelectorAll('.est-type-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          selectedType = btn.dataset.estType;
+          root.querySelectorAll('.est-type-btn').forEach((b) => {
+            const active = b.dataset.estType === selectedType;
+            b.setAttribute('aria-pressed', String(active));
+            b.className = `est-type-btn text-left p-3.5 rounded-2xl border text-sm font-semibold transition cursor-pointer ${
+              active
+                ? 'bg-[#00E599]/15 border-[#00E599]/60 text-white'
+                : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/25 hover:text-white'
+            }`;
           });
-        }
-
-        const target = document.getElementById('contact');
-        if (window.__lenis && target) {
-          window.__lenis.scrollTo(target, { offset: -64 });
-        } else {
-          target?.scrollIntoView({ behavior: 'smooth' });
-        }
+          recalculate();
+        });
       });
+
+      root.querySelectorAll('.est-mod-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.estMod;
+          if (selectedModules.has(id)) selectedModules.delete(id);
+          else selectedModules.add(id);
+          const active = selectedModules.has(id);
+          btn.setAttribute('aria-pressed', String(active));
+          btn.className = `est-mod-btn flex items-center justify-between gap-2 p-3.5 rounded-xl border text-sm font-medium transition cursor-pointer ${
+            active
+              ? 'bg-[#00E599]/15 border-[#00E599]/60 text-white'
+              : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/25 hover:text-white'
+          }`;
+          const check = btn.querySelector('.est-check');
+          if (check) {
+            check.className = `est-check w-5 h-5 rounded-md border flex items-center justify-center text-xs transition ${
+              active ? 'bg-[#00E599] border-[#00E599] text-black font-bold' : 'border-white/20 text-transparent'
+            }`;
+          }
+          recalculate();
+        });
+      });
+
+      root.querySelectorAll('.est-design-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          selectedDesign = btn.dataset.estDesign;
+          root.querySelectorAll('.est-design-btn').forEach((b) => {
+            const active = b.dataset.estDesign === selectedDesign;
+            b.setAttribute('aria-pressed', String(active));
+            b.className = `est-design-btn text-left p-3.5 rounded-xl border text-sm font-medium transition cursor-pointer ${
+              active
+                ? 'bg-[#00E599]/15 border-[#00E599]/60 text-white'
+                : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/25 hover:text-white'
+            }`;
+          });
+          recalculate();
+        });
+      });
+
+      if (applyBtn) {
+        applyBtn.addEventListener('click', () => {
+          const res = recalculate();
+          const modNames = Array.from(selectedModules)
+            .map((id) => cfg.modules.find((m) => m.id === id)?.label)
+            .filter(Boolean);
+
+          const summary =
+            cfg.lang === 'uk'
+              ? `Конфігурація з калькулятора:\n• Тип: ${res.typeObj.label}\n• Модулі: ${modNames.length ? modNames.join(', ') : 'Базовий функціонал'}\n• Дизайн: ${res.designObj.label}\n• Орієнтир: ${res.minW}–${res.maxW} ${cfg.weeksUnit}, ${formatK(res.minB)}–${formatK(res.maxB)}\n\nКоротко про задачу: `
+              : `Estimator Configuration:\n• Type: ${res.typeObj.label}\n• Modules: ${modNames.length ? modNames.join(', ') : 'Core scope'}\n• Design: ${res.designObj.label}\n• Estimate: ${res.minW}–${res.maxW} ${cfg.weeksUnit}, ${formatK(res.minB)}–${formatK(res.maxB)}\n\nProject notes: `;
+
+          const select = document.querySelector('select[name="service"]');
+          if (select) select.value = selectedType;
+
+          const msg = document.querySelector('textarea[name="message"]');
+          if (msg) msg.value = summary;
+
+          if (window.posthog) {
+            window.posthog.capture('estimator_cta_clicked', {
+              type: selectedType,
+              modules: Array.from(selectedModules),
+              design: selectedDesign,
+            });
+          }
+
+          const target = document.getElementById('contact');
+          if (window.__lenis && target) window.__lenis.scrollTo(target, { offset: -64 });
+          else target?.scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+
+      recalculate();
     }
 
-    recalculate();
+    document.addEventListener('astro:page-load', bindScopeEstimator);
+    bindScopeEstimator();
   })();
 </script>

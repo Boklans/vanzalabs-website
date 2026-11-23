@@ -12,13 +12,21 @@ const t = homeCopy[lang].nav;
 const homeBase = lang === 'uk' ? '/uk' : '/';
 ---
 
-<header class="sticky top-0 z-50 border-b border-white/[0.06] bg-[#07080B]/80 backdrop-blur-xl">
+<header class="sticky top-0 z-50 border-b border-white/[0.07] bg-[#050507]/75 backdrop-blur-2xl">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-    <a href={homeBase} class="flex items-center gap-2.5 shrink-0" aria-label="VanzaLabs home">
-      <img src="/images/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="h-4 w-auto" width="110" height="16" />
-    </a>
+    <!-- Left Logo + Live Status Dot -->
+    <div class="flex items-center gap-3 shrink-0">
+      <a href={homeBase} class="flex items-center gap-2.5" aria-label="VanzaLabs home">
+        <img src="/images/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="h-4 w-auto" width="110" height="16" />
+      </a>
+      <span class="hidden xl:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-white/10 bg-white/[0.03] font-mono text-[10px] text-zinc-400">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#00E599]"></span>
+        UA · EU
+      </span>
+    </div>
 
-    <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-400">
+    <!-- Center Navigation -->
+    <nav class="hidden lg:flex items-center gap-6 text-[13px] font-medium text-zinc-400">
       <a href={`${homeBase}#story`} class="hover:text-white transition">{t.story}</a>
       <a href={`${homeBase}#simulator`} class="hover:text-white transition">{t.simulator}</a>
       <a href={`${homeBase}#estimator`} class="hover:text-white transition">{t.estimator}</a>
@@ -27,13 +35,23 @@ const homeBase = lang === 'uk' ? '/uk' : '/';
       <a href="/blog/" class="hover:text-white transition">{lang === 'uk' ? 'Блог' : 'Blog'}</a>
     </nav>
 
-    <div class="hidden lg:flex items-center gap-3">
-      <div class="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] p-0.5 text-[11px] font-mono font-semibold">
+    <!-- Right Controls: Command Palette Trigger + Language + Primary CTA -->
+    <div class="hidden lg:flex items-center gap-2.5">
+      <button
+        type="button"
+        data-open-cmd
+        class="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] text-zinc-400 hover:text-white text-xs font-mono transition cursor-pointer"
+        title="Open Command Palette (Ctrl+K / ⌘K)"
+      >
+        <span>⌘K</span>
+      </button>
+
+      <div class="inline-flex items-center rounded-lg border border-white/10 bg-white/[0.03] p-0.5 text-[11px] font-mono font-semibold">
         <a
           href={enHref}
           class:list={[
-            'px-2.5 py-1 rounded-full transition',
-            lang === 'en' ? 'bg-emerald-500 text-gray-950' : 'text-gray-400 hover:text-white',
+            'px-2 py-1 rounded-md transition',
+            lang === 'en' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white',
           ]}
         >
           EN
@@ -41,8 +59,8 @@ const homeBase = lang === 'uk' ? '/uk' : '/';
         <a
           href={ukHref}
           class:list={[
-            'px-2.5 py-1 rounded-full transition',
-            lang === 'uk' ? 'bg-emerald-500 text-gray-950' : 'text-gray-400 hover:text-white',
+            'px-2 py-1 rounded-md transition',
+            lang === 'uk' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white',
           ]}
         >
           UA
@@ -51,28 +69,39 @@ const homeBase = lang === 'uk' ? '/uk' : '/';
 
       <a
         href={`${homeBase}#contact`}
-        class="inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-semibold text-sm px-4 py-2 transition glow-emerald"
+        class="inline-flex items-center gap-1.5 rounded-lg bg-[#00E599] hover:bg-[#34F5B4] text-black font-bold text-xs px-4 py-2 transition glow-accent"
       >
         <span>{t.cta}</span>
         <span aria-hidden="true">→</span>
       </a>
     </div>
 
-    <button
-      id="mobileMenuBtn"
-      type="button"
-      class="lg:hidden p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition"
-      aria-label="Toggle menu"
-      aria-expanded="false"
-    >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
+    <!-- Mobile Actions -->
+    <div class="flex lg:hidden items-center gap-2">
+      <button
+        type="button"
+        data-open-cmd
+        class="px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] text-zinc-300 text-xs font-mono"
+        aria-label="Open command menu"
+      >
+        ⌘K
+      </button>
+      <button
+        id="mobileMenuBtn"
+        type="button"
+        class="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
   </div>
 
-  <div id="mobileMenu" class="hidden lg:hidden border-t border-white/[0.06] bg-[#0B0D12]">
-    <div class="px-4 py-4 space-y-3 text-sm font-medium text-gray-300">
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-white/[0.07] bg-[#08090D]">
+    <div class="px-4 py-4 space-y-2.5 text-sm font-medium text-zinc-300">
       <a href={`${homeBase}#story`} class="mobile-nav-link block py-1.5 hover:text-white">{t.story}</a>
       <a href={`${homeBase}#simulator`} class="mobile-nav-link block py-1.5 hover:text-white">{t.simulator}</a>
       <a href={`${homeBase}#estimator`} class="mobile-nav-link block py-1.5 hover:text-white">{t.estimator}</a>
@@ -80,32 +109,14 @@ const homeBase = lang === 'uk' ? '/uk' : '/';
       <a href={`${homeBase}#founders`} class="mobile-nav-link block py-1.5 hover:text-white">{t.founders}</a>
       <a href="/blog/" class="mobile-nav-link block py-1.5 hover:text-white">{lang === 'uk' ? 'Блог' : 'Blog'}</a>
       <div class="flex items-center justify-between pt-3 border-t border-white/10">
-        <div class="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] p-0.5 text-xs font-mono font-semibold">
-          <a href={enHref} class:list={['px-3 py-1 rounded-full', lang === 'en' ? 'bg-emerald-500 text-gray-950' : 'text-gray-400']}>EN</a>
-          <a href={ukHref} class:list={['px-3 py-1 rounded-full', lang === 'uk' ? 'bg-emerald-500 text-gray-950' : 'text-gray-400']}>UA</a>
+        <div class="inline-flex items-center rounded-lg border border-white/10 bg-white/[0.03] p-0.5 text-xs font-mono font-semibold">
+          <a href={enHref} class:list={['px-2.5 py-1 rounded-md', lang === 'en' ? 'bg-white text-black' : 'text-zinc-400']}>EN</a>
+          <a href={ukHref} class:list={['px-2.5 py-1 rounded-md', lang === 'uk' ? 'bg-white text-black' : 'text-zinc-400']}>UA</a>
         </div>
-        <a href={`${homeBase}#contact`} class="mobile-nav-link inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 text-gray-950 font-semibold px-4 py-2 text-xs">
+        <a href={`${homeBase}#contact`} class="mobile-nav-link inline-flex items-center gap-1.5 rounded-lg bg-[#00E599] text-black font-bold px-4 py-2 text-xs">
           {t.cta} →
         </a>
       </div>
     </div>
   </div>
 </header>
-
-<script is:inline>
-  (() => {
-    const btn = document.getElementById('mobileMenuBtn');
-    const menu = document.getElementById('mobileMenu');
-    if (!btn || !menu) return;
-    btn.addEventListener('click', () => {
-      const open = menu.classList.toggle('hidden');
-      btn.setAttribute('aria-expanded', String(!open));
-    });
-    menu.querySelectorAll('.mobile-nav-link').forEach((link) => {
-      link.addEventListener('click', () => {
-        menu.classList.add('hidden');
-        btn.setAttribute('aria-expanded', 'false');
-      });
-    });
-  })();
-</script>
