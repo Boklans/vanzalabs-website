@@ -193,7 +193,6 @@ function initScrollStory(getLenis: () => Lenis | null) {
   const stepCards = track.querySelectorAll<HTMLElement>('.story-step-card');
   const stagePanes = track.querySelectorAll<HTMLElement>('.story-stage-pane');
   const railFill = document.getElementById('storyRailFill');
-  const mobileRailFill = document.getElementById('storyMobileRailFill');
   const mobileMeta = document.getElementById('storyMobileMeta');
   const mobileTitle = document.getElementById('storyMobileTitle');
   const mobileDesc = document.getElementById('storyMobileDesc');
@@ -202,12 +201,6 @@ function initScrollStory(getLenis: () => Lenis | null) {
   let activeSt: ScrollTrigger | null = null;
   let lockedUntil = 0;
 
-  const updateRails = (progress: number) => {
-    const clamped = Math.max(0.05, Math.min(1, progress));
-    if (railFill) railFill.style.transform = `scaleY(${clamped})`;
-    if (mobileRailFill) mobileRailFill.style.transform = `scaleX(${clamped})`;
-  };
-
   const setVisualStep = (idx: number) => {
     if (idx === currentIdx) return;
     currentIdx = idx;
@@ -215,12 +208,12 @@ function initScrollStory(getLenis: () => Lenis | null) {
     stepCards.forEach((card, i) => {
       const active = i === idx;
       card.setAttribute('aria-pressed', String(active));
-      card.classList.toggle('bg-white/[0.05]', active);
-      card.classList.toggle('border-[#00E599]/50', active);
+      card.classList.toggle('bg-white/[0.06]', active);
+      card.classList.toggle('border-[#00E599]/55', active);
       card.classList.toggle('opacity-100', active);
       card.classList.toggle('bg-transparent', !active);
-      card.classList.toggle('border-white/[0.06]', !active);
-      card.classList.toggle('opacity-45', !active);
+      card.classList.toggle('border-white/[0.08]', !active);
+      card.classList.toggle('opacity-50', !active);
     });
 
     const activeCard = stepCards[idx];
@@ -258,9 +251,11 @@ function initScrollStory(getLenis: () => Lenis | null) {
       const targetProgress =
         total <= 1 ? 0 : idx === 0 ? 0.04 : idx === total - 1 ? 0.9 : (idx + 0.35) / total;
 
-      updateRails(targetProgress);
+      if (railFill) {
+        railFill.style.transform = `scaleY(${Math.max(0.06, targetProgress)})`;
+      }
 
-      if (activeSt) {
+      if (activeSt && window.innerWidth >= 1024) {
         const range = activeSt.end - activeSt.start;
         if (range > 0) {
           const targetY = activeSt.start + targetProgress * range;
@@ -298,75 +293,107 @@ function initScrollStory(getLenis: () => Lenis | null) {
     activeCleanupFns.push(() => card.removeEventListener('click', onCardClick));
   });
 
-  // Scroll-driven sticky storytelling across ALL viewports (mobile + desktop)
-  const createTrigger = () => {
-    const navOffset = window.innerWidth >= 1024 ? 64 : 56;
-    return ScrollTrigger.create({
+  // Pinned scroll-driven storytelling on Desktop (lg+); tap-driven clean section on Mobile
+  const mm = gsap.matchMedia();
+  mm.add('(min-width: 1024px)', () => {
+    const st = ScrollTrigger.create({
       trigger: track,
-      start: `top top+=${navOffset}`,
+      start: 'top top+=64',
       end: 'bottom bottom',
       scrub: true,
       invalidateOnRefresh: true,
       onUpdate: (self) => {
         const p = Math.max(0, Math.min(1, self.progress));
-        updateRails(p);
+        if (railFill) {
+          railFill.style.transform = `scaleY(${Math.max(0.04, p)})`;
+        }
         if (performance.now() < lockedUntil) return;
         const idx = Math.min(total - 1, Math.floor(p * total));
         setVisualStep(idx);
       },
     });
-  };
+    activeSt = st;
+    return () => {
+      activeSt = null;
+      st.kill();
+    };
+  });
 
-  activeSt = createTrigger();
-  activeCleanupFns.push(() => {
-    activeSt?.kill();
+  mm.add('(max-width: 1023px)', () => {
     activeSt = null;
   });
 
+  activeCleanupFns.push(() => mm.revert());
   setVisualStep(0);
-  updateRails(0.05);
 }
 
-// Smooth, tactile viewport-entry IntersectionObserver reveals
-function initInstantReveals() {
-  const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal], [data-stagger-item]'));
-  if (!targets.length) return;
-
-  targets.forEach((el) => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
-      el.classList.add('is-visible');
-    } else {
-      el.classList.add('reveal-ready');
-    }
+// Crisp, unmistakable GSAP ScrollTrigger scroll reveals across every section & card (mobile + desktop)
+function initScrollChoreography() {
+  // Single reveal blocks (headers, standalone panels, forms)
+  document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
+    if (el.classList.contains('hidden')) return;
+    gsap.fromTo(
+      el,
+      { y: 38, opacity: 0, scale: 0.98 },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        clearProps: 'transform,opacity',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 90%',
+          once: true,
+        },
+      }
+    );
   });
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          const parent = el.parentElement;
-          if (el.hasAttribute('data-stagger-item') && parent) {
-            const siblings = Array.from(parent.querySelectorAll<HTMLElement>('[data-stagger-item]'));
-            const idx = Math.max(0, siblings.indexOf(el));
-            el.style.transitionDelay = `${Math.min(idx, 5) * 75}ms`;
-          }
-          el.classList.add('is-visible');
-          io.unobserve(el);
+  // Staggered card & item cascades
+  document.querySelectorAll<HTMLElement>('[data-stagger-group]').forEach((group) => {
+    const items = Array.from(group.querySelectorAll<HTMLElement>('[data-stagger-item]'));
+    if (!items.length) return;
+
+    items.forEach((item, idx) => {
+      gsap.fromTo(
+        item,
+        { y: 34, opacity: 0, scale: 0.975 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.72,
+          delay: window.innerWidth >= 768 ? Math.min(idx, 5) * 0.08 : 0.04,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 92%',
+            once: true,
+          },
         }
-      });
-    },
-    { rootMargin: '0px 0px -6% 0px', threshold: 0.05 }
-  );
-
-  targets.forEach((el) => {
-    if (!el.classList.contains('is-visible')) {
-      io.observe(el);
-    }
+      );
+    });
   });
 
-  activeCleanupFns.push(() => io.disconnect());
+  // Gentle Apple/Linear-style Hero scroll-out parallax
+  const heroInner = document.querySelector<HTMLElement>('[data-hero-parallax]');
+  const heroSection = document.querySelector<HTMLElement>('[data-hero-section]');
+  if (heroInner && heroSection) {
+    gsap.to(heroInner, {
+      y: -36,
+      opacity: 0.3,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: heroSection,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+  }
 }
 
 export function mountMotionEngine() {
@@ -424,14 +451,14 @@ export function mountMotionEngine() {
 
   if (prefersReduced) return;
 
-  initInstantReveals();
+  initScrollChoreography();
 
-  // Lenis buttery smooth scroll synced with GSAP
+  // Lenis buttery smooth scroll synced with GSAP (native smooth touch on mobile + silky wheel on desktop)
   lenis = new Lenis({
-    duration: 1.08,
+    duration: 1.05,
     easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
-    touchMultiplier: 1.5,
+    touchMultiplier: 1.4,
   });
 
   lenis.on('scroll', ScrollTrigger.update);
@@ -499,14 +526,17 @@ export function mountMotionEngine() {
     });
   }
 
-  // Hero kinetic entrance
+  // Hero kinetic entrance (waits briefly if intro curtain is actively lifting)
   const heroItems = document.querySelectorAll('[data-hero-animate]');
   if (heroItems.length) {
+    const curtainEl = document.getElementById('introCurtain');
+    const curtainActive = curtainEl && !curtainEl.classList.contains('hidden');
     gsap.from(heroItems, {
-      y: 26,
+      y: 30,
       opacity: 0,
-      duration: 0.8,
-      stagger: 0.08,
+      duration: 0.85,
+      delay: curtainActive ? 0.5 : 0.06,
+      stagger: 0.09,
       ease: 'power3.out',
       clearProps: 'transform,opacity',
     });

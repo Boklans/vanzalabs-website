@@ -29,11 +29,10 @@ const configJson = JSON.stringify({
     <div
       id="scopeEstimatorRoot"
       data-config={configJson}
-      data-reveal
       class="grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-start"
     >
       <!-- Left controls (7 cols) -->
-      <div class="lg:col-span-7 glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-5 sm:space-y-8">
+      <div data-reveal class="lg:col-span-7 glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-5 sm:space-y-8">
         <!-- Step 1: Project Type -->
         <div>
           <p class="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-gray-400 mb-2 sm:mb-3">{t.step1}</p>
@@ -107,7 +106,7 @@ const configJson = JSON.stringify({
       </div>
 
       <!-- Right live summary card (5 cols) -->
-      <div class="lg:col-span-5 bg-gradient-to-b from-[#111622] to-[#0B0E15] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-emerald-500/25 shadow-2xl space-y-4 sm:space-y-6 lg:sticky lg:top-24">
+      <div data-reveal class="lg:col-span-5 bg-gradient-to-b from-[#111622] to-[#0B0E15] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-emerald-500/25 shadow-2xl space-y-4 sm:space-y-6 lg:sticky lg:top-24">
         <div class="flex items-center justify-between">
           <span class="font-mono text-xs uppercase tracking-wider text-emerald-400 font-semibold">{t.resultTitle}</span>
           <span class="inline-flex items-center gap-1.5 text-[11px] font-mono text-gray-400">

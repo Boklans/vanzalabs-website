@@ -93,10 +93,11 @@ const FRAGMENT_SHADER = `
     // Delicate cursor luminance
     color += colEmerald * exp(-mDist * 2.5) * 0.085;
 
-    // Strong headline-first vignette & smooth bottom fade
-    float vig = 1.0 - smoothstep(0.28, 1.08, length(uv - vec2(0.55, 0.46)));
-    color = mix(colObsidian, color, clamp(vig * 1.05, 0.0, 1.0));
-    color = mix(colObsidian, color, smoothstep(0.0, 0.26, uv.y));
+    // Strong headline-first vignette & smooth bottom fade (balanced for both portrait phones and desktop)
+    vec2 vigDelta = (uv - vec2(0.52, 0.42)) * vec2(u_resolution.x < u_resolution.y ? 0.82 : 1.0, 1.0);
+    float vig = 1.0 - smoothstep(0.32, 1.15, length(vigDelta));
+    color = mix(colObsidian, color, clamp(vig * 1.12, 0.0, 1.0));
+    color = mix(colObsidian, color, smoothstep(0.0, 0.24, uv.y));
 
     gl_FragColor = vec4(color, 1.0);
   }

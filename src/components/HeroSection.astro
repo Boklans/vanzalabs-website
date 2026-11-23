@@ -10,14 +10,23 @@ const t = homeCopy[lang].hero;
 ---
 
 <section data-hero-section class="relative overflow-hidden border-b swiss-frame">
-  <!-- Restrained Real-Time WebGL Topographic Silk-Light Shader with subtle luminous emerald lines -->
+  <!-- Restrained Real-Time WebGL Topographic Silk-Light Shader -->
   <canvas id="heroWebglCanvas" class="absolute inset-0 w-full h-full pointer-events-none blur-[0.8px]" aria-hidden="true"></canvas>
 
+  <!-- Subtle OLED-friendly emerald atmospheric depth (prevents flat pitch-black look on portrait phones) -->
+  <div
+    class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_90%_55%_at_50%_30%,rgba(0,229,153,0.11),rgba(14,165,233,0.03)_52%,transparent_76%)] sm:bg-[radial-gradient(ellipse_75%_55%_at_60%_38%,rgba(0,229,153,0.08),transparent_72%)]"
+    aria-hidden="true"
+  ></div>
+
   <!-- Subtle dark reading scrim behind editorial headline -->
-  <div class="absolute inset-0 bg-gradient-to-b from-[#050507]/38 via-[#050507]/22 to-[#050507]/82 pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-[#050507]/32 via-[#050507]/16 to-[#050507]/84 pointer-events-none" aria-hidden="true"></div>
 
   <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-    <div class="sm:border-x swiss-frame min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100vh-8.25rem)] flex flex-col justify-center lg:justify-between gap-7 sm:gap-10 lg:gap-0 py-12 sm:py-14 lg:py-16 sm:px-8 lg:px-14">
+    <div
+      data-hero-parallax
+      class="sm:border-x swiss-frame min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100vh-8.25rem)] flex flex-col justify-between pt-12 pb-7 sm:py-14 lg:py-16 sm:px-8 lg:px-14"
+    >
       <!-- Top Metadata Strip (Desktop / Tablet only; Mobile Hero stays pure: Slogan + Text + 2 CTAs) -->
       <div
         data-hero-animate
@@ -30,29 +39,37 @@ const t = homeCopy[lang].hero;
         <span class="text-zinc-500 shrink-0">UKRAINE · WORLDWIDE</span>
       </div>
 
-      <!-- Centerpiece Monumental Editorial Typography -->
-      <div class="lg:my-auto sm:py-8 lg:py-14 lg:min-h-[280px] flex items-center">
+      <!-- Focal Headline + Mobile Subtitle (anchored in upper-center golden ratio on phones, centerpiece on desktop) -->
+      <div class="my-auto pb-6 sm:pb-0 sm:py-8 lg:py-14 lg:min-h-[280px] flex flex-col justify-center">
         <h1
           data-hero-animate
           class:list={[
-            'font-display font-extrabold tracking-[-0.04em] leading-[1.06] sm:leading-[1.03] text-white max-w-5xl break-words',
+            'font-display font-extrabold tracking-[-0.04em] text-white max-w-5xl break-words',
             lang === 'uk'
-              ? 'text-[clamp(2.1rem,8.4vw,5.2rem)]'
-              : 'text-[clamp(2.25rem,8.2vw,5.65rem)]',
+              ? 'text-[clamp(2.35rem,10.2vw,5.2rem)] leading-[1.02] sm:leading-[1.03]'
+              : 'text-[clamp(2.5rem,10.5vw,5.65rem)] leading-[1.0] sm:leading-[1.03]',
           ]}
         >
           <span class="text-gradient-metallic">{t.titleStart}</span><br />
-          <span class="editorial-italic text-[#00E599] font-normal text-[1.15em] sm:text-[1.16em] pr-1">{t.titleHighlight}</span>{' '}
+          <span class="editorial-italic text-[#00E599] font-normal text-[1.18em] sm:text-[1.16em] pr-1">{t.titleHighlight}</span><br class="sm:hidden" />{' '}
           <span class="text-white">{t.titleEnd}</span>
         </h1>
+
+        <!-- Mobile-only Subtitle right beneath the headline with deliberate editorial gap -->
+        <p
+          data-hero-animate
+          class="sm:hidden mt-6 text-zinc-300 text-[15.5px] leading-[1.62] max-w-[36ch]"
+        >
+          {t.subtitle}
+        </p>
       </div>
 
-      <!-- Bottom Split Row: Subtitle + 2 Crisp Aligned CTAs -->
+      <!-- Bottom Split Row: Desktop Subtitle + Thumb-Zone CTAs -->
       <div
         data-hero-animate
-        class="sm:pt-7 sm:border-t swiss-frame grid lg:grid-cols-12 gap-7 sm:gap-6 lg:gap-8 items-center"
+        class="pt-4 sm:pt-7 sm:border-t swiss-frame grid lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-center"
       >
-        <p class="lg:col-span-6 text-zinc-300/90 text-[15px] sm:text-[17px] leading-relaxed max-w-xl m-0">
+        <p class="hidden sm:block lg:col-span-6 text-zinc-300/90 text-[17px] leading-relaxed max-w-xl m-0">
           {t.subtitle}
         </p>
 
@@ -60,17 +77,22 @@ const t = homeCopy[lang].hero;
           <a
             href="#contact"
             data-prefill-service="blueprint"
-            class="prefill-cta magnetic-btn w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 sm:py-3.5 rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-sm sm:text-[15px] leading-none transition-colors duration-200 whitespace-nowrap"
+            class="prefill-cta magnetic-btn w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 h-[54px] sm:h-auto sm:py-3.5 rounded-2xl sm:rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-[15px] leading-none transition-colors duration-200 whitespace-nowrap shadow-[0_10px_30px_-8px_rgba(255,255,255,0.28)] sm:shadow-none"
           >
             <span>{t.primaryCta}</span>
             <span aria-hidden="true">→</span>
           </a>
           <a
             href="#estimator"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 sm:py-3.5 rounded-xl border border-white/15 bg-black/45 hover:bg-white/[0.08] backdrop-blur-md text-zinc-100 font-semibold text-sm sm:text-[15px] leading-none transition whitespace-nowrap"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 h-[52px] sm:h-auto sm:py-3.5 rounded-2xl sm:rounded-xl border border-white/15 bg-white/[0.04] sm:bg-black/45 hover:bg-white/[0.08] backdrop-blur-md text-zinc-100 font-semibold text-[15px] leading-none transition whitespace-nowrap"
           >
             <span>{t.secondaryCta}</span>
           </a>
+        </div>
+
+        <!-- Subtle mobile scroll affordance -->
+        <div class="sm:hidden flex justify-center pt-2" aria-hidden="true">
+          <div class="w-[1px] h-7 bg-gradient-to-b from-[#00E599]/60 via-[#00E599]/20 to-transparent animate-pulse"></div>
         </div>
       </div>
     </div>

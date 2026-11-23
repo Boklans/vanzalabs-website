@@ -154,10 +154,10 @@ const simConfigJson = JSON.stringify({
     </div>
 
     <!-- Mobile Compact AI Capabilities Summary + Optional Expandable Demo -->
-    <div data-reveal class="lg:hidden space-y-4">
-      <div class="divide-y divide-white/[0.07] border border-white/[0.09] rounded-2xl bg-white/[0.02] overflow-hidden">
+    <div class="lg:hidden space-y-4">
+      <div data-stagger-group class="divide-y divide-white/[0.07] border border-white/[0.09] rounded-2xl bg-white/[0.02] overflow-hidden">
         {ui.scenarios.map((sc) => (
-          <div class="p-4 flex items-center justify-between gap-3">
+          <div data-stagger-item class="p-4 flex items-center justify-between gap-3">
             <div class="min-w-0">
               <p class="text-sm font-bold text-white truncate">{sc.tab}</p>
               <p class="text-xs text-zinc-400 mt-0.5 truncate">{sc.impact}</p>
@@ -169,7 +169,14 @@ const simConfigJson = JSON.stringify({
         ))}
       </div>
 
-      <div class="flex flex-col sm:flex-row gap-2.5">
+      <div data-reveal class="flex flex-col sm:flex-row gap-2.5">
+        <a
+          href="#contact"
+          data-prefill-service="automation"
+          class="prefill-cta w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#00E599] hover:bg-[#34F5B4] text-black font-bold text-sm transition glow-accent"
+        >
+          <span>{isUk ? 'Автоматизувати процеси →' : 'Automate my workflow →'}</span>
+        </a>
         <button
           id="simMobileToggle"
           type="button"
@@ -180,13 +187,6 @@ const simConfigJson = JSON.stringify({
         >
           {isUk ? 'Спробувати інтерактивне демо ↓' : 'Try interactive AI demo ↓'}
         </button>
-        <a
-          href="#contact"
-          data-prefill-service="automation"
-          class="prefill-cta w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#00E599] hover:bg-[#34F5B4] text-black font-bold text-sm transition glow-accent"
-        >
-          <span>{isUk ? 'Автоматизувати процеси →' : 'Automate my workflow →'}</span>
-        </a>
       </div>
     </div>
 
