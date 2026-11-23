@@ -242,6 +242,62 @@ function initScrollStory() {
   setVisualStep(0);
 }
 
+function initCustomCursor() {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+  const ring = document.getElementById('cursorRing');
+  const dot = document.getElementById('cursorDot');
+  const label = document.getElementById('cursorLabel');
+  if (!ring || !dot) return;
+
+  let tx = -100;
+  let ty = -100;
+  let rx = -100;
+  let ry = -100;
+  let rafId = 0;
+
+  const onMove = (e: PointerEvent) => {
+    tx = e.clientX;
+    ty = e.clientY;
+    dot.style.transform = `translate3d(${tx - 3}px, ${ty - 3}px, 0)`;
+  };
+
+  const loop = () => {
+    rafId = requestAnimationFrame(loop);
+    rx += (tx - rx) * 0.16;
+    ry += (ty - ry) * 0.16;
+    const w = ring.offsetWidth / 2;
+    ring.style.transform = `translate3d(${rx - w}px, ${ry - w}px, 0)`;
+  };
+
+  const onEnter = (el: HTMLElement) => {
+    const text = el.dataset.cursor || '';
+    ring.classList.add('cursor-active');
+    if (label && text) {
+      label.textContent = text;
+      label.classList.remove('opacity-0');
+    }
+  };
+
+  const onLeave = () => {
+    ring.classList.remove('cursor-active');
+    if (label) label.classList.add('opacity-0');
+  };
+
+  const targets = document.querySelectorAll<HTMLElement>('[data-cursor]');
+  targets.forEach((el) => {
+    el.addEventListener('pointerenter', () => onEnter(el));
+    el.addEventListener('pointerleave', onLeave);
+  });
+
+  window.addEventListener('pointermove', onMove, { passive: true });
+  rafId = requestAnimationFrame(loop);
+
+  activeCleanupFns.push(() => {
+    cancelAnimationFrame(rafId);
+    window.removeEventListener('pointermove', onMove);
+  });
+}
+
 export function mountMotionEngine() {
   cleanupMotionEngine();
   initMobileMenu();
@@ -277,6 +333,8 @@ export function mountMotionEngine() {
   initCommandPalette(scrollToHash);
 
   if (prefersReduced) return;
+
+  initCustomCursor();
 
   // Pure WebGL GLSL silk-light shader in Hero
   const unmountGl = mountWebglAurora('heroWebglCanvas');

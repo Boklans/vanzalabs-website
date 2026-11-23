@@ -1,4 +1,4 @@
-// Pure WebGL GLSL Silk-Light & Topographic Fluid Shader (zero external dependencies)
+// Pure WebGL GLSL Volumetric Silk-Light & Chromatic Topographic Fluid Shader (v2)
 
 const VERTEX_SHADER = `
   attribute vec2 a_position;
@@ -14,7 +14,6 @@ const FRAGMENT_SHADER = `
   uniform vec2 u_mouse;
   uniform float u_scroll;
 
-  // Smooth 2D value noise
   float hash(vec2 p) {
     return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
   }
@@ -34,9 +33,9 @@ const FRAGMENT_SHADER = `
     float v = 0.0;
     float a = 0.5;
     mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
       v += a * noise(p);
-      p = rot * p * 2.02;
+      p = rot * p * 2.03;
       a *= 0.5;
     }
     return v;
@@ -44,49 +43,62 @@ const FRAGMENT_SHADER = `
 
   void main() {
     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+    float aspect = u_resolution.x / min(u_resolution.x, u_resolution.y);
     vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / min(u_resolution.x, u_resolution.y);
 
-    vec2 m = (u_mouse - 0.5) * vec2(u_resolution.x / min(u_resolution.x, u_resolution.y), 1.0);
-    float mDist = length(p - m);
-    float mousePull = exp(-mDist * 2.4) * 0.35;
+    // Subtle scroll depth zoom
+    p *= (1.0 - u_scroll * 0.22);
 
-    float t = u_time * 0.14;
-    vec2 warp = vec2(
-      fbm(p * 1.6 + vec2(t, -t * 0.6) + u_scroll * 0.4),
-      fbm(p * 1.6 + vec2(-t * 0.8, t * 0.5) + 4.2)
+    vec2 m = (u_mouse - 0.5) * vec2(aspect, 1.0);
+    float mDist = length(p - m);
+    float ripple = sin(mDist * 14.0 - u_time * 2.2) * exp(-mDist * 3.8) * 0.035;
+    float mousePull = exp(-mDist * 2.2) * 0.42;
+
+    float t = u_time * 0.13;
+
+    // Two-pass domain warping for silky liquid glass folds
+    vec2 q = vec2(
+      fbm(p * 1.45 + vec2(t, -t * 0.55)),
+      fbm(p * 1.45 + vec2(-t * 0.7, t * 0.45) + 5.2)
+    );
+    vec2 r = vec2(
+      fbm(p * 1.85 + 2.2 * q + vec2(1.7, 9.2) + t * 0.35),
+      fbm(p * 1.85 + 2.2 * q + vec2(8.3, 2.8) - t * 0.28)
     );
 
-    float field = fbm(p * 1.9 + warp * 1.45 - (p - m) * mousePull);
+    float f = fbm(p * 1.7 + r * 1.35 - (p - m) * mousePull + ripple);
 
-    // Subtle topographic contour lines
-    float contour = abs(fract(field * 9.0) - 0.5);
-    float ridge = smoothstep(0.06, 0.0, contour) * 0.14;
+    // Chromatic offset sample for luxury prismatic silk edge
+    float fShift = fbm((p + vec2(0.015, -0.01)) * 1.7 + r * 1.35 - (p - m) * mousePull);
 
-    // Color palette: Deep Obsidian -> Metallic Slate -> Precision Emerald & Cyan light ribbons
+    // Crisp topographic contour filaments
+    float contour = abs(fract(f * 10.0) - 0.5);
+    float ridge = smoothstep(0.048, 0.0, contour) * 0.18;
+
     vec3 colObsidian = vec3(0.019, 0.019, 0.027);
-    vec3 colSlate    = vec3(0.055, 0.072, 0.105);
+    vec3 colGraphite = vec3(0.055, 0.068, 0.095);
     vec3 colEmerald  = vec3(0.0, 0.898, 0.60);
-    vec3 colCyan     = vec3(0.18, 0.62, 0.96);
+    vec3 colCyan     = vec3(0.14, 0.68, 0.98);
+    vec3 colSilver   = vec3(0.86, 0.95, 1.0);
 
-    vec3 color = mix(colObsidian, colSlate, smoothstep(0.22, 0.72, field));
+    vec3 color = mix(colObsidian, colGraphite, smoothstep(0.20, 0.72, f));
 
-    // Luminous silk filaments
-    float ribbon1 = smoothstep(0.56, 0.78, field) * (1.0 - smoothstep(0.78, 0.94, field));
-    float ribbon2 = smoothstep(0.42, 0.64, warp.x) * smoothstep(0.45, 0.75, field);
+    // Specular silk ribbons + chromatic highlight
+    float silk = smoothstep(0.52, 0.78, f) * (1.0 - smoothstep(0.78, 0.95, f));
+    float caustic = clamp((f - fShift) * 6.5, 0.0, 1.0) * smoothstep(0.42, 0.82, f);
 
-    color += colEmerald * ribbon1 * 0.34;
-    color += colCyan * ribbon2 * 0.16;
-    color += mix(colEmerald, vec3(0.85, 0.96, 1.0), 0.55) * ridge * smoothstep(0.32, 0.75, field);
+    color += colEmerald * silk * 0.42;
+    color += colCyan * smoothstep(0.45, 0.78, r.x) * smoothstep(0.42, 0.74, f) * 0.22;
+    color += colSilver * caustic * 0.28;
+    color += mix(colEmerald, colSilver, 0.5) * ridge * smoothstep(0.28, 0.78, f);
 
-    // Soft cursor illumination halo
-    color += colEmerald * exp(-mDist * 3.1) * 0.16;
+    // Cursor luminous aura
+    color += mix(colEmerald, colCyan, 0.35) * exp(-mDist * 2.8) * 0.22;
 
-    // Vignette so edges melt seamlessly into #050507
-    float vig = 1.0 - smoothstep(0.35, 1.15, length(uv - vec2(0.5, 0.44)));
-    color = mix(colObsidian, color, clamp(vig * 1.15, 0.0, 1.0));
-
-    // Bottom fade to pure obsidian
-    color = mix(colObsidian, color, smoothstep(0.0, 0.24, uv.y));
+    // Seamless vignette & bottom obsidian melt
+    float vig = 1.0 - smoothstep(0.32, 1.18, length(uv - vec2(0.5, 0.45)));
+    color = mix(colObsidian, color, clamp(vig * 1.18, 0.0, 1.0));
+    color = mix(colObsidian, color, smoothstep(0.0, 0.22, uv.y));
 
     gl_FragColor = vec4(color, 1.0);
   }
@@ -137,10 +149,10 @@ export function mountWebglAurora(canvasId: string): () => void {
   const uMouse = gl.getUniformLocation(program, 'u_mouse');
   const uScroll = gl.getUniformLocation(program, 'u_scroll');
 
-  let targetMouseX = 0.55;
-  let targetMouseY = 0.52;
-  let curMouseX = 0.55;
-  let curMouseY = 0.52;
+  let targetMouseX = 0.56;
+  let targetMouseY = 0.54;
+  let curMouseX = 0.56;
+  let curMouseY = 0.54;
   let isVisible = true;
   let rafId = 0;
   const startTime = performance.now();
@@ -180,9 +192,8 @@ export function mountWebglAurora(canvasId: string): () => void {
     rafId = requestAnimationFrame(render);
     if (!isVisible) return;
 
-    curMouseX += (targetMouseX - curMouseX) * 0.06;
-    curMouseY += (targetMouseY - curMouseY) * 0.06;
-
+    curMouseX += (targetMouseX - curMouseX) * 0.065;
+    curMouseY += (targetMouseY - curMouseY) * 0.065;
     const scrollRatio = Math.min(1, window.scrollY / Math.max(1, window.innerHeight));
 
     gl.uniform2f(uRes, canvas.width, canvas.height);

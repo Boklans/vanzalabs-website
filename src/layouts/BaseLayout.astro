@@ -73,7 +73,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteConfig.url}${o
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&family=Unbounded:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&family=Unbounded:wght@700;800;900&display=swap"
     rel="stylesheet"
   />
 
@@ -95,9 +95,63 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteConfig.url}${o
   <!-- Subtle tactile film grain -->
   <div class="film-grain" aria-hidden="true"></div>
 
+  <!-- Session-once Cinematic Architectural Curtain (0.55s) -->
+  <div
+    id="introCurtain"
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-[#050507] pointer-events-none"
+    aria-hidden="true"
+  >
+    <div class="flex flex-col items-center gap-4">
+      <img src="/images/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="h-5 w-auto opacity-90" />
+      <div class="flex items-center gap-3 font-mono text-xs tracking-[0.22em] text-[#00E599]">
+        <span>INIT</span>
+        <div class="w-28 h-[1px] bg-white/15 overflow-hidden">
+          <div id="introBar" class="h-full w-full origin-left bg-[#00E599]" style="transform: scaleX(0);"></div>
+        </div>
+        <span id="introCounter">00</span>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (() => {
+      if (sessionStorage.getItem('vl-intro-played') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const curtain = document.getElementById('introCurtain');
+      const bar = document.getElementById('introBar');
+      const counter = document.getElementById('introCounter');
+      if (!curtain) return;
+      sessionStorage.setItem('vl-intro-played', '1');
+      curtain.classList.remove('hidden');
+      curtain.classList.add('flex');
+      const start = performance.now();
+      const dur = 480;
+      const tick = (now) => {
+        const p = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        if (bar) bar.style.transform = `scaleX(${eased})`;
+        if (counter) counter.textContent = String(Math.round(eased * 100)).padStart(2, '0');
+        if (p < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          curtain.style.transition = 'clip-path 0.55s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.45s ease';
+          curtain.style.clipPath = 'inset(0 0 100% 0)';
+          curtain.style.opacity = '0';
+          setTimeout(() => curtain.remove(), 580);
+        }
+      };
+      requestAnimationFrame(tick);
+    })();
+  </script>
+
+  <!-- Precision Inertia Cursor (Desktop pointer only) -->
+  <div id="cursorRing" class="cursor-ring hidden lg:flex items-center justify-center" aria-hidden="true">
+    <span id="cursorLabel" class="font-mono text-[9px] font-bold tracking-[0.14em] uppercase text-black opacity-0 transition-opacity duration-200"></span>
+  </div>
+  <div id="cursorDot" class="cursor-dot hidden lg:block" aria-hidden="true"></div>
+
   <!-- Top Scroll Progress Beam -->
   <div class="fixed top-0 left-0 right-0 h-[2px] z-[60] pointer-events-none bg-white/[0.04]">
-    <div id="scrollProgressBar" class="h-full w-full origin-left scale-x-0 bg-gradient-to-r from-[#00E599] via-teal-300 to-sky-400 shadow-[0_0_12px_rgba(0,229,153,0.9)]"></div>
+    <div id="scrollProgressBar" class="h-full w-full origin-left bg-gradient-to-r from-[#00E599] via-teal-300 to-sky-400 shadow-[0_0_12px_rgba(0,229,153,0.9)]" style="transform: scaleX(0);"></div>
   </div>
 
   <slot />

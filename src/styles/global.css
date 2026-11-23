@@ -87,6 +87,69 @@
   letter-spacing: -0.01em;
 }
 
+/* Native Cyrillic monumental display & editorial serif parity */
+html[lang="uk"] .font-display,
+html[lang="uk"] h1,
+html[lang="uk"] h2,
+html[lang="uk"] h3 {
+  font-family: 'Unbounded', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+html[lang="uk"] .editorial-italic {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Precision inertia cursor follower */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+  z-index: 90;
+  transform: translate3d(-100px, -100px, 0);
+  transition: width 0.25s ease, height 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+  will-change: transform;
+}
+
+.cursor-ring.cursor-active {
+  width: 68px;
+  height: 68px;
+  background-color: rgba(0, 229, 153, 0.92);
+  border-color: #00E599;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #00E599;
+  pointer-events: none;
+  z-index: 91;
+  transform: translate3d(-100px, -100px, 0);
+  will-change: transform;
+}
+
+/* Traveling light pulse on SVG blueprint cables */
+@keyframes cable-flow {
+  0% { stroke-dashoffset: 48; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.svg-cable-flow {
+  stroke-dasharray: 6 6;
+  animation: cable-flow 1.4s linear infinite;
+}
+
 .text-gradient-metallic {
   background: linear-gradient(180deg, #FFFFFF 0%, #E4E4E7 55%, #71717A 100%);
   -webkit-background-clip: text;
