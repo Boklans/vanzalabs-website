@@ -368,9 +368,9 @@ export const homeCopy = {
     },
     hero: {
       badge: 'Product Engineering Studio · Відкриті до нових проєктів',
-      titleStart: 'Софт, створений',
-      titleHighlight: 'перемагати',
-      titleEnd: 'з першого коміту.',
+      titleStart: 'Продукти, що',
+      titleHighlight: 'випереджають',
+      titleEnd: 'ринок.',
       subtitle:
         'Створюємо продакшн-MVP, автономні AI-системи та мобільні додатки за 3–8 тижнів. Не вірте на слово — протестуйте нас через безкоштовний 48-годинний технічний розбір ще до першої оплати.',
       primaryCta: 'Отримати Blueprint за 48 год',

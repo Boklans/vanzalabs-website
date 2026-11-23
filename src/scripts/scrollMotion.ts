@@ -242,60 +242,46 @@ function initScrollStory() {
   setVisualStep(0);
 }
 
-function initCustomCursor() {
-  if (!window.matchMedia('(pointer: fine)').matches) return;
-  const ring = document.getElementById('cursorRing');
-  const dot = document.getElementById('cursorDot');
-  const label = document.getElementById('cursorLabel');
-  if (!ring || !dot) return;
+// Zero-drift instant IntersectionObserver reveals (immune to pinned ScrollTrigger height offsets)
+function initInstantReveals() {
+  const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal], [data-stagger-item]'));
+  if (!targets.length) return;
 
-  let tx = -100;
-  let ty = -100;
-  let rx = -100;
-  let ry = -100;
-  let rafId = 0;
-
-  const onMove = (e: PointerEvent) => {
-    tx = e.clientX;
-    ty = e.clientY;
-    dot.style.transform = `translate3d(${tx - 3}px, ${ty - 3}px, 0)`;
-  };
-
-  const loop = () => {
-    rafId = requestAnimationFrame(loop);
-    rx += (tx - rx) * 0.16;
-    ry += (ty - ry) * 0.16;
-    const w = ring.offsetWidth / 2;
-    ring.style.transform = `translate3d(${rx - w}px, ${ry - w}px, 0)`;
-  };
-
-  const onEnter = (el: HTMLElement) => {
-    const text = el.dataset.cursor || '';
-    ring.classList.add('cursor-active');
-    if (label && text) {
-      label.textContent = text;
-      label.classList.remove('opacity-0');
-    }
-  };
-
-  const onLeave = () => {
-    ring.classList.remove('cursor-active');
-    if (label) label.classList.add('opacity-0');
-  };
-
-  const targets = document.querySelectorAll<HTMLElement>('[data-cursor]');
   targets.forEach((el) => {
-    el.addEventListener('pointerenter', () => onEnter(el));
-    el.addEventListener('pointerleave', onLeave);
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 120) {
+      el.classList.add('is-visible');
+    } else {
+      el.classList.add('reveal-ready');
+    }
   });
 
-  window.addEventListener('pointermove', onMove, { passive: true });
-  rafId = requestAnimationFrame(loop);
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const parent = el.parentElement;
+          if (el.hasAttribute('data-stagger-item') && parent) {
+            const siblings = Array.from(parent.querySelectorAll<HTMLElement>('[data-stagger-item]'));
+            const idx = Math.max(0, siblings.indexOf(el));
+            el.style.transitionDelay = `${idx * 55}ms`;
+          }
+          el.classList.add('is-visible');
+          io.unobserve(el);
+        }
+      });
+    },
+    { rootMargin: '120px 0px 120px 0px', threshold: 0.01 }
+  );
 
-  activeCleanupFns.push(() => {
-    cancelAnimationFrame(rafId);
-    window.removeEventListener('pointermove', onMove);
+  targets.forEach((el) => {
+    if (!el.classList.contains('is-visible')) {
+      io.observe(el);
+    }
   });
+
+  activeCleanupFns.push(() => io.disconnect());
 }
 
 export function mountMotionEngine() {
@@ -334,7 +320,7 @@ export function mountMotionEngine() {
 
   if (prefersReduced) return;
 
-  initCustomCursor();
+  initInstantReveals();
 
   // Pure WebGL GLSL silk-light shader in Hero
   const unmountGl = mountWebglAurora('heroWebglCanvas');
@@ -377,7 +363,7 @@ export function mountMotionEngine() {
     activeCleanupFns.push(() => anchor.removeEventListener('click', onClick));
   });
 
-  // Magnetic buttons
+  // Magnetic primary buttons
   document.querySelectorAll<HTMLElement>('.magnetic-btn').forEach((btn) => {
     const onMove = (e: PointerEvent) => {
       const rect = btn.getBoundingClientRect();
@@ -415,9 +401,9 @@ export function mountMotionEngine() {
   const heroItems = document.querySelectorAll('[data-hero-animate]');
   if (heroItems.length) {
     gsap.from(heroItems, {
-      y: 30,
+      y: 26,
       opacity: 0,
-      duration: 0.9,
+      duration: 0.8,
       stagger: 0.08,
       ease: 'power3.out',
       clearProps: 'transform,opacity',
@@ -442,47 +428,6 @@ export function mountMotionEngine() {
     );
   });
 
-  // Crisp scroll reveals (triggers immediately upon entering viewport)
-  document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
-    gsap.from(el, {
-      y: 20,
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power3.out',
-      clearProps: 'transform,opacity',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 95%',
-        once: true,
-      },
-    });
-  });
-
-  // Staggered architectural grid groups
-  document.querySelectorAll<HTMLElement>('[data-stagger-group]').forEach((group) => {
-    const items = group.querySelectorAll<HTMLElement>('[data-stagger-item]');
-    if (!items.length) return;
-    gsap.from(items, {
-      y: 18,
-      opacity: 0,
-      scale: 0.985,
-      duration: 0.45,
-      stagger: 0.05,
-      ease: 'power3.out',
-      clearProps: 'transform,opacity',
-      scrollTrigger: {
-        trigger: group,
-        start: 'top 95%',
-        once: true,
-      },
-    });
-  });
-
-  // Refresh ScrollTrigger positions once web fonts finish loading
-  document.fonts?.ready.then(() => {
-    ScrollTrigger.refresh();
-  });
-
   // 3D perspective stage tilt
   document.querySelectorAll<HTMLElement>('[data-phone-stage]').forEach((stage) => {
     const frame = stage.querySelector<HTMLElement>('[data-phone-frame]');
@@ -504,4 +449,6 @@ export function mountMotionEngine() {
       stage.removeEventListener('pointerleave', onLeave);
     });
   });
+
+  document.fonts?.ready.then(() => ScrollTrigger.refresh());
 }
