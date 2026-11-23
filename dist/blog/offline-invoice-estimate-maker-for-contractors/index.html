@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Contractors & Freelancers Generate Signed PDF Invoices and Estimates on Job Sites in 60 Seconds | VanzaLabs Blog</title>
+  <meta name="description" content="Learn how field contractors, builders, and freelancers generate itemized PDF estimates, work contracts, and invoices with on-screen finger signatures in 60 seconds — 100% offline with Vanza Docs.">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:title" content="How Contractors & Freelancers Generate Signed PDF Invoices and Estimates in 60 Seconds">
+  <meta property="og:description" content="Stop losing jobs by waiting until evening to type up estimates in Excel. Generate signed PDF estimates, contracts, and invoices right on the job site offline.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://vanzalabs.tech/blog/offline-invoice-estimate-maker-for-contractors">
+  <meta property="og:image" content="https://vanzalabs.tech/invoices-og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Offline PDF Invoice, Estimate & Contract Maker for Contractors">
+  <meta name="twitter:description" content="Create signed PDF estimates, invoices, and work completion certificates on your phone in 60 seconds.">
+  <link rel="canonical" href="https://vanzalabs.tech/blog/offline-invoice-estimate-maker-for-contractors">
+  <meta name="p:domain_verify" content="90f814ccab954bd60bf020b0af5c7022"/>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="512x512" href="/images/invoices_icon_512.png">
+  <meta name="theme-color" content="#08090C">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background-color: #08090C;
+      color: #F3F4F6;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .indigo-glow {
+      box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.35);
+    }
+    .prose-custom h2 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .prose-custom h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      margin-top: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .prose-custom p {
+      color: #d1d5db;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      font-size: 1.02rem;
+    }
+    .prose-custom ul, .prose-custom ol {
+      color: #d1d5db;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      line-height: 1.75;
+    }
+    .prose-custom li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu pu gu mu init Gu Qu Hu Wu Xu il Vu Yu ju oc ac lc uc cc hc capture getExtension Zu hu gc calculateEventProperties vc register register_once register_for_session unregister unregister_for_session zu mc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync wc identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset kc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty yc nc createPersonProfile setInternalOrTestUser bc xu ku opt_in_capturing opt_out_capturing Su has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing tc debug nl Os getPageViewId captureTraceFeedback captureTraceMetric Du".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_q5gM7VmNh57nCNKfKQx7KZDNgqaY7UK2mdXjrAzKDRey', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'always'
+    });
+  </script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "How Contractors & Freelancers Generate Signed PDF Invoices and Estimates on Job Sites in 60 Seconds (100% Offline)",
+        "description": "Learn how contractors, builders, and independent freelancers generate itemized PDF estimates, work contracts, and invoices with on-screen client signatures in 60 seconds offline.",
+        "image": "https://vanzalabs.tech/images/invoices_screenshot.png",
+        "datePublished": "2026-10-20",
+        "dateModified": "2026-11-13",
+        "author": {
+          "@type": "Organization",
+          "name": "VanzaLabs Engineering",
+          "url": "https://vanzalabs.tech"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "VanzaLabs",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://vanzalabs.tech/vanzalabs_logo_white_text.png"
+          }
+        },
+        "mainEntityOfPage": "https://vanzalabs.tech/blog/offline-invoice-estimate-maker-for-contractors"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can a client sign an estimate or contract directly on my phone screen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Vanza Docs includes a dual touch-signature pad. Both you and your client can sign directly on the smartphone screen with a finger or stylus, and both signatures are embedded into the final A4 PDF document."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my client contacts and invoice totals uploaded to any cloud server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Vanza Docs stores your entire client directory, service catalog, and financial history 100% locally on your device. No mandatory cloud accounts, no recurring SaaS subscriptions, and complete commercial privacy."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "VanzaLabs", "item": "https://vanzalabs.tech/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://vanzalabs.tech/blog" },
+          { "@type": "ListItem", "position": 3, "name": "Offline Invoice & Estimate Maker Guide", "item": "https://vanzalabs.tech/blog/offline-invoice-estimate-maker-for-contractors" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#08090C]/85 border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-1">
+            <img src="/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="w-full h-auto object-contain">
+          </div>
+          <span class="font-black text-base sm:text-lg text-white group-hover:text-indigo-400 transition">VanzaLabs</span>
+        </a>
+        <span class="text-gray-700">/</span>
+        <a href="/blog" class="text-xs font-bold text-gray-300 hover:text-indigo-400 transition">
+          <span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleArticleLang()" class="px-3 py-1.5 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:text-white hover:border-gray-700 transition">
+          <span id="langLabel">UA</span>
+        </button>
+        <a href="https://play.google.com/store/apps/details?id=app.vanza.docs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-extrabold transition">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span class="ui-en">Get Vanza Docs</span><span class="ui-uk hidden">Завантажити Vanza Docs</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <!-- Breadcrumbs -->
+    <nav class="text-xs text-gray-500 mb-6 flex items-center gap-2 flex-wrap">
+      <a href="/" class="hover:text-gray-300">VanzaLabs</a>
+      <span>→</span>
+      <a href="/blog" class="hover:text-gray-300"><span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span></a>
+      <span>→</span>
+      <span class="text-indigo-400 font-medium"><span class="ui-en">Offline Invoice & Estimate Maker for Contractors</span><span class="ui-uk hidden">Рахунки, кошториси та договори офлайн</span></span>
+    </nav>
+
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+
+      <!-- LEFT COLUMN: ARTICLE CONTENT -->
+      <div class="lg:col-span-8">
+
+        <!-- ================= ENGLISH ARTICLE ================= -->
+        <article id="lang-en" class="prose-custom">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 font-bold">Contractors & B2B FinTech</span>
+            <span class="text-gray-400">6 min read</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-10-20" class="text-gray-400">Updated Nov 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] mb-6">
+            How Contractors & Freelancers Generate Signed PDF Invoices and Estimates on Job Sites in 60 Seconds (100% Offline)
+          </h1>
+
+          <p class="text-lg text-gray-300 leading-relaxed mb-8">
+            Whether you run a residential renovation crew, an HVAC/electrical service business, an auto repair shop, or an independent consulting practice, speed wins deals. When a homeowner or B2B client asks <em>"How much will this cost, and can we lock it in today?"</em>, saying <em>"I'll email you a spreadsheet tomorrow evening"</em> gives them 24 hours to call three competitors.
+          </p>
+
+          <div class="bg-[#0F1218] border-l-4 border-indigo-500 rounded-r-2xl p-6 mb-8">
+            <p class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-2">Field Business Advantage</p>
+            <p class="text-sm text-gray-300 mb-0">
+              With <strong><a href="/invoices" class="text-indigo-400 underline">Vanza Docs (Craft & Contractor Documents)</a></strong>, you can pick items from your saved service catalog, calculate taxes and discounts automatically, collect the client's handwritten signature directly on your smartphone screen, and share a crisp A4 PDF Estimate, Work Contract, or Invoice in under 60 seconds — even in a basement or new build with zero internet.
+            </p>
+          </div>
+
+          <h2>1. Why Cloud Accounting Apps & Mobile Excel Fail on the Job Site</h2>
+          <p>
+            Field professionals typically try two approaches before switching to a dedicated offline document studio:
+          </p>
+          <ul class="list-disc">
+            <li><strong>Mobile Excel / Word Templates:</strong> Broken table borders, tiny cells, manual math errors, and no way for a client to sign on the spot.</li>
+            <li><strong>Heavy Cloud Accounting Suites ($30–$50/month):</strong> Require constant internet connectivity, force you to register accounts, and lock basic PDF generation behind expensive recurring monthly subscriptions.</li>
+          </ul>
+
+          <h2>2. Comparison: Vanza Docs vs. Cloud Invoicing SaaS & Spreadsheets</h2>
+          <div class="overflow-x-auto my-6 rounded-2xl border border-gray-800">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-[#131722] text-gray-300 border-b border-gray-800">
+                  <th class="p-4 font-bold">Capability</th>
+                  <th class="p-4 font-bold text-indigo-400">Vanza Docs (Offline Mobile Studio)</th>
+                  <th class="p-4 font-bold text-gray-400">Cloud SaaS / Mobile Excel</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-800/80 bg-[#0F1218]">
+                <tr>
+                  <td class="p-4 font-semibold text-white">Time to Generate PDF</td>
+                  <td class="p-4 text-indigo-400 font-medium">30–60 seconds from saved Catalog & Clients</td>
+                  <td class="p-4 text-gray-400">15–30 minutes at a laptop in the evening</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Document Types</td>
+                  <td class="p-4 text-indigo-400 font-medium">Invoices, Estimates, Work Contracts, Completion Acts</td>
+                  <td class="p-4 text-gray-400">Usually only basic invoices</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">On-Screen Client Signature</td>
+                  <td class="p-4 text-indigo-400 font-medium">Built-in dual signature pad (Contractor + Client)</td>
+                  <td class="p-4 text-gray-400">Requires printing or paid e-sign add-ons</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Offline Operation</td>
+                  <td class="p-4 text-indigo-400 font-medium">100% local database (works with zero signal)</td>
+                  <td class="p-4 text-gray-400">Cloud apps fail without mobile data</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>3. The 60-Second Job-Site Workflow</h2>
+          <p>
+            Here is how contractors and freelancers close deals on the spot using Vanza Docs:
+          </p>
+
+          <!-- Real App Screenshots Showcase -->
+          <div class="my-8 bg-[#0F1218] border border-gray-800 rounded-3xl p-6">
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div>
+                <img src="/images/invoices_screenshot.png" alt="Vanza Docs Revenue Dashboard" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">1. Track Paid, Pending & Overdue totals</p>
+              </div>
+              <div>
+                <img src="/images/invoices_screen_2.png" alt="Vanza Docs Document Filters" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">2. Manage Estimates, Contracts & Invoices</p>
+              </div>
+              <div>
+                <img src="/images/invoices_screen_3.png" alt="Vanza Docs Client Directory" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">3. 1-Tap "Create Doc" from Client Directory</p>
+              </div>
+            </div>
+          </div>
+
+          <ol class="list-decimal">
+            <li><strong>Select Client & Document Type:</strong> Pick an existing customer from your <em>Directory</em> (or add one in 10 seconds) and choose between <strong>Estimate / Quote</strong>, <strong>Invoice</strong>, <strong>Work / Sales Contract</strong>, or <strong>Completion Certificate (Act)</strong>.</li>
+            <li><strong>Add Line Items from Your Catalog:</strong> Tap your pre-saved labor rates and materials (e.g., <em>"Drywall framing & install — $45/sq.m"</em>). Quantities, taxes, and discounts calculate automatically.</li>
+            <li><strong>Capture On-Screen Signatures:</strong> Hand your phone to the client so they can sign directly on the screen to approve the estimate or confirm completed work.</li>
+            <li><strong>Share Crisp A4 PDF Instantly:</strong> Export a branded PDF with your company logo and bank/IBAN details directly to WhatsApp, Telegram, Viber, or Email.</li>
+          </ol>
+
+          <h2>Frequently Asked Questions</h2>
+          <div class="space-y-4 my-6">
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Can I convert an approved Estimate into an Invoice without retyping items?</h3>
+              <p class="text-sm text-gray-400 mb-0">Yes! Once a client approves your Estimate, you can duplicate or convert it into a final Invoice or Work Completion Certificate in seconds with all line items and client details preserved.</p>
+            </div>
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Which languages and currencies are supported?</h3>
+              <p class="text-sm text-gray-400 mb-0">Vanza Docs supports multiple languages (including English, Ukrainian, German, Spanish, French, Polish, and Portuguese) and lets you configure any currency symbol ($, €, ₴, £, zł) and tax format.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ================= UKRAINIAN ARTICLE ================= -->
+        <article id="lang-uk" class="prose-custom hidden">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 font-bold">Документи для майстрів та ФОП</span>
+            <span class="text-gray-400">6 хв читання</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-10-20" class="text-gray-400">Оновлено: Листопад 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.12] mb-6">
+            Як майстрам, будівельникам та ФОП створювати PDF-рахунки, кошториси й договори з підписом на екрані за 60 секунд (офлайн)
+          </h1>
+
+          <p class="text-lg text-gray-300 leading-relaxed mb-8">
+            Якщо ви займаєтеся ремонтами, монтажем, електротехнічними роботами, автосервісом або надаєте послуги як ФОП чи фрілансер, швидкість оформлення домовленостей напряму впливає на ваш дохід. Коли замовник на обʼєкті запитує: <em>«Яка підсумкова сума за роботу і матеріали? Давайте зафіксуємо»</em>, відповідь <em>«Я ввечері сяду за компʼютер і скину в Excel»</em> часто призводить до того, що клієнт за цей час знаходить іншого виконавця або виникають суперечки щодо обсягу робіт.
+          </p>
+
+          <div class="bg-[#0F1218] border-l-4 border-indigo-500 rounded-r-2xl p-6 mb-8">
+            <p class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-2">Перевага для роботи на виїзді</p>
+            <p class="text-sm text-gray-300 mb-0">
+              За допомогою <strong><a href="/invoices" class="text-indigo-400 underline">Vanza Docs (Інвойси, Кошториси та Договори)</a></strong> ви можете за 60 секунд вибрати послуги зі свого каталогу, автоматично порахувати підсумок із податками чи знижкою, взяти підпис клієнта пальцем прямо на екрані смартфона і відправити готовий PDF-документ у месенджер — навіть у новобудові чи підвалі без інтернету.
+            </p>
+          </div>
+
+          <h2>1. Чому таблиці Excel на телефоні та хмарні бухгалтерії не працюють «у полі»</h2>
+          <ul class="list-disc">
+            <li><strong>Шаблони в мобільному Excel / Word:</strong> Розʼїжджається верстка, дрібний шрифт, легко помилитися у формулі, і немає можливості підписати документ разом із замовником на місці.</li>
+            <li><strong>Складні хмарні сервіси з абонплатою:</strong> Вимагають постійного інтернету, обовʼязкової реєстрації та щомісячної підписки $20–$40, хоча вам потрібен швидкий і надійний генератор PDF-документів.</li>
+          </ul>
+
+          <h2>2. Порівняння: Vanza Docs проти мобільного Excel та хмарних сервісів</h2>
+          <div class="overflow-x-auto my-6 rounded-2xl border border-gray-800">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-[#131722] text-gray-300 border-b border-gray-800">
+                  <th class="p-4 font-bold">Критерій</th>
+                  <th class="p-4 font-bold text-indigo-400">Vanza Docs (Офлайн-студія)</th>
+                  <th class="p-4 font-bold text-gray-400">Хмарні сервіси / Excel</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-800/80 bg-[#0F1218]">
+                <tr>
+                  <td class="p-4 font-semibold text-white">Час створення PDF</td>
+                  <td class="p-4 text-indigo-400 font-medium">30–60 секунд із готового каталогу робіт</td>
+                  <td class="p-4 text-gray-400">15–30 хвилин увечері за ноутбуком</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Типи документів</td>
+                  <td class="p-4 text-indigo-400 font-medium">Рахунок (Інвойс), Кошторис, Договір, Акт виконаних робіт</td>
+                  <td class="p-4 text-gray-400">Зазвичай лише базові інвойси</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Підпис клієнта на екрані</td>
+                  <td class="p-4 text-indigo-400 font-medium">Вбудоване поле підпису (Виконавець + Замовник)</td>
+                  <td class="p-4 text-gray-400">Потрібно друкувати папір або платити за ЕЦП-сервіси</td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-semibold text-white">Робота без інтернету</td>
+                  <td class="p-4 text-indigo-400 font-medium">100% локальна база (працює без мережі)</td>
+                  <td class="p-4 text-gray-400">Хмарні сервіси зависають без звʼязку</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>3. Як сформувати підписаний кошторис або рахунок за 60 секунд</h2>
+          <p>
+            Увесь процес у Vanza Docs спроєктований так, щоб працювати однією рукою прямо під час огляду обʼєкта:
+          </p>
+
+          <div class="my-8 bg-[#0F1218] border border-gray-800 rounded-3xl p-6">
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div>
+                <img src="/images/invoices_screenshot.png" alt="Vanza Docs Дашборд оплат" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">1. Дашборд оплачених та очікуваних сум</p>
+              </div>
+              <div>
+                <img src="/images/invoices_screen_2.png" alt="Vanza Docs Фільтри документів" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">2. Кошториси, договори, акти та рахунки</p>
+              </div>
+              <div>
+                <img src="/images/invoices_screen_3.png" alt="Vanza Docs База клієнтів" class="rounded-2xl border border-gray-800 w-full object-cover">
+                <p class="text-[11px] text-center text-gray-400 mt-2 mb-0">3. Довідник клієнтів і каталог послуг</p>
+              </div>
+            </div>
+          </div>
+
+          <ol class="list-decimal">
+            <li><strong>Оберіть клієнта та тип документа:</strong> У вкладці <em>Directory</em> натисніть <em>Create Doc</em> навпроти клієнта та виберіть потрібний формат: <strong>Кошторис (Estimate)</strong>, <strong>Рахунок (Invoice)</strong>, <strong>Договір (Contract)</strong> або <strong>Акт виконаних робіт</strong>.</li>
+            <li><strong>Додайте позиції з власного Каталогу:</strong> Збережіть ваші типові роботи та матеріали один раз (наприклад, <em>«Монтаж гіпсокартону — 350 грн/м²»</em>) і додавайте їх у документ у два дотики.</li>
+            <li><strong>Зафіксуйте підпис на екрані:</strong> Замовник може одразу розписатися пальцем на екрані смартфона під кошторисом або актом прийому робіт.</li>
+            <li><strong>Відправте готовий PDF:</strong> Застосунок миттєво генерує охайний документ формату А4 з вашим логотипом, реквізитами IBAN та підписами, який можна одразу надіслати у Viber, Telegram, WhatsApp чи на пошту.</li>
+          </ol>
+
+          <h2>Часті запитання (FAQ)</h2>
+          <div class="space-y-4 my-6">
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Де зберігаються мої клієнти та фінансові суми?</h3>
+              <p class="text-sm text-gray-400 mb-0">Усі дані (довідник клієнтів, прайс-лист, реквізити та створені документи) зберігаються на 100% локально у памʼяті вашого смартфона. Ваша комерційна інформація не передається на жодні сторонні сервери.</p>
+            </div>
+            <div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+              <h3 class="text-base font-bold text-white mt-0 mb-2">Які мови та валюти підтримуються?</h3>
+              <p class="text-sm text-gray-400 mb-0">Застосунок підтримує українську, англійську, польську, німецьку, іспанську, французьку та португальську мови, а також будь-які валюти (₴ грн, $, €, zł, £), що ідеально підходить як для роботи в Україні, так і з закордонними замовниками.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- RIGHT COLUMN: STICKY APP DOWNLOAD & QR CARD -->
+      <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+        <div class="bg-gradient-to-b from-[#0F1218] to-[#0B0E14] border border-indigo-500/40 rounded-3xl p-6 shadow-2xl indigo-glow">
+          <div class="flex items-center gap-3.5 mb-4">
+            <img src="/images/invoices_icon_512.png" alt="Vanza Docs" class="w-14 h-14 rounded-2xl border border-gray-700 object-cover shrink-0">
+            <div>
+              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-400 mb-1">
+                <span class="ui-en">100% Offline B2B Tool</span><span class="ui-uk hidden">100% Офлайн генератор</span>
+              </span>
+              <h3 class="text-lg font-black text-white leading-tight">Vanza Docs (Invoices)</h3>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-300 leading-relaxed mb-5">
+            <span class="ui-en">Generate professional PDF invoices, estimates, contracts & completion acts with on-screen signatures in 60 seconds.</span>
+            <span class="ui-uk hidden">Створюйте PDF-рахунки, кошториси, договори та акти виконаних робіт із підписом на екрані за 60 секунд.</span>
+          </p>
+
+          <div class="space-y-2.5 mb-5">
+            <a href="https://play.google.com/store/apps/details?id=app.vanza.docs" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs sm:text-sm transition shadow-lg">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+              <span class="ui-en">Download on Google Play</span><span class="ui-uk hidden">Завантажити в Google Play</span>
+            </a>
+
+            <a href="/invoices" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-white transition">
+              <span class="ui-en">Explore Vanza Docs Page →</span><span class="ui-uk hidden">Детальніше про Vanza Docs →</span>
+            </a>
+          </div>
+
+          <!-- Large Scannable QR Box -->
+          <div class="pt-4 border-t border-gray-800/80 flex items-center gap-3.5">
+            <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+              <img src="/images/qr_invoices.png" alt="QR Code Vanza Docs" class="w-24 h-24 rounded-lg block">
+            </div>
+            <div class="space-y-1">
+              <p class="text-xs font-bold text-white">
+                <span class="ui-en">Scan to install Vanza Docs</span><span class="ui-uk hidden">Скануйте для встановлення</span>
+              </p>
+              <p class="text-[11px] text-gray-400 leading-snug">
+                <span class="ui-en">Point your phone camera to open Vanza Docs in Google Play.</span>
+                <span class="ui-uk hidden">Наведіть камеру смартфона, щоб відкрити Google Play.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- More Guides Sidebar Box -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 space-y-4">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400">
+            <span class="ui-en">More VanzaLabs Guides</span><span class="ui-uk hidden">Інші гайди у блозі</span>
+          </h4>
+          <div class="space-y-3 text-xs">
+            <a href="/blog/compress-photos-convert-heic-offline-android" class="block p-3 rounded-xl bg-[#08090C] hover:border-[#10B981]/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">Vanza Convert • Photo & PDF</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">Compress photos by 90%, convert HEIC to JPG & lock PDFs offline.</span><span class="ui-uk hidden">Як стиснути фото на 90%, конвертувати HEIC та захистити PDF офлайн.</span></p>
+            </a>
+            <a href="/blog/google-forms-sheets-offline-mobile-workflow" class="block p-3 rounded-xl bg-[#08090C] hover:border-blue-500/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">FormGrid • Google Forms & Sheets</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">Manage Google Forms & Sheets offline on mobile with QR check-ins.</span><span class="ui-uk hidden">Як керувати Google Формами та Таблицями зі смартфона офлайн.</span></p>
+            </a>
+            <a href="/blog/science-of-muscle-recovery-offline-workout-tracker" class="block p-3 rounded-xl bg-[#08090C] hover:border-lime-400/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1">SPOT • Muscle Recovery Science</p>
+              <p class="text-gray-400 line-clamp-2"><span class="ui-en">36h–72h muscle recovery windows & offline gym workout tracking.</span><span class="ui-uk hidden">Наука відновлення мʼязів та офлайн-щоденник тренувань для залу.</span></p>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#08090C] border-t border-gray-900 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 VanzaLabs Engineering Studio. All rights reserved.</p>
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="/" class="hover:text-white transition">VanzaLabs</a>
+        <a href="/blog" class="text-indigo-400 font-semibold">Blog</a>
+        <a href="/invoices" class="hover:text-white transition">Vanza Docs</a>
+        <a href="/privacy/invoices" class="hover:text-white transition">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = 'en';
+    function setArticleLang(lang, save = true) {
+      currentLang = lang;
+      const isUa = lang === 'uk';
+      document.documentElement.lang = isUa ? 'uk' : 'en';
+      document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+      document.getElementById('lang-en').classList.toggle('hidden', isUa);
+      document.getElementById('lang-uk').classList.toggle('hidden', !isUa);
+      document.querySelectorAll('.ui-en').forEach(el => el.classList.toggle('hidden', isUa));
+      document.querySelectorAll('.ui-uk').forEach(el => el.classList.toggle('hidden', !isUa));
+      if (save) {
+        try { localStorage.setItem('vanza_lang', lang); } catch(e) {}
+      }
+    }
+    function toggleArticleLang() {
+      setArticleLang(currentLang === 'en' ? 'uk' : 'en', true);
+    }
+    (function init() {
+      try {
+        const saved = localStorage.getItem('vanza_lang');
+        if (saved === 'uk' || saved === 'en') {
+          if (saved === 'uk') setArticleLang('uk', false);
+          return;
+        }
+        const sysLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (sysLang.startsWith('uk') || sysLang.startsWith('ru')) setArticleLang('uk', false);
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>
