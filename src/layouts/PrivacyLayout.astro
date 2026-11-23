@@ -27,16 +27,16 @@ const {
 
 <BaseLayout title={title} description={description} lang="en" canonicalPath={canonicalPath}>
   <header class="sticky top-0 z-50 border-b border-white/[0.06] bg-[#07080B]/85 backdrop-blur-xl">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-      <a href={backHref} class="flex items-center gap-3 group">
-        <img src={icon} alt={appName} class="w-9 h-9 rounded-xl object-contain bg-black border border-white/10 p-1" />
-        <div>
-          <span class="font-display font-bold text-sm text-white group-hover:text-emerald-400 transition block">{appName}</span>
-          {packageId && <span class="block text-[10px] font-mono text-gray-500">{packageId}</span>}
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <a href={backHref} class="flex items-center gap-2.5 sm:gap-3 group min-w-0">
+        <img src={icon} alt={appName} class="w-9 h-9 rounded-xl object-contain bg-black border border-white/10 p-1 shrink-0" />
+        <div class="min-w-0">
+          <span class="font-display font-bold text-sm text-white group-hover:text-emerald-400 transition block truncate">{appName}</span>
+          {packageId && <span class="block text-[10px] font-mono text-gray-500 truncate">{packageId}</span>}
         </div>
       </a>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 shrink-0">
         <div class="inline-flex rounded-full border border-white/10 p-0.5 bg-white/[0.03] text-xs font-mono font-semibold">
           <button id="privBtnEn" type="button" class="px-3 py-1 rounded-full bg-emerald-500 text-gray-950 transition cursor-pointer">EN</button>
           <button id="privBtnUa" type="button" class="px-3 py-1 rounded-full text-gray-400 hover:text-white transition cursor-pointer">UA</button>
@@ -46,8 +46,8 @@ const {
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-14 w-full flex-1">
-    <article class="glass-panel rounded-3xl p-6 sm:p-10">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-14 w-full flex-1">
+    <article class="glass-panel rounded-2xl sm:rounded-3xl p-5 sm:p-10">
       <div id="privContentEn" class="prose-dark">
         <slot name="en" />
       </div>

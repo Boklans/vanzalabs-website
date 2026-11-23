@@ -142,28 +142,28 @@ const simConfigJson = JSON.stringify({
 });
 ---
 
-<section id="simulator" class="py-20 lg:py-28 border-b swiss-frame relative overflow-hidden bg-[#050609]">
+<section id="simulator" class="py-14 sm:py-20 lg:py-28 border-b swiss-frame relative overflow-hidden bg-[#050609]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <!-- Section Header -->
-    <div data-reveal class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-8 mb-10 border-b swiss-frame">
+    <div data-reveal class="flex flex-col lg:flex-row lg:items-end justify-between gap-3 sm:gap-4 pb-6 sm:pb-8 mb-7 sm:mb-10 border-b swiss-frame">
       <div>
         <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-[#00E599] mb-2">{ui.eyebrow}</p>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-[-0.03em]">{ui.title}</h2>
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-[-0.03em] break-words">{ui.title}</h2>
       </div>
       <p class="text-zinc-400 text-sm sm:text-base max-w-md">{ui.subtitle}</p>
     </div>
 
     <div id="aiSimRoot" data-config={simConfigJson} class="swiss-cell crosshair border overflow-hidden">
       <!-- Top Bar: Presets + Custom Prompt Input -->
-      <div class="p-5 sm:p-6 border-b swiss-frame bg-black/50 space-y-4">
-        <div class="flex flex-wrap items-center justify-between gap-3">
-          <div class="flex flex-wrap gap-2">
+      <div class="p-4 sm:p-6 border-b swiss-frame bg-black/50 space-y-3.5 sm:space-y-4">
+        <div class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center justify-between gap-3">
+          <div class="flex overflow-x-auto no-scrollbar sm:flex-wrap gap-2 -mx-1 px-1 pb-0.5 sm:mx-0 sm:px-0 sm:pb-0">
             {ui.scenarios.map((sc, idx) => (
               <button
                 type="button"
                 data-sim-scenario={sc.id}
                 class:list={[
-                  'sim-scenario-btn px-3.5 py-2 text-xs font-mono font-semibold border transition cursor-pointer',
+                  'sim-scenario-btn shrink-0 whitespace-nowrap px-3 sm:px-3.5 py-2 text-[11px] sm:text-xs font-mono font-semibold border transition cursor-pointer',
                   idx === 0
                     ? 'bg-white text-black border-white'
                     : 'bg-transparent border-white/15 text-zinc-400 hover:text-white hover:border-white/35',
@@ -174,7 +174,7 @@ const simConfigJson = JSON.stringify({
             ))}
           </div>
 
-          <div class="inline-flex border border-white/15 p-0.5 text-[11px] font-mono bg-black/60">
+          <div class="self-start sm:self-auto inline-flex border border-white/15 p-0.5 text-[11px] font-mono bg-black/60 shrink-0">
             <button id="simModeHuman" type="button" class="px-2.5 py-1 bg-white/15 text-white cursor-pointer">{ui.humanTab}</button>
             <button id="simModeJson" type="button" class="px-2.5 py-1 text-zinc-400 hover:text-white cursor-pointer">{ui.jsonTab}</button>
           </div>
@@ -188,13 +188,13 @@ const simConfigJson = JSON.stringify({
               id="simCustomInput"
               type="text"
               placeholder={ui.inputPlaceholder}
-              class="w-full pl-8 pr-4 py-3 bg-[#090B10] border border-white/12 text-white placeholder-zinc-500 focus:border-[#00E599] focus:outline-none text-xs sm:text-sm"
+              class="w-full pl-8 pr-4 py-3 bg-[#090B10] border border-white/12 text-white placeholder-zinc-500 focus:border-[#00E599] focus:outline-none text-base sm:text-sm"
             />
           </div>
           <button
             id="simRunBtn"
             type="submit"
-            class="shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#00E599] hover:bg-[#34F5B4] text-black font-bold text-xs sm:text-sm transition cursor-pointer glow-accent"
+            class="shrink-0 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#00E599] hover:bg-[#34F5B4] text-black font-bold text-sm transition cursor-pointer glow-accent"
           >
             <span>▶</span>
             <span id="simRunLabel">{ui.runBtn}</span>
@@ -205,21 +205,21 @@ const simConfigJson = JSON.stringify({
       <!-- Main 3-Column Neural Ops Graph Stage -->
       <div class="grid lg:grid-cols-12 items-stretch bg-grid-pattern">
         <!-- COL 1: INBOUND LASER SCANNER (4 cols) -->
-        <div class="lg:col-span-4 p-6 flex flex-col justify-between border-b lg:border-b-0 lg:border-r swiss-frame bg-[#080A0F]/85">
+        <div class="lg:col-span-4 p-4 sm:p-6 flex flex-col justify-between border-b lg:border-b-0 lg:border-r swiss-frame bg-[#080A0F]/85">
           <div class="space-y-4">
-            <div class="flex items-center justify-between font-mono text-[10px] tracking-[0.16em] text-zinc-500">
-              <span>01 // INBOUND STREAM</span>
-              <span id="simSource" class="text-sky-400">{ui.scenarios[0].source}</span>
+            <div class="flex items-center justify-between gap-2 font-mono text-[10px] tracking-[0.14em] sm:tracking-[0.16em] text-zinc-500">
+              <span class="shrink-0">01 // INBOUND STREAM</span>
+              <span id="simSource" class="text-sky-400 truncate text-right">{ui.scenarios[0].source}</span>
             </div>
 
             <!-- Message Box with Laser Scan Beam -->
-            <div class="relative overflow-hidden border border-white/12 bg-black/70 p-4 space-y-2.5">
+            <div class="relative overflow-hidden border border-white/12 bg-black/70 p-3.5 sm:p-4 space-y-2">
               <div
                 id="simScanBeam"
                 class="hidden absolute left-0 right-0 top-0 h-10 bg-gradient-to-b from-transparent via-[#00E599]/35 to-[#00E599]/80 border-b border-[#00E599] pointer-events-none"
               ></div>
               <p id="simSender" class="text-xs font-bold text-white">{ui.scenarios[0].sender}</p>
-              <p id="simMessage" class="text-sm text-zinc-300 leading-relaxed">{ui.scenarios[0].message}</p>
+              <p id="simMessage" class="text-[13px] sm:text-sm text-zinc-300 leading-relaxed">{ui.scenarios[0].message}</p>
             </div>
 
             <!-- Extracted AI Entities -->
@@ -229,7 +229,7 @@ const simConfigJson = JSON.stringify({
               </p>
               <div id="simEntities" class="flex flex-wrap gap-1.5">
                 {ui.scenarios[0].entities.map((ent) => (
-                  <span class="px-2.5 py-1 bg-[#00E599]/10 border border-[#00E599]/30 text-[#00E599] font-mono text-[11px]">
+                  <span class="px-2 sm:px-2.5 py-1 bg-[#00E599]/10 border border-[#00E599]/30 text-[#00E599] font-mono text-[11px]">
                     {ent}
                   </span>
                 ))}
@@ -237,16 +237,16 @@ const simConfigJson = JSON.stringify({
             </div>
           </div>
 
-          <div class="pt-5 mt-5 border-t swiss-frame flex items-center justify-between font-mono text-[11px] text-zinc-500">
+          <div class="pt-4 mt-4 sm:pt-5 sm:mt-5 border-t swiss-frame flex items-center justify-between font-mono text-[11px] text-zinc-500">
             <span>MODEL: LLM + RAG</span>
             <span id="simCoreStatus" class="text-[#00E599]">● READY</span>
           </div>
         </div>
 
         <!-- COL 2: LIVE AI NEURAL ROUTER SVG (3 cols) -->
-        <div class="lg:col-span-3 p-6 flex flex-col items-center justify-center border-b lg:border-b-0 lg:border-r swiss-frame bg-black/60 relative overflow-hidden">
+        <div class="lg:col-span-3 py-4 px-5 lg:p-6 flex flex-col items-center justify-center border-b lg:border-b-0 lg:border-r swiss-frame bg-black/60 relative overflow-hidden">
           <!-- Animated Fiber-Optic SVG Cables -->
-          <svg viewBox="0 0 260 280" class="w-full max-w-[240px] h-auto" fill="none">
+          <svg viewBox="0 0 260 280" class="w-full max-w-[170px] sm:max-w-[210px] lg:max-w-[240px] h-auto" fill="none">
             <!-- Input cable -->
             <path d="M 0 140 H 78" stroke="rgba(255,255,255,0.12)" stroke-width="2" />
             <path id="simCableIn" d="M 0 140 H 78" stroke="#00E599" stroke-width="2.2" class="svg-cable-flow" />
@@ -272,27 +272,27 @@ const simConfigJson = JSON.stringify({
             <text id="simCoreMetric" x="130" y="152" text-anchor="middle" fill="#00E599" font-size="10" font-family="JetBrains Mono">0.41 sec</text>
           </svg>
 
-          <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500 text-center">
+          <p class="mt-1 sm:mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500 text-center">
             {isUk ? 'Автономна маршрутизація' : 'Autonomous Routing Core'}
           </p>
         </div>
 
         <!-- COL 3: 3 LIVE EXECUTION RESULT CARDS (5 cols) -->
-        <div class="lg:col-span-5 p-6 bg-[#080A0F]/90 flex flex-col justify-between">
+        <div class="lg:col-span-5 p-4 sm:p-6 bg-[#080A0F]/90 flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between font-mono text-[10px] tracking-[0.16em] text-[#00E599] mb-4">
+            <div class="flex items-center justify-between font-mono text-[10px] tracking-[0.14em] sm:tracking-[0.16em] text-[#00E599] mb-3.5 sm:mb-4">
               <span>03 // LIVE EXECUTION</span>
               <span>3 PARALLEL ACTIONS</span>
             </div>
 
-            <div id="simHumanView" class="space-y-3">
+            <div id="simHumanView" class="space-y-2.5 sm:space-y-3">
               {ui.scenarios[0].cards.map((card, i) => (
-                <div data-sim-card={i} class="sim-result-card p-4 border border-white/12 bg-white/[0.02] transition-all duration-300">
-                  <div class="flex items-center justify-between font-mono text-[10px] mb-1">
-                    <span class="text-zinc-200 font-semibold">{card.app}</span>
-                    <span class="sim-card-status text-[#00E599]">✓ {card.ms}</span>
+                <div data-sim-card={i} class="sim-result-card p-3.5 sm:p-4 border border-white/12 bg-white/[0.02] transition-all duration-300">
+                  <div class="flex items-center justify-between font-mono text-[10px] mb-1 gap-2">
+                    <span class="text-zinc-200 font-semibold truncate">{card.app}</span>
+                    <span class="sim-card-status text-[#00E599] shrink-0">✓ {card.ms}</span>
                   </div>
-                  <p class="text-sm font-bold text-white mb-1">{card.title}</p>
+                  <p class="text-[13px] sm:text-sm font-bold text-white mb-1">{card.title}</p>
                   <p class:list={['text-xs text-zinc-400 leading-relaxed', card.stream && 'sim-stream-text']}>{card.detail}</p>
                 </div>
               ))}
@@ -300,31 +300,31 @@ const simConfigJson = JSON.stringify({
 
             <pre
               id="simJsonView"
-              class="hidden p-4 border border-white/10 bg-black/85 font-mono text-xs text-[#00E599]/90 leading-relaxed overflow-x-auto whitespace-pre-wrap"
+              class="hidden p-3.5 sm:p-4 border border-white/10 bg-black/85 font-mono text-[11px] sm:text-xs text-[#00E599]/90 leading-relaxed overflow-x-auto whitespace-pre-wrap"
             >{ui.scenarios[0].json}</pre>
           </div>
         </div>
       </div>
 
       <!-- Bottom ROI Comparison & Conversion Strip -->
-      <div class="grid sm:grid-cols-4 border-t swiss-frame divide-y sm:divide-y-0 sm:divide-x divide-white/[0.08] bg-black/70">
-        <div class="px-5 py-4">
+      <div class="grid grid-cols-2 lg:grid-cols-4 border-t swiss-frame bg-black/70">
+        <div class="px-4 sm:px-5 py-3.5 sm:py-4 border-b border-r lg:border-b-0 border-white/[0.08]">
           <p class="font-mono text-[10px] text-zinc-500 uppercase">{ui.manualLabel}</p>
-          <p id="simManualTime" class="text-sm font-mono font-bold text-rose-400 mt-0.5">{ui.scenarios[0].manualTime}</p>
+          <p id="simManualTime" class="text-xs sm:text-sm font-mono font-bold text-rose-400 mt-0.5">{ui.scenarios[0].manualTime}</p>
         </div>
-        <div class="px-5 py-4">
+        <div class="px-4 sm:px-5 py-3.5 sm:py-4 border-b lg:border-b-0 lg:border-r border-white/[0.08]">
           <p class="font-mono text-[10px] text-zinc-500 uppercase">{ui.aiLabel}</p>
-          <p id="simAiTime" class="text-sm font-mono font-bold text-[#00E599] mt-0.5">{ui.scenarios[0].aiTime}</p>
+          <p id="simAiTime" class="text-xs sm:text-sm font-mono font-bold text-[#00E599] mt-0.5">{ui.scenarios[0].aiTime}</p>
         </div>
-        <div class="px-5 py-4">
+        <div class="col-span-2 lg:col-span-1 px-4 sm:px-5 py-3.5 sm:py-4 border-b lg:border-b-0 lg:border-r border-white/[0.08]">
           <p class="font-mono text-[10px] text-zinc-500 uppercase">{ui.savedLabel}</p>
-          <p id="simImpact" class="text-sm font-mono font-bold text-white mt-0.5">{ui.scenarios[0].impact}</p>
+          <p id="simImpact" class="text-xs sm:text-sm font-mono font-bold text-white mt-0.5">{ui.scenarios[0].impact}</p>
         </div>
-        <div class="px-5 py-4 flex items-center justify-end">
+        <div class="col-span-2 lg:col-span-1 px-4 sm:px-5 py-3.5 sm:py-4 flex items-center lg:justify-end">
           <button
             id="simApplyCta"
             type="button"
-            class="text-xs font-mono font-bold text-[#00E599] hover:text-white transition cursor-pointer text-right"
+            class="w-full lg:w-auto text-xs font-mono font-bold text-[#00E599] hover:text-white transition cursor-pointer text-left lg:text-right py-1"
           >
             {ui.cta}
           </button>
@@ -446,7 +446,7 @@ const simConfigJson = JSON.stringify({
         // Highlight preset tab if matching
         root.querySelectorAll('.sim-scenario-btn').forEach((b) => {
           const isAct = b.dataset.simScenario === sc.id;
-          b.className = `sim-scenario-btn px-3.5 py-2 text-xs font-mono font-semibold border transition cursor-pointer ${
+          b.className = `sim-scenario-btn shrink-0 whitespace-nowrap px-3 sm:px-3.5 py-2 text-[11px] sm:text-xs font-mono font-semibold border transition cursor-pointer ${
             isAct ? 'bg-white text-black border-white' : 'bg-transparent border-white/15 text-zinc-400 hover:text-white hover:border-white/35'
           }`;
         });

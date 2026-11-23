@@ -63,63 +63,63 @@ const jsonLd = {
 
   <main class="flex-1">
     <!-- Hero -->
-    <section class="relative overflow-hidden bg-grid-pattern py-16 lg:py-24">
+    <section class="relative overflow-hidden bg-grid-pattern py-10 sm:py-16 lg:py-24">
       <div
         class="absolute -top-24 right-1/4 w-[520px] h-[300px] blur-[120px] rounded-full pointer-events-none opacity-20"
         style={`background: ${product.accentHex};`}
       ></div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-12 gap-12 items-center">
-          <div class="lg:col-span-7 space-y-6">
-            <div class="flex flex-wrap items-center gap-2.5">
-              <span class:list={['px-3 py-1 rounded-full text-xs font-mono font-semibold border', product.accentBgClass, product.accentTextClass, product.accentBorderClass]}>
+        <div class="grid lg:grid-cols-12 gap-8 sm:gap-12 items-center">
+          <div class="lg:col-span-7 space-y-5 sm:space-y-6 min-w-0">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class:list={['px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-semibold border', product.accentBgClass, product.accentTextClass, product.accentBorderClass]}>
                 {copy.badge}
               </span>
-              <span class="text-xs font-mono text-gray-500">{product.packageId}</span>
+              <span class="text-[11px] sm:text-xs font-mono text-gray-500 break-all sm:break-normal">{product.packageId}</span>
             </div>
 
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3.5 sm:gap-4">
               <img
                 src={product.icon}
                 alt={product.name}
                 class:list={[
-                  'w-16 h-16 rounded-2xl bg-black border border-white/15 shrink-0',
+                  'w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-black border border-white/15 shrink-0',
                   product.slug === 'spot' ? 'object-contain p-2' : 'object-cover',
                 ]}
               />
-              <div>
-                <h1 class="text-3xl sm:text-5xl font-bold text-white tracking-tight">{product.name}</h1>
+              <div class="min-w-0">
+                <h1 class="text-2xl sm:text-5xl font-bold text-white tracking-tight break-words">{product.name}</h1>
                 <p class="text-sm sm:text-base text-gray-400 mt-1">{copy.tagline}</p>
               </div>
             </div>
 
-            <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl">{copy.summary}</p>
+            <p class="text-gray-300 text-sm sm:text-lg leading-relaxed max-w-2xl">{copy.summary}</p>
 
             <!-- Highlights -->
-            <div class="grid grid-cols-3 gap-3 max-w-lg">
+            <div class="grid grid-cols-3 gap-2 sm:gap-3 max-w-lg">
               {copy.highlights.map((h) => (
-                <div class="glass-panel rounded-2xl p-3.5 text-center">
-                  <p class="text-lg sm:text-xl font-display font-bold text-white">{h.value}</p>
-                  <p class="text-[11px] text-gray-400 mt-0.5">{h.label}</p>
+                <div class="glass-panel rounded-2xl p-2.5 sm:p-3.5 text-center min-w-0">
+                  <p class="text-base sm:text-xl font-display font-bold text-white truncate">{h.value}</p>
+                  <p class="text-[10px] sm:text-[11px] text-gray-400 mt-0.5 leading-tight">{h.label}</p>
                 </div>
               ))}
             </div>
 
             <!-- CTAs + QR Bridge -->
-            <div class="flex flex-wrap items-center gap-4 pt-2">
+            <div class="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-1 sm:pt-2">
               <a
                 href={product.playStoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-sm transition glow-emerald"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-sm transition glow-emerald"
               >
                 <span>{lang === 'uk' ? 'Завантажити в Google Play' : 'Get it on Google Play'}</span>
                 <span>↗</span>
               </a>
               <a
                 href={product.privacyUrl}
-                class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-white/15 bg-white/[0.03] hover:bg-white/[0.08] text-gray-200 font-semibold text-sm transition"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border border-white/15 bg-white/[0.03] hover:bg-white/[0.08] text-gray-200 font-semibold text-sm transition"
               >
                 <span>{lang === 'uk' ? 'Політика конфіденційності' : 'Privacy Policy'}</span>
               </a>
@@ -139,8 +139,8 @@ const jsonLd = {
             <div
               data-phone-frame
               class:list={[
-                'phone-3d w-full rounded-[2.25rem] overflow-hidden border-2 border-white/15 bg-black shadow-2xl mb-5',
-                product.slug === 'convert' ? 'max-w-[310px] aspect-[9/16]' : 'max-w-[285px] aspect-[9/19]',
+                'phone-3d w-full rounded-[2rem] sm:rounded-[2.25rem] overflow-hidden border-2 border-white/15 bg-black shadow-2xl mb-4 sm:mb-5',
+                product.slug === 'convert' ? 'max-w-[260px] sm:max-w-[310px] aspect-[9/16]' : 'max-w-[235px] sm:max-w-[285px] aspect-[9/19]',
               ]}
             >
               <img
@@ -157,7 +157,7 @@ const jsonLd = {
                   type="button"
                   data-screen-src={s.src}
                   class:list={[
-                    'screen-switch-btn px-3.5 py-1.5 rounded-full text-xs font-mono font-medium border transition cursor-pointer',
+                    'screen-switch-btn px-3.5 py-2 sm:py-1.5 rounded-full text-xs font-mono font-medium border transition cursor-pointer',
                     idx === 0
                       ? 'bg-white/15 border-white/30 text-white'
                       : 'bg-white/[0.03] border-white/10 text-gray-400 hover:text-white',
@@ -173,14 +173,14 @@ const jsonLd = {
     </section>
 
     <!-- Features -->
-    <section class="py-20 border-t border-white/[0.06]">
+    <section class="py-14 sm:py-20 border-t border-white/[0.06]">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8">
+        <h2 class="text-xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 break-words">
           {lang === 'uk' ? 'Ключові можливості та архітектура' : 'Key Capabilities & Architecture'}
         </h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-8 sm:mb-10">
           {copy.features.map((f) => (
-            <div class="glass-panel rounded-2xl p-6">
+            <div class="glass-panel rounded-2xl p-5 sm:p-6">
               <h3 class="text-base font-bold text-white mb-2">{f.title}</h3>
               <p class="text-sm text-gray-400 leading-relaxed">{f.desc}</p>
             </div>
@@ -197,17 +197,17 @@ const jsonLd = {
     </section>
 
     <!-- FAQ -->
-    <section class="py-16 border-t border-white/[0.06] bg-[#0A0C11]">
+    <section class="py-12 sm:py-16 border-t border-white/[0.06] bg-[#0A0C11]">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8 text-center">FAQ</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 text-center">FAQ</h2>
         <div class="space-y-3">
           {copy.faq.map((item) => (
             <details class="group rounded-2xl border border-white/[0.08] bg-white/[0.02] open:border-emerald-500/35">
-              <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer list-none font-semibold text-white text-sm sm:text-base">
+              <summary class="flex items-center justify-between gap-4 px-4 sm:px-6 py-4 cursor-pointer list-none font-semibold text-white text-sm sm:text-base">
                 <span>{item.q}</span>
-                <span class="text-emerald-400 font-mono text-lg transition-transform group-open:rotate-45">+</span>
+                <span class="text-emerald-400 font-mono text-lg shrink-0 transition-transform group-open:rotate-45">+</span>
               </summary>
-              <div class="px-6 pb-4 text-sm text-gray-400 leading-relaxed">{item.a}</div>
+              <div class="px-4 sm:px-6 pb-4 text-sm text-gray-400 leading-relaxed">{item.a}</div>
             </details>
           ))}
         </div>

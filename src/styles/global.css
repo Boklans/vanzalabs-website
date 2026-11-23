@@ -17,13 +17,16 @@
     background-color: #050507;
     color: #F4F4F6;
     color-scheme: dark;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     font-family: var(--font-sans);
     background-color: #050507;
     color: #F4F4F6;
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -187,8 +190,23 @@ html[lang="uk"] .editorial-italic {
   opacity: 1;
 }
 
-.glow-accent {
+@media (hover: none), (pointer: coarse) {
+  .spotlight-card:hover::before {
+    opacity: 0;
+  }
+}
+
+.glow-accent,
+.glow-emerald {
   box-shadow: 0 0 36px -10px rgba(0, 229, 153, 0.45);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .perspective-stage {
@@ -234,18 +252,31 @@ html.lenis body {
 }
 
 /* Privacy policy prose styling */
-.prose-dark h1 { font-size: 1.875rem; font-weight: 800; color: #FFFFFF; margin-bottom: 1.25rem; letter-spacing: -0.025em; }
-.prose-dark h2 { font-size: 1.25rem; font-weight: 700; color: #FFFFFF; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 0.5rem; }
+.prose-dark h1 { font-size: clamp(1.5rem, 4.5vw, 1.875rem); font-weight: 800; color: #FFFFFF; margin-bottom: 1.25rem; letter-spacing: -0.025em; line-height: 1.2; }
+.prose-dark h2 { font-size: clamp(1.1rem, 3.5vw, 1.25rem); font-weight: 700; color: #FFFFFF; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 0.5rem; }
 .prose-dark h3 { font-size: 1.05rem; font-weight: 600; color: #F1F5F9; margin-top: 1.25rem; margin-bottom: 0.5rem; }
-.prose-dark p { margin-bottom: 1rem; line-height: 1.7; color: #9CA3AF; font-size: 0.95rem; }
+.prose-dark p { margin-bottom: 1rem; line-height: 1.7; color: #9CA3AF; font-size: 0.95rem; overflow-wrap: anywhere; }
 .prose-dark strong { color: #F8FAFC; }
-.prose-dark ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: #9CA3AF; font-size: 0.95rem; }
-.prose-dark li { margin-bottom: 0.35rem; }
+.prose-dark ul { list-style-type: disc; padding-left: 1.35rem; margin-bottom: 1rem; color: #9CA3AF; font-size: 0.95rem; }
+.prose-dark li { margin-bottom: 0.35rem; overflow-wrap: anywhere; }
 .prose-dark table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
 .prose-dark th { background-color: #11131A; color: #F1F5F9; font-weight: 700; text-align: left; padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); }
 .prose-dark td { padding: 0.75rem 1rem; border: 1px solid rgba(255, 255, 255, 0.08); color: #9CA3AF; }
-.prose-dark a { color: #00E599; text-decoration: underline; }
-.prose-dark code { background: #11131A; color: #6EE7B7; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.85em; font-family: var(--font-mono); }
+.prose-dark a { color: #00E599; text-decoration: underline; word-break: break-word; }
+.prose-dark code { background: #11131A; color: #6EE7B7; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.85em; font-family: var(--font-mono); word-break: break-word; }
+
+@media (max-width: 639px) {
+  .prose-dark table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .prose-dark th,
+  .prose-dark td {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

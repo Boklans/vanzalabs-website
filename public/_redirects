@@ -7,3 +7,5 @@
 /convert.html /convert 301
 /invoices.html /invoices 301
 /spot.html /spot 301
+/blog.html /blog/ 301
+/sitemap.xml /sitemap-index.xml 301

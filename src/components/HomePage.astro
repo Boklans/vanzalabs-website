@@ -32,25 +32,25 @@ const t = homeCopy[lang];
   <ScopeEstimator lang={lang} />
 
   <!-- 5. ZERO-RISK 48-HOUR FREE TECHNICAL BLUEPRINT OFFER (SWISS ARCHITECTURAL GRID) -->
-  <section class="py-20 border-t swiss-frame bg-[#050507]">
+  <section class="py-14 sm:py-20 border-t swiss-frame bg-[#050507]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div data-reveal class="swiss-cell crosshair spotlight-card border p-7 sm:p-10 lg:p-14">
-        <div class="max-w-3xl mb-10">
-          <span class="inline-flex items-center gap-2 px-3 py-1 border border-[#00E599]/35 bg-[#00E599]/10 text-[#00E599] font-mono text-[11px] uppercase tracking-[0.14em] mb-5">
+      <div data-reveal class="swiss-cell crosshair spotlight-card border p-5 sm:p-10 lg:p-14">
+        <div class="max-w-3xl mb-7 sm:mb-10">
+          <span class="inline-flex items-center gap-2 px-3 py-1 border border-[#00E599]/35 bg-[#00E599]/10 text-[#00E599] font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.14em] mb-4 sm:mb-5">
             <span class="w-1.5 h-1.5 rounded-full bg-[#00E599]"></span>
             {t.blueprintOffer.badge}
           </span>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-[-0.03em] leading-[1.05] mb-4">
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-[-0.03em] leading-[1.08] sm:leading-[1.05] mb-3.5 sm:mb-4 break-words">
             {t.blueprintOffer.title}
           </h2>
-          <p class="text-zinc-400 text-base leading-relaxed">{t.blueprintOffer.desc}</p>
+          <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">{t.blueprintOffer.desc}</p>
         </div>
 
-        <div data-stagger-group class="grid md:grid-cols-3 border swiss-frame divide-y md:divide-y-0 md:divide-x divide-white/[0.08] bg-black/50 mb-10">
+        <div data-stagger-group class="grid md:grid-cols-3 border swiss-frame divide-y md:divide-y-0 md:divide-x divide-white/[0.08] bg-black/50 mb-7 sm:mb-10">
           {t.blueprintOffer.deliverables.map((d) => (
-            <div data-stagger-item class="p-6">
-              <span class="font-mono text-xs font-bold text-[#00E599] block mb-3">{d.num} //</span>
-              <h3 class="text-base font-display font-bold text-white mb-2">{d.title}</h3>
+            <div data-stagger-item class="p-5 sm:p-6">
+              <span class="font-mono text-xs font-bold text-[#00E599] block mb-2.5 sm:mb-3">{d.num} //</span>
+              <h3 class="text-base font-display font-bold text-white mb-1.5 sm:mb-2">{d.title}</h3>
               <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">{d.desc}</p>
             </div>
           ))}
@@ -59,7 +59,7 @@ const t = homeCopy[lang];
         <button
           type="button"
           data-prefill-service="blueprint"
-          class="prefill-cta magnetic-btn inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-sm sm:text-base transition-colors cursor-pointer"
+          class="prefill-cta magnetic-btn w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-4 rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-sm sm:text-base transition-colors cursor-pointer"
         >
           <span>{t.blueprintOffer.cta}</span>
         </button>
@@ -68,27 +68,27 @@ const t = homeCopy[lang];
   </section>
 
   <!-- 6. ENGAGEMENT MODELS (EXPOSED 1PX SWISS GRID) -->
-  <section id="services" class="py-20 lg:py-24 border-t swiss-frame bg-[#07080B]">
+  <section id="services" class="py-14 sm:py-20 lg:py-24 border-t swiss-frame bg-[#07080B]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div data-reveal class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-12">
+      <div data-reveal class="flex flex-col lg:flex-row lg:items-end justify-between gap-3 sm:gap-4 mb-8 sm:mb-12">
         <div>
           <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#00E599] mb-2">04 // {t.services.eyebrow}</p>
-          <h2 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-[-0.03em]">{t.services.title}</h2>
+          <h2 class="text-2xl sm:text-4xl font-display font-bold text-white tracking-[-0.03em] break-words">{t.services.title}</h2>
         </div>
         <p class="text-zinc-400 text-sm max-w-md">{t.services.subtitle}</p>
       </div>
 
       <div data-stagger-group class="grid md:grid-cols-3 border swiss-frame divide-y md:divide-y-0 md:divide-x divide-white/[0.08]">
         {t.services.items.map((svc) => (
-          <div data-stagger-item class="swiss-cell spotlight-card p-8 flex flex-col justify-between hover:bg-white/[0.03] transition">
+          <div data-stagger-item class="swiss-cell spotlight-card p-6 sm:p-8 flex flex-col justify-between hover:bg-white/[0.03] transition">
             <div>
-              <div class="flex items-center justify-between mb-6 font-mono text-[11px]">
+              <div class="flex items-center justify-between gap-2 mb-5 sm:mb-6 font-mono text-[11px]">
                 <span class="text-[#00E599] font-semibold">{svc.num} // {svc.tag}</span>
-                <span class="px-2.5 py-0.5 border border-white/10 text-zinc-300">{svc.timeline}</span>
+                <span class="px-2.5 py-0.5 border border-white/10 text-zinc-300 shrink-0">{svc.timeline}</span>
               </div>
-              <h3 class="text-xl font-display font-bold text-white mb-3">{svc.title}</h3>
-              <p class="text-sm text-zinc-400 leading-relaxed mb-6">{svc.desc}</p>
-              <ul class="space-y-2.5 text-sm text-zinc-300 mb-8">
+              <h3 class="text-lg sm:text-xl font-display font-bold text-white mb-2.5 sm:mb-3">{svc.title}</h3>
+              <p class="text-sm text-zinc-400 leading-relaxed mb-5 sm:mb-6">{svc.desc}</p>
+              <ul class="space-y-2.5 text-sm text-zinc-300 mb-6 sm:mb-8">
                 {svc.bullets.map((b) => (
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#00E599] font-mono font-bold mt-0.5">+</span>
@@ -98,7 +98,7 @@ const t = homeCopy[lang];
               </ul>
             </div>
 
-            <div class="pt-5 border-t swiss-frame flex items-center justify-between gap-3">
+            <div class="pt-4 sm:pt-5 border-t swiss-frame flex flex-wrap items-center justify-between gap-3">
               <span class="text-xs font-mono text-zinc-500">{svc.model}</span>
               <button
                 type="button"
@@ -115,23 +115,23 @@ const t = homeCopy[lang];
   </section>
 
   <!-- 7. VANZALABS R&D LAB (REFRAMED 4 LIVE APPS) -->
-  <section id="lab" class="py-20 lg:py-28 border-t border-white/[0.06]">
+  <section id="lab" class="py-14 sm:py-20 lg:py-28 border-t border-white/[0.06]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div data-reveal class="max-w-2xl mb-10">
-        <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3">{t.lab.eyebrow}</p>
-        <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{t.lab.title}</h2>
-        <p class="text-gray-400 text-base leading-relaxed">{t.lab.subtitle}</p>
+      <div data-reveal class="max-w-2xl mb-8 sm:mb-10">
+        <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-2.5 sm:mb-3">{t.lab.eyebrow}</p>
+        <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight mb-3 break-words">{t.lab.title}</h2>
+        <p class="text-gray-400 text-sm sm:text-base leading-relaxed">{t.lab.subtitle}</p>
       </div>
 
       <!-- Compact 4-App Selector -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 mb-5 sm:mb-6">
         {products.map((p, idx) => (
           <button
             type="button"
             data-showcase-tab={p.slug}
             aria-pressed={idx === 0 ? 'true' : 'false'}
             class:list={[
-              'showcase-tab text-left p-3.5 rounded-2xl border transition cursor-pointer flex items-center gap-3',
+              'showcase-tab text-left p-2.5 sm:p-3.5 rounded-2xl border transition cursor-pointer flex items-center gap-2.5 sm:gap-3',
               idx === 0
                 ? 'bg-[#121722] border-emerald-400/50 text-white shadow-lg'
                 : 'bg-white/[0.02] border-white/[0.08] text-gray-400 hover:border-white/20 hover:text-white',
@@ -141,14 +141,14 @@ const t = homeCopy[lang];
               src={p.icon}
               alt={p.shortName}
               class:list={[
-                'w-10 h-10 rounded-xl shrink-0 bg-black border border-white/10',
+                'w-9 h-9 sm:w-10 sm:h-10 rounded-xl shrink-0 bg-black border border-white/10',
                 p.slug === 'spot' ? 'object-contain p-1.5' : 'object-cover',
               ]}
               loading="lazy"
             />
             <div class="min-w-0">
-              <p class="font-display font-bold text-sm truncate text-white">{p.shortName}</p>
-              <p class="text-[11px] text-gray-400 truncate">{p[lang].badge.split('·')[1]?.trim() || p.category}</p>
+              <p class="font-display font-bold text-xs sm:text-sm truncate text-white">{p.shortName}</p>
+              <p class="text-[10px] sm:text-[11px] text-gray-400 truncate">{p[lang].badge.split('·')[1]?.trim() || p.category}</p>
             </div>
           </button>
         ))}
@@ -161,25 +161,25 @@ const t = homeCopy[lang];
           <div
             data-showcase-panel={p.slug}
             class:list={[
-              'showcase-panel glass-panel spotlight-card rounded-3xl p-6 sm:p-8 lg:p-10 relative overflow-hidden',
+              'showcase-panel glass-panel spotlight-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 relative overflow-hidden',
               idx !== 0 && 'hidden',
             ]}
           >
-            <div class="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
-              <div class="lg:col-span-7 space-y-5">
+            <div class="grid lg:grid-cols-12 gap-7 sm:gap-8 lg:gap-10 items-center relative z-10">
+              <div class="lg:col-span-7 space-y-4 sm:space-y-5 min-w-0">
                 <div class="flex flex-wrap items-center gap-2">
-                  <span class:list={['px-3 py-1 rounded-full text-xs font-mono font-semibold border', p.accentBgClass, p.accentTextClass, p.accentBorderClass]}>
+                  <span class:list={['px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-semibold border', p.accentBgClass, p.accentTextClass, p.accentBorderClass]}>
                     {copy.badge}
                   </span>
-                  <span class="px-2.5 py-1 rounded-full bg-white/5 text-gray-400 text-xs font-mono">{p.packageId}</span>
+                  <span class="px-2.5 py-1 rounded-full bg-white/5 text-gray-400 text-[11px] sm:text-xs font-mono max-w-full truncate">{p.packageId}</span>
                 </div>
 
                 <div>
-                  <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2">{p.name}</h3>
+                  <h3 class="text-xl sm:text-3xl font-bold text-white tracking-tight mb-2">{p.name}</h3>
                   <p class="text-gray-300 text-sm sm:text-base leading-relaxed">{copy.summary}</p>
                 </div>
 
-                <div class="grid sm:grid-cols-2 gap-3">
+                <div class="grid sm:grid-cols-2 gap-2.5 sm:gap-3">
                   {copy.features.map((f) => (
                     <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
                       <p class="text-xs font-bold text-white mb-1">{f.title}</p>
@@ -194,10 +194,10 @@ const t = homeCopy[lang];
                   ))}
                 </div>
 
-                <div class="flex flex-wrap items-center gap-3 pt-2">
+                <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-2">
                   <a
                     href={lang === 'uk' ? `/uk/${p.slug}` : `/${p.slug}`}
-                    class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold transition"
+                    class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold transition"
                   >
                     <span>{t.lab.visitProduct}</span>
                     <span>↗</span>
@@ -206,7 +206,7 @@ const t = homeCopy[lang];
                     href={p.playStoreUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-white/15 hover:border-white/30 text-gray-200 text-xs font-semibold transition"
+                    class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 rounded-xl border border-white/15 hover:border-white/30 text-gray-200 text-xs font-semibold transition"
                   >
                     <span>Google Play ↗</span>
                   </a>
@@ -214,7 +214,7 @@ const t = homeCopy[lang];
                     type="button"
                     data-prefill-service="mobile"
                     data-prefill-product={p.shortName}
-                    class="prefill-cta inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 text-xs font-bold transition cursor-pointer"
+                    class="prefill-cta w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 text-xs font-bold transition cursor-pointer"
                   >
                     <span>{t.lab.buildSimilar}</span>
                     <span>→</span>
@@ -226,8 +226,8 @@ const t = homeCopy[lang];
                 <div
                   data-phone-frame
                   class:list={[
-                    'phone-3d w-full rounded-[2rem] overflow-hidden border border-white/15 bg-black shadow-2xl',
-                    p.slug === 'convert' ? 'max-w-[290px] aspect-[9/16]' : 'max-w-[260px] aspect-[9/19]',
+                    'phone-3d w-full rounded-[1.85rem] sm:rounded-[2rem] overflow-hidden border border-white/15 bg-black shadow-2xl',
+                    p.slug === 'convert' ? 'max-w-[240px] sm:max-w-[290px] aspect-[9/16]' : 'max-w-[220px] sm:max-w-[260px] aspect-[9/19]',
                   ]}
                 >
                   <img
@@ -247,28 +247,28 @@ const t = homeCopy[lang];
   </section>
 
   <!-- 8. FOUNDERS & CORE STACK -->
-  <section id="founders" class="py-20 lg:py-28 border-t border-white/[0.06] bg-[#0A0C11]">
+  <section id="founders" class="py-14 sm:py-20 lg:py-28 border-t border-white/[0.06] bg-[#0A0C11]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-12 gap-12 items-start mb-16">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12 lg:mb-16">
         <div data-reveal class="lg:col-span-5">
-          <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3">{t.founders.eyebrow}</p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">{t.founders.title}</h2>
-          <p class="text-gray-400 text-base leading-relaxed">{t.founders.subtitle}</p>
+          <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-2.5 sm:mb-3">{t.founders.eyebrow}</p>
+          <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight mb-3.5 sm:mb-4 break-words">{t.founders.title}</h2>
+          <p class="text-gray-400 text-sm sm:text-base leading-relaxed">{t.founders.subtitle}</p>
         </div>
 
-        <div data-stagger-group class="lg:col-span-7 grid sm:grid-cols-2 gap-5">
+        <div data-stagger-group class="lg:col-span-7 grid sm:grid-cols-2 gap-4 sm:gap-5">
           {t.founders.people.map((person) => (
-            <div data-stagger-item class="glass-panel spotlight-card rounded-3xl p-6 flex flex-col">
+            <div data-stagger-item class="glass-panel spotlight-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 flex flex-col">
               <div class="flex items-center gap-4 mb-4">
                 <img
                   src={person.img}
                   alt={person.name}
                   loading="lazy"
                   decoding="async"
-                  class="w-16 h-16 rounded-2xl object-cover object-top border border-white/15 shrink-0"
+                  class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover object-top border border-white/15 shrink-0"
                 />
-                <div>
-                  <h3 class="text-lg font-bold text-white">{person.name}</h3>
+                <div class="min-w-0">
+                  <h3 class="text-base sm:text-lg font-bold text-white">{person.name}</h3>
                   <p class="text-xs font-mono text-emerald-400">{person.role}</p>
                 </div>
               </div>
@@ -278,11 +278,11 @@ const t = homeCopy[lang];
         </div>
       </div>
 
-      <div class="pt-12 border-t border-white/[0.06]">
-        <p class="font-mono text-xs uppercase tracking-widest text-gray-500 mb-6">{t.founders.stackTitle}</p>
-        <div data-stagger-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="pt-10 sm:pt-12 border-t border-white/[0.06]">
+        <p class="font-mono text-xs uppercase tracking-widest text-gray-500 mb-5 sm:mb-6">{t.founders.stackTitle}</p>
+        <div data-stagger-group class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {t.founders.stackGroups.map((group) => (
-            <div data-stagger-item class="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+            <div data-stagger-item class="p-4 sm:p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
               <p class="text-xs font-semibold text-white mb-3">{group.label}</p>
               <div class="flex flex-wrap gap-1.5">
                 {group.items.map((tech) => (
@@ -297,21 +297,21 @@ const t = homeCopy[lang];
   </section>
 
   <!-- 9. FAQ -->
-  <section id="faq" class="py-20 border-t border-white/[0.06]">
+  <section id="faq" class="py-14 sm:py-20 border-t border-white/[0.06]">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div data-reveal class="text-center mb-12">
-        <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3">{t.faq.eyebrow}</p>
-        <h2 class="text-3xl sm:text-4xl font-bold text-white">{t.faq.title}</h2>
+      <div data-reveal class="text-center mb-8 sm:mb-12">
+        <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-2.5 sm:mb-3">{t.faq.eyebrow}</p>
+        <h2 class="text-2xl sm:text-4xl font-bold text-white break-words">{t.faq.title}</h2>
       </div>
 
       <div class="space-y-3">
         {t.faq.items.map((item) => (
           <details class="group rounded-2xl border border-white/[0.08] bg-white/[0.02] open:border-emerald-500/35 transition">
-            <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none font-semibold text-white text-sm sm:text-base">
+            <summary class="flex items-center justify-between gap-4 px-4 sm:px-6 py-4 sm:py-5 cursor-pointer list-none font-semibold text-white text-sm sm:text-base">
               <span>{item.q}</span>
-              <span class="text-emerald-400 font-mono text-lg transition-transform group-open:rotate-45">+</span>
+              <span class="text-emerald-400 font-mono text-lg shrink-0 transition-transform group-open:rotate-45">+</span>
             </summary>
-            <div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">{item.a}</div>
+            <div class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm text-gray-400 leading-relaxed">{item.a}</div>
           </details>
         ))}
       </div>
@@ -319,39 +319,39 @@ const t = homeCopy[lang];
   </section>
 
   <!-- 10. CONTACT / FREE 48H BLUEPRINT FORM -->
-  <section id="contact" class="py-20 lg:py-28 border-t border-white/[0.06] bg-[#0A0C11] relative overflow-hidden">
+  <section id="contact" class="py-14 sm:py-20 lg:py-28 border-t border-white/[0.06] bg-[#0A0C11] relative overflow-hidden">
     <div class="absolute bottom-0 right-0 w-[560px] h-[360px] bg-emerald-500/12 blur-[120px] rounded-full pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-12 gap-12 items-start">
-        <div data-reveal class="lg:col-span-5 space-y-6">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div data-reveal class="lg:col-span-5 space-y-5 sm:space-y-6">
           <p class="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-400">{t.contact.eyebrow}</p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">{t.contact.title}</h2>
-          <p class="text-gray-400 text-base leading-relaxed">{t.contact.subtitle}</p>
+          <h2 class="text-2xl sm:text-4xl font-bold text-white leading-tight break-words">{t.contact.title}</h2>
+          <p class="text-gray-400 text-sm sm:text-base leading-relaxed">{t.contact.subtitle}</p>
 
-          <ul class="space-y-3 text-sm text-gray-300">
+          <ul class="space-y-2.5 sm:space-y-3 text-sm text-gray-300">
             {t.contact.perks.map((perk) => (
-              <li class="flex items-center gap-2.5">
-                <span class="text-emerald-400 font-bold">✓</span>
+              <li class="flex items-start gap-2.5">
+                <span class="text-emerald-400 font-bold shrink-0">✓</span>
                 <span>{perk}</span>
               </li>
             ))}
           </ul>
 
-          <div class="pt-6 border-t border-white/10 space-y-3">
+          <div class="pt-5 sm:pt-6 border-t border-white/10 space-y-3">
             <p class="text-xs font-mono text-gray-500 uppercase tracking-wider">{t.contact.directLabel}</p>
-            <div class="flex flex-wrap gap-3">
+            <div class="flex flex-col sm:flex-row sm:flex-wrap gap-2.5 sm:gap-3">
               <a
                 href={siteConfig.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#229ED9]/20 hover:bg-[#229ED9]/30 border border-[#229ED9]/40 text-sky-300 text-sm font-semibold transition"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 sm:py-2.5 rounded-xl bg-[#229ED9]/20 hover:bg-[#229ED9]/30 border border-[#229ED9]/40 text-sky-300 text-sm font-semibold transition"
               >
                 <span>{t.contact.telegramCta} ({siteConfig.telegramHandle})</span>
               </a>
               <a
                 href={`mailto:${siteConfig.email}`}
-                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 text-sm font-medium transition"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 sm:py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 text-sm font-medium transition"
               >
                 <span>{siteConfig.email}</span>
               </a>
@@ -359,7 +359,7 @@ const t = homeCopy[lang];
           </div>
         </div>
 
-        <div class="lg:col-span-7 glass-panel spotlight-card rounded-3xl p-6 sm:p-8">
+        <div class="lg:col-span-7 glass-panel spotlight-card rounded-2xl sm:rounded-3xl p-5 sm:p-8">
           <form
             id="contactForm"
             action={siteConfig.formspreeAction}
@@ -378,7 +378,7 @@ const t = homeCopy[lang];
                   name="name"
                   required
                   placeholder={t.contact.form.namePh}
-                  class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-sm"
+                  class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-base sm:text-sm"
                 />
               </div>
               <div>
@@ -389,7 +389,7 @@ const t = homeCopy[lang];
                   name="email"
                   required
                   placeholder={t.contact.form.emailPh}
-                  class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-sm"
+                  class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-base sm:text-sm"
                 />
               </div>
             </div>
@@ -402,7 +402,7 @@ const t = homeCopy[lang];
                   type="text"
                   name="company"
                   placeholder={t.contact.form.companyPh}
-                  class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-sm"
+                  class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-base sm:text-sm"
                 />
               </div>
               <div>
@@ -411,7 +411,7 @@ const t = homeCopy[lang];
                   id="f-service"
                   name="service"
                   required
-                  class="w-full px-4 py-3 rounded-xl bg-[#0B0E14] border border-white/10 text-white focus:border-emerald-400 focus:outline-none text-sm"
+                  class="w-full px-4 py-3 rounded-xl bg-[#0B0E14] border border-white/10 text-white focus:border-emerald-400 focus:outline-none text-base sm:text-sm"
                 >
                   <option value="">{t.contact.form.servicePlaceholder}</option>
                   {t.contact.form.options.map((opt) => (
@@ -426,10 +426,10 @@ const t = homeCopy[lang];
               <textarea
                 id="f-message"
                 name="message"
-                rows="5"
+                rows="4"
                 required
                 placeholder={t.contact.form.messagePh}
-                class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-sm resize-y"
+                class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:border-emerald-400 focus:outline-none text-base sm:text-sm resize-y"
               ></textarea>
             </div>
 
@@ -479,7 +479,7 @@ const t = homeCopy[lang];
           document.querySelectorAll('.showcase-tab').forEach((b) => {
             const active = b.dataset.showcaseTab === slug;
             b.setAttribute('aria-pressed', String(active));
-            b.className = `showcase-tab text-left p-3.5 rounded-2xl border transition cursor-pointer flex items-center gap-3 ${
+            b.className = `showcase-tab text-left p-2.5 sm:p-3.5 rounded-2xl border transition cursor-pointer flex items-center gap-2.5 sm:gap-3 ${
               active
                 ? 'bg-[#121722] border-[#00E599]/50 text-white shadow-lg'
                 : 'bg-white/[0.02] border-white/[0.08] text-zinc-400 hover:border-white/20 hover:text-white'

@@ -10,34 +10,39 @@ const t = homeCopy[lang].hero;
 ---
 
 <section data-hero-section class="relative overflow-hidden border-b swiss-frame">
-  <!-- Restrained Real-Time WebGL Topographic Silk-Light Shader with subtle atmospheric softness -->
-  <canvas id="heroWebglCanvas" class="absolute inset-0 w-full h-full pointer-events-none blur-[1px]" aria-hidden="true"></canvas>
+  <!-- Restrained Real-Time WebGL Topographic Silk-Light Shader with subtle luminous emerald lines -->
+  <canvas id="heroWebglCanvas" class="absolute inset-0 w-full h-full pointer-events-none blur-[0.6px]" aria-hidden="true"></canvas>
 
   <!-- Subtle dark reading scrim behind editorial headline -->
-  <div class="absolute inset-0 bg-gradient-to-b from-[#050507]/35 via-[#050507]/20 to-[#050507]/80 pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-[#050507]/30 via-[#050507]/14 to-[#050507]/78 pointer-events-none" aria-hidden="true"></div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="border-x swiss-frame min-h-[calc(100vh-8.25rem)] flex flex-col justify-between py-10 sm:py-14 lg:py-16 px-5 sm:px-8 lg:px-14">
+  <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
+    <div class="border-x swiss-frame min-h-[calc(100svh-7.25rem)] sm:min-h-[calc(100vh-8.25rem)] flex flex-col justify-between py-7 sm:py-14 lg:py-16 px-4 sm:px-8 lg:px-14">
       <!-- Top Metadata Strip -->
       <div
         data-hero-animate
-        class="flex items-center justify-between gap-4 pb-6 border-b swiss-frame font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-400"
+        class="flex items-center justify-between gap-3 pb-4 sm:pb-6 border-b swiss-frame font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.12em] sm:tracking-[0.16em] text-zinc-400"
       >
-        <span class="inline-flex items-center gap-2.5 text-zinc-300">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#00E599]"></span>
+        <span class="inline-flex items-center gap-2 text-zinc-300 leading-snug">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#00E599] shrink-0"></span>
           <span>{t.badge}</span>
         </span>
-        <span class="hidden sm:inline text-zinc-500">UKRAINE · WORLDWIDE</span>
+        <span class="hidden sm:inline text-zinc-500 shrink-0">UKRAINE · WORLDWIDE</span>
       </div>
 
       <!-- Centerpiece Monumental Editorial Typography -->
-      <div class="my-auto py-10 sm:py-12 lg:py-14 min-h-[200px] sm:min-h-[250px] lg:min-h-[280px] flex items-center">
+      <div class="my-auto py-8 sm:py-12 lg:py-14 min-h-[160px] sm:min-h-[250px] lg:min-h-[280px] flex items-center">
         <h1
           data-hero-animate
-          class="font-display font-extrabold tracking-[-0.04em] leading-[1.03] text-white max-w-5xl text-[clamp(2.65rem,6vw,5.65rem)]"
+          class:list={[
+            'font-display font-extrabold tracking-[-0.04em] leading-[1.06] sm:leading-[1.03] text-white max-w-5xl break-words',
+            lang === 'uk'
+              ? 'text-[clamp(1.85rem,7.2vw,5.2rem)]'
+              : 'text-[clamp(2.15rem,7.6vw,5.65rem)]',
+          ]}
         >
           <span class="text-gradient-metallic">{t.titleStart}</span><br />
-          <span class="editorial-italic text-[#00E599] font-normal text-[1.16em] pr-1">{t.titleHighlight}</span>{' '}
+          <span class="editorial-italic text-[#00E599] font-normal text-[1.14em] sm:text-[1.16em] pr-1">{t.titleHighlight}</span>{' '}
           <span class="text-white">{t.titleEnd}</span>
         </h1>
       </div>
@@ -45,24 +50,24 @@ const t = homeCopy[lang].hero;
       <!-- Bottom Split Row: Vertically Centered Subtitle + Crisp Aligned CTAs -->
       <div
         data-hero-animate
-        class="pt-7 border-t swiss-frame grid lg:grid-cols-12 gap-6 lg:gap-8 items-center"
+        class="pt-5 sm:pt-7 border-t swiss-frame grid lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-center"
       >
-        <p class="lg:col-span-6 text-zinc-300/90 text-base sm:text-[17px] leading-relaxed max-w-xl m-0">
+        <p class="lg:col-span-6 text-zinc-300/90 text-[15px] sm:text-[17px] leading-relaxed max-w-xl m-0">
           {t.subtitle}
         </p>
 
-        <div class="lg:col-span-6 flex flex-wrap lg:justify-end items-center gap-3.5">
+        <div class="lg:col-span-6 flex flex-col sm:flex-row sm:flex-wrap lg:justify-end items-stretch sm:items-center gap-3 sm:gap-3.5">
           <a
             href="#contact"
             data-prefill-service="blueprint"
-            class="prefill-cta magnetic-btn inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-sm sm:text-[15px] leading-none transition-colors duration-200 whitespace-nowrap"
+            class="prefill-cta magnetic-btn w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-sm sm:text-[15px] leading-none transition-colors duration-200 whitespace-nowrap"
           >
             <span>{t.primaryCta}</span>
             <span aria-hidden="true">→</span>
           </a>
           <a
             href="#estimator"
-            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-white/15 bg-black/45 hover:bg-white/[0.08] backdrop-blur-md text-zinc-100 font-semibold text-sm sm:text-[15px] leading-none transition whitespace-nowrap"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-white/15 bg-black/45 hover:bg-white/[0.08] backdrop-blur-md text-zinc-100 font-semibold text-sm sm:text-[15px] leading-none transition whitespace-nowrap"
           >
             <span>{t.secondaryCta}</span>
           </a>

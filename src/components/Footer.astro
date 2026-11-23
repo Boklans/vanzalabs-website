@@ -12,9 +12,9 @@ const nav = homeCopy[lang].nav;
 const homeBase = lang === 'uk' ? '/uk' : '/';
 ---
 
-<footer class="border-t border-white/[0.06] bg-[#050608] text-gray-400 pt-16 pb-10 mt-auto">
+<footer class="border-t border-white/[0.06] bg-[#050608] text-gray-400 pt-12 sm:pt-16 pb-8 sm:pb-10 mt-auto">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-12">
       <div class="col-span-2 md:col-span-1">
         <a href={homeBase} class="inline-block mb-4">
           <img src="/images/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="h-4 w-auto" loading="lazy" />
@@ -46,17 +46,17 @@ const homeBase = lang === 'uk' ? '/uk' : '/';
         </ul>
       </div>
 
-      <div>
+      <div class="col-span-2 md:col-span-1">
         <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-gray-500 mb-4">{t.contactTitle}</h4>
         <ul class="space-y-2.5 text-sm mb-4">
           <li><a href={siteConfig.phoneHref} class="hover:text-emerald-400 transition">{siteConfig.phone}</a></li>
           <li><a href={siteConfig.telegram} target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition">Telegram: {siteConfig.telegramHandle}</a></li>
-          <li><a href={`mailto:${siteConfig.email}`} class="hover:text-emerald-400 transition">{siteConfig.email}</a></li>
+          <li><a href={`mailto:${siteConfig.email}`} class="hover:text-emerald-400 transition break-all">{siteConfig.email}</a></li>
         </ul>
-        <div class="flex items-center gap-2.5 text-xs font-mono">
-          <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition">LinkedIn</a>
-          <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition">IG</a>
-          <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition">WA</a>
+        <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+          <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition">LinkedIn</a>
+          <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition">IG</a>
+          <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 transition">WA</a>
         </div>
       </div>
     </div>

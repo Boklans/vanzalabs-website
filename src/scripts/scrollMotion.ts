@@ -24,22 +24,36 @@ function initMobileMenu() {
   const menu = document.getElementById('mobileMenu');
   if (!btn || !menu) return;
 
+  const iconOpen = btn.querySelector<SVGElement>('[data-menu-icon="open"]');
+  const iconClose = btn.querySelector<SVGElement>('[data-menu-icon="close"]');
+
+  const syncState = (isOpen: boolean) => {
+    menu.classList.toggle('hidden', !isOpen);
+    btn.setAttribute('aria-expanded', String(isOpen));
+    iconOpen?.classList.toggle('hidden', isOpen);
+    iconClose?.classList.toggle('hidden', !isOpen);
+  };
+
   const onToggle = () => {
-    const hidden = menu.classList.toggle('hidden');
-    btn.setAttribute('aria-expanded', String(!hidden));
+    syncState(menu.classList.contains('hidden'));
   };
   btn.addEventListener('click', onToggle);
 
   const links = menu.querySelectorAll('.mobile-nav-link');
-  const onLink = () => {
-    menu.classList.add('hidden');
-    btn.setAttribute('aria-expanded', 'false');
-  };
+  const onLink = () => syncState(false);
   links.forEach((l) => l.addEventListener('click', onLink));
+
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+      syncState(false);
+    }
+  };
+  window.addEventListener('keydown', onKeyDown);
 
   activeCleanupFns.push(() => {
     btn.removeEventListener('click', onToggle);
     links.forEach((l) => l.removeEventListener('click', onLink));
+    window.removeEventListener('keydown', onKeyDown);
   });
 }
 
@@ -172,14 +186,20 @@ function initCommandPalette(scrollToHash: (hash: string) => void) {
   });
 }
 
-function initScrollStory() {
+function initScrollStory(getLenis: () => Lenis | null) {
   const track = document.getElementById('scrollStoryTrack');
   if (!track) return;
 
   const stepCards = track.querySelectorAll<HTMLElement>('.story-step-card');
   const stagePanes = track.querySelectorAll<HTMLElement>('.story-stage-pane');
   const railFill = document.getElementById('storyRailFill');
+  const mobileMeta = document.getElementById('storyMobileMeta');
+  const mobileTitle = document.getElementById('storyMobileTitle');
+  const mobileDesc = document.getElementById('storyMobileDesc');
+  const total = stepCards.length;
   let currentIdx = -1;
+  let activeSt: ScrollTrigger | null = null;
+  let lockedUntil = 0;
 
   const setVisualStep = (idx: number) => {
     if (idx === currentIdx) return;
@@ -187,6 +207,7 @@ function initScrollStory() {
 
     stepCards.forEach((card, i) => {
       const active = i === idx;
+      card.setAttribute('aria-pressed', String(active));
       card.classList.toggle('bg-white/[0.05]', active);
       card.classList.toggle('border-[#00E599]/50', active);
       card.classList.toggle('opacity-100', active);
@@ -195,24 +216,81 @@ function initScrollStory() {
       card.classList.toggle('opacity-45', !active);
     });
 
+    const activeCard = stepCards[idx];
+    if (activeCard) {
+      if (mobileMeta) mobileMeta.textContent = `${activeCard.dataset.stepTag || ''} · ${activeCard.dataset.stepTime || ''}`;
+      if (mobileTitle) mobileTitle.textContent = activeCard.dataset.stepTitle || '';
+      if (mobileDesc) mobileDesc.textContent = activeCard.dataset.stepDesc || '';
+    }
+
     stagePanes.forEach((pane, i) => {
       const active = i === idx;
-      pane.style.clipPath = active ? 'inset(0% 0% 0% 0%)' : 'inset(8% 0% 8% 0%)';
+      pane.style.clipPath = active ? 'inset(0% 0% 0% 0%)' : 'inset(6% 0% 6% 0%)';
       pane.classList.toggle('opacity-100', active);
       pane.classList.toggle('scale-100', active);
       pane.classList.toggle('opacity-0', !active);
       pane.classList.toggle('scale-[0.97]', !active);
       pane.classList.toggle('pointer-events-none', !active);
+      pane.setAttribute('aria-hidden', String(!active));
     });
   };
 
+  const unlockOnUserScroll = () => {
+    lockedUntil = 0;
+  };
+  window.addEventListener('wheel', unlockOnUserScroll, { passive: true });
+  window.addEventListener('touchstart', unlockOnUserScroll, { passive: true });
+  activeCleanupFns.push(() => {
+    window.removeEventListener('wheel', unlockOnUserScroll);
+    window.removeEventListener('touchstart', unlockOnUserScroll);
+  });
+
   stepCards.forEach((card, idx) => {
-    card.addEventListener('click', () => {
+    const onCardClick = () => {
       setVisualStep(idx);
+      const targetProgress =
+        total <= 1 ? 0 : idx === 0 ? 0.04 : idx === total - 1 ? 0.9 : (idx + 0.35) / total;
+
       if (railFill) {
-        railFill.style.transform = `scaleY(${(idx + 1) / stepCards.length})`;
+        railFill.style.transform = `scaleY(${Math.max(0.06, targetProgress)})`;
       }
-    });
+
+      if (activeSt && window.innerWidth >= 1024) {
+        const range = activeSt.end - activeSt.start;
+        if (range > 0) {
+          const targetY = activeSt.start + targetProgress * range;
+          const currentY = window.scrollY;
+          const isInsidePinned = currentY >= activeSt.start - 20 && currentY <= activeSt.end + 20;
+          const lenis = getLenis();
+
+          if (isInsidePinned) {
+            lockedUntil = 0;
+            if (lenis) {
+              lenis.scrollTo(targetY, { immediate: true, force: true });
+            } else {
+              window.scrollTo({ top: targetY, behavior: 'auto' });
+            }
+            ScrollTrigger.update();
+          } else {
+            lockedUntil = performance.now() + 650;
+            if (lenis) {
+              lenis.scrollTo(targetY, {
+                duration: 0.55,
+                force: true,
+                onComplete: () => {
+                  lockedUntil = 0;
+                  ScrollTrigger.update();
+                },
+              });
+            } else {
+              window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+          }
+        }
+      }
+    };
+    card.addEventListener('click', onCardClick);
+    activeCleanupFns.push(() => card.removeEventListener('click', onCardClick));
   });
 
   const mm = gsap.matchMedia();
@@ -227,15 +305,21 @@ function initScrollStory() {
         if (railFill) {
           railFill.style.transform = `scaleY(${Math.max(0.04, p)})`;
         }
-        const idx = Math.min(stepCards.length - 1, Math.floor(p * stepCards.length));
+        if (performance.now() < lockedUntil) return;
+        const idx = Math.min(total - 1, Math.floor(p * total));
         setVisualStep(idx);
       },
     });
-    return () => st.kill();
+    activeSt = st;
+    return () => {
+      activeSt = null;
+      st.kill();
+    };
   });
 
   mm.add('(max-width: 1023px)', () => {
-    if (railFill) railFill.style.transform = `scaleY(${1 / stepCards.length})`;
+    activeSt = null;
+    if (railFill) railFill.style.transform = `scaleY(${1 / total})`;
   });
 
   activeCleanupFns.push(() => mm.revert());
@@ -289,21 +373,23 @@ export function mountMotionEngine() {
   initMobileMenu();
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  // Cursor spotlight on glass/swiss cards
-  document.querySelectorAll<HTMLElement>('.spotlight-card').forEach((card) => {
-    const onMove = (e: PointerEvent) => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-      card.style.setProperty('--my', `${e.clientY - rect.top}px`);
-    };
-    card.addEventListener('pointermove', onMove, { passive: true });
-    activeCleanupFns.push(() => card.removeEventListener('pointermove', onMove));
-  });
-
-  initScrollStory();
+  // Cursor spotlight on glass/swiss cards (desktop fine pointer only)
+  if (hasFinePointer) {
+    document.querySelectorAll<HTMLElement>('.spotlight-card').forEach((card) => {
+      const onMove = (e: PointerEvent) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+      };
+      card.addEventListener('pointermove', onMove, { passive: true });
+      activeCleanupFns.push(() => card.removeEventListener('pointermove', onMove));
+    });
+  }
 
   let lenis: Lenis | null = null;
+  initScrollStory(() => lenis);
   const scrollToHash = (hash: string) => {
     if (hash === '#') {
       if (lenis) lenis.scrollTo(0);
@@ -363,24 +449,26 @@ export function mountMotionEngine() {
     activeCleanupFns.push(() => anchor.removeEventListener('click', onClick));
   });
 
-  // Magnetic primary buttons
-  document.querySelectorAll<HTMLElement>('.magnetic-btn').forEach((btn) => {
-    const onMove = (e: PointerEvent) => {
-      const rect = btn.getBoundingClientRect();
-      const dx = (e.clientX - rect.left - rect.width / 2) * 0.16;
-      const dy = (e.clientY - rect.top - rect.height / 2) * 0.16;
-      gsap.to(btn, { x: dx, y: dy, duration: 0.28, ease: 'power2.out', overwrite: 'auto' });
-    };
-    const onLeave = () => {
-      gsap.to(btn, { x: 0, y: 0, duration: 0.55, ease: 'elastic.out(1, 0.5)', overwrite: 'auto' });
-    };
-    btn.addEventListener('pointermove', onMove, { passive: true });
-    btn.addEventListener('pointerleave', onLeave);
-    activeCleanupFns.push(() => {
-      btn.removeEventListener('pointermove', onMove);
-      btn.removeEventListener('pointerleave', onLeave);
+  // Magnetic primary buttons (desktop fine pointer only)
+  if (hasFinePointer) {
+    document.querySelectorAll<HTMLElement>('.magnetic-btn').forEach((btn) => {
+      const onMove = (e: PointerEvent) => {
+        const rect = btn.getBoundingClientRect();
+        const dx = (e.clientX - rect.left - rect.width / 2) * 0.16;
+        const dy = (e.clientY - rect.top - rect.height / 2) * 0.16;
+        gsap.to(btn, { x: dx, y: dy, duration: 0.28, ease: 'power2.out', overwrite: 'auto' });
+      };
+      const onLeave = () => {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.55, ease: 'elastic.out(1, 0.5)', overwrite: 'auto' });
+      };
+      btn.addEventListener('pointermove', onMove, { passive: true });
+      btn.addEventListener('pointerleave', onLeave);
+      activeCleanupFns.push(() => {
+        btn.removeEventListener('pointermove', onMove);
+        btn.removeEventListener('pointerleave', onLeave);
+      });
     });
-  });
+  }
 
   // Top Scroll Progress Beam
   const progressBar = document.getElementById('scrollProgressBar');
@@ -428,27 +516,29 @@ export function mountMotionEngine() {
     );
   });
 
-  // 3D perspective stage tilt
-  document.querySelectorAll<HTMLElement>('[data-phone-stage]').forEach((stage) => {
-    const frame = stage.querySelector<HTMLElement>('[data-phone-frame]');
-    if (!frame) return;
+  // 3D perspective stage tilt (desktop fine pointer only)
+  if (hasFinePointer) {
+    document.querySelectorAll<HTMLElement>('[data-phone-stage]').forEach((stage) => {
+      const frame = stage.querySelector<HTMLElement>('[data-phone-frame]');
+      if (!frame) return;
 
-    const onMove = (e: PointerEvent) => {
-      const rect = stage.getBoundingClientRect();
-      const nx = (e.clientX - rect.left) / rect.width - 0.5;
-      const ny = (e.clientY - rect.top) / rect.height - 0.5;
-      gsap.to(frame, { rotateY: nx * 11, rotateX: -ny * 8, duration: 0.45, ease: 'power2.out', overwrite: 'auto' });
-    };
-    const onLeave = () => {
-      gsap.to(frame, { rotateY: 0, rotateX: 0, duration: 0.65, ease: 'power3.out', overwrite: 'auto' });
-    };
-    stage.addEventListener('pointermove', onMove, { passive: true });
-    stage.addEventListener('pointerleave', onLeave);
-    activeCleanupFns.push(() => {
-      stage.removeEventListener('pointermove', onMove);
-      stage.removeEventListener('pointerleave', onLeave);
+      const onMove = (e: PointerEvent) => {
+        const rect = stage.getBoundingClientRect();
+        const nx = (e.clientX - rect.left) / rect.width - 0.5;
+        const ny = (e.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(frame, { rotateY: nx * 11, rotateX: -ny * 8, duration: 0.45, ease: 'power2.out', overwrite: 'auto' });
+      };
+      const onLeave = () => {
+        gsap.to(frame, { rotateY: 0, rotateX: 0, duration: 0.65, ease: 'power3.out', overwrite: 'auto' });
+      };
+      stage.addEventListener('pointermove', onMove, { passive: true });
+      stage.addEventListener('pointerleave', onLeave);
+      activeCleanupFns.push(() => {
+        stage.removeEventListener('pointermove', onMove);
+        stage.removeEventListener('pointerleave', onLeave);
+      });
     });
-  });
+  }
 
   document.fonts?.ready.then(() => ScrollTrigger.refresh());
 }
