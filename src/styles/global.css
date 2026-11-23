@@ -50,6 +50,47 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(16, 185, 129, 0.14),
+    transparent 65%
+  );
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.perspective-stage {
+  perspective: 1100px;
+}
+
+.phone-3d {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
 .glow-emerald {
   box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.35);
 }

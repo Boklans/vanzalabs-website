@@ -277,7 +277,12 @@ const configJson = JSON.stringify({
           });
         }
 
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        const target = document.getElementById('contact');
+        if (window.__lenis && target) {
+          window.__lenis.scrollTo(target, { offset: -64 });
+        } else {
+          target?.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     }
 

@@ -121,9 +121,9 @@ export const products: ProductData[] = [
     icon: '/images/formgrid_icon_512.png',
     qr: '/images/qr_formgrid.png',
     screens: [
-      { src: '/images/screen_formgrid.png', labelEn: 'Workspace', labelUk: 'Робочий простір' },
-      { src: '/images/formgrid_screen_2.png', labelEn: 'Form Builder', labelUk: 'Конструктор форм' },
-      { src: '/images/formgrid_screen_3.png', labelEn: 'Sheets Sync', labelUk: 'Google Таблиці' },
+      { src: '/images/formgrid_screenshot.jpg', labelEn: 'Workspace', labelUk: 'Робочий простір' },
+      { src: '/images/formgrid_screen_2.png', labelEn: 'Sheets Builder', labelUk: 'Google Таблиці' },
+      { src: '/images/formgrid_screen_3.png', labelEn: 'Import & Hub', labelUk: 'Імпорт і форми' },
     ],
     stack: ['Flutter', 'Google Forms API', 'Google Sheets API', 'Offline Queue', 'RevenueCat'],
     en: {
@@ -190,9 +190,9 @@ export const products: ProductData[] = [
     icon: '/images/invoices_icon_512.png',
     qr: '/images/qr_invoices.png',
     screens: [
-      { src: '/images/screen_invoices.png', labelEn: 'Dashboard', labelUk: 'Дашборд' },
-      { src: '/images/invoices_screen_2.png', labelEn: 'PDF Builder', labelUk: 'Конструктор PDF' },
-      { src: '/images/invoices_screen_3.png', labelEn: 'Touch Signature', labelUk: 'Підпис на екрані' },
+      { src: '/images/invoices_screenshot.png', labelEn: 'Document Editor', labelUk: 'Редактор PDF' },
+      { src: '/images/invoices_screen_2.png', labelEn: 'Documents & Acts', labelUk: 'Документи і акти' },
+      { src: '/images/invoices_screen_3.png', labelEn: 'Clients Directory', labelUk: 'База клієнтів' },
     ],
     stack: ['Flutter', 'IndexedDB / Local-First', 'PDF Engine', 'Google Drive Backup', 'RevenueCat'],
     en: {

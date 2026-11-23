@@ -88,6 +88,13 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteConfig.url}${o
   {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 </head>
 <body class="min-h-screen flex flex-col bg-[#07080B] text-gray-100 selection:bg-emerald-500/30 selection:text-emerald-200">
+  <!-- Top Scroll Progress Beam -->
+  <div class="fixed top-0 left-0 right-0 h-[2px] z-[60] pointer-events-none bg-white/[0.04]">
+    <div id="scrollProgressBar" class="h-full w-full origin-left scale-x-0 bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]"></div>
+  </div>
   <slot />
+  <script>
+    import '../scripts/scrollMotion';
+  </script>
 </body>
 </html>
