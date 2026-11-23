@@ -2,8 +2,8 @@
 
 @theme {
   --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Syne', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-display: 'Syne', 'Unbounded', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
   --color-obsidian: #050507;

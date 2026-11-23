@@ -181,7 +181,7 @@ function initScrollStory() {
   const railFill = document.getElementById('storyRailFill');
   let currentIdx = -1;
 
-  const activateStep = (idx: number) => {
+  const setVisualStep = (idx: number) => {
     if (idx === currentIdx) return;
     currentIdx = idx;
 
@@ -204,39 +204,42 @@ function initScrollStory() {
       pane.classList.toggle('scale-[0.97]', !active);
       pane.classList.toggle('pointer-events-none', !active);
     });
-
-    if (railFill) {
-      railFill.style.transform = `scaleY(${(idx + 1) / stepCards.length})`;
-    }
   };
 
   stepCards.forEach((card, idx) => {
-    card.addEventListener('click', () => activateStep(idx));
+    card.addEventListener('click', () => {
+      setVisualStep(idx);
+      if (railFill) {
+        railFill.style.transform = `scaleY(${(idx + 1) / stepCards.length})`;
+      }
+    });
   });
 
   const mm = gsap.matchMedia();
   mm.add('(min-width: 1024px)', () => {
     const st = ScrollTrigger.create({
       trigger: track,
-      start: 'top top',
+      start: 'top top+=64',
       end: 'bottom bottom',
       scrub: true,
       onUpdate: (self) => {
-        const p = self.progress;
+        const p = Math.max(0, Math.min(1, self.progress));
         if (railFill) {
-          railFill.style.transform = `scaleY(${Math.max(0.06, p)})`;
+          railFill.style.transform = `scaleY(${Math.max(0.04, p)})`;
         }
         const idx = Math.min(stepCards.length - 1, Math.floor(p * stepCards.length));
-        if (idx !== currentIdx) {
-          activateStep(idx);
-        }
+        setVisualStep(idx);
       },
     });
     return () => st.kill();
   });
 
+  mm.add('(max-width: 1023px)', () => {
+    if (railFill) railFill.style.transform = `scaleY(${1 / stepCards.length})`;
+  });
+
   activeCleanupFns.push(() => mm.revert());
-  activateStep(0);
+  setVisualStep(0);
 }
 
 export function mountMotionEngine() {
@@ -381,17 +384,17 @@ export function mountMotionEngine() {
     );
   });
 
-  // Crisp scroll reveals
+  // Crisp scroll reveals (triggers immediately upon entering viewport)
   document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
     gsap.from(el, {
-      y: 30,
+      y: 20,
       opacity: 0,
-      duration: 0.78,
+      duration: 0.5,
       ease: 'power3.out',
       clearProps: 'transform,opacity',
       scrollTrigger: {
         trigger: el,
-        start: 'top 87%',
+        start: 'top 95%',
         once: true,
       },
     });
@@ -402,19 +405,24 @@ export function mountMotionEngine() {
     const items = group.querySelectorAll<HTMLElement>('[data-stagger-item]');
     if (!items.length) return;
     gsap.from(items, {
-      y: 30,
+      y: 18,
       opacity: 0,
-      scale: 0.97,
-      duration: 0.7,
-      stagger: 0.08,
+      scale: 0.985,
+      duration: 0.45,
+      stagger: 0.05,
       ease: 'power3.out',
       clearProps: 'transform,opacity',
       scrollTrigger: {
         trigger: group,
-        start: 'top 85%',
+        start: 'top 95%',
         once: true,
       },
     });
+  });
+
+  // Refresh ScrollTrigger positions once web fonts finish loading
+  document.fonts?.ready.then(() => {
+    ScrollTrigger.refresh();
   });
 
   // 3D perspective stage tilt

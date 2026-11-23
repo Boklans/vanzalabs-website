@@ -13,13 +13,12 @@ const t = homeCopy[lang].hero;
   <!-- Real-Time WebGL GLSL Silk-Light Topographic Fluid Shader -->
   <canvas id="heroWebglCanvas" class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true"></canvas>
 
-  <!-- Subtle architectural vertical guide lines -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="border-x swiss-frame pt-14 pb-16 lg:pt-24 lg:pb-24 px-5 sm:px-8 lg:px-12">
+    <div class="border-x swiss-frame min-h-[calc(100vh-8.5rem)] flex flex-col justify-between py-12 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-14">
       <!-- Top Metadata Strip -->
       <div
         data-hero-animate
-        class="flex flex-wrap items-center justify-between gap-4 pb-8 mb-10 border-b swiss-frame font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-400"
+        class="flex flex-wrap items-center justify-between gap-4 pb-7 border-b swiss-frame font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-400"
       >
         <span class="inline-flex items-center gap-2.5 text-zinc-200">
           <span class="relative flex h-2 w-2">
@@ -33,113 +32,52 @@ const t = homeCopy[lang].hero;
           data-open-cmd
           class="hidden sm:inline-flex items-center gap-2 text-zinc-400 hover:text-white transition cursor-pointer"
         >
-          <span>{lang === 'uk' ? 'Навігація' : 'Quick Nav'}</span>
+          <span>{lang === 'uk' ? 'Швидке меню' : 'Command OS'}</span>
           <kbd class="px-1.5 py-0.5 rounded border border-white/15 bg-white/[0.04] text-[10px] text-zinc-200">⌘K</kbd>
         </button>
       </div>
 
-      <!-- Main Editorial Grid -->
-      <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-end">
-        <!-- Left Monumental Editorial Headline (7 cols) -->
-        <div class="lg:col-span-7 space-y-8">
-          <h1
-            data-hero-animate
-            class="text-[clamp(2.65rem,5.6vw,5.1rem)] font-display font-extrabold tracking-[-0.045em] leading-[0.98] text-white"
+      <!-- Centerpiece Monumental Editorial Typography -->
+      <div class="my-auto py-12 sm:py-16 lg:py-20">
+        <h1
+          data-hero-animate
+          class:list={[
+            'font-display font-extrabold tracking-[-0.04em] leading-[1.02] text-white max-w-5xl',
+            lang === 'uk'
+              ? 'text-[clamp(2.35rem,5.4vw,4.9rem)]'
+              : 'text-[clamp(2.85rem,6.4vw,5.9rem)]',
+          ]}
+        >
+          <span class="text-gradient-metallic">{t.titleStart}</span>{' '}
+          <span class="editorial-italic text-[#00E599] font-normal text-[1.16em] px-0.5">{t.titleHighlight}</span>{' '}
+          <span class="text-white">{t.titleEnd}</span>
+        </h1>
+      </div>
+
+      <!-- Bottom Split Row: Subtitle (left) + Magnetic CTAs (right) -->
+      <div
+        data-hero-animate
+        class="pt-8 border-t swiss-frame grid lg:grid-cols-12 gap-6 lg:gap-8 items-end"
+      >
+        <p class="lg:col-span-6 text-zinc-300/90 text-base sm:text-lg leading-relaxed max-w-xl">
+          {t.subtitle}
+        </p>
+
+        <div class="lg:col-span-6 flex flex-wrap lg:justify-end items-center gap-3.5">
+          <a
+            href="#contact"
+            data-prefill-service="blueprint"
+            class="prefill-cta magnetic-btn inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-sm sm:text-base transition-colors duration-200"
           >
-            <span class="text-gradient-metallic">{t.titleStart}</span><br />
-            <span class="editorial-italic text-[#00E599] font-normal text-[1.12em] pr-1">{t.titleHighlight}</span>{' '}
-            <span class="text-white">{t.titleEnd}</span>
-          </h1>
-
-          <p data-hero-animate class="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-xl">
-            {t.subtitle}
-          </p>
-
-          <div data-hero-animate class="flex flex-wrap items-center gap-3.5 pt-1">
-            <a
-              href="#contact"
-              data-prefill-service="blueprint"
-              class="prefill-cta magnetic-btn inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-sm sm:text-base transition-colors duration-200"
-            >
-              <span>{t.primaryCta}</span>
-              <span aria-hidden="true">→</span>
-            </a>
-            <a
-              href="#estimator"
-              class="inline-flex items-center gap-2 px-6 py-4 rounded-xl border border-white/15 bg-black/40 hover:bg-white/[0.08] backdrop-blur-md text-zinc-100 font-semibold text-sm sm:text-base transition"
-            >
-              <span>{t.secondaryCta}</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Right Swiss Blueprint 3D Engineering Telemetry Module (5 cols) -->
-        <div data-hero-animate class="lg:col-span-5 perspective-stage" data-phone-stage>
-          <div
-            data-phone-frame
-            class="phone-3d swiss-cell crosshair spotlight-card border p-6 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85)]"
+            <span>{t.primaryCta}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a
+            href="#estimator"
+            class="inline-flex items-center gap-2 px-6 py-4 rounded-xl border border-white/15 bg-black/45 hover:bg-white/[0.08] backdrop-blur-md text-zinc-100 font-semibold text-sm sm:text-base transition"
           >
-            <!-- Top Repository Bar -->
-            <div class="flex items-center justify-between pb-4 mb-4 border-b swiss-frame font-mono text-[11px]">
-              <span class="text-zinc-300 truncate max-w-[200px]">{t.telemetry.repo}</span>
-              <span class="text-[#00E599] flex items-center gap-1.5 shrink-0">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#00E599] animate-pulse"></span>
-                {t.telemetry.branch}
-              </span>
-            </div>
-
-            <!-- 3 Precision Metrics separated by 1px hairlines -->
-            <div class="grid grid-cols-3 border swiss-frame divide-x divide-white/[0.08] mb-5 bg-black/40">
-              <div class="p-3.5 text-center">
-                <p class="font-display text-2xl font-bold text-white tracking-tight">{t.telemetry.latency}</p>
-                <p class="text-[10px] font-mono text-zinc-500 mt-1 uppercase">{t.telemetry.latencyLabel}</p>
-              </div>
-              <div class="p-3.5 text-center">
-                <p class="font-display text-2xl font-bold text-[#00E599] tracking-tight">{t.telemetry.lighthouse}</p>
-                <p class="text-[10px] font-mono text-zinc-500 mt-1 uppercase">{t.telemetry.lighthouseLabel}</p>
-              </div>
-              <div class="p-3.5 text-center">
-                <p class="font-display text-2xl font-bold text-zinc-100 tracking-tight">{t.telemetry.ownership}</p>
-                <p class="text-[10px] font-mono text-zinc-500 mt-1 uppercase">{t.telemetry.ownershipLabel}</p>
-              </div>
-            </div>
-
-            <!-- Minimalist Velocity Waveform -->
-            <div class="p-3.5 border swiss-frame bg-black/50 mb-4">
-              <div class="flex items-center justify-between text-[10px] font-mono text-zinc-500 mb-2">
-                <span>BUILD VELOCITY // PRODUCTION</span>
-                <span class="text-[#00E599]">3.4x FASTER</span>
-              </div>
-              <svg viewBox="0 0 320 48" class="w-full h-12 overflow-visible" fill="none">
-                <defs>
-                  <linearGradient id="heroWaveGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#00E599" stop-opacity="0.28" />
-                    <stop offset="100%" stop-color="#00E599" stop-opacity="0" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0 40 C 40 38, 65 24, 102 27 C 138 30, 162 14, 198 18 C 236 22, 268 7, 320 4 L 320 48 L 0 48 Z"
-                  fill="url(#heroWaveGrad)"
-                />
-                <path
-                  d="M0 40 C 40 38, 65 24, 102 27 C 138 30, 162 14, 198 18 C 236 22, 268 7, 320 4"
-                  stroke="#00E599"
-                  stroke-width="1.8"
-                />
-                <circle cx="320" cy="4" r="3.5" fill="#00E599" />
-              </svg>
-            </div>
-
-            <!-- Crisp Monospace Verification Logs -->
-            <div class="space-y-1.5 font-mono text-[11px] text-zinc-300">
-              {t.telemetry.logs.map((line) => (
-                <div class="flex items-center gap-2 py-1 border-b border-white/[0.04] last:border-b-0">
-                  <span class="text-[#00E599] shrink-0">{line.slice(0, 1)}</span>
-                  <span class="truncate">{line.slice(2)}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+            <span>{t.secondaryCta}</span>
+          </a>
         </div>
       </div>
     </div>
