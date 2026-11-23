@@ -35,15 +35,15 @@ const configJson = JSON.stringify({
       <div class="lg:col-span-7 glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-6 sm:space-y-8">
         <!-- Step 1: Project Type -->
         <div>
-          <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mb-3">{t.step1}</p>
-          <div class="grid sm:grid-cols-3 gap-2.5" role="radiogroup" aria-label={t.step1}>
+          <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mb-2.5 sm:mb-3">{t.step1}</p>
+          <div class="grid sm:grid-cols-3 gap-2 sm:gap-2.5" role="radiogroup" aria-label={t.step1}>
             {t.types.map((item, idx) => (
               <button
                 type="button"
                 data-est-type={item.id}
                 aria-pressed={idx === 0 ? 'true' : 'false'}
                 class:list={[
-                  'est-type-btn text-left p-3.5 rounded-2xl border text-sm font-semibold transition cursor-pointer',
+                  'est-type-btn text-left p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border text-xs sm:text-sm font-semibold transition cursor-pointer',
                   idx === 0
                     ? 'bg-emerald-500/15 border-emerald-400/60 text-white'
                     : 'bg-white/[0.02] border-white/10 text-gray-300 hover:border-white/25 hover:text-white',
@@ -57,17 +57,17 @@ const configJson = JSON.stringify({
 
         <!-- Step 2: Modules -->
         <div>
-          <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mb-3">{t.step2}</p>
-          <div class="grid sm:grid-cols-2 gap-2.5">
+          <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mb-2.5 sm:mb-3">{t.step2}</p>
+          <div class="grid grid-cols-2 gap-2 sm:gap-2.5">
             {t.modules.map((mod) => (
               <button
                 type="button"
                 data-est-mod={mod.id}
                 aria-pressed="false"
-                class="est-mod-btn flex items-center justify-between gap-2 p-3.5 rounded-xl border bg-white/[0.02] border-white/10 text-gray-300 hover:border-white/25 hover:text-white text-sm font-medium transition cursor-pointer"
+                class="est-mod-btn flex items-center justify-between gap-2 p-2.5 sm:p-3.5 rounded-xl border bg-white/[0.02] border-white/10 text-gray-300 hover:border-white/25 hover:text-white text-xs sm:text-sm font-medium transition cursor-pointer"
               >
-                <span class="text-left">{mod.label}</span>
-                <span class="est-check w-5 h-5 shrink-0 rounded-md border border-white/20 flex items-center justify-center text-xs text-transparent transition">✓</span>
+                <span class="text-left leading-snug">{mod.label}</span>
+                <span class="est-check w-4 h-4 sm:w-5 sm:h-5 shrink-0 rounded-md border border-white/20 flex items-center justify-center text-[10px] sm:text-xs text-transparent transition">✓</span>
               </button>
             ))}
           </div>
@@ -75,15 +75,15 @@ const configJson = JSON.stringify({
 
         <!-- Step 3: Design -->
         <div>
-          <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mb-3">{t.step3}</p>
-          <div class="grid sm:grid-cols-2 gap-2.5">
+          <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mb-2.5 sm:mb-3">{t.step3}</p>
+          <div class="grid grid-cols-2 gap-2 sm:gap-2.5">
             {t.designs.map((d, idx) => (
               <button
                 type="button"
                 data-est-design={d.id}
                 aria-pressed={idx === 1 ? 'true' : 'false'}
                 class:list={[
-                  'est-design-btn text-left p-3.5 rounded-xl border text-sm font-medium transition cursor-pointer',
+                  'est-design-btn text-left p-2.5 sm:p-3.5 rounded-xl border text-xs sm:text-sm font-medium leading-snug transition cursor-pointer',
                   idx === 1
                     ? 'bg-emerald-500/15 border-emerald-400/60 text-white'
                     : 'bg-white/[0.02] border-white/10 text-gray-300 hover:border-white/25 hover:text-white',
@@ -200,7 +200,7 @@ const configJson = JSON.stringify({
           root.querySelectorAll('.est-type-btn').forEach((b) => {
             const active = b.dataset.estType === selectedType;
             b.setAttribute('aria-pressed', String(active));
-            b.className = `est-type-btn text-left p-3.5 rounded-2xl border text-sm font-semibold transition cursor-pointer ${
+            b.className = `est-type-btn text-left p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border text-xs sm:text-sm font-semibold transition cursor-pointer ${
               active
                 ? 'bg-[#00E599]/15 border-[#00E599]/60 text-white'
                 : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/25 hover:text-white'
@@ -217,14 +217,14 @@ const configJson = JSON.stringify({
           else selectedModules.add(id);
           const active = selectedModules.has(id);
           btn.setAttribute('aria-pressed', String(active));
-          btn.className = `est-mod-btn flex items-center justify-between gap-2 p-3.5 rounded-xl border text-sm font-medium transition cursor-pointer ${
+          btn.className = `est-mod-btn flex items-center justify-between gap-2 p-2.5 sm:p-3.5 rounded-xl border text-xs sm:text-sm font-medium transition cursor-pointer ${
             active
               ? 'bg-[#00E599]/15 border-[#00E599]/60 text-white'
               : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/25 hover:text-white'
           }`;
           const check = btn.querySelector('.est-check');
           if (check) {
-            check.className = `est-check w-5 h-5 rounded-md border flex items-center justify-center text-xs transition ${
+            check.className = `est-check w-4 h-4 sm:w-5 sm:h-5 shrink-0 rounded-md border flex items-center justify-center text-[10px] sm:text-xs transition ${
               active ? 'bg-[#00E599] border-[#00E599] text-black font-bold' : 'border-white/20 text-transparent'
             }`;
           }
@@ -238,7 +238,7 @@ const configJson = JSON.stringify({
           root.querySelectorAll('.est-design-btn').forEach((b) => {
             const active = b.dataset.estDesign === selectedDesign;
             b.setAttribute('aria-pressed', String(active));
-            b.className = `est-design-btn text-left p-3.5 rounded-xl border text-sm font-medium transition cursor-pointer ${
+            b.className = `est-design-btn text-left p-2.5 sm:p-3.5 rounded-xl border text-xs sm:text-sm font-medium leading-snug transition cursor-pointer ${
               active
                 ? 'bg-[#00E599]/15 border-[#00E599]/60 text-white'
                 : 'bg-white/[0.02] border-white/10 text-zinc-300 hover:border-white/25 hover:text-white'

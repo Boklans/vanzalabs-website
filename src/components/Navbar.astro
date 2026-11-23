@@ -12,12 +12,12 @@ const t = homeCopy[lang].nav;
 const homeBase = lang === 'uk' ? '/uk' : '/';
 ---
 
-<header class="sticky top-0 z-50 border-b border-white/[0.07] bg-[#050507]/75 backdrop-blur-2xl">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+<header class="sticky top-0 z-50 border-b border-white/[0.07] bg-[#050507]/85 backdrop-blur-2xl">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-4">
     <!-- Left Logo -->
     <div class="flex items-center shrink-0">
       <a href={homeBase} class="flex items-center gap-2.5" aria-label="VanzaLabs home">
-        <img src="/images/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="h-4 w-auto" width="110" height="16" />
+        <img src="/images/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="h-3.5 sm:h-4 w-auto" width="110" height="16" />
       </a>
     </div>
 
@@ -63,38 +63,17 @@ const homeBase = lang === 'uk' ? '/uk' : '/';
       </a>
     </div>
 
-    <!-- Mobile Quick Controls + Menu Trigger -->
-    <div class="flex lg:hidden items-center gap-2">
-      <div class="inline-flex items-center rounded-lg border border-white/10 bg-white/[0.03] p-0.5 text-[11px] font-mono font-semibold">
-        <a
-          href={enHref}
-          class:list={[
-            'px-2 py-1 rounded-md transition',
-            lang === 'en' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white',
-          ]}
-        >
-          EN
-        </a>
-        <a
-          href={ukHref}
-          class:list={[
-            'px-2 py-1 rounded-md transition',
-            lang === 'uk' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white',
-          ]}
-        >
-          UA
-        </a>
-      </div>
-
+    <!-- Minimal Mobile Menu Trigger -->
+    <div class="flex lg:hidden items-center">
       <button
         id="mobileMenuBtn"
         type="button"
-        class="w-10 h-10 flex items-center justify-center rounded-lg text-zinc-300 hover:text-white hover:bg-white/5 transition"
+        class="w-10 h-10 -mr-2 flex items-center justify-center rounded-lg text-zinc-300 hover:text-white hover:bg-white/5 transition"
         aria-label="Toggle menu"
         aria-expanded="false"
       >
         <svg data-menu-icon="open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16" />
         </svg>
         <svg data-menu-icon="close" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -111,10 +90,30 @@ const homeBase = lang === 'uk' ? '/uk' : '/';
       <a href={`${homeBase}#lab`} class="mobile-nav-link block py-3 hover:text-[#00E599] transition">{t.products}</a>
       <a href={`${homeBase}#founders`} class="mobile-nav-link block py-3 hover:text-[#00E599] transition">{t.founders}</a>
       <a href="/blog/" class="mobile-nav-link block py-3 hover:text-[#00E599] transition">{lang === 'uk' ? 'Блог' : 'Blog'}</a>
-      <div class="pt-4">
+      <div class="pt-4 flex items-center justify-between gap-3">
+        <div class="inline-flex items-center rounded-lg border border-white/10 bg-white/[0.03] p-0.5 text-xs font-mono font-semibold shrink-0">
+          <a
+            href={enHref}
+            class:list={[
+              'px-3 py-1.5 rounded-md transition',
+              lang === 'en' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white',
+            ]}
+          >
+            EN
+          </a>
+          <a
+            href={ukHref}
+            class:list={[
+              'px-3 py-1.5 rounded-md transition',
+              lang === 'uk' ? 'bg-white text-black' : 'text-zinc-400 hover:text-white',
+            ]}
+          >
+            UA
+          </a>
+        </div>
         <a
           href={`${homeBase}#contact`}
-          class="mobile-nav-link w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#00E599] hover:bg-[#34F5B4] text-black font-bold px-4 py-3.5 text-sm glow-accent transition"
+          class="mobile-nav-link flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-[#00E599] hover:bg-[#34F5B4] text-black font-bold px-4 py-3 text-sm glow-accent transition"
         >
           <span>{t.cta}</span>
           <span aria-hidden="true">→</span>

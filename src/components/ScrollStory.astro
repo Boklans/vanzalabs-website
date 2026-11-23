@@ -25,7 +25,7 @@ const t = homeCopy[lang].story;
 
         <div class="grid lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-10 items-center">
           <!-- Left: 4 Scroll-Synchronized Blueprint Chapters (5 cols) -->
-          <div class="lg:col-span-5 relative lg:pl-6">
+          <div class="lg:col-span-5 min-w-0 relative lg:pl-6">
             <div class="hidden lg:block absolute left-0 top-1 bottom-1 w-[3px] bg-white/10 overflow-hidden">
               <div
                 id="storyRailFill"
@@ -34,7 +34,7 @@ const t = homeCopy[lang].story;
               ></div>
             </div>
 
-            <div class="grid grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-3">
+            <div class="grid grid-cols-4 lg:grid-cols-1 gap-1.5 sm:gap-2.5 lg:gap-3">
               {t.chapters.map((ch, idx) => (
                 <button
                   type="button"
@@ -45,44 +45,45 @@ const t = homeCopy[lang].story;
                   data-step-desc={ch.desc}
                   aria-pressed={idx === 0 ? 'true' : 'false'}
                   class:list={[
-                    'story-step-card w-full text-left p-3 sm:p-4 border transition-all duration-300 cursor-pointer',
+                    'story-step-card min-w-0 w-full text-center lg:text-left px-2 py-2.5 lg:p-4 border transition-all duration-300 cursor-pointer',
                     idx === 0
                       ? 'bg-white/[0.05] border-[#00E599]/50 opacity-100'
                       : 'bg-transparent border-white/[0.06] opacity-45 hover:opacity-85',
                   ]}
                 >
-                  <div class="flex items-center justify-between gap-1 mb-1 font-mono text-[9px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.14em]">
-                    <span class="font-bold text-[#00E599] truncate">{ch.num} // {ch.tag}</span>
-                    <span class="text-zinc-500 shrink-0 hidden sm:inline">{ch.time}</span>
+                  <div class="flex items-center justify-center lg:justify-between gap-1 lg:mb-1 font-mono text-[10px] tracking-[0.12em]">
+                    <span class="font-bold text-[#00E599] lg:hidden">{ch.num}</span>
+                    <span class="hidden lg:inline font-bold text-[#00E599] truncate">{ch.num} // {ch.tag}</span>
+                    <span class="text-zinc-500 shrink-0 hidden lg:inline">{ch.time}</span>
                   </div>
-                  <h3 class="text-xs sm:text-sm lg:text-base font-display font-bold text-white leading-snug lg:mb-1">{ch.title}</h3>
-                  <p class="hidden lg:block text-xs sm:text-[13px] text-zinc-400 leading-relaxed">{ch.desc}</p>
+                  <h3 class="hidden lg:block text-base font-display font-bold text-white mb-1">{ch.title}</h3>
+                  <p class="hidden lg:block text-[13px] text-zinc-400 leading-relaxed">{ch.desc}</p>
                 </button>
               ))}
             </div>
 
-            <!-- Mobile/Tablet Active Step Context Banner (visible right above stage) -->
-            <div class="lg:hidden mt-3 p-3.5 border border-[#00E599]/25 bg-white/[0.03]">
-              <p id="storyMobileMeta" class="font-mono text-[10px] uppercase tracking-[0.14em] text-[#00E599] mb-1">
+            <!-- Mobile/Tablet Active Step Details -->
+            <div class="lg:hidden mt-3 p-4 border border-white/[0.08] bg-white/[0.02] min-w-0">
+              <p id="storyMobileMeta" class="font-mono text-[10px] uppercase tracking-[0.14em] text-[#00E599] mb-1.5">
                 {t.chapters[0].num} // {t.chapters[0].tag} · {t.chapters[0].time}
               </p>
-              <p id="storyMobileTitle" class="text-sm font-display font-bold text-white mb-1">{t.chapters[0].title}</p>
-              <p id="storyMobileDesc" class="text-xs text-zinc-300 leading-relaxed">{t.chapters[0].desc}</p>
+              <p id="storyMobileTitle" class="text-base font-display font-bold text-white mb-1.5">{t.chapters[0].title}</p>
+              <p id="storyMobileDesc" class="text-xs sm:text-sm text-zinc-400 leading-relaxed">{t.chapters[0].desc}</p>
             </div>
           </div>
 
           <!-- Right: Zero-Clip Grid-Stacked Clip-Path Morphing Swiss Stage (7 cols) -->
-          <div class="lg:col-span-7">
-            <div class="swiss-cell crosshair relative border p-4 sm:p-8 sm:min-h-[420px] grid items-center overflow-hidden">
+          <div class="lg:col-span-7 min-w-0">
+            <div class="swiss-cell crosshair relative border p-4 sm:p-8 sm:min-h-[420px] grid items-center overflow-hidden min-w-0 w-full">
               <div class="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none"></div>
 
               <!-- STAGE 0: System Architecture Blueprint SVG -->
-              <div data-story-stage="0" class="story-stage-pane col-start-1 row-start-1 relative z-10 w-full transition-all duration-500 opacity-100 scale-100">
+              <div data-story-stage="0" class="story-stage-pane col-start-1 row-start-1 relative z-10 min-w-0 w-full transition-all duration-500 opacity-100 scale-100">
                 <div class="flex items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] text-[#00E599] mb-4 sm:mb-5">
                   <span class="truncate">SPEC // SYSTEM_ARCHITECTURE.SVG</span>
                   <span class="px-2 py-0.5 border border-[#00E599]/35 bg-[#00E599]/10 shrink-0">01 / 04</span>
                 </div>
-                <svg viewBox="0 0 560 270" class="w-full h-auto" fill="none">
+                <svg viewBox="0 0 560 270" class="w-full h-auto block" fill="none">
                   <path d="M130 135 H 215" stroke="#00E599" stroke-width="2" class="svg-cable-flow" />
                   <path d="M345 135 C 385 135, 385 60, 425 60" stroke="#00E599" stroke-width="2" class="svg-cable-flow" />
                   <path d="M345 135 H 425" stroke="#60A5FA" stroke-width="2" class="svg-cable-flow" />
@@ -112,12 +113,12 @@ const t = homeCopy[lang].story;
               </div>
 
               <!-- STAGE 1: Clean Type-Safe Engineering Code -->
-              <div data-story-stage="1" aria-hidden="true" class="story-stage-pane col-start-1 row-start-1 relative z-10 w-full flex flex-col justify-center transition-all duration-500 opacity-0 scale-[0.97] pointer-events-none">
+              <div data-story-stage="1" aria-hidden="true" class="story-stage-pane col-start-1 row-start-1 relative z-10 min-w-0 w-full flex flex-col justify-center transition-all duration-500 opacity-0 scale-[0.97] pointer-events-none">
                 <div class="flex items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] text-sky-400 mb-3 sm:mb-4">
                   <span class="truncate">REPO // client-org/core/pipeline.ts</span>
                   <span class="px-2 py-0.5 border border-sky-400/35 bg-sky-400/10 shrink-0">02 / 04</span>
                 </div>
-                <pre class="p-3.5 sm:p-5 border border-white/10 bg-black/80 font-mono text-[11px] sm:text-[13px] leading-relaxed text-zinc-300 overflow-x-auto"><code><span class="text-purple-400">export async function</span> <span class="text-sky-300">processClientOrder</span>(payload: <span class="text-[#00E599]">OrderDTO</span>) &#123;
+                <pre class="w-full max-w-full p-3.5 sm:p-5 border border-white/10 bg-black/80 font-mono text-[11px] sm:text-[13px] leading-relaxed text-zinc-300 overflow-x-auto"><code><span class="text-purple-400">export async function</span> <span class="text-sky-300">processClientOrder</span>(payload: <span class="text-[#00E599]">OrderDTO</span>) &#123;
   <span class="text-zinc-500">// 1. Validate schema &amp; enrich via RAG</span>
   <span class="text-purple-400">const</span> verified = OrderSchema.<span class="text-sky-300">parse</span>(payload);
   <span class="text-purple-400">const</span> quote = <span class="text-purple-400">await</span> aiEngine.<span class="text-sky-300">estimate</span>(verified);
@@ -134,7 +135,7 @@ const t = homeCopy[lang].story;
               </div>
 
               <!-- STAGE 2: High-Craft Product UI Dashboard -->
-              <div data-story-stage="2" aria-hidden="true" class="story-stage-pane col-start-1 row-start-1 relative z-10 w-full flex flex-col justify-center transition-all duration-500 opacity-0 scale-[0.97] pointer-events-none">
+              <div data-story-stage="2" aria-hidden="true" class="story-stage-pane col-start-1 row-start-1 relative z-10 min-w-0 w-full flex flex-col justify-center transition-all duration-500 opacity-0 scale-[0.97] pointer-events-none">
                 <div class="flex items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] text-[#00E599] mb-3 sm:mb-4">
                   <span class="truncate">INTERFACE // CONVERSION_SYSTEM</span>
                   <span class="px-2 py-0.5 border border-[#00E599]/35 bg-[#00E599]/10 shrink-0">03 / 04</span>
@@ -169,7 +170,7 @@ const t = homeCopy[lang].story;
               </div>
 
               <!-- STAGE 3: Production Launch Command Center -->
-              <div data-story-stage="3" aria-hidden="true" class="story-stage-pane col-start-1 row-start-1 relative z-10 w-full flex flex-col justify-center transition-all duration-500 opacity-0 scale-[0.97] pointer-events-none">
+              <div data-story-stage="3" aria-hidden="true" class="story-stage-pane col-start-1 row-start-1 relative z-10 min-w-0 w-full flex flex-col justify-center transition-all duration-500 opacity-0 scale-[0.97] pointer-events-none">
                 <div class="flex items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] text-[#00E599] mb-3 sm:mb-4">
                   <span class="truncate">PRODUCTION // LIVE_RELEASE_VERIFIED</span>
                   <span class="px-2 py-0.5 border border-[#00E599]/35 bg-[#00E599]/10 shrink-0">04 / 04</span>
@@ -209,11 +210,11 @@ const t = homeCopy[lang].story;
     </div>
   </div>
 
-  <!-- Kinetic Scroll-Velocity Oversized Statement Band -->
-  <div class="border-t swiss-frame py-5 sm:py-7 overflow-hidden bg-[#07080C]">
+  <!-- Kinetic Scroll-Velocity Oversized Statement Band (Desktop/Tablet) -->
+  <div class="hidden sm:block border-t swiss-frame py-7 overflow-hidden bg-[#07080C]">
     <div
       data-kinetic-band
-      class="whitespace-nowrap font-display font-extrabold text-2xl sm:text-5xl lg:text-6xl tracking-[-0.04em] text-white/[0.11] select-none"
+      class="whitespace-nowrap font-display font-extrabold text-5xl lg:text-6xl tracking-[-0.04em] text-white/[0.11] select-none"
     >
       PRECISION ARCHITECTURE <span class="text-[#00E599]/35">·</span> ZERO MIDDLEMEN <span class="text-[#00E599]/35">·</span> 100% GITHUB OWNERSHIP <span class="text-[#00E599]/35">·</span> 48H FREE BLUEPRINT <span class="text-[#00E599]/35">·</span> SHIP IN WEEKS
     </div>

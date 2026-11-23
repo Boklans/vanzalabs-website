@@ -82,6 +82,13 @@
   right: -4px;
 }
 
+@media (max-width: 639px) {
+  .crosshair::before,
+  .crosshair::after {
+    display: none;
+  }
+}
+
 /* Editorial serif italic highlight */
 .editorial-italic {
   font-family: var(--font-serif);
