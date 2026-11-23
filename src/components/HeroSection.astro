@@ -17,28 +17,21 @@ const t = homeCopy[lang].hero;
   <div class="absolute inset-0 bg-gradient-to-b from-[#050507]/35 via-[#050507]/20 to-[#050507]/80 pointer-events-none" aria-hidden="true"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="border-x swiss-frame min-h-[calc(100vh-8.25rem)] flex flex-col justify-between py-12 sm:py-16 lg:py-20 px-5 sm:px-8 lg:px-14">
+    <div class="border-x swiss-frame min-h-[calc(100vh-8.25rem)] flex flex-col justify-between py-10 sm:py-14 lg:py-16 px-5 sm:px-8 lg:px-14">
       <!-- Top Metadata Strip -->
       <div
         data-hero-animate
-        class="flex flex-wrap items-center justify-between gap-4 pb-7 border-b swiss-frame font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-400"
+        class="flex items-center justify-between gap-4 pb-6 border-b swiss-frame font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-400"
       >
         <span class="inline-flex items-center gap-2.5 text-zinc-300">
           <span class="w-1.5 h-1.5 rounded-full bg-[#00E599]"></span>
           <span>{t.badge}</span>
         </span>
-        <button
-          type="button"
-          data-open-cmd
-          class="hidden sm:inline-flex items-center gap-2 text-zinc-400 hover:text-white transition cursor-pointer"
-        >
-          <span>{lang === 'uk' ? 'Швидке меню' : 'Command OS'}</span>
-          <kbd class="px-1.5 py-0.5 rounded border border-white/15 bg-white/[0.04] text-[10px] text-zinc-200">⌘K</kbd>
-        </button>
+        <span class="hidden sm:inline text-zinc-500">UKRAINE · WORLDWIDE</span>
       </div>
 
-      <!-- Centerpiece Monumental Editorial Typography (Consistent vertical rhythm across EN & UK) -->
-      <div class="my-auto py-10 sm:py-14 lg:py-16 min-h-[210px] sm:min-h-[260px] lg:min-h-[300px] flex items-center">
+      <!-- Centerpiece Monumental Editorial Typography -->
+      <div class="my-auto py-10 sm:py-12 lg:py-14 min-h-[200px] sm:min-h-[250px] lg:min-h-[280px] flex items-center">
         <h1
           data-hero-animate
           class="font-display font-extrabold tracking-[-0.04em] leading-[1.03] text-white max-w-5xl text-[clamp(2.65rem,6vw,5.65rem)]"
@@ -49,12 +42,12 @@ const t = homeCopy[lang].hero;
         </h1>
       </div>
 
-      <!-- Bottom Split Row: Subtitle (left) + Magnetic CTAs (right) -->
+      <!-- Bottom Split Row: Vertically Centered Subtitle + Crisp Aligned CTAs -->
       <div
         data-hero-animate
-        class="pt-8 border-t swiss-frame grid lg:grid-cols-12 gap-6 lg:gap-8 items-end"
+        class="pt-7 border-t swiss-frame grid lg:grid-cols-12 gap-6 lg:gap-8 items-center"
       >
-        <p class="lg:col-span-6 text-zinc-300/90 text-base sm:text-lg leading-relaxed max-w-xl">
+        <p class="lg:col-span-6 text-zinc-300/90 text-base sm:text-[17px] leading-relaxed max-w-xl m-0">
           {t.subtitle}
         </p>
 
@@ -62,14 +55,14 @@ const t = homeCopy[lang].hero;
           <a
             href="#contact"
             data-prefill-service="blueprint"
-            class="prefill-cta magnetic-btn inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-sm sm:text-base transition-colors duration-200"
+            class="prefill-cta magnetic-btn inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white hover:bg-[#00E599] text-black font-bold text-sm sm:text-[15px] leading-none transition-colors duration-200 whitespace-nowrap"
           >
             <span>{t.primaryCta}</span>
             <span aria-hidden="true">→</span>
           </a>
           <a
             href="#estimator"
-            class="inline-flex items-center gap-2 px-6 py-4 rounded-xl border border-white/15 bg-black/45 hover:bg-white/[0.08] backdrop-blur-md text-zinc-100 font-semibold text-sm sm:text-base transition"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-white/15 bg-black/45 hover:bg-white/[0.08] backdrop-blur-md text-zinc-100 font-semibold text-sm sm:text-[15px] leading-none transition whitespace-nowrap"
           >
             <span>{t.secondaryCta}</span>
           </a>
