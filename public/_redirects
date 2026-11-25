@@ -9,3 +9,7 @@
 /spot.html /spot 301
 /blog.html /blog/ 301
 /sitemap.xml /sitemap-index.xml 301
+/vanzalabs_logo_white_text.png /images/vanzalabs_logo_white_text.png 301
+/vanzalabs_logo_black_text.png /images/vanzalabs_logo_black_text.png 301
+/spot_logo.png /images/spot_logo.png 301
+/screen_spot.jpg /images/screen_spot.jpg 301
