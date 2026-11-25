@@ -1,5 +1,5 @@
 export interface ProductData {
-  slug: 'spot' | 'formgrid' | 'invoices' | 'convert';
+  slug: 'spot' | 'formgrid' | 'invoices' | 'convert' | 'balaka';
   name: string;
   shortName: string;
   packageId: string;
@@ -310,6 +310,75 @@ export const products: ProductData[] = [
       faq: [
         { q: 'Чи завантажуються мої фото на сервери?', a: 'Ніколи. Уся обробка та шифрування AES-256 виконуються виключно локально на вашому смартфоні.' },
         { q: 'Чи змінюються оригінальні файли?', a: 'Ні, оригінали залишаються недоторканими — результати зберігаються як нові файли.' },
+      ],
+    },
+  },
+  {
+    slug: 'balaka',
+    name: 'Balaka — Party Games Hub',
+    shortName: 'Balaka',
+    packageId: 'com.vanzalabs.balaka.party',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.vanzalabs.balaka.party',
+    privacyUrl: '/privacy-policy',
+    category: 'GameApplication',
+    accentHex: '#F59E0B',
+    accentBgClass: 'bg-amber-500/15',
+    accentTextClass: 'text-amber-400',
+    accentBorderClass: 'border-amber-500/30',
+    icon: '/images/balaka_icon_512.png',
+    qr: '/images/qr_balaka.png',
+    screens: [
+      { src: '/images/balaka_screen_1.png', labelEn: 'Party Modes', labelUk: 'Режими гри' },
+      { src: '/images/balaka_screen_2.png', labelEn: 'Themed Decks', labelUk: 'Тематичні колоди' },
+      { src: '/images/balaka_screen_3.png', labelEn: 'Party Scenarios', labelUk: 'Сценарії вечірки' },
+    ],
+    stack: ['Offline-First', 'Pass-and-Play UX', '1,750+ Cards', 'Custom Decks'],
+    en: {
+      tagline: 'Offline Alias, Taboo, Crocodile & Spy on One Phone',
+      metaTitle: 'Balaka — Offline Party Games (Alias, Taboo, Crocodile, Spy) | VanzaLabs',
+      metaDesc:
+        'All-in-one offline word & association party game for 3–16 players on a single device. 1,750+ curated Ukrainian words, 5 themed decks, Party Scenarios, and zero sign-ups.',
+      summary:
+        'Offline-first collection of classic word & association party games for 3–16 players on a single smartphone. Combines Alias, Taboo, Crocodile, and Spy with 1,750+ non-repeating prompts, custom deck sharing, and multi-game Party Scenarios.',
+      badge: 'Party Game · 100% Offline',
+      features: [
+        { title: '4 Classic Modes in One App', desc: 'Alias, Taboo (4 forbidden words), Crocodile gestures, and Spy secret locations — zero registration.' },
+        { title: '1,750+ Non-Repeating Cards', desc: '5 curated Ukrainian decks including Evening Base, Slang & Memes, IT & Office Pain, and 18+ Uncensored.' },
+        { title: 'Party Scenarios & Chronicles', desc: 'Chain multiple games into one tournament with a shared scoreboard and saved team statistics.' },
+        { title: 'Custom Deck Builder', desc: 'Create your own inside-joke word packs and share them with friends completely offline.' },
+      ],
+      highlights: [
+        { value: '1,750+', label: 'Words & locations' },
+        { value: '3–16', label: 'Players on 1 phone' },
+        { value: '100%', label: 'Offline & no login' },
+      ],
+      faq: [
+        { q: 'Does every player need to install the app?', a: 'No. Balaka is designed for pass-and-play on a single phone for 3 to 16 players with zero accounts or Wi-Fi required.' },
+        { q: 'Can we create our own word decks?', a: 'Yes! The built-in Custom Deck Builder lets you add your own words and share custom decks with friends.' },
+      ],
+    },
+    uk: {
+      tagline: 'Еліас, Табу, Крокодил і Шпигун офлайн на одному телефоні',
+      metaTitle: 'Balaka — Офлайн ігри для компанії (Еліас, Крокодил, Табу, Шпигун) | VanzaLabs',
+      metaDesc:
+        'Збірка словесних ігор для компанії від 3 до 16 гравців на одному смартфоні без інтернету та реєстрації. 1 750+ українських слів, 5 колод, Сценарії вечірки та конструктор колод.',
+      summary:
+        'Офлайн-збірка улюблених ігор для компанії на одному телефоні без реєстрації. Еліас, Табу, Крокодил і Шпигун, понад 1 750 українських слів без повторів, 5 колод (включно з «IT та Офісний біль») і конструктор власних колод.',
+      badge: 'Гра для компанії · 100% Офлайн',
+      features: [
+        { title: '4 хітові режими в одному додатку', desc: 'Еліас, Табу (4 заборонених слова), Крокодил жестами та Шпигун — без акаунтів і інтернету.' },
+        { title: '1 750+ українських слів без повторів', desc: '5 колод: База на вечір, П’ятничний розігрів, Сленг і меми, IT та Офісний біль, 18+ Без цензури.' },
+        { title: 'Сценарії вечірки та Літопис', desc: 'Комбінуйте кілька ігор в одну сесію зі спільним табло та історією перемог команд.' },
+        { title: 'Конструктор власних колод', desc: 'Створюйте набори з локальними жартами вашої компанії та діліться ними з друзями.' },
+      ],
+      highlights: [
+        { value: '1 750+', label: 'Слів і локацій' },
+        { value: '3–16', label: 'Гравців на 1 телефон' },
+        { value: '100%', label: 'Офлайн без реєстрації' },
+      ],
+      faq: [
+        { q: 'Чи потрібно кожному гравцю встановлювати гру?', a: 'Ні, достатньо одного телефону на всю компанію (від 3 до 16 гравців). Інтернет і реєстрація не потрібні.' },
+        { q: 'Чи можна додати свої слова?', a: 'Так! У вбудованому Конструкторі колод можна створювати власні набори слів і ділитися ними з друзями.' },
       ],
     },
   },

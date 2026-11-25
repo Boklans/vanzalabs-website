@@ -247,7 +247,7 @@ export const homeCopy = {
       eyebrow: 'VanzaLabs R&D Lab',
       title: 'We don’t just talk architecture — we ship our own products.',
       subtitle:
-        'Four live offline-first apps published and maintained by our team on Google Play. Real production proof of UI craft, Google API compliance, and end-to-end delivery.',
+        'Five live offline-first apps published and maintained by our team on Google Play. Real production proof of UI craft, Google API compliance, and end-to-end delivery.',
       visitProduct: 'Explore app',
       buildSimilar: 'Build similar app',
     },
