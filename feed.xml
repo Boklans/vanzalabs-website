@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VanzaLabs Engineering &amp; Product Blog</title>
+    <link>https://vanzalabs.tech/blog</link>
+    <description>Practical guides on offline-first mobile apps, data privacy, and engineering.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 23 Nov 2026 21:43:37 +0000</lastBuildDate>
+    <atom:link href="https://vanzalabs.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reliable Event QR Check-Ins in Zero-Wi-Fi Venues Using Google Sheets</title>
+      <link>https://vanzalabs.tech/blog/event-qr-check-in-offline-google-sheets</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/event-qr-check-in-offline-google-sheets</guid>
+      <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to process hundreds of event QR check-ins offline using Google Sheets and FormGrid. Zero network latency, full privacy, and instant batch sync.</description>
+      <enclosure url="https://vanzalabs.tech/blog/event-qr-check-in-offline-google-sheets/cover.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Batch Converting iPhone HEIC Photos Locally via Hardware Acceleration</title>
+      <link>https://vanzalabs.tech/blog/local-heic-batch-conversion-hardware-acceleration</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/local-heic-batch-conversion-hardware-acceleration</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to batch convert iPhone HEIC photos to JPG, PNG, and WebP completely offline using device hardware acceleration. Zero cloud uploads.</description>
+      <enclosure url="https://vanzalabs.tech/blog/local-heic-batch-conversion-hardware-acceleration/cover.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Killing Unpaid Scope Creep: Capturing Client Signatures On Estimates Instantly</title>
+      <link>https://vanzalabs.tech/blog/killing-unpaid-scope-creep-with-mobile-signatures</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/killing-unpaid-scope-creep-with-mobile-signatures</guid>
+      <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Stop losing money to unapproved extra work. Learn how capturing on-screen client signatures on estimates before starting tasks eliminates disputes.</description>
+      <enclosure url="https://vanzalabs.tech/blog/killing-unpaid-scope-creep-with-mobile-signatures/cover.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Exposing the Silent Data Harvest of Online File Converters</title>
+      <link>https://vanzalabs.tech/blog/exposing-the-silent-data-harvest-of-web-converters</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/exposing-the-silent-data-harvest-of-web-converters</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Discover why dropping passports and contracts into free online converters violates GDPR and risks identity theft. Secure your files with local-first processing.</description>
+      <enclosure url="https://vanzalabs.tech/blog/exposing-the-silent-data-harvest-of-web-converters/cover.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Hardware-Accelerated HEIC Batch Conversion: Processing Photos Locally</title>
+      <link>https://vanzalabs.tech/blog/hardware-accelerated-heic-batch-conversion-local-pipeline</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/hardware-accelerated-heic-batch-conversion-local-pipeline</guid>
+      <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to batch convert HEIC photos to JPG, PNG, and WebP completely offline using local hardware acceleration without any cloud uploads.</description>
+      <enclosure url="https://vanzalabs.tech/blog/hardware-accelerated-heic-batch-conversion-local-pipeline/cover.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Mastering Local Media Compression: Shrinking 4K Video and RAW Photos Offline</title>
+      <link>https://vanzalabs.tech/blog/client-side-media-compression-email-messaging-guide</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/client-side-media-compression-email-messaging-guide</guid>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to compress 4K videos and massive smartphone photos locally on your device for email and chat apps without sacrificing visual fidelity or privacy.</description>
+      <enclosure url="https://vanzalabs.tech/blog/client-side-media-compression-email-messaging-guide/cover.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>The Hidden GDPR and Identity Risks of Online File Converters</title>
+      <link>https://vanzalabs.tech/blog/why-online-file-converters-risk-gdpr-identity-theft</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/why-online-file-converters-risk-gdpr-identity-theft</guid>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Discover why uploading sensitive IDs and contracts to free online file converters violates GDPR and exposes you to severe identity theft risks.</description>
+      <enclosure url="https://vanzalabs.tech/blog/why-online-file-converters-risk-gdpr-identity-theft/cover.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Frictionless Progressive Overload: Why 2-Tap Logging Beats Social Fitness Bloat</title>
+      <link>https://vanzalabs.tech/blog/frictionless-progressive-overload-tracking-tactile-logger</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/frictionless-progressive-overload-tracking-tactile-logger</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Discover why low-friction tactile logging outperforms social fitness apps for accurate progressive overload tracking. Built for serious strength training.</description>
+      <enclosure url="https://vanzalabs.tech/blog/frictionless-progressive-overload-tracking-tactile-logger/cover.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Locking PDF Scans with AES-256 Offline Before Sending on Chat Apps</title>
+      <link>https://vanzalabs.tech/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram</guid>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to secure sensitive PDF documents with military-grade AES-256 encryption completely offline before sharing them via WhatsApp or Telegram.</description>
+      <enclosure url="https://vanzalabs.tech/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram/cover.png" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Why Trade Contractors Are Ditching SaaS Invoicing Subscriptions</title>
+      <link>https://vanzalabs.tech/blog/why-contractors-are-ditching-saas-invoicing-subscriptions</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/why-contractors-are-ditching-saas-invoicing-subscriptions</guid>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Discover why trade contractors and freelancers are ditching monthly cloud invoicing SaaS for fast, offline-first apps like Vanza Docs.</description>
+      <enclosure url="https://vanzalabs.tech/invoices_screenshot.jpg" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume</title>
+      <link>https://vanzalabs.tech/blog/optimizing-hypertrophy-recovery-cycles-local-first</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/optimizing-hypertrophy-recovery-cycles-local-first</guid>
+      <pubDate>Sat, 14 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to engineer your workout splits by mapping physiological recovery windows to weekly volume using local-first tools like SPOT.</description>
+      <enclosure url="https://vanzalabs.tech/screen_spot.jpg" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Beyond Volume: Engineering Muscle Recovery Windows in SPOT</title>
+      <link>https://vanzalabs.tech/blog/optimizing-weekly-training-volume-recovery-windows</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/optimizing-weekly-training-volume-recovery-windows</guid>
+      <pubDate>Fri, 13 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn to balance weekly training volume using physiological 36-72 hour recovery windows. Data-driven strength programming built for offline performance.</description>
+      <enclosure url="https://vanzalabs.tech/screen_spot.jpg" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>How to Shrink 4K Videos and Heavy Photos for Email Without Quality Loss</title>
+      <link>https://vanzalabs.tech/blog/how-to-shrink-4k-videos-smartphone-photos-email-without-losing-detail</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/how-to-shrink-4k-videos-smartphone-photos-email-without-losing-detail</guid>
+      <pubDate>Fri, 13 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to compress massive smartphone photos and 4K videos locally on your device for email and messaging without uploading files to random cloud servers.</description>
+      <enclosure url="https://vanzalabs.tech/convert_screenshot.jpg" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>Securing Sensitive PDFs: Why Local AES-256 Encryption Beats Cloud Services</title>
+      <link>https://vanzalabs.tech/blog/securing-sensitive-pdfs-offline-aes-256-encryption</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/securing-sensitive-pdfs-offline-aes-256-encryption</guid>
+      <pubDate>Fri, 13 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn why uploading sensitive documents to cloud PDF editors is a security risk. Secure your files locally with AES-256 using Vanza Convert &amp;amp; Compress.</description>
+      <enclosure url="https://vanzalabs.tech/convert_screenshot.jpg" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>How to Compress Photos by 90%, Convert HEIC to JPG &amp; Lock PDFs Offline on Android (Zero Cloud Uploads)</title>
+      <link>https://vanzalabs.tech/blog/compress-photos-convert-heic-offline-android</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/compress-photos-convert-heic-offline-android</guid>
+      <pubDate>Sun, 18 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to shrink 12 MB photos down to 600 KB, batch-convert Apple HEIC images to universal JPG/PNG, and encrypt sensitive PDFs with AES-256 on Android — 100% offline with zero cloud uploads.</description>
+      <enclosure url="https://vanzalabs.tech/convert-og.jpg" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>How to Manage Google Forms &amp; Sheets on Mobile with Offline Sync &amp; QR Check-Ins</title>
+      <link>https://vanzalabs.tech/blog/google-forms-sheets-offline-mobile-workflow</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/google-forms-sheets-offline-mobile-workflow</guid>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Learn how to build and edit Google Forms on Android, inspect thousands of Google Sheets rows as mobile cards, scan QR tickets for instant check-ins, and work offline with FormGrid.</description>
+      <enclosure url="https://vanzalabs.tech/formgrid-og.jpg" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>How Contractors &amp; Freelancers Generate Signed PDF Invoices and Estimates on Job Sites in 60 Seconds</title>
+      <link>https://vanzalabs.tech/blog/offline-invoice-estimate-maker-for-contractors</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/offline-invoice-estimate-maker-for-contractors</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Learn how field contractors, builders, and freelancers generate itemized PDF estimates, work contracts, and invoices with on-screen finger signatures in 60 seconds — 100% offline with Vanza Docs.</description>
+      <enclosure url="https://vanzalabs.tech/invoices-og.jpg" type="image/png" length="0" />
+    </item>
+    <item>
+      <title>The Science of Muscle Recovery Windows: Optimizing Push/Pull/Legs Splits &amp; Offline Workout Tracking</title>
+      <link>https://vanzalabs.tech/blog/science-of-muscle-recovery-offline-workout-tracker</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/science-of-muscle-recovery-offline-workout-tracker</guid>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Stop letting a rigid 7-day calendar stall your strength gains. Learn how weekly working set volume, automated Double Progression, flexible 30/45/60 min workouts, and 100% offline gym tracking work in SPOT.</description>
+      <enclosure url="https://vanzalabs.tech/spot-og.jpg" type="image/png" length="0" />
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VanzaLabs Blog — Engineering, Offline Mobile Apps, Privacy & Product Guides</title>
+  <meta name="description" content="Practical guides, engineering deep dives, and productivity workflows by VanzaLabs: offline photo compression, HEIC conversion, Google Forms mobile sync, contractor invoicing, and muscle recovery science.">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:title" content="VanzaLabs Blog — Engineering, Offline Mobile Apps & Product Guides">
+  <meta property="og:description" content="Actionable guides on mobile privacy, on-device photo compression, Google Forms & Sheets offline workflows, contractor PDF invoicing, and evidence-based workout tracking.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vanzalabs.tech/blog">
+  <meta property="og:image" content="https://vanzalabs.tech/og-image.jpg?v=2">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VanzaLabs Engineering & Product Blog">
+  <meta name="twitter:description" content="Deep dives into offline-first mobile apps, data privacy, field workflows, and product engineering.">
+  <link rel="alternate" type="application/rss+xml" title="VanzaLabs Blog RSS" href="https://vanzalabs.tech/feed.xml">
+  <link rel="canonical" href="https://vanzalabs.tech/blog">
+  <meta name="p:domain_verify" content="90f814ccab954bd60bf020b0af5c7022"/>
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#08090C">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              emerald: '#10B981',
+              emeraldHover: '#059669',
+              dark: '#08090C',
+              card: '#0F1218',
+              cardBorder: '#1A1F2B',
+              surface: '#151922'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #08090C;
+      color: #F3F4F6;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .neon-glow {
+      box-shadow: 0 0 45px -10px rgba(16, 185, 129, 0.35);
+    }
+    .grid-bg {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+  </style>
+
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu pu gu mu init Gu Qu Hu Wu Xu il Vu Yu ju oc ac lc uc cc hc capture getExtension Zu hu gc calculateEventProperties vc register register_once register_for_session unregister unregister_for_session zu mc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync wc identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset kc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty yc nc createPersonProfile setInternalOrTestUser bc xu ku opt_in_capturing opt_out_capturing Su has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing tc debug nl Os getPageViewId captureTraceFeedback captureTraceMetric Du".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_q5gM7VmNh57nCNKfKQx7KZDNgqaY7UK2mdXjrAzKDRey', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'always'
+    });
+  </script>
+
+  <!-- JSON-LD Structured Data (Blog + BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": "https://vanzalabs.tech/blog",
+        "name": "VanzaLabs Engineering & Product Blog",
+        "description": "Practical guides, engineering deep dives, and workflows on offline mobile utilities, privacy-first software, field operations, and evidence-based training.",
+        "url": "https://vanzalabs.tech/blog",
+        "publisher": {
+          "@type": "Organization",
+          "name": "VanzaLabs",
+          "url": "https://vanzalabs.tech",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://vanzalabs.tech/vanzalabs_logo_white_text.png"
+          }
+        },
+        "blogPost": [
+          {"@type": "BlogPosting", "headline": "Reliable Event QR Check-Ins in Zero-Wi-Fi Venues Using Google Sheets", "url": "https://vanzalabs.tech/blog/event-qr-check-in-offline-google-sheets", "datePublished": "2026-11-23", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "Batch Converting iPhone HEIC Photos Locally via Hardware Acceleration", "url": "https://vanzalabs.tech/blog/local-heic-batch-conversion-hardware-acceleration", "datePublished": "2026-11-22", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "Killing Unpaid Scope Creep: Capturing Client Signatures On Estimates Instantly", "url": "https://vanzalabs.tech/blog/killing-unpaid-scope-creep-with-mobile-signatures", "datePublished": "2026-11-21", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "Exposing the Silent Data Harvest of Online File Converters", "url": "https://vanzalabs.tech/blog/exposing-the-silent-data-harvest-of-web-converters", "datePublished": "2026-11-20", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "Hardware-Accelerated HEIC Batch Conversion: Processing Photos Locally", "url": "https://vanzalabs.tech/blog/hardware-accelerated-heic-batch-conversion-local-pipeline", "datePublished": "2026-11-19", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "Mastering Local Media Compression: Shrinking 4K Video and RAW Photos Offline", "url": "https://vanzalabs.tech/blog/client-side-media-compression-email-messaging-guide", "datePublished": "2026-11-18", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "The Hidden GDPR and Identity Risks of Online File Converters", "url": "https://vanzalabs.tech/blog/why-online-file-converters-risk-gdpr-identity-theft", "datePublished": "2026-11-17", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "Frictionless Progressive Overload: Why 2-Tap Logging Beats Social Fitness Bloat", "url": "https://vanzalabs.tech/blog/frictionless-progressive-overload-tracking-tactile-logger", "datePublished": "2026-11-16", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "Locking PDF Scans with AES-256 Offline Before Sending on Chat Apps", "url": "https://vanzalabs.tech/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram", "datePublished": "2026-11-15", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "Why Trade Contractors Are Ditching SaaS Invoicing Subscriptions", "url": "https://vanzalabs.tech/blog/why-contractors-are-ditching-saas-invoicing-subscriptions", "datePublished": "2026-11-15", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume", "url": "https://vanzalabs.tech/blog/optimizing-hypertrophy-recovery-cycles-local-first", "datePublished": "2026-11-14", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "Beyond Volume: Engineering Muscle Recovery Windows in SPOT", "url": "https://vanzalabs.tech/blog/optimizing-weekly-training-volume-recovery-windows", "datePublished": "2026-11-13", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "How to Shrink 4K Videos and Heavy Photos for Email Without Quality Loss", "url": "https://vanzalabs.tech/blog/how-to-shrink-4k-videos-smartphone-photos-email-without-losing-detail", "datePublished": "2026-11-13", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {"@type": "BlogPosting", "headline": "Securing Sensitive PDFs: Why Local AES-256 Encryption Beats Cloud Services", "url": "https://vanzalabs.tech/blog/securing-sensitive-pdfs-offline-aes-256-encryption", "datePublished": "2026-11-13", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
+          {
+            "@type": "BlogPosting",
+            "headline": "How to Compress Photos by 90%, Convert HEIC to JPG & Lock PDFs Offline on Android (Zero Cloud Uploads)",
+            "url": "https://vanzalabs.tech/blog/compress-photos-convert-heic-offline-android",
+            "datePublished": "2026-10-18",
+            "author": { "@type": "Organization", "name": "VanzaLabs Engineering" }
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "How to Manage Google Forms & Sheets on Mobile with Offline Sync & QR Check-Ins",
+            "url": "https://vanzalabs.tech/blog/google-forms-sheets-offline-mobile-workflow",
+            "datePublished": "2026-10-19",
+            "author": { "@type": "Organization", "name": "VanzaLabs Engineering" }
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "How Contractors & Freelancers Generate Signed PDF Invoices and Estimates on Job Sites in 60 Seconds",
+            "url": "https://vanzalabs.tech/blog/offline-invoice-estimate-maker-for-contractors",
+            "datePublished": "2026-10-20",
+            "author": { "@type": "Organization", "name": "VanzaLabs Engineering" }
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "The Science of Muscle Recovery Windows: Optimizing Push/Pull/Legs Splits & Offline Workout Tracking",
+            "url": "https://vanzalabs.tech/blog/science-of-muscle-recovery-offline-workout-tracker",
+            "datePublished": "2026-10-21",
+            "author": { "@type": "Organization", "name": "VanzaLabs Engineering" }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "VanzaLabs",
+            "item": "https://vanzalabs.tech/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://vanzalabs.tech/blog"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="antialiased selection:bg-[#10B981] selection:text-black">
+
+  <!-- TOP NAVIGATION -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#08090C]/85 border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Left: Studio Brand + Blog Pill -->
+      <div class="flex items-center gap-3 sm:gap-5">
+        <a href="/" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-1.5 transition group-hover:border-[#10B981]/50">
+            <img src="/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="w-full h-auto object-contain">
+          </div>
+          <span class="font-black text-lg tracking-tight text-white group-hover:text-[#10B981] transition">VanzaLabs</span>
+        </a>
+        <span class="text-gray-700">/</span>
+        <a href="/blog" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10B981]/15 border border-[#10B981]/30 text-xs font-bold text-[#10B981]">
+          <span>Blog & Guides</span>
+        </a>
+      </div>
+
+      <!-- Center: Ecosystem Links (Desktop) -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-gray-400">
+        <a href="/" class="hover:text-white transition"><span>Studio</span></a>
+        <a href="/spot" class="hover:text-white transition"><span>SPOT</span></a>
+        <a href="/formgrid" class="hover:text-white transition"><span>FormGrid</span></a>
+        <a href="/invoices" class="hover:text-white transition"><span>Vanza Docs</span></a>
+        <a href="/convert" class="hover:text-white transition"><span>Convert</span></a>
+      </nav>
+
+      <!-- Right Actions: Language Switcher + CTA -->
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleBlogLang()" id="langBtn" class="px-3 py-1.5 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:text-white hover:border-gray-700 transition">
+          <span id="langLabel">UA</span>
+        </button>
+
+        <a href="/#contact" class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black text-xs font-bold transition shadow-sm">
+          <span><span>Discuss a Project</span></span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-14 sm:pt-20 pb-12 sm:pb-16 overflow-hidden grid-bg border-b border-gray-900">
+    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[320px] bg-[#10B981]/12 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl space-y-5">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs">
+          <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+          <span class="text-[#10B981] font-semibold"><span>VanzaLabs Knowledge Hub</span></span>
+          <span class="text-gray-500">•</span>
+          <span class="text-gray-300"><span>Engineering, Privacy & Mobile Workflows</span></span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-[1.12]">
+          <span data-i18n="hero_title">Practical Guides on Offline-First Apps, Data Privacy & Product Engineering</span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-gray-300 leading-relaxed" data-i18n="hero_sub">
+          Deep technical breakdowns and step-by-step tutorials from the engineers behind SPOT, FormGrid, Vanza Docs, and Vanza Convert & Compress. Learn how to automate field operations, protect sensitive files on-device, and build fast digital products.
+        </p>
+      </div>
+
+      <!-- Filter Pills & Search Bar -->
+      <div class="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4 border-t border-gray-800/80">
+        <div class="flex flex-wrap items-center gap-2" id="categoryPills">
+          <button type="button" onclick="filterCategory('all')" data-cat="all" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-[#10B981] text-black transition">
+            <span>All Guides (18)</span>
+          </button>
+          <button type="button" onclick="filterCategory('privacy')" data-cat="privacy" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#0F1218] text-gray-300 hover:text-white border border-gray-800 transition">
+            <span>Privacy & Media</span>
+          </button>
+          <button type="button" onclick="filterCategory('workflows')" data-cat="workflows" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#0F1218] text-gray-300 hover:text-white border border-gray-800 transition">
+            <span>Google Forms & Data</span>
+          </button>
+          <button type="button" onclick="filterCategory('b2b')" data-cat="b2b" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#0F1218] text-gray-300 hover:text-white border border-gray-800 transition">
+            <span>Contractors & Invoicing</span>
+          </button>
+          <button type="button" onclick="filterCategory('fitness')" data-cat="fitness" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#0F1218] text-gray-300 hover:text-white border border-gray-800 transition">
+            <span>Fitness & Recovery Science</span>
+          </button>
+        </div>
+
+        <div class="relative w-full md:w-72">
+          <input type="text" id="blogSearch" oninput="filterBySearch(this.value)" placeholder="Search guides (HEIC, PDF, Forms, Gym...)" class="w-full bg-[#0F1218] border border-gray-800 focus:border-[#10B981] rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-gray-500 outline-none transition">
+          <svg class="w-4 h-4 text-gray-500 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTICLE (HERO POST) -->
+  <section class="py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-6 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+          <h2 class="text-xs font-bold uppercase tracking-widest text-gray-400"><span>Featured Deep Dive</span></h2>
+        </div>
+        <span class="text-xs text-gray-500"><span>100% On-Device Architecture</span></span>
+      </div>
+
+      <article data-category="privacy" class="blog-card group relative bg-gradient-to-br from-[#0F1218] via-[#111622] to-[#0B1215] border border-gray-800 hover:border-[#10B981]/60 rounded-3xl p-6 sm:p-10 transition shadow-2xl overflow-hidden">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          <!-- Left Content -->
+          <div class="lg:col-span-7 space-y-5">
+            <div class="flex flex-wrap items-center gap-2.5 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-[#10B981]/15 border border-[#10B981]/30 text-[#10B981] font-bold"><span>Privacy & Offline Tech</span></span>
+              <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 font-medium"><span>7 min read</span></span>
+              <span class="text-gray-500">•</span>
+              <time datetime="2026-10-18" class="text-gray-400">Oct 18, 2026</time>
+            </div>
+
+            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight group-hover:text-[#10B981] transition">
+              <a href="/blog/compress-photos-convert-heic-offline-android">
+                <span data-i18n="art1_title">How to Compress Photos by 90%, Convert HEIC to JPG & Lock PDFs Offline on Android (Zero Cloud Uploads)</span>
+              </a>
+            </h3>
+
+            <p class="text-sm sm:text-base text-gray-300 leading-relaxed" data-i18n="art1_desc">
+              Why uploading passport scans, contracts, and family photos to free "online compressor" websites is a massive privacy risk — and how isolated on-device CPU threads shrink 12 MB camera shots down to 600 KB, batch-convert Apple HEIC files, and encrypt PDFs with AES-256 completely offline.
+            </p>
+
+            <!-- Associated App Badge + Read CTA -->
+            <div class="pt-2 flex flex-wrap items-center justify-between gap-4 border-t border-gray-800/80">
+              <div class="flex items-center gap-3">
+                <img src="/images/convert_icon_512.png" alt="Vanza Convert & Compress" class="w-10 h-10 rounded-xl border border-gray-700 object-cover">
+                <div>
+                  <p class="text-xs font-bold text-white">Vanza Convert & Compress</p>
+                  <p class="text-[11px] text-gray-400"><span>Android Utility • Free on Google Play</span></p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <a href="/convert" class="px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-gray-300 hover:text-white transition">
+                  <span>App Page</span>
+                </a>
+                <a href="/blog/compress-photos-convert-heic-offline-android" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black text-xs font-extrabold transition shadow-md">
+                  <span><span>Read Full Guide</span></span>
+                  <span>→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Visual Preview -->
+          <div class="lg:col-span-5 flex justify-center">
+            <a href="/blog/compress-photos-convert-heic-offline-android" class="relative w-full max-w-[320px] rounded-2xl bg-[#08090C] border border-gray-800 p-4 shadow-xl group-hover:border-[#10B981]/40 transition">
+              <div class="grid grid-cols-2 gap-3 items-center">
+                <img src="/images/convert_screen_2.png" alt="Compression Settings" class="rounded-xl border border-gray-800 w-full h-48 object-cover object-top">
+                <img src="/images/convert_screen_3.png" alt="Saved 88% Result" class="rounded-xl border border-gray-800 w-full h-48 object-cover object-top">
+              </div>
+              <div class="mt-3 flex items-center justify-between px-2 pt-2 border-t border-gray-800/80 text-[11px]">
+                <span class="text-gray-400"><span>12.5 MB → 1.4 MB (−88%)</span></span>
+                <span class="text-[#10B981] font-bold"><span>AES-256 + HEIC</span></span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ALL ARTICLES GRID -->
+  <section class="pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-8 flex items-center justify-between">
+        <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+          <span>All Product & Engineering Guides</span>
+        </h2>
+        <span id="resultsCounter" class="text-xs font-mono text-gray-400">18 articles</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8" id="articlesGrid">
+
+        <!-- AUTO CARD: event-qr-check-in-offline-google-sheets -->
+        <article data-category="workflows" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-blue-500/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 font-semibold"><span>Google Forms & Data</span></span>
+              <span class="text-gray-500">7 min read • Nov 23, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-blue-400 transition leading-snug">
+              <a href="/blog/event-qr-check-in-offline-google-sheets">
+                <span data-i18n="art_event_qr_check_in_offline_google_sheets_title">Reliable Event QR Check-Ins in Zero-Wi-Fi Venues Using Google Sheets</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_event_qr_check_in_offline_google_sheets_excerpt">
+              Concert halls and underground venues ruin web-based ticketing check-ins. Here is how to build a resilient, offline-first QR ticket scanner synced directly to Google Sheets.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Google Sheets</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">QR Check-In</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Offline Sync</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/formgrid" class="flex items-center gap-2.5 group/app">
+              <img src="/images/formgrid_icon_512.png" alt="FormGrid" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-blue-400 transition">FormGrid</p>
+                <p class="text-[10px] text-gray-500"><span>Mobile Forms & QR</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/event-qr-check-in-offline-google-sheets" class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: local-heic-batch-conversion-hardware-acceleration -->
+        <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-semibold"><span>Privacy & Media</span></span>
+              <span class="text-gray-500">7 min read • Nov 22, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition leading-snug">
+              <a href="/blog/local-heic-batch-conversion-hardware-acceleration">
+                <span data-i18n="art_local_heic_batch_conversion_hardware_acc_title">Batch Converting iPhone HEIC Photos Locally via Hardware Acceleration</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_local_heic_batch_conversion_hardware_acc_excerpt">
+              Process hundreds of iPhone HEIC files directly on your device using hardware acceleration. Fast, private batch conversion without cloud lag.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">HEIC Batch Conversion</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Hardware Acceleration</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Local Processing</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/convert" class="flex items-center gap-2.5 group/app">
+              <img src="/images/convert_icon_512.png" alt="Vanza Convert" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-[#10B981] transition">Vanza Convert</p>
+                <p class="text-[10px] text-gray-500"><span>Offline Media Studio</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/local-heic-batch-conversion-hardware-acceleration" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: killing-unpaid-scope-creep-with-mobile-signatures -->
+        <article data-category="b2b" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-indigo-500/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 font-semibold"><span>Contractors & Invoicing</span></span>
+              <span class="text-gray-500">7 min read • Nov 21, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-indigo-400 transition leading-snug">
+              <a href="/blog/killing-unpaid-scope-creep-with-mobile-signatures">
+                <span data-i18n="art_killing_unpaid_scope_creep_with_mobile_s_title">Killing Unpaid Scope Creep: Capturing Client Signatures On Estimates Instantly</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_killing_unpaid_scope_creep_with_mobile_s_excerpt">
+              Eliminate unpaid scope creep for good by capturing instant on-screen client signatures on itemized estimates right from your phone.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Scope Creep</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Client Signatures</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Field Estimating</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/invoices" class="flex items-center gap-2.5 group/app">
+              <img src="/images/invoices_icon_512.png" alt="Vanza Docs" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-indigo-400 transition">Vanza Docs</p>
+                <p class="text-[10px] text-gray-500"><span>Offline B2B Invoicing</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/killing-unpaid-scope-creep-with-mobile-signatures" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: exposing-the-silent-data-harvest-of-web-converters -->
+        <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-semibold"><span>Privacy & Media</span></span>
+              <span class="text-gray-500">7 min read • Nov 20, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition leading-snug">
+              <a href="/blog/exposing-the-silent-data-harvest-of-web-converters">
+                <span data-i18n="art_exposing_the_silent_data_harvest_of_web__title">Exposing the Silent Data Harvest of Online File Converters</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_exposing_the_silent_data_harvest_of_web__excerpt">
+              Every time you convert an ID scan or contract via a web utility, a third-party server creates a permanent copy. Learn how local tools eliminate this privacy risk.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">GDPR Compliance</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Identity Theft Prevention</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Local-First Security</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/convert" class="flex items-center gap-2.5 group/app">
+              <img src="/images/convert_icon_512.png" alt="Vanza Convert" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-[#10B981] transition">Vanza Convert</p>
+                <p class="text-[10px] text-gray-500"><span>Offline Media Studio</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/exposing-the-silent-data-harvest-of-web-converters" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: hardware-accelerated-heic-batch-conversion-local-pipeline -->
+        <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-semibold"><span>Privacy & Media</span></span>
+              <span class="text-gray-500">7 min read • Nov 19, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition leading-snug">
+              <a href="/blog/hardware-accelerated-heic-batch-conversion-local-pipeline">
+                <span data-i18n="art_hardware_accelerated_heic_batch_conversi_title">Hardware-Accelerated HEIC Batch Conversion: Processing Photos Locally</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_hardware_accelerated_heic_batch_conversi_excerpt">
+              Convert bulk iPhone HEIC images to standard formats locally using hardware acceleration, ensuring maximum privacy and zero cloud server dependencies.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">HEIC to JPG</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Hardware Acceleration</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Local Processing</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/convert" class="flex items-center gap-2.5 group/app">
+              <img src="/images/convert_icon_512.png" alt="Vanza Convert" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-[#10B981] transition">Vanza Convert</p>
+                <p class="text-[10px] text-gray-500"><span>Offline Media Studio</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/hardware-accelerated-heic-batch-conversion-local-pipeline" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: client-side-media-compression-email-messaging-guide -->
+        <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-semibold"><span>Privacy & Media</span></span>
+              <span class="text-gray-500">7 min read • Nov 18, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition leading-snug">
+              <a href="/blog/client-side-media-compression-email-messaging-guide">
+                <span data-i18n="art_client_side_media_compression_email_mess_title">Mastering Local Media Compression: Shrinking 4K Video and RAW Photos Offline</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_client_side_media_compression_email_mess_excerpt">
+              Discover how to compress heavy 4K videos and massive photos locally on your device before sending them via email or chat, maintaining pristine visual clarity.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Local Media Compression</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Zero Cloud Uploads</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Offline Batch Conversion</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/convert" class="flex items-center gap-2.5 group/app">
+              <img src="/images/convert_icon_512.png" alt="Vanza Convert" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-[#10B981] transition">Vanza Convert</p>
+                <p class="text-[10px] text-gray-500"><span>Offline Media Studio</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/client-side-media-compression-email-messaging-guide" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: why-online-file-converters-risk-gdpr-identity-theft -->
+        <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-semibold"><span>Privacy & Media</span></span>
+              <span class="text-gray-500">7 min read • Nov 17, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition leading-snug">
+              <a href="/blog/why-online-file-converters-risk-gdpr-identity-theft">
+                <span data-i18n="art_why_online_file_converters_risk_gdpr_ide_title">The Hidden GDPR and Identity Risks of Online File Converters</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_why_online_file_converters_risk_gdpr_ide_excerpt">
+              Free browser-based file converters require cloud uploads, exposing your confidential passport scans and signed contracts to silent data harvesting.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Privacy by Architecture</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Local File Processing</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">GDPR Compliance</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/convert" class="flex items-center gap-2.5 group/app">
+              <img src="/images/convert_icon_512.png" alt="Vanza Convert" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-[#10B981] transition">Vanza Convert</p>
+                <p class="text-[10px] text-gray-500"><span>Offline Media Studio</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/why-online-file-converters-risk-gdpr-identity-theft" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: frictionless-progressive-overload-tracking-tactile-logger -->
+        <article data-category="fitness" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-lime-400/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-400 font-semibold"><span>Fitness & Recovery Science</span></span>
+              <span class="text-gray-500">7 min read • Nov 16, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-lime-400 transition leading-snug">
+              <a href="/blog/frictionless-progressive-overload-tracking-tactile-logger">
+                <span data-i18n="art_frictionless_progressive_overload_tracki_title">Frictionless Progressive Overload: Why 2-Tap Logging Beats Social Fitness Bloat</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_frictionless_progressive_overload_tracki_excerpt">
+              Stop fighting bloated social fitness apps between heavy sets. Learn why a streamlined, 2-tap tactile tracker delivers superior progressive overload data.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Progressive Overload</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Workout Tracker</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Strength Training</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/spot" class="flex items-center gap-2.5 group/app">
+              <img src="/spot_logo.png" alt="SPOT" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-lime-400 transition">SPOT</p>
+                <p class="text-[10px] text-gray-500"><span>Smart Gym Tracker</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/frictionless-progressive-overload-tracking-tactile-logger" class="inline-flex items-center gap-1.5 text-xs font-bold text-lime-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: locking-pdf-scans-aes-256-offline-whatsapp-telegram -->
+        <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-semibold"><span>Privacy & Media</span></span>
+              <span class="text-gray-500">7 min read • Nov 15, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition leading-snug">
+              <a href="/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram">
+                <span data-i18n="art_locking_pdf_scans_aes_256_offline_whatsa_title">Locking PDF Scans with AES-256 Offline Before Sending on Chat Apps</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_locking_pdf_scans_aes_256_offline_whatsa_excerpt">
+              Stop leaking private tax files and ID scans. Discover how to apply AES-256 PDF encryption locally on your device before sending files through chat apps.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">AES-256 Encryption</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Offline PDF Security</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Secure Chat Sharing</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/convert" class="flex items-center gap-2.5 group/app">
+              <img src="/images/convert_icon_512.png" alt="Vanza Convert" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-[#10B981] transition">Vanza Convert</p>
+                <p class="text-[10px] text-gray-500"><span>Offline Media Studio</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/locking-pdf-scans-aes-256-offline-whatsapp-telegram" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: why-contractors-are-ditching-saas-invoicing-subscriptions -->
+        <article data-category="b2b" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-indigo-500/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 font-semibold"><span>Contractors & Invoicing</span></span>
+              <span class="text-gray-500">7 min read • Nov 15, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-indigo-400 transition leading-snug">
+              <a href="/blog/why-contractors-are-ditching-saas-invoicing-subscriptions">
+                <span data-i18n="art_why_contractors_are_ditching_saas_invoic_title">Why Trade Contractors Are Ditching SaaS Invoicing Subscriptions</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_why_contractors_are_ditching_saas_invoic_excerpt">
+              Stop paying monthly ransom fees for cloud software that fails on job sites. Learn why local-first invoicing is winning.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Offline Invoicing</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Trade Contractors</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">No SaaS Fees</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/invoices" class="flex items-center gap-2.5 group/app">
+              <img src="/images/invoices_icon_512.png" alt="Vanza Docs" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-indigo-400 transition">Vanza Docs</p>
+                <p class="text-[10px] text-gray-500"><span>Offline B2B Invoicing</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/why-contractors-are-ditching-saas-invoicing-subscriptions" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: optimizing-hypertrophy-recovery-cycles-local-first -->
+        <article data-category="fitness" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-lime-400/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-400 font-semibold"><span>Fitness & Recovery Science</span></span>
+              <span class="text-gray-500">8 min read • Nov 14, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-lime-400 transition leading-snug">
+              <a href="/blog/optimizing-hypertrophy-recovery-cycles-local-first">
+                <span data-i18n="art_optimizing_hypertrophy_recovery_cycles_l_title">Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_optimizing_hypertrophy_recovery_cycles_l_excerpt">
+              Stop guessing your recovery. Learn how to map muscle fatigue windows to your weekly volume for more effective hypertrophy training.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Hypertrophy Engineering</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Recovery Windows</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Training Volume</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/spot" class="flex items-center gap-2.5 group/app">
+              <img src="/spot_logo.png" alt="SPOT" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-lime-400 transition">SPOT</p>
+                <p class="text-[10px] text-gray-500"><span>Smart Gym Tracker</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/optimizing-hypertrophy-recovery-cycles-local-first" class="inline-flex items-center gap-1.5 text-xs font-bold text-lime-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: optimizing-weekly-training-volume-recovery-windows -->
+        <article data-category="fitness" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-lime-400/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-400 font-semibold"><span>Fitness & Recovery Science</span></span>
+              <span class="text-gray-500">8 min read • Nov 13, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-lime-400 transition leading-snug">
+              <a href="/blog/optimizing-weekly-training-volume-recovery-windows">
+                <span data-i18n="art_optimizing_weekly_training_volume_recove_title">Beyond Volume: Engineering Muscle Recovery Windows in SPOT</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_optimizing_weekly_training_volume_recove_excerpt">
+              Stop guessing your recovery. We break down how to manage weekly volume and muscle fatigue using 36-72 hour windows for optimal strength gains.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">muscle recovery</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">strength training</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">training volume</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/spot" class="flex items-center gap-2.5 group/app">
+              <img src="/spot_logo.png" alt="SPOT" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-lime-400 transition">SPOT</p>
+                <p class="text-[10px] text-gray-500"><span>Smart Gym Tracker</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/optimizing-weekly-training-volume-recovery-windows" class="inline-flex items-center gap-1.5 text-xs font-bold text-lime-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: how-to-shrink-4k-videos-smartphone-photos-email-without-losing-detail -->
+        <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-semibold"><span>Privacy & Media</span></span>
+              <span class="text-gray-500">7 min read • Nov 13, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition leading-snug">
+              <a href="/blog/how-to-shrink-4k-videos-smartphone-photos-email-without-losing-detail">
+                <span data-i18n="art_how_to_shrink_4k_videos_smartphone_photo_title">How to Shrink 4K Videos and Heavy Photos for Email Without Quality Loss</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_how_to_shrink_4k_videos_smartphone_photo_excerpt">
+              Stop fighting email attachment limits. Learn how to locally shrink 4K videos and massive photos instantly while keeping your media crystal clear.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Media Compression</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Local Processing</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Email Optimization</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/convert" class="flex items-center gap-2.5 group/app">
+              <img src="/images/convert_icon_512.png" alt="Vanza Convert" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-[#10B981] transition">Vanza Convert</p>
+                <p class="text-[10px] text-gray-500"><span>Offline Media Studio</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/how-to-shrink-4k-videos-smartphone-photos-email-without-losing-detail" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- AUTO CARD: securing-sensitive-pdfs-offline-aes-256-encryption -->
+        <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-semibold"><span>Privacy & Media</span></span>
+              <span class="text-gray-500">7 min read • Nov 13, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition leading-snug">
+              <a href="/blog/securing-sensitive-pdfs-offline-aes-256-encryption">
+                <span data-i18n="art_securing_sensitive_pdfs_offline_aes_256__title">Securing Sensitive PDFs: Why Local AES-256 Encryption Beats Cloud Services</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_securing_sensitive_pdfs_offline_aes_256__excerpt">
+              Stop trusting third-party servers with your private identity scans and contracts. Learn how to encrypt PDFs locally on your device for total privacy.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">PDF Security</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">AES-256 Encryption</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Offline Privacy</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/convert" class="flex items-center gap-2.5 group/app">
+              <img src="/images/convert_icon_512.png" alt="Vanza Convert" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-[#10B981] transition">Vanza Convert</p>
+                <p class="text-[10px] text-gray-500"><span>Offline Media Studio</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/securing-sensitive-pdfs-offline-aes-256-encryption" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 1: Convert & Compress -->
+        <article data-category="privacy" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] font-semibold"><span>Privacy & Media</span></span>
+              <span class="text-gray-500">7 min read • Oct 18, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-[#10B981] transition leading-snug">
+              <a href="/blog/compress-photos-convert-heic-offline-android">
+                <span data-i18n="art1_title">How to Compress Photos by 90%, Convert HEIC to JPG & Lock PDFs Offline on Android (Zero Cloud Uploads)</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art1_card_excerpt">
+              Stop uploading private IDs and photos to shady web converters. Learn how on-device Dart Isolates compress 12 MB photos by 90%, batch-convert Apple HEIC files, and lock PDFs with AES-256 encryption offline.
+            </p>
+
+            <!-- Key Topics Pills -->
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">HEIC to JPG</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Photo Compression</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">AES-256 PDF</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/convert" class="flex items-center gap-2.5 group/app">
+              <img src="/images/convert_icon_512.png" alt="Vanza Convert" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-[#10B981] transition">Vanza Convert</p>
+                <p class="text-[10px] text-gray-500"><span>Offline Media Studio</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/compress-photos-convert-heic-offline-android" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 2: FormGrid -->
+        <article data-category="workflows" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-blue-500/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 font-semibold"><span>Google Forms & Data</span></span>
+              <span class="text-gray-500">8 min read • Oct 19, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-blue-400 transition leading-snug">
+              <a href="/blog/google-forms-sheets-offline-mobile-workflow">
+                <span data-i18n="art2_title">How to Manage Google Forms & Sheets on Mobile with Offline Sync & QR Check-Ins (Without Slow Mobile Browsers)</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art2_card_excerpt">
+              Editing Google Forms or inspecting 2,000 spreadsheet rows inside a mobile browser is painful. Discover how to turn Google Forms & Sheets into a native offline-first mobile database with QR ticket scanning and non-intrusive drive.file security.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Google Forms Mobile</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">QR Check-In</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Offline Sync</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/formgrid" class="flex items-center gap-2.5 group/app">
+              <img src="/images/formgrid_icon_512.png" alt="FormGrid" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-blue-400 transition">FormGrid</p>
+                <p class="text-[10px] text-gray-500"><span>Forms & Sheets Workspace</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/google-forms-sheets-offline-mobile-workflow" class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 3: Vanza Docs (Invoices) -->
+        <article data-category="b2b" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-indigo-500/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 font-semibold"><span>Contractors & Invoicing</span></span>
+              <span class="text-gray-500">6 min read • Oct 20, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-indigo-400 transition leading-snug">
+              <a href="/blog/offline-invoice-estimate-maker-for-contractors">
+                <span data-i18n="art3_title">How Contractors & Freelancers Generate Signed PDF Invoices and Estimates on Job Sites in 60 Seconds (100% Offline)</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art3_card_excerpt">
+              Waiting until evening to type up estimates in Excel costs contractors thousands in lost deals. Learn how field technicians generate itemized PDF estimates, capture client finger signatures on-screen, and convert estimates into invoices in 1 tap.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">PDF Invoices</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Contractor Estimates</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">On-Screen Signature</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/invoices" class="flex items-center gap-2.5 group/app">
+              <img src="/images/invoices_icon_512.png" alt="Vanza Docs" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-indigo-400 transition">Vanza Docs</p>
+                <p class="text-[10px] text-gray-500"><span>Offline B2B Document Maker</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/offline-invoice-estimate-maker-for-contractors" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CARD 4: SPOT Workout Tracker -->
+        <article data-category="fitness" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-lime-400/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-400 font-semibold"><span>Fitness & Recovery Science</span></span>
+              <span class="text-gray-500">9 min read • Oct 21, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-lime-400 transition leading-snug">
+              <a href="/blog/science-of-muscle-recovery-offline-workout-tracker">
+                <span data-i18n="art4_title">Why Rigid "Monday Is Chest Day" Calendars Stall Progress &amp; How to Track Workouts Systematically Offline</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art4_card_excerpt">
+              Real physiology doesn't follow a 7-day calendar. Learn how weekly working set volume, automated Double Progression, W/D/F set tags, and 100% offline tracking in SPOT keep you progressing without plateaus.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Muscle Recovery</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Push/Pull/Legs</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Offline Gym Log</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/spot" class="flex items-center gap-2.5 group/app">
+              <div class="w-9 h-9 rounded-xl bg-black border border-gray-800 flex items-center justify-center p-1 shrink-0">
+                <img src="/spot_logo.png" alt="SPOT Tracker" class="w-full h-auto object-contain">
+              </div>
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-lime-400 transition">SPOT Workout Tracker</p>
+                <p class="text-[10px] text-gray-500"><span>Algorithmic Recovery & Gym Log</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/science-of-muscle-recovery-offline-workout-tracker" class="inline-flex items-center gap-1.5 text-xs font-bold text-lime-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VANZALABS PRODUCT ECOSYSTEM -->
+  <section class="py-16 bg-[#0B0E14] border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-[#10B981] mb-2"><span>VanzaLabs Product Ecosystem</span></p>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white"><span>Explore Our Offline-First Mobile Apps</span></h2>
+        </div>
+        <a href="/" class="text-xs font-semibold text-gray-400 hover:text-white transition">
+          <span>Visit VanzaLabs Engineering Studio →</span>
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <a href="/spot" class="group bg-[#0F1218] border border-gray-800 hover:border-lime-400/50 rounded-2xl p-5 flex flex-col justify-between gap-4 transition">
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-black border border-gray-800 flex items-center justify-center p-1.5 shrink-0">
+              <img src="/spot_logo.png" alt="SPOT" class="w-full h-auto object-contain">
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-white group-hover:text-lime-400 transition">SPOT Tracker</h3>
+              <span class="text-[10px] font-mono text-lime-400">Health & Fitness</span>
+            </div>
+          </div>
+          <p class="text-xs text-gray-400"><span>Algorithmic muscle recovery heatmaps, custom splits & tactile offline gym logging.</span></p>
+        </a>
+
+        <a href="/formgrid" class="group bg-[#0F1218] border border-gray-800 hover:border-blue-500/50 rounded-2xl p-5 flex flex-col justify-between gap-4 transition">
+          <div class="flex items-center gap-3.5">
+            <img src="/images/formgrid_icon_512.png" alt="FormGrid" class="w-11 h-11 rounded-xl object-cover border border-gray-800">
+            <div>
+              <h3 class="text-sm font-bold text-white group-hover:text-blue-400 transition">FormGrid</h3>
+              <span class="text-[10px] font-mono text-blue-400">Forms & Sheets</span>
+            </div>
+          </div>
+          <p class="text-xs text-gray-400"><span>Native mobile workspace for Google Forms & Sheets with offline sync and QR scanner.</span></p>
+        </a>
+
+        <a href="/invoices" class="group bg-[#0F1218] border border-gray-800 hover:border-indigo-500/50 rounded-2xl p-5 flex flex-col justify-between gap-4 transition">
+          <div class="flex items-center gap-3.5">
+            <img src="/images/invoices_icon_512.png" alt="Vanza Docs" class="w-11 h-11 rounded-xl object-cover border border-gray-800">
+            <div>
+              <h3 class="text-sm font-bold text-white group-hover:text-indigo-400 transition">Vanza Docs</h3>
+              <span class="text-[10px] font-mono text-indigo-400">B2B Invoicing</span>
+            </div>
+          </div>
+          <p class="text-xs text-gray-400"><span>Generate signed PDF invoices, estimates & contracts in 60 seconds completely offline.</span></p>
+        </a>
+
+        <a href="/convert" class="group bg-[#0F1218] border border-gray-800 hover:border-[#10B981]/50 rounded-2xl p-5 flex flex-col justify-between gap-4 transition">
+          <div class="flex items-center gap-3.5">
+            <img src="/images/convert_icon_512.png" alt="Vanza Convert" class="w-11 h-11 rounded-xl object-cover border border-gray-800">
+            <div>
+              <h3 class="text-sm font-bold text-white group-hover:text-[#10B981] transition">Vanza Convert</h3>
+              <span class="text-[10px] font-mono text-[#10B981]">Media & PDF Studio</span>
+            </div>
+          </div>
+          <p class="text-xs text-gray-400"><span>Compress photos up to −90%, batch convert HEIC, and lock PDFs with AES-256 on device.</span></p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- B2B ENGINEERING STUDIO CTA -->
+  <section class="py-14 bg-black border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-[#0F1218] to-[#111A19] border border-gray-800 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2 text-center md:text-left max-w-2xl">
+          <p class="text-xs font-bold uppercase tracking-wider text-[#10B981]"><span>VanzaLabs Engineering Studio</span></p>
+          <h3 class="text-2xl sm:text-3xl font-black text-white"><span>Building a SaaS MVP, Mobile App, or AI Automation?</span></h3>
+          <p class="text-sm text-gray-300"><span>We design and engineer turnkey MVPs, mobile utilities, and custom business automations in 3–8 weeks with 100% code ownership in your GitHub.</span></p>
+        </div>
+        <a href="/#contact" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#10B981] hover:bg-[#059669] text-black text-xs sm:text-sm font-extrabold transition shadow-lg neon-glow shrink-0">
+          <span><span>Discuss Your Project</span></span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#08090C] border-t border-gray-900 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 VanzaLabs Engineering Studio. All rights reserved.</p>
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="/" class="hover:text-white transition"><span>Main Site</span></a>
+        <a href="/blog" class="text-[#10B981] font-semibold"><span>Blog</span></a>
+        <a href="/privacy-policy" class="hover:text-white transition"><span>Privacy Policy</span></a>
+        <a href="mailto:contact@vanzalabs.tech" class="hover:text-gray-300 transition">contact@vanzalabs.tech</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Filtering & Bilingual Switcher -->
+  <script>
+    function filterCategory(cat) {
+      const cards = document.querySelectorAll('#articlesGrid .blog-card');
+      const btns = document.querySelectorAll('.cat-btn');
+      let count = 0;
+
+      btns.forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.className = 'cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-[#10B981] text-black transition';
+        } else {
+          btn.className = 'cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#0F1218] text-gray-300 hover:text-white border border-gray-800 transition';
+        }
+      });
+
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.classList.remove('hidden');
+          count++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      const counter = document.getElementById('resultsCounter');
+      if (counter) {
+        counter.textContent = currentBlogLang === 'uk' ? `${count} стат.` : `${count} article${count === 1 ? '' : 's'}`;
+      }
+    }
+
+    function filterBySearch(query) {
+      const q = (query || '').toLowerCase().trim();
+      const cards = document.querySelectorAll('#articlesGrid .blog-card');
+      let count = 0;
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (!q || text.includes(q)) {
+          card.classList.remove('hidden');
+          count++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      const counter = document.getElementById('resultsCounter');
+      if (counter) {
+        counter.textContent = currentBlogLang === 'uk' ? `${count} стат.` : `${count} article${count === 1 ? '' : 's'}`;
+      }
+    }
+
+    const blogTranslations = {
+      'Blog & Guides': 'Блог та гайди',
+      'Studio': 'Студія',
+      'Discuss a Project': 'Обговорити проєкт',
+      'VanzaLabs Knowledge Hub': 'База знань VanzaLabs',
+      'Engineering, Privacy & Mobile Workflows': 'Інженерія, приватність та мобільні інструменти',
+      'All Guides (18)': 'Усі статті (4)',
+      'Privacy & Media': 'Приватність та медіа',
+      'Google Forms & Data': 'Google Форми та таблиці',
+      'Contractors & Invoicing': 'Документи та рахунки',
+      'Fitness & Recovery Science': 'Фітнес та відновлення',
+      'Featured Deep Dive': 'Головний розбір',
+      '100% On-Device Architecture': '100% локальна архітектура на пристрої',
+      'Privacy & Offline Tech': 'Приватність та офлайн-технології',
+      '7 min read': '7 хв читання',
+      'Android Utility • Free on Google Play': 'Утиліта для Android • Безкоштовно в Google Play',
+      'App Page': 'Сторінка застосунку',
+      'Read Full Guide': 'Читати статтю',
+      '12.5 MB → 1.4 MB (−88%)': '12.5 МБ → 1.4 МБ (−88%)',
+      'All Product & Engineering Guides': 'Усі продуктові та інженерні гайди',
+      'Offline Media Studio': 'Офлайн медіа-студія',
+      'Forms & Sheets Workspace': 'Робочий простір Форм і Таблиць',
+      'Offline B2B Document Maker': 'Офлайн генератор рахунків та актів',
+      'Algorithmic Recovery & Gym Log': 'Розумний трекер тренувань і відновлення',
+      'Read Guide': 'Читати далі',
+      'VanzaLabs Product Ecosystem': 'Екосистема продуктів VanzaLabs',
+      'Explore Our Offline-First Mobile Apps': 'Наші офлайн-застосунки для щоденної роботи',
+      'Visit VanzaLabs Engineering Studio →': 'Перейти на головну сторінку студії →',
+      'Algorithmic muscle recovery heatmaps, custom splits & tactile offline gym logging.': 'Алгоритмічний розрахунок відновлення мʼязів, спліт-програми та офлайн-щоденник тренувань.',
+      'Native mobile workspace for Google Forms & Sheets with offline sync and QR scanner.': 'Нативний мобільний простір для Google Форм і Таблиць з офлайн-режимом та QR-сканером.',
+      'Generate signed PDF invoices, estimates & contracts in 60 seconds completely offline.': 'Створення PDF-рахунків, кошторисів та договорів з підписом на екрані за 60 секунд без інтернету.',
+      'Compress photos up to −90%, batch convert HEIC, and lock PDFs with AES-256 on device.': 'Стиснення фото до −90%, пакетна конвертація HEIC та захист PDF паролем AES-256 локально.',
+      'VanzaLabs Engineering Studio': 'Інженерна студія VanzaLabs',
+      'Building a SaaS MVP, Mobile App, or AI Automation?': 'Потрібен власний MVP, мобільний застосунок або AI-автоматизація?',
+      'We design and engineer turnkey MVPs, mobile utilities, and custom business automations in 3–8 weeks with 100% code ownership in your GitHub.': 'Ми проєктуємо та розробляємо MVP під ключ, мобільні застосунки та автоматизацію бізнес-процесів за 3–8 тижнів зі 100% передачею коду у ваш GitHub.',
+      'Discuss Your Project': 'Обговорити ваш проєкт',
+      'Main Site': 'Головний сайт',
+      'Blog': 'Блог',
+      'Privacy Policy': 'Політика конфіденційності'
+    };
+
+    const i18nBlocks = {
+      art_event_qr_check_in_offline_google_sheets_title: {
+        en: "Reliable Event QR Check-Ins in Zero-Wi-Fi Venues Using Google Sheets",
+        uk: "Надійний QR-чек-ін на подіях у зонах без Wi-Fi за допомогою Google Sheets"
+      },
+      art_event_qr_check_in_offline_google_sheets_excerpt: {
+        en: "Concert halls and underground venues ruin web-based ticketing check-ins. Here is how to build a resilient, offline-first QR ticket scanner synced directly to Google Sheets.",
+        uk: "Підземні локації та концертні зали руйнують онлайн-перевірку квитків. Дізнайтесь, як налаштувати офлайн-сканер QR-кодів із прямою синхронізацією з Google Sheets."
+      },
+      art_local_heic_batch_conversion_hardware_acc_title: {
+        en: "Batch Converting iPhone HEIC Photos Locally via Hardware Acceleration",
+        uk: "Локальне пакетне конвертування фотографій iPhone HEIC через апаратне прискорення"
+      },
+      art_local_heic_batch_conversion_hardware_acc_excerpt: {
+        en: "Process hundreds of iPhone HEIC files directly on your device using hardware acceleration. Fast, private batch conversion without cloud lag.",
+        uk: "Обробляйте сотні HEIC файлів iPhone безпосередньо на пристрої за допомогою апаратного прискорення. Швидка приватна конвертація без хмари."
+      },
+      art_killing_unpaid_scope_creep_with_mobile_s_title: {
+        en: "Killing Unpaid Scope Creep: Capturing Client Signatures On Estimates Instantly",
+        uk: "Знищення неоплачуваного розширення обсягу робіт за допомогою мобільних підписів"
+      },
+      art_killing_unpaid_scope_creep_with_mobile_s_excerpt: {
+        en: "Eliminate unpaid scope creep for good by capturing instant on-screen client signatures on itemized estimates right from your phone.",
+        uk: "Назавжди позбудьтеся неоплачуваного розширення обсягу робіт, збираючи миттєві підписи клієнтів на кошторисах просто з телефона."
+      },
+      art_exposing_the_silent_data_harvest_of_web__title: {
+        en: "Exposing the Silent Data Harvest of Online File Converters",
+        uk: "Викриття прихованого збору даних онлайн-конвертерами файлів"
+      },
+      art_exposing_the_silent_data_harvest_of_web__excerpt: {
+        en: "Every time you convert an ID scan or contract via a web utility, a third-party server creates a permanent copy. Learn how local tools eliminate this privacy risk.",
+        uk: "Кожного разу, коли ви конвертуєте скани ID чи контракт через веб-утиліту, стороній сервер створює копію. Дізнайтеся, як локальні інструменти усувають цей ризик."
+      },
+      art_hardware_accelerated_heic_batch_conversi_title: {
+        en: "Hardware-Accelerated HEIC Batch Conversion: Processing Photos Locally",
+        uk: "Апаратно прискорене пакетне перетворення HEIC: обробка локально"
+      },
+      art_hardware_accelerated_heic_batch_conversi_excerpt: {
+        en: "Convert bulk iPhone HEIC images to standard formats locally using hardware acceleration, ensuring maximum privacy and zero cloud server dependencies.",
+        uk: "Конвертуйте масиви iPhone HEIC зображень у стандартні формати локально за допомогою апаратного прискорення для повної конфіденційності."
+      },
+      art_client_side_media_compression_email_mess_title: {
+        en: "Mastering Local Media Compression: Shrinking 4K Video and RAW Photos Offline",
+        uk: "Оптимізація медіаконтенту без хмари: як стискати 4K відео та важкі фото офлайн"
+      },
+      art_client_side_media_compression_email_mess_excerpt: {
+        en: "Discover how to compress heavy 4K videos and massive photos locally on your device before sending them via email or chat, maintaining pristine visual clarity.",
+        uk: "Дізнайтеся, як зменшувати розмір 4K відео та великих фотографій прямо на пристрої перед надсиланням у месенджерах, зберігаючи максимальну якість."
+      },
+      art_why_online_file_converters_risk_gdpr_ide_title: {
+        en: "The Hidden GDPR and Identity Risks of Online File Converters",
+        uk: "Приховані ризики GDPR та крадіжки особистих даних у конвертерах"
+      },
+      art_why_online_file_converters_risk_gdpr_ide_excerpt: {
+        en: "Free browser-based file converters require cloud uploads, exposing your confidential passport scans and signed contracts to silent data harvesting.",
+        uk: "Безкоштовні онлайн-конвертери вимагають завантаження файлів у хмару, наражаючи ваші скани паспортів та контракти на ризики витоку даних."
+      },
+      art_frictionless_progressive_overload_tracki_title: {
+        en: "Frictionless Progressive Overload: Why 2-Tap Logging Beats Social Fitness Bloat",
+        uk: "Прогресивне перевантаження без зайвих рухів: чому логування у 2 дотики краще за соціальний фітнес"
+      },
+      art_frictionless_progressive_overload_tracki_excerpt: {
+        en: "Stop fighting bloated social fitness apps between heavy sets. Learn why a streamlined, 2-tap tactile tracker delivers superior progressive overload data.",
+        uk: "Досить боротися з роздутими соціальними додатками між важкими підходами. Дізнайтеся, чому швидкий трекер забезпечує найкращі дані про прогрес."
+      },
+      art_locking_pdf_scans_aes_256_offline_whatsa_title: {
+        en: "Locking PDF Scans with AES-256 Offline Before Sending on Chat Apps",
+        uk: "Захист PDF-сканів AES-256 офлайн перед відправкою в месенджерах"
+      },
+      art_locking_pdf_scans_aes_256_offline_whatsa_excerpt: {
+        en: "Stop leaking private tax files and ID scans. Discover how to apply AES-256 PDF encryption locally on your device before sending files through chat apps.",
+        uk: "Припиніть виток приватних податкових файлів та сканів паспортів. Дізнайтеся, як застосувати шифрування PDF локально на пристрої перед відправкою."
+      },
+      art_why_contractors_are_ditching_saas_invoic_title: {
+        en: "Why Trade Contractors Are Ditching SaaS Invoicing Subscriptions",
+        uk: "Чому будівельники та підрядники відмовляються від SaaS підписок"
+      },
+      art_why_contractors_are_ditching_saas_invoic_excerpt: {
+        en: "Stop paying monthly ransom fees for cloud software that fails on job sites. Learn why local-first invoicing is winning.",
+        uk: "Досить платити щомісячну данину за хмарне ПЗ, яке ламається на об'єктах. Дізнайтеся, чому локальні інвойси перемагають."
+      },
+      art_optimizing_hypertrophy_recovery_cycles_l_title: {
+        en: "Precision Hypertrophy: Calculating Recovery Windows for Optimal Weekly Volume",
+        uk: "Точна гіпертрофія: Розрахунок вікон відновлення для оптимального обсягу тренувань"
+      },
+      art_optimizing_hypertrophy_recovery_cycles_l_excerpt: {
+        en: "Stop guessing your recovery. Learn how to map muscle fatigue windows to your weekly volume for more effective hypertrophy training.",
+        uk: "Припиніть гадати з відновленням. Навчіться узгоджувати вікна м'язової втоми з тижневим обсягом для ефективнішої гіпертрофії."
+      },
+      art_optimizing_weekly_training_volume_recove_title: {
+        en: "Beyond Volume: Engineering Muscle Recovery Windows in SPOT",
+        uk: "Оптимізація обсягу тренувань та вікон відновлення м'язів у SPOT"
+      },
+      art_optimizing_weekly_training_volume_recove_excerpt: {
+        en: "Stop guessing your recovery. We break down how to manage weekly volume and muscle fatigue using 36-72 hour windows for optimal strength gains.",
+        uk: "Припиніть гадати, чи відновилися м'язи. Ми розбираємо, як керувати обсягом тренувань за допомогою 36-72-годинних вікон для максимального прогресу."
+      },
+      art_how_to_shrink_4k_videos_smartphone_photo_title: {
+        en: "How to Shrink 4K Videos and Heavy Photos for Email Without Quality Loss",
+        uk: "Як зменшити 4K відео та важкі фото для пошти без втрати якості"
+      },
+      art_how_to_shrink_4k_videos_smartphone_photo_excerpt: {
+        en: "Stop fighting email attachment limits. Learn how to locally shrink 4K videos and massive photos instantly while keeping your media crystal clear.",
+        uk: "Досить боротися з лімітами вкладень. Дізнайтеся, як миттєво локально зменшувати 4K відео та важкі фото, зберігаючи ідеальну якість медіафайлів."
+      },
+      art_securing_sensitive_pdfs_offline_aes_256__title: {
+        en: "Securing Sensitive PDFs: Why Local AES-256 Encryption Beats Cloud Services",
+        uk: "Захист конфіденційних PDF: чому локальне шифрування AES-256 краще за хмару"
+      },
+      art_securing_sensitive_pdfs_offline_aes_256__excerpt: {
+        en: "Stop trusting third-party servers with your private identity scans and contracts. Learn how to encrypt PDFs locally on your device for total privacy.",
+        uk: "Припиніть довіряти стороннім серверам свої скани документів та контракти. Дізнайтеся, як шифрувати PDF локально на пристрої для повної приватності."
+      },
+      hero_title: {
+        en: 'Practical Guides on Offline-First Apps, Data Privacy & Product Engineering',
+        uk: 'Практичні гайди: офлайн-застосунки, захист даних та продуктова інженерія'
+      },
+      hero_sub: {
+        en: 'Deep technical breakdowns and step-by-step tutorials from the engineers behind SPOT, FormGrid, Vanza Docs, and Vanza Convert & Compress. Learn how to automate field operations, protect sensitive files on-device, and build fast digital products.',
+        uk: 'Глибокі технічні розбори та покрокові інструкції від інженерів, які створили SPOT, FormGrid, Vanza Docs та Vanza Convert & Compress. Дізнайтеся, як захистити приватні файли на телефоні, зручно працювати з таблицями та документами в полі й будувати швидкі цифрові продукти.'
+      },
+      art1_title: {
+        en: 'How to Compress Photos by 90%, Convert HEIC to JPG & Lock PDFs Offline on Android (Zero Cloud Uploads)',
+        uk: 'Як стиснути фото на 90%, конвертувати HEIC у JPG та захистити PDF паролем офлайн на Android (без вивантаження в хмару)'
+      },
+      art1_desc: {
+        en: 'Why uploading passport scans, contracts, and family photos to free "online compressor" websites is a massive privacy risk — and how isolated on-device CPU threads shrink 12 MB camera shots down to 600 KB, batch-convert Apple HEIC files, and encrypt PDFs with AES-256 completely offline.',
+        uk: 'Чому завантаження сканів паспортів, договорів та особистих фото на безкоштовні «онлайн-конвертери» несе ризик витоку даних — і як локальна обробка на процесорі смартфона зменшує фото з 12 МБ до 600 КБ, пакетно конвертує HEIC з iPhone та шифрує PDF стандартом AES-256 без інтернету.'
+      },
+      art1_card_excerpt: {
+        en: 'Stop uploading private IDs and photos to shady web converters. Learn how on-device Dart Isolates compress 12 MB photos by 90%, batch-convert Apple HEIC files, and lock PDFs with AES-256 encryption offline.',
+        uk: 'Більше жодних завантажень приватних документів на сторонні сайти. Розбираємо, як стискати фото до −90%, конвертувати пачки HEIC у JPG та ставити пароль AES-256 на PDF прямо на смартфоні.'
+      },
+      art2_title: {
+        en: 'How to Manage Google Forms & Sheets on Mobile with Offline Sync & QR Check-Ins (Without Slow Mobile Browsers)',
+        uk: 'Як зручно керувати Google Формами та Таблицями зі смартфона офлайн і проводити QR-чек-ін без мобільного браузера'
+      },
+      art2_card_excerpt: {
+        en: 'Editing Google Forms or inspecting 2,000 spreadsheet rows inside a mobile browser is painful. Discover how to turn Google Forms & Sheets into a native offline-first mobile database with QR ticket scanning and non-intrusive drive.file security.',
+        uk: 'Редагувати Google Форми або шукати клієнта серед 2 000 рядків таблиці в мобільному браузері вкрай незручно. Показуємо, як перетворити Google Forms & Sheets на швидку мобільну базу даних з офлайн-доступом та QR-сканером.'
+      },
+      art3_title: {
+        en: 'How Contractors & Freelancers Generate Signed PDF Invoices and Estimates on Job Sites in 60 Seconds (100% Offline)',
+        uk: 'Як майстрам, підрядникам та ФОП створювати рахунки, кошториси та договори з підписом на екрані за 60 секунд (100% офлайн)'
+      },
+      art3_card_excerpt: {
+        en: 'Waiting until evening to type up estimates in Excel costs contractors thousands in lost deals. Learn how field technicians generate itemized PDF estimates, capture client finger signatures on-screen, and convert estimates into invoices in 1 tap.',
+        uk: 'Відкладання кошторисів «на вечір біля ноутбука» коштує майстрам втрачених замовлень. Як формувати професійні PDF-рахунки, брати підпис клієнта пальцем на екрані та вести облік оплат прямо на обʼєкті без мережі.'
+      },
+      art4_title: {
+        en: 'Why Rigid "Monday Is Chest Day" Calendars Stall Progress & How to Track Workouts Systematically Offline',
+        uk: 'Чому жорсткий календар «понеділок — день грудей» гальмує прогрес і як системно вести тренування в залі без інтернету'
+      },
+      art4_card_excerpt: {
+        en: 'Real physiology doesn\'t follow a 7-day calendar. Learn how weekly working set volume, automated Double Progression, W/D/F set tags, and 100% offline tracking in SPOT keep you progressing without plateaus.',
+        uk: 'Реальна фізіологія не підпорядковується дням тижня. Розбираємо контроль тижневого обсягу робочих сетів, подвійну прогресію, розмітку W/D/F та 100% офлайн-трекінг у SPOT.'
+      }
+    };
+
+    let currentBlogLang = 'en';
+
+    function setBlogLang(lang, save = true) {
+      currentBlogLang = lang;
+      const isUa = lang === 'uk';
+      document.documentElement.lang = isUa ? 'uk' : 'en';
+      document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+      const searchInput = document.getElementById('blogSearch');
+      if (searchInput) {
+        searchInput.placeholder = isUa ? 'Пошук гайдів (HEIC, PDF, Google Форми, Зал...)' : 'Search guides (HEIC, PDF, Forms, Gym...)';
+      }
+
+      if (save) {
+        try { localStorage.setItem('vanza_lang', lang); } catch(e) {}
+      }
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18nBlocks[key]) {
+          el.textContent = isUa ? i18nBlocks[key].uk : i18nBlocks[key].en;
+        }
+      });
+
+      document.querySelectorAll('span').forEach(span => {
+        if (span.children.length > 0 || span.hasAttribute('data-i18n')) return;
+        const text = (span.dataset.original || span.textContent).trim();
+        if (isUa && blogTranslations[text]) {
+          if (!span.dataset.original) span.dataset.original = text;
+          span.textContent = blogTranslations[text];
+        } else if (!isUa && span.dataset.original) {
+          span.textContent = span.dataset.original;
+        }
+      });
+    }
+
+    function toggleBlogLang() {
+      setBlogLang(currentBlogLang === 'en' ? 'uk' : 'en', true);
+    }
+
+    (function initBlogLang() {
+      try {
+        const saved = localStorage.getItem('vanza_lang');
+        if (saved === 'uk' || saved === 'en') {
+          if (saved === 'uk') setBlogLang('uk', false);
+          return;
+        }
+        const sysLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (sysLang.startsWith('uk') || sysLang.startsWith('ru')) {
+          setBlogLang('uk', false);
+        }
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>
