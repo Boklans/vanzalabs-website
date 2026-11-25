@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Designing High-Concurrency Pass-and-Play UI for Large Party Groups | VanzaLabs Blog</title>
+  <meta name="description" content="Learn how we built Balaka for 16 players on one phone. Explore UI strategies for pass-and-play UX, input validation, and offline-first state management.">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:title" content="Designing High-Concurrency Pass-and-Play UI for Large Party Groups">
+  <meta property="og:description" content="Learn how we built Balaka for 16 players on one phone. Explore UI strategies for pass-and-play UX, input validation, and offline-first state management.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://vanzalabs.tech/blog/designing-high-concurrency-pass-and-play-ui">
+  <meta property="og:image" content="https://vanzalabs.tech/blog/designing-high-concurrency-pass-and-play-ui/cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://vanzalabs.tech/blog/designing-high-concurrency-pass-and-play-ui/cover.png">
+  <meta name="twitter:title" content="Designing High-Concurrency Pass-and-Play UI for Large Party Groups">
+  <meta name="twitter:description" content="Learn how we built Balaka for 16 players on one phone. Explore UI strategies for pass-and-play UX, input validation, and offline-first state management.">
+  <link rel="canonical" href="https://vanzalabs.tech/blog/designing-high-concurrency-pass-and-play-ui">
+  <meta name="p:domain_verify" content="90f814ccab954bd60bf020b0af5c7022"/>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="512x512" href="/images/balaka_icon_512.png">
+  <meta name="theme-color" content="#08090C">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background-color: #08090C;
+      color: #F3F4F6;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .accent-glow {
+      box-shadow: 0 0 40px -10px rgba(245, 158, 11, 0.35);
+    }
+    .prose-custom h2 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .prose-custom h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      margin-top: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .prose-custom p {
+      color: #d1d5db;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      font-size: 1.02rem;
+    }
+    .prose-custom ul, .prose-custom ol {
+      color: #d1d5db;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      space-y: 0.5rem;
+    }
+    .prose-custom li {
+      margin-bottom: 0.55rem;
+      line-height: 1.7;
+    }
+    .prose-custom strong {
+      color: #ffffff;
+    }
+    .prose-custom a {
+      color: #F59E0B;
+      text-decoration: underline;
+    }
+    .prose-custom th {
+      background: #141923;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #1f2937;
+    }
+    .prose-custom td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #1f2937;
+      color: #d1d5db;
+    }
+  </style>
+
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu pu gu mu init Gu Qu Hu Wu Xu il Vu Yu ju oc ac lc uc cc hc capture getExtension Zu hu gc calculateEventProperties vc register register_once register_for_session unregister unregister_for_session zu mc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync wc identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset kc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty yc nc createPersonProfile setInternalOrTestUser bc xu ku opt_in_capturing opt_out_capturing Su has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing tc debug nl Os getPageViewId captureTraceFeedback captureTraceMetric Du".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_q5gM7VmNh57nCNKfKQx7KZDNgqaY7UK2mdXjrAzKDRey', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'always'
+    });
+  </script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Designing High-Concurrency Pass-and-Play UI for Large Party Groups",
+      "description": "Learn how we built Balaka for 16 players on one phone. Explore UI strategies for pass-and-play UX, input validation, and offline-first state management.",
+      "image": "https://vanzalabs.tech/blog/designing-high-concurrency-pass-and-play-ui/cover.png",
+      "datePublished": "2026-11-25",
+      "dateModified": "2026-11-25",
+      "author": {
+        "@type": "Organization",
+        "name": "VanzaLabs Engineering",
+        "url": "https://vanzalabs.tech"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VanzaLabs",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vanzalabs.tech/vanzalabs_logo_white_text.png"
+        }
+      },
+      "mainEntityOfPage": "https://vanzalabs.tech/blog/designing-high-concurrency-pass-and-play-ui"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why no sign-ups?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sign-ups create friction. In a party setting, users want to play instantly, not verify emails or create accounts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you handle 16 players on one screen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We use a dynamic card-based UI that adjusts its grid layout according to the player count to ensure readability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the game require internet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Balaka is built as an offline-first utility, meaning all logic and data reside locally on the device for 100% reliability."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "VanzaLabs",
+          "item": "https://vanzalabs.tech/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://vanzalabs.tech/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Pass-and-Play UX Design",
+          "item": "https://vanzalabs.tech/blog/designing-high-concurrency-pass-and-play-ui"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="antialiased selection:bg-[#10B981] selection:text-black">
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#08090C]/85 border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-1">
+            <img src="/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="w-full h-auto object-contain">
+          </div>
+          <span class="font-black text-base sm:text-lg text-white group-hover:text-[#10B981] transition">VanzaLabs</span>
+        </a>
+        <span class="text-gray-700">/</span>
+        <a href="/blog" class="text-xs font-bold text-gray-300 hover:text-[#10B981] transition">
+          <span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleArticleLang()" class="px-3 py-1.5 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:text-white hover:border-gray-700 transition">
+          <span id="langLabel">UA</span>
+        </button>
+        <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.balaka.party" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-black text-xs font-extrabold transition">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span class="ui-en">Get Balaka on Play</span><span class="ui-uk hidden">Завантажити Balaka</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN ARTICLE CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <nav class="text-xs text-gray-500 mb-6 flex items-center gap-2 flex-wrap">
+      <a href="/" class="hover:text-gray-300">VanzaLabs</a>
+      <span>→</span>
+      <a href="/blog" class="hover:text-gray-300"><span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span></a>
+      <span>→</span>
+      <span class="text-amber-400 font-medium"><span class="ui-en">Pass-and-Play UX Design</span><span class="ui-uk hidden">UX ігор на одному пристрої</span></span>
+    </nav>
+
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+      <div class="lg:col-span-8">
+
+        <!-- ENGLISH ARTICLE -->
+        <article id="lang-en" class="prose-custom">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 font-bold">Party & Word Games</span>
+            <span class="text-gray-400">7 min read</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-11-25" class="text-gray-400">Nov 25, 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+            Designing High-Concurrency Pass-and-Play UI for Large Party Groups
+          </h1>
+
+          <h2>The Pass-and-Play UX Constraint</h2><p>When you design for 3 to 16 players on a single device, the primary constraint isn't CPU performance—it's physical ergonomics and cognitive load. In <a href="/balaka">Balaka</a>, the phone is a shared physical token. Every time a user hands the phone to someone else, there is a risk of drop, accidental exits, or confusion about whose turn it is. We eliminated all splash screens and sign-ups to ensure the transition from 'game over' to 'next round' happens in under two seconds.</p><p>We found that standard mobile navigation patterns fail in party settings. When players are drinking or moving, they don't have the patience for complex menus. We opted for a high-contrast, edge-to-edge UI that prioritizes large touch targets. Every active state is visually distinct, ensuring that even in a dimly lit room, the screen tells the player exactly what to do next.</p><h2>State Management for Shared Devices</h2><p>Managing the state for 16 players without a backend requires absolute precision. We use a serialized local-first store that persists every interaction to the device's storage immediately. If the app is killed or the phone is restarted, the game resumes exactly where it left off, including the current score and team rotation.</p><div class="overflow-x-auto my-6 rounded-2xl border border-gray-800 bg-[#0F1218]"><table class="w-full text-left border-collapse text-sm"><thead><tr class="border-b border-gray-700"><th class="p-3">Metric</th><th class="p-3">Single-Player App</th><th class="p-3">Balaka (16 Players)</th></tr></thead><tbody><tr><td class="p-3">Session Persistence</td><td class="p-3">Optional (Cloud)</td><td class="p-3">Mandatory (Local Storage)</td></tr><tr><td class="p-3">Interaction Delay</td><td class="p-3">200ms+</td><td class="p-3">&lt;50ms (Zero-Lag UI)</td></tr><tr><td class="p-3">Onboarding</td><td class="p-3">Required Account</td><td class="p-3">Zero Sign-ups</td></tr></tbody></table></div><h2>Solving the Input Fatigue Problem</h2><p>With 1,750+ Ukrainian words, we had to solve the problem of 'input fatigue.' Players in a party game setting do not want to navigate through settings to choose categories. We implemented a 'Quick-Start' flow that allows users to launch a game in 3 taps from the home screen, available for download on <a href="https://play.google.com/store/apps/details?id=tech.vanzalabs.balaka">Google Play</a>.</p><p>To prevent accidental presses, we use a 'hold-to-confirm' interaction for critical game-ending actions. This adds a physical micro-delay that prevents a player from prematurely ending a turn during the chaos of a round. This simple UX pattern significantly reduced the number of support tickets we received regarding accidental game resets.</p><h2>Scaling UI for 16 Players</h2><p>When you have 16 players, the scoreboards become crowded. Traditional list views are too small. We migrated to a grid-based card layout that dynamically scales based on the player count. By limiting the UI to only the necessary information for the current player, we reduce the 'noise' that leads to distractions. We also implemented a custom haptic feedback pattern: short, sharp pulses for correct answers, and a longer, low-frequency pulse for errors or timeouts. This makes the game feel tactile even when the screen isn't being directly monitored.</p>
+
+          <h2>Frequently Asked Questions (FAQ)</h2>
+<div class="space-y-4 my-6">
+<div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Why no sign-ups?</h3>
+  <p class="text-sm text-gray-400 mb-0">Sign-ups create friction. In a party setting, users want to play instantly, not verify emails or create accounts.</p>
+</div><div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">How do you handle 16 players on one screen?</h3>
+  <p class="text-sm text-gray-400 mb-0">We use a dynamic card-based UI that adjusts its grid layout according to the player count to ensure readability.</p>
+</div><div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Does the game require internet?</h3>
+  <p class="text-sm text-gray-400 mb-0">No. Balaka is built as an offline-first utility, meaning all logic and data reside locally on the device for 100% reliability.</p>
+</div>
+</div>
+        </article>
+
+        <!-- UKRAINIAN ARTICLE -->
+        <article id="lang-uk" class="prose-custom hidden">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 font-bold">Ігри для компанії</span>
+            <span class="text-gray-400">7 хв читання</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-11-25" class="text-gray-400">Nov 25, 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+            Проєктування UI для ігор на одній вечірці: виклики передачі смартфона
+          </h1>
+
+          <h2>Ергономіка передачі пристрою</h2><p>Коли ви проєктуєте гру для 3–16 гравців на одному смартфоні, головним обмеженням є не продуктивність процесора, а фізична ергономіка та когнітивне навантаження. У <a href="/balaka">Balaka</a> телефон є спільним фізичним об'єктом. Кожен раз, коли гравець передає телефон іншому, виникає ризик падіння, випадкового виходу з програми або плутанини з чергою. Ми прибрали всі екрани завантаження та реєстрації, щоб перехід від завершення раунду до наступного займав менше двох секунд.</p><p>Ми виявили, що стандартні патерни мобільної навігації не працюють під час вечірок. Гравцям потрібен зрозумілий інтерфейс із великими зонами дотику. Ми обрали висококонтрастний дизайн на весь екран, де кожен стан чітко відрізняється, щоб навіть у приміщенні з тьмяним світлом користувач розумів, що робити далі.</p><h2>Керування станом на одному пристрої</h2><p>Керування станом для 16 гравців без бекенду вимагає абсолютної точності. Ми використовуємо локальне сховище, яке записує кожну взаємодію миттєво. Якщо програму випадково закрили або перезавантажили телефон, гра відновлюється рівно на тому місці, де зупинилася, включно з поточним рахунком і чергою гравців.</p><div class="overflow-x-auto my-6 rounded-2xl border border-gray-800 bg-[#0F1218]"><table class="w-full text-left border-collapse text-sm"><thead><tr class="border-b border-gray-700"><th class="p-3">Показник</th><th class="p-3">Звичайна програма</th><th class="p-3">Balaka (16 гравців)</th></tr></thead><tbody><tr><td class="p-3">Збереження сесії</td><td class="p-3">Опціонально (Хмара)</td><td class="p-3">Обов'язково (Локально)</td></tr><tr><td class="p-3">Затримка відгуку</td><td class="p-3">200мс+</td><td class="p-3">&lt;50мс (Zero-Lag UI)</td></tr><tr><td class="p-3">Реєстрація</td><td class="p-3">Обов'язкова</td><td class="p-3">Без реєстрації</td></tr></tbody></table></div><h2>Проблема втоми від введення даних</h2><p>Маючи 1750+ слів, ми повинні були вирішити проблему «втоми від введення». Гравці на вечірці не хочуть витрачати час на налаштування категорій. Ми реалізували механізм «Швидкого старту», який дозволяє розпочати гру за 3 дотики. Завантажити додаток можна в <a href="https://play.google.com/store/apps/details?id=tech.vanzalabs.balaka">Google Play</a>.</p><p>Щоб запобігти випадковим натисканням, ми додали взаємодію «утримання для підтвердження» для критичних дій, таких як завершення гри. Це додає фізичну мікро-затримку, яка рятує від помилкового скидання раунду під час хаотичного процесу гри.</p><h2>Масштабування інтерфейсу для 16 гравців</h2><p>Для 16 гравців таблиці лідерів стають перевантаженими. Стандартні списки виглядають занадто дрібно. Ми перейшли на сітку карток, яка динамічно масштабується залежно від кількості гравців. Обмежуючи інтерфейс лише необхідною інформацією для поточного гравця, ми зменшуємо кількість «шуму». Ми також реалізували тактильний відгук: короткі імпульси для правильних відповідей і довший низькочастотний імпульс для помилок, що робить гру відчутною навіть без постійного погляду на екран.</p>
+
+          <h2>Часті запитання (FAQ)</h2>
+<div class="space-y-4 my-6">
+<div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Чому немає реєстрації?</h3>
+  <p class="text-sm text-gray-400 mb-0">Реєстрація створює тертя. На вечірці користувачі хочуть грати миттєво, а не підтверджувати пошту чи створювати акаунти.</p>
+</div><div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Як ви розміщуєте 16 гравців на одному екрані?</h3>
+  <p class="text-sm text-gray-400 mb-0">Ми використовуємо динамічний інтерфейс на основі карток, який автоматично підлаштовує сітку під кількість гравців для кращої читабельності.</p>
+</div><div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Чи потрібен інтернет для гри?</h3>
+  <p class="text-sm text-gray-400 mb-0">Ні. Balaka розроблена як офлайн-додаток, тому вся логіка та дані зберігаються локально на пристрої для максимальної надійності.</p>
+</div>
+</div>
+        </article>
+
+      </div>
+
+      <!-- RIGHT COLUMN: STICKY APP WIDGET -->
+      <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+        <div class="bg-gradient-to-b from-[#0F1218] to-[#0B0E14] border border-amber-500/40 rounded-3xl p-6 shadow-2xl accent-glow">
+          <div class="flex items-center gap-3.5 mb-4">
+            <img src="/images/balaka_icon_512.png" alt="Balaka Party Games" class="w-14 h-14 rounded-2xl border border-gray-700 object-cover shrink-0">
+            <div>
+              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 mb-1">
+                <span class="ui-en">Offline Party Games</span><span class="ui-uk hidden">Офлайн-ігри для компанії</span>
+              </span>
+              <h3 class="text-lg font-black text-white leading-tight">Balaka Party Games</h3>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-300 leading-relaxed mb-5">
+            <span class="ui-en">All-in-one offline party game (Alias, Taboo, Crocodile, Spy) for 3–16 players on one phone. 1,750+ non-repeating Ukrainian words, custom decks, and zero sign-ups.</span>
+            <span class="ui-uk hidden">Еліас, Табу, Крокодил і Шпигун на одному телефоні для 3–16 гравців без інтернету та реєстрації. 1 750+ українських слів без повторів і конструктор колод.</span>
+          </p>
+
+          <div class="space-y-2.5 mb-5">
+            <a href="https://play.google.com/store/apps/details?id=com.vanzalabs.balaka.party" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-black font-extrabold text-xs sm:text-sm transition shadow-lg">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+              <span class="ui-en">Download on Google Play</span><span class="ui-uk hidden">Завантажити в Google Play</span>
+            </a>
+
+            <a href="/balaka" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-white transition">
+              <span class="ui-en">Explore App Overview →</span><span class="ui-uk hidden">Детальніше про застосунок →</span>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-gray-800/80 flex items-center gap-3.5">
+            <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+              <img src="/images/qr_balaka.png" alt="QR Code Balaka Party Games" class="w-24 h-24 rounded-lg block">
+            </div>
+            <div class="space-y-1">
+              <p class="text-xs font-bold text-white">
+                <span class="ui-en">Scan with phone camera</span><span class="ui-uk hidden">Скануйте камерою телефона</span>
+              </p>
+              <p class="text-[11px] text-gray-400 leading-snug">
+                <span class="ui-en">Opens directly in Google Play Store on your Android device.</span>
+                <span class="ui-uk hidden">Миттєво відкриває сторінку встановлення в Google Play.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- More Guides Sidebar Box -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 space-y-4">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400">
+            <span class="ui-en">More VanzaLabs Guides</span><span class="ui-uk hidden">Інші гайди у блозі</span>
+          </h4>
+          <div class="space-y-3 text-xs">
+            <a href="/blog/event-qr-check-in-offline-google-sheets" class="block p-3 rounded-xl bg-[#08090C] hover:border-[#10B981]/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1 line-clamp-2">Reliable Event QR Check-Ins in Zero-Wi-Fi Venues Using Google Sheets</p>
+              <p class="text-[11px] text-gray-500">2026-11-23 • Read Guide →</p>
+            </a>
+            <a href="/blog/local-heic-batch-conversion-hardware-acceleration" class="block p-3 rounded-xl bg-[#08090C] hover:border-[#10B981]/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1 line-clamp-2">Batch Converting iPhone HEIC Photos Locally via Hardware Acceleration</p>
+              <p class="text-[11px] text-gray-500">2026-11-22 • Read Guide →</p>
+            </a>
+            <a href="/blog/killing-unpaid-scope-creep-with-mobile-signatures" class="block p-3 rounded-xl bg-[#08090C] hover:border-[#10B981]/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1 line-clamp-2">Killing Unpaid Scope Creep: Capturing Client Signatures On Estimates Instantly</p>
+              <p class="text-[11px] text-gray-500">2026-11-21 • Read Guide →</p>
+            </a>
+            <a href="/blog/exposing-the-silent-data-harvest-of-web-converters" class="block p-3 rounded-xl bg-[#08090C] hover:border-[#10B981]/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1 line-clamp-2">Exposing the Silent Data Harvest of Online File Converters</p>
+              <p class="text-[11px] text-gray-500">2026-11-20 • Read Guide →</p>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#08090C] border-t border-gray-900 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 VanzaLabs Engineering Studio. All rights reserved.</p>
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="/" class="hover:text-white transition">VanzaLabs</a>
+        <a href="/blog" class="text-[#10B981] font-semibold">Blog</a>
+        <a href="/balaka" class="hover:text-white transition">Balaka</a>
+        <a href="/privacy-policy" class="hover:text-white transition">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = 'en';
+    function setArticleLang(lang, save = true) {
+      currentLang = lang;
+      const isUa = lang === 'uk';
+      document.documentElement.lang = isUa ? 'uk' : 'en';
+      document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+      document.getElementById('lang-en').classList.toggle('hidden', isUa);
+      document.getElementById('lang-uk').classList.toggle('hidden', !isUa);
+      document.querySelectorAll('.ui-en').forEach(el => el.classList.toggle('hidden', isUa));
+      document.querySelectorAll('.ui-uk').forEach(el => el.classList.toggle('hidden', !isUa));
+      if (save) {
+        try { localStorage.setItem('vanza_lang', lang); } catch(e) {}
+      }
+    }
+    function toggleArticleLang() {
+      setArticleLang(currentLang === 'en' ? 'uk' : 'en', true);
+    }
+    (function init() {
+      try {
+        const saved = localStorage.getItem('vanza_lang');
+        if (saved === 'uk' || saved === 'en') {
+          if (saved === 'uk') setArticleLang('uk', false);
+          return;
+        }
+        const sysLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (sysLang.startsWith('uk') || sysLang.startsWith('ru')) setArticleLang('uk', false);
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>

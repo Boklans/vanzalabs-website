@@ -5,8 +5,16 @@
     <link>https://vanzalabs.tech/blog</link>
     <description>Practical guides on offline-first mobile apps, data privacy, and engineering.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Nov 2026 21:43:37 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Nov 2026 21:37:19 +0000</lastBuildDate>
     <atom:link href="https://vanzalabs.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Designing High-Concurrency Pass-and-Play UI for Large Party Groups</title>
+      <link>https://vanzalabs.tech/blog/designing-high-concurrency-pass-and-play-ui</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/designing-high-concurrency-pass-and-play-ui</guid>
+      <pubDate>Wed, 25 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how we built Balaka for 16 players on one phone. Explore UI strategies for pass-and-play UX, input validation, and offline-first state management.</description>
+      <enclosure url="https://vanzalabs.tech/blog/designing-high-concurrency-pass-and-play-ui/cover.png" type="image/png" length="0" />
+    </item>
     <item>
       <title>Reliable Event QR Check-Ins in Zero-Wi-Fi Venues Using Google Sheets</title>
       <link>https://vanzalabs.tech/blog/event-qr-check-in-offline-google-sheets</link>
