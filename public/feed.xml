@@ -5,8 +5,16 @@
     <link>https://vanzalabs.tech/blog</link>
     <description>Practical guides on offline-first mobile apps, data privacy, and engineering.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Nov 2026 21:37:19 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 26 Nov 2026 07:13:15 +0000</lastBuildDate>
     <atom:link href="https://vanzalabs.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Architecting Zero-Friction Pass-and-Play UX for Group Party Games</title>
+      <link>https://vanzalabs.tech/blog/architecting-pass-and-play-party-game-ux</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/architecting-pass-and-play-party-game-ux</guid>
+      <pubDate>Thu, 26 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how we built an offline pass-and-play party game UX for 3-16 players sharing one phone with zero sign-ups, instant setup, and robust state management.</description>
+      <enclosure url="https://vanzalabs.tech/blog/architecting-pass-and-play-party-game-ux/cover.png" type="image/png" length="0" />
+    </item>
     <item>
       <title>Designing High-Concurrency Pass-and-Play UI for Large Party Groups</title>
       <link>https://vanzalabs.tech/blog/designing-high-concurrency-pass-and-play-ui</link>
