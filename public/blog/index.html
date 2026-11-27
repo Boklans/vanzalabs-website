@@ -102,6 +102,7 @@
           }
         },
         "blogPost": [
+          {"@type": "BlogPosting", "headline": "Why Minimalist Set Loggers Beat Social Fitness Apps for Gains", "url": "https://vanzalabs.tech/blog/minimalist-strength-tracking-without-social-bloat", "datePublished": "2026-11-27", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Architecting Zero-Friction Pass-and-Play UX for Group Party Games", "url": "https://vanzalabs.tech/blog/architecting-pass-and-play-party-game-ux", "datePublished": "2026-11-26", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Designing High-Concurrency Pass-and-Play UI for Large Party Groups", "url": "https://vanzalabs.tech/blog/designing-high-concurrency-pass-and-play-ui", "datePublished": "2026-11-25", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
           {"@type": "BlogPosting", "headline": "Reliable Event QR Check-Ins in Zero-Wi-Fi Venues Using Google Sheets", "url": "https://vanzalabs.tech/blog/event-qr-check-in-offline-google-sheets", "datePublished": "2026-11-23", "author": {"@type": "Organization", "name": "VanzaLabs Engineering"}},
@@ -237,7 +238,7 @@
       <div class="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4 border-t border-gray-800/80">
         <div class="flex flex-wrap items-center gap-2" id="categoryPills">
           <button type="button" onclick="filterCategory('all')" data-cat="all" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-[#10B981] text-black transition">
-            <span>All Guides (20)</span>
+            <span>All Guides (21)</span>
           </button>
           <button type="button" onclick="filterCategory('privacy')" data-cat="privacy" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#0F1218] text-gray-300 hover:text-white border border-gray-800 transition">
             <span>Privacy & Media</span>
@@ -343,10 +344,51 @@
         <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
           <span>All Product & Engineering Guides</span>
         </h2>
-        <span id="resultsCounter" class="text-xs font-mono text-gray-400">20 articles</span>
+        <span id="resultsCounter" class="text-xs font-mono text-gray-400">21 articles</span>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8" id="articlesGrid">
+
+        <!-- AUTO CARD: minimalist-strength-tracking-without-social-bloat -->
+        <article data-category="fitness" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-lime-400/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="px-2.5 py-1 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-400 font-semibold"><span>Fitness & Recovery Science</span></span>
+              <span class="text-gray-500">7 min read • Nov 27, 2026</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white group-hover:text-lime-400 transition leading-snug">
+              <a href="/blog/minimalist-strength-tracking-without-social-bloat">
+                <span data-i18n="art_minimalist_strength_tracking_without_soc_title">Why Minimalist Set Loggers Beat Social Fitness Apps for Gains</span>
+              </a>
+            </h3>
+
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="art_minimalist_strength_tracking_without_soc_excerpt">
+              Stop fighting bloated UI and social feeds in the gym. Learn how a tactile, offline-first logging workflow optimizes progressive overload without distractions.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Progressive Overload</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Local First Apps</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">Workout Analytics</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-gray-800/80 flex items-center justify-between gap-4">
+            <a href="/spot" class="flex items-center gap-2.5 group/app">
+              <img src="/images/spot_logo.png" alt="SPOT" class="w-9 h-9 rounded-xl border border-gray-800">
+              <div>
+                <p class="text-xs font-bold text-white group-hover/app:text-lime-400 transition">SPOT</p>
+                <p class="text-[10px] text-gray-500"><span>Smart Gym Tracker</span></p>
+              </div>
+            </a>
+
+            <a href="/blog/minimalist-strength-tracking-without-social-bloat" class="inline-flex items-center gap-1.5 text-xs font-bold text-lime-400 hover:underline">
+              <span><span>Read Guide</span></span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
 
         <!-- AUTO CARD: architecting-pass-and-play-party-game-ux -->
         <article data-category="games" class="blog-card bg-[#0F1218] border border-gray-800 hover:border-amber-500/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition group">
@@ -1323,7 +1365,7 @@
       'Discuss a Project': 'Обговорити проєкт',
       'VanzaLabs Knowledge Hub': 'База знань VanzaLabs',
       'Engineering, Privacy & Mobile Workflows': 'Інженерія, приватність та мобільні інструменти',
-      'All Guides (20)': 'Усі статті (4)',
+      'All Guides (21)': 'Усі статті (4)',
       'Privacy & Media': 'Приватність та медіа',
       'Google Forms & Data': 'Google Форми та таблиці',
       'Contractors & Invoicing': 'Документи та рахунки',
@@ -1359,6 +1401,14 @@
     };
 
     const i18nBlocks = {
+      art_minimalist_strength_tracking_without_soc_title: {
+        en: "Why Minimalist Set Loggers Beat Social Fitness Apps for Gains",
+        uk: "Чому мінімалістичні трекери кращі за соцмережі для тренувань"
+      },
+      art_minimalist_strength_tracking_without_soc_excerpt: {
+        en: "Stop fighting bloated UI and social feeds in the gym. Learn how a tactile, offline-first logging workflow optimizes progressive overload without distractions.",
+        uk: "Досить боротися з роздутим інтерфейсом та стрічками у залі. Дізнайтеся, як тактичний офлайн-воркфлоу оптимізує прогресію навантажень."
+      },
       art_architecting_pass_and_play_party_game_ux_title: {
         en: "Architecting Zero-Friction Pass-and-Play UX for Group Party Games",
         uk: "Проєктування UX для пасс-енд-плей ігор на одному смартфоні"
