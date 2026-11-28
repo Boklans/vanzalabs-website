@@ -5,8 +5,16 @@
     <link>https://vanzalabs.tech/blog</link>
     <description>Practical guides on offline-first mobile apps, data privacy, and engineering.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Nov 2026 07:15:22 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 28 Nov 2026 07:16:10 +0000</lastBuildDate>
     <atom:link href="https://vanzalabs.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Managing Thousands of Spreadsheet Rows Smoothly on Android with Local Indexing</title>
+      <link>https://vanzalabs.tech/blog/managing-thousands-spreadsheet-rows-android-local-indexing</link>
+      <guid isPermaLink="true">https://vanzalabs.tech/blog/managing-thousands-spreadsheet-rows-android-local-indexing</guid>
+      <pubDate>Sat, 28 Nov 2026 00:00:00 +0000</pubDate>
+      <description>Learn how FormGrid uses local SQLite indexing and zero-bloat architecture to render thousands of Google Sheets rows instantly on Android without lag.</description>
+      <enclosure url="https://vanzalabs.tech/blog/managing-thousands-spreadsheet-rows-android-local-indexing/cover.png" type="image/png" length="0" />
+    </item>
     <item>
       <title>Why Minimalist Set Loggers Beat Social Fitness Apps for Gains</title>
       <link>https://vanzalabs.tech/blog/minimalist-strength-tracking-without-social-bloat</link>

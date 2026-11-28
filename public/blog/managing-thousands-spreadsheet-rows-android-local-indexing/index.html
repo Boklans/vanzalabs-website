@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Managing Thousands of Spreadsheet Rows Smoothly on Android with Local Indexing | VanzaLabs Blog</title>
+  <meta name="description" content="Learn how FormGrid uses local SQLite indexing and zero-bloat architecture to render thousands of Google Sheets rows instantly on Android without lag.">
+
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:title" content="Managing Thousands of Spreadsheet Rows Smoothly on Android with Local Indexing">
+  <meta property="og:description" content="Learn how FormGrid uses local SQLite indexing and zero-bloat architecture to render thousands of Google Sheets rows instantly on Android without lag.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://vanzalabs.tech/blog/managing-thousands-spreadsheet-rows-android-local-indexing">
+  <meta property="og:image" content="https://vanzalabs.tech/blog/managing-thousands-spreadsheet-rows-android-local-indexing/cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://vanzalabs.tech/blog/managing-thousands-spreadsheet-rows-android-local-indexing/cover.png">
+  <meta name="twitter:title" content="Managing Thousands of Spreadsheet Rows Smoothly on Android with Local Indexing">
+  <meta name="twitter:description" content="Learn how FormGrid uses local SQLite indexing and zero-bloat architecture to render thousands of Google Sheets rows instantly on Android without lag.">
+  <link rel="canonical" href="https://vanzalabs.tech/blog/managing-thousands-spreadsheet-rows-android-local-indexing">
+  <meta name="p:domain_verify" content="90f814ccab954bd60bf020b0af5c7022"/>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="512x512" href="/images/formgrid_icon_512.png">
+  <meta name="theme-color" content="#08090C">
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background-color: #08090C;
+      color: #F3F4F6;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .accent-glow {
+      box-shadow: 0 0 40px -10px rgba(59, 130, 246, 0.35);
+    }
+    .prose-custom h2 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .prose-custom h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      margin-top: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .prose-custom p {
+      color: #d1d5db;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      font-size: 1.02rem;
+    }
+    .prose-custom ul, .prose-custom ol {
+      color: #d1d5db;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      space-y: 0.5rem;
+    }
+    .prose-custom li {
+      margin-bottom: 0.55rem;
+      line-height: 1.7;
+    }
+    .prose-custom strong {
+      color: #ffffff;
+    }
+    .prose-custom a {
+      color: #3B82F6;
+      text-decoration: underline;
+    }
+    .prose-custom th {
+      background: #141923;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #1f2937;
+    }
+    .prose-custom td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #1f2937;
+      color: #d1d5db;
+    }
+  </style>
+
+  <!-- PostHog Analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="vu pu gu mu init Gu Qu Hu Wu Xu il Vu Yu ju oc ac lc uc cc hc capture getExtension Zu hu gc calculateEventProperties vc register register_once register_for_session unregister unregister_for_session zu mc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync wc identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset kc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty yc nc createPersonProfile setInternalOrTestUser bc xu ku opt_in_capturing opt_out_capturing Su has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing tc debug nl Os getPageViewId captureTraceFeedback captureTraceMetric Du".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_q5gM7VmNh57nCNKfKQx7KZDNgqaY7UK2mdXjrAzKDRey', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'always'
+    });
+  </script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Managing Thousands of Spreadsheet Rows Smoothly on Android with Local Indexing",
+      "description": "Learn how FormGrid uses local SQLite indexing and zero-bloat architecture to render thousands of Google Sheets rows instantly on Android without lag.",
+      "image": "https://vanzalabs.tech/blog/managing-thousands-spreadsheet-rows-android-local-indexing/cover.png",
+      "datePublished": "2026-11-28",
+      "dateModified": "2026-11-28",
+      "author": {
+        "@type": "Organization",
+        "name": "VanzaLabs Engineering",
+        "url": "https://vanzalabs.tech"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VanzaLabs",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vanzalabs.tech/vanzalabs_logo_white_text.png"
+        }
+      },
+      "mainEntityOfPage": "https://vanzalabs.tech/blog/managing-thousands-spreadsheet-rows-android-local-indexing"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does FormGrid handle thousands of spreadsheet rows without crashing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "FormGrid parses incoming Google Sheets data into a localized SQLite database with B-tree indices and FTS5 full-text search, keeping memory consumption minimal and rendering search results in milliseconds off the main thread."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I search and edit spreadsheets offline on Android?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. FormGrid caches your forms and spreadsheet rows locally. You can search, view, and modify records without an internet connection, and changes automatically queue for synchronization once connectivity returns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What permissions does FormGrid require to access Google Drive?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "FormGrid strictly uses the Google Drive `drive.file` scope. It only has access to files that you explicitly create or open within the app, ensuring your wider Google Drive storage remains completely private."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "VanzaLabs",
+          "item": "https://vanzalabs.tech/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://vanzalabs.tech/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Android Spreadsheet Indexing",
+          "item": "https://vanzalabs.tech/blog/managing-thousands-spreadsheet-rows-android-local-indexing"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="antialiased selection:bg-[#10B981] selection:text-black">
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#08090C]/85 border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-1">
+            <img src="/vanzalabs_logo_white_text.png" alt="VanzaLabs" class="w-full h-auto object-contain">
+          </div>
+          <span class="font-black text-base sm:text-lg text-white group-hover:text-[#10B981] transition">VanzaLabs</span>
+        </a>
+        <span class="text-gray-700">/</span>
+        <a href="/blog" class="text-xs font-bold text-gray-300 hover:text-[#10B981] transition">
+          <span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button type="button" onclick="toggleArticleLang()" class="px-3 py-1.5 rounded-lg border border-gray-800 text-xs font-semibold text-gray-300 hover:text-white hover:border-gray-700 transition">
+          <span id="langLabel">UA</span>
+        </button>
+        <a href="https://play.google.com/store/apps/details?id=com.vanza.formgrid" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-extrabold transition">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <span class="ui-en">Get FormGrid</span><span class="ui-uk hidden">Завантажити FormGrid</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN ARTICLE CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <nav class="text-xs text-gray-500 mb-6 flex items-center gap-2 flex-wrap">
+      <a href="/" class="hover:text-gray-300">VanzaLabs</a>
+      <span>→</span>
+      <a href="/blog" class="hover:text-gray-300"><span class="ui-en">Blog</span><span class="ui-uk hidden">Блог</span></a>
+      <span>→</span>
+      <span class="text-blue-400 font-medium"><span class="ui-en">Android Spreadsheet Indexing</span><span class="ui-uk hidden">Індексація таблиць Android</span></span>
+    </nav>
+
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+      <div class="lg:col-span-8">
+
+        <!-- ENGLISH ARTICLE -->
+        <article id="lang-en" class="prose-custom">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-400 font-bold">Google Forms & Data</span>
+            <span class="text-gray-400">7 min read</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-11-28" class="text-gray-400">Nov 28, 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+            Managing Thousands of Spreadsheet Rows Smoothly on Android with Local Indexing
+          </h1>
+
+          <div class="prose-custom">
+    <h2>The Mobile Spreadsheet Bottleneck</h2>
+    <p>Opening a Google Sheet with over 5,000 rows on a standard mobile device typically triggers a familiar loop of frustration: infinite loading spinners, memory warnings, and complete UI lockups. Standard web views and generic mobile spreadsheet wrappers attempt to render raw DOM nodes or parse massive JSON payloads on the main thread every time you scroll. This approach ignores fundamental hardware constraints. When working in the field—whether auditing inventory, checking in event attendees, or recording field inspection data—network latency compounds this problem. Waiting for a remote API to filter a sprawling dataset over a spotty cellular connection turns routine data management into an exercise in patience.</p>
+    <p>To solve this natively on Android, we built <strong>FormGrid</strong> around a core engineering principle: the network should only synchronize, never compute. By shifting data manipulation off the main thread and implementing a robust local storage layer, we eliminated UI stutter entirely. If you need a production-ready solution to manage forms and sheets seamlessly, you can explore the <a href="/formgrid">FormGrid mobile client</a> and download it directly from Google Play.</p>
+
+    <h2>Architecting Local SQLite Indices for Instant Search</h2>
+    <p>Raw JSON strings downloaded from Google Sheets APIs are useless for fast lookups without structured indexing. When a sheet syncs to your device, our engine parses the rows and commits them to a localized SQLite database configured with specialized indices. Instead of scanning an array of thousands of objects in memory, our search queries leverage B-tree database indices to locate specific records in milliseconds.</p>
+    <p>Fuzzy searching across multiple columns—such as names, IDs, and timestamps—requires careful query optimization. We maintain virtual table modules (FTS5) for full-text search capabilities directly on the device. When a user types a query into the search bar, the UI thread does not block. Instead, background worker threads execute parameterized SQL statements, returning sliced pagination chunks straight to the RecyclerView adapter. The result is 60 frames-per-second scrolling, even when navigating datasets exceeding 10,000 rows.</p>
+
+    <h2>Optimizing Memory Footprint and Garbage Collection</h2>
+    <p>Garbage collection (GC) pauses are the silent killer of Android UI smoothness. When loading large tabular datasets, inefficient data structures generate millions of short-lived objects, triggering frequent GC cycles that drop frames and cause stutter. We tackled this by adopting memory pooling strategies and immutable data models within our synchronization pipeline.</p>
+    <p>Incoming cell values are mapped into primitive-backed arrays and lightweight structs rather than deeply nested object graphs. Furthermore, dirty checking mechanisms ensure that only modified rows trigger database writes during background sync cycles. This drastically reduces CPU overhead, preserves device battery life, and ensures that older or budget Android hardware can process massive administrative spreadsheets without thermal throttling or memory panics.</p>
+
+    <div class="overflow-x-auto my-6 rounded-2xl border border-gray-800 bg-[#0F1218]"><table class="w-full text-left border-collapse text-sm">
+        <thead>
+            <tr class="border-b border-gray-800 text-gray-300">
+                <th class="p-4 font-semibold">Architecture Metric</th>
+                <th class="p-4 font-semibold">Standard Web View / Wrapper</th>
+                <th class="p-4 font-semibold">FormGrid Local-First Engine</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-800/60 text-gray-400">
+            <tr>
+                <td class="p-4 font-medium text-gray-200">Dataset Capacity (Rows)</td>
+                <td class="p-4">200 - 500 before severe lag</td>
+                <td class="p-4">10,000+ smoothly indexed</td>
+            </tr>
+            <tr>
+                <td class="p-4 font-medium text-gray-200">Search Latency</td>
+                <td class="p-4">300ms - 1200ms per keystroke</td>
+                <td class="p-4">&lt; 15ms via SQLite FTS5</td>
+            </tr>
+            <tr>
+                <td class="p-4 font-medium text-gray-200">Offline Functionality</td>
+                <td class="p-4">None (requires active connection)</td>
+                <td class="p-4">Full offline read, write, &amp; queue</td>
+            </tr>
+            <tr>
+                <td class="p-4 font-medium text-gray-200">Privacy Scope</td>
+                <td class="p-4">Broad account-wide permissions</td>
+                <td class="p-4">Strict <code>drive.file</code> isolation</td>
+            </tr>
+        </tbody>
+    </table></div>
+
+    <h2>Strict Privacy and Secure Background Syncing</h2>
+    <p>Performance optimization must never come at the expense of data security, especially when handling sensitive business spreadsheets or client records. Most mobile spreadsheet utilities demand broad, account-wide access permissions to your entire Google Drive, creating a massive security liability if compromised.</p>
+    <p>We designed our sync architecture around Google's strict <code>drive.file</code> scope. The application can only read and modify files that the user has explicitly created or chosen to open within the app interface. Your wider directory structure remains untouched and invisible to the client. Combined with encrypted local storage and atomic batch updates, your synced spreadsheet rows remain protected both in transit and at rest on your device.</p>
+</div>
+
+          <h2>Frequently Asked Questions (FAQ)</h2>
+<div class="space-y-4 my-6">
+<div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">How does FormGrid handle thousands of spreadsheet rows without crashing?</h3>
+  <p class="text-sm text-gray-400 mb-0">FormGrid parses incoming Google Sheets data into a localized SQLite database with B-tree indices and FTS5 full-text search, keeping memory consumption minimal and rendering search results in milliseconds off the main thread.</p>
+</div><div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Can I search and edit spreadsheets offline on Android?</h3>
+  <p class="text-sm text-gray-400 mb-0">Yes. FormGrid caches your forms and spreadsheet rows locally. You can search, view, and modify records without an internet connection, and changes automatically queue for synchronization once connectivity returns.</p>
+</div><div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">What permissions does FormGrid require to access Google Drive?</h3>
+  <p class="text-sm text-gray-400 mb-0">FormGrid strictly uses the Google Drive `drive.file` scope. It only has access to files that you explicitly create or open within the app, ensuring your wider Google Drive storage remains completely private.</p>
+</div>
+</div>
+        </article>
+
+        <!-- UKRAINIAN ARTICLE -->
+        <article id="lang-uk" class="prose-custom hidden">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs mb-4">
+            <span class="px-2.5 py-1 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-400 font-bold">Google Форми і дані</span>
+            <span class="text-gray-400">7 хв читання</span>
+            <span class="text-gray-600">•</span>
+            <time datetime="2026-11-28" class="text-gray-400">Nov 28, 2026</time>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+            Плавне управління тисячами рядків таблиць на Android з локальним індексуванням
+          </h1>
+
+          <div class="prose-custom">
+    <h2>Мобільний вузький місце табличних даних</h2>
+    <p>Відкриття Google Таблиці з понад 5000 рядків на стандартному мобільному пристрої зазвичай викликає знайомий цикл розчарування: нескінченні спінери завантаження, попередження про пам'ять та повне зависання інтерфейсу. Стандартні веб-переглядачі та загальні мобільні обгортки намагаються рендерити сирі вузли DOM або аналізувати масивні JSON-пакети в головному потоці під час кожної прокрутки. такий підхід ігнорує фундаментальні обмеження обладнання. Під час роботи в польових умовах — будь то інвентаризація, сканування квитків чи внесення даних перевірки — затримка мережі лише погіршує ситуацію.</p>
+    <p>Щоб вирішити цю проблему нативно на Android, ми створили <strong>FormGrid</strong> навколо ключового інженерного принципу: мережа має лише синхронізувати, але ніколи не обчислювати. Перенісши маніпуляції даними за межі головного потоку та впровадивши надійний шар локального сховища, ми повністю усунули тремтіння інтерфейсу. Ви можете ознайомитися з <a href="/formgrid">мобільним клієнтом FormGrid</a> та завантажити його безпосередньо з Google Play.</p>
+
+    <h2>Архітектура локальних індексів SQLite для миттєвого пошуку</h2>
+    <p>Сирі рядки JSON, завантажені з API Google Таблиць, марні для швидкого пошуку без структурованого індексування. Коли таблиця синхронізується з вашим пристроєм, наш двигун аналізує рядки та записує їх у локалізовану базу даних SQLite, налаштовану зі спеціалізованими індексами. Замість перегляду масиву з тисяч об'єктів у пам'яті, наші пошукові запити використовують B-дерева індексів бази даних для знаходження записів за мілісекунди.</p>
+    <p>Нечіткий пошук за кількома стовпцями — такими як імена, ID та мітки часу — вимагає ретельної оптимізації запитів. Ми підтримуємо модулі віртуальних таблиць (FTS5) для можливостей повнотекстового пошуку безпосередньо на пристрої. Коли користувач вводить запит у рядок пошуку, головний потік інтерфейсу не блокується. Натомість фонові робочі потоки виконують параметризовані SQL-вирази, повертаючи фрагменти розбивки на сторінки прямо до адаптера RecyclerView.</p>
+
+    <h2>Оптимізація обсягу пам'яті та збирання сміття</h2>
+    <p>Паузи збирання сміття (GC) є прихованим вбивцею плавності інтерфейсу Android. Під час завантаження великих наборів табличних даних неефективні структури даних генерують мільйони короткоживучих об'єктів, що спричиняє часті цикли GC, які пропускають кадри. Ми вирішили це завдання, впровадивши стратегії об'єднання пам'яті та незмінні моделі даних у нашому конвеєрі синхронізації.</p>
+    <p>Вхідні значення комірок мапляться в примітивні масиви та легкі структури даних замість глибоко вкладених графів об'єктів. Крім того, механізми перевірки змін гарантують, що лише змінені рядки ініціюють запити до бази даних під час циклів фонової синхронізації. Це різко знижує навантаження на CPU, зберігає заряд акумулятора та гарантує, що старі чи бюджетні пристрої Android можуть обробляти величезні адміністративні таблиці.</p>
+
+    <div class="overflow-x-auto my-6 rounded-2xl border border-gray-800 bg-[#0F1218]"><table class="w-full text-left border-collapse text-sm">
+        <thead>
+            <tr class="border-b border-gray-800 text-gray-300">
+                <th class="p-4 font-semibold">Архітектурна метрика</th>
+                <th class="p-4 font-semibold">Стандартний веб-переглядач</th>
+                <th class="p-4 font-semibold">Локальний двигун FormGrid</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-800/60 text-gray-400">
+            <tr>
+                <td class="p-4 font-medium text-gray-200">Місткість набору (рядків)</td>
+                <td class="p-4">200 - 500 до серйозних затримок</td>
+                <td class="p-4">10 000+ з плавною індексацією</td>
+            </tr>
+            <tr>
+                <td class="p-4 font-medium text-gray-200">Затримка пошуку</td>
+                <td class="p-4">300мс - 1200мс на символ</td>
+                <td class="p-4">&lt; 15мс через SQLite FTS5</td>
+            </tr>
+            <tr>
+                <td class="p-4 font-medium text-gray-200">Офлайн-функціональність</td>
+                <td class="p-4">Відсутня (потрібна мережа)</td>
+                <td class="p-4">Повний офлайн читання та запис</td>
+            </tr>
+            <tr>
+                <td class="p-4 font-medium text-gray-200">Область приватності</td>
+                <td class="p-4">Широкі права на весь акаунт</td>
+                <td class="p-4">Сувора ізоляція <code>drive.file</code></td>
+            </tr>
+        </tbody>
+    </table></div>
+
+    <h2>Сувора конфіденційність та безпечна фонова синхронізація</h2>
+    <p>Оптимізація продуктивності ніколи не повинна відбуватися за рахунок безпеки даних, особливо під час роботи з чутливими бізнес-таблицями. Більшість мобільних утиліт вимагають широких дозволів на доступ до всього Google Диска, що створює величезну вразливість безпеки в разі компрометації.</p>
+    <p>Ми розробили нашу архітектуру синхронізації навколо суворого дозволу Google <code>drive.file</code>. Додаток може читати та змінювати лише ті файли, які користувач чітко створив або вирішив відкрити в інтерфейсі програми. Ваша ширша структура каталогів залишається недоторканою та невидимою для клієнта.</p>
+</div>
+
+          <h2>Часті запитання (FAQ)</h2>
+<div class="space-y-4 my-6">
+<div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Як FormGrid обробляє тисячі рядків таблиці без збоїв?</h3>
+  <p class="text-sm text-gray-400 mb-0">FormGrid аналізує дані Google Таблиць у локалізовану базу даних SQLite з індексами B-дерева та повнотекстовим пошуком FTS5, мінімізуючи споживання пам&#x27;яті.</p>
+</div><div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Чи можу я шукати та редагувати таблиці офлайн на Android?</h3>
+  <p class="text-sm text-gray-400 mb-0">Так. FormGrid кешує ваші форми та рядки таблиць локально. Ви можете шукати, переглядати та змінювати записи без підключення до інтернету.</p>
+</div><div class="bg-[#0F1218] border border-gray-800 rounded-2xl p-5">
+  <h3 class="text-base font-bold text-white mt-0 mb-2">Які дозволи вимагає FormGrid для доступу до Google Диска?</h3>
+  <p class="text-sm text-gray-400 mb-0">FormGrid суворо використовує область `drive.file` Google Диска. Додаток має доступ лише до тих файлів, які ви явно створюєте або відкриваєте.</p>
+</div>
+</div>
+        </article>
+
+      </div>
+
+      <!-- RIGHT COLUMN: STICKY APP WIDGET -->
+      <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+        <div class="bg-gradient-to-b from-[#0F1218] to-[#0B0E14] border border-blue-500/40 rounded-3xl p-6 shadow-2xl accent-glow">
+          <div class="flex items-center gap-3.5 mb-4">
+            <img src="/images/formgrid_icon_512.png" alt="FormGrid" class="w-14 h-14 rounded-2xl border border-gray-700 object-cover shrink-0">
+            <div>
+              <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-400 mb-1">
+                <span class="ui-en">Mobile Forms & QR</span><span class="ui-uk hidden">Мобільні форми та QR</span>
+              </span>
+              <h3 class="text-lg font-black text-white leading-tight">FormGrid</h3>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-300 leading-relaxed mb-5">
+            <span class="ui-en">Manage Google Forms & Sheets from a native mobile UI with offline response caching, QR check-in scanning, and strict drive.file privacy.</span>
+            <span class="ui-uk hidden">Керуйте Google Формами та Таблицями з нативного мобільного інтерфейсу з офлайн-кешем, QR-чек-іном та безпекою drive.file.</span>
+          </p>
+
+          <div class="space-y-2.5 mb-5">
+            <a href="https://play.google.com/store/apps/details?id=com.vanza.formgrid" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs sm:text-sm transition shadow-lg">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+              <span class="ui-en">Download on Google Play</span><span class="ui-uk hidden">Завантажити в Google Play</span>
+            </a>
+
+            <a href="/formgrid" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-white transition">
+              <span class="ui-en">Explore App Overview →</span><span class="ui-uk hidden">Детальніше про застосунок →</span>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-gray-800/80 flex items-center gap-3.5">
+            <div class="p-1.5 bg-white rounded-xl shadow shrink-0">
+              <img src="/images/qr_formgrid.png" alt="QR Code FormGrid" class="w-24 h-24 rounded-lg block">
+            </div>
+            <div class="space-y-1">
+              <p class="text-xs font-bold text-white">
+                <span class="ui-en">Scan with phone camera</span><span class="ui-uk hidden">Скануйте камерою телефона</span>
+              </p>
+              <p class="text-[11px] text-gray-400 leading-snug">
+                <span class="ui-en">Opens directly in Google Play Store on your Android device.</span>
+                <span class="ui-uk hidden">Миттєво відкриває сторінку встановлення в Google Play.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- More Guides Sidebar Box -->
+        <div class="bg-[#0F1218] border border-gray-800 rounded-3xl p-6 space-y-4">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400">
+            <span class="ui-en">More VanzaLabs Guides</span><span class="ui-uk hidden">Інші гайди у блозі</span>
+          </h4>
+          <div class="space-y-3 text-xs">
+            <a href="/blog/minimalist-strength-tracking-without-social-bloat" class="block p-3 rounded-xl bg-[#08090C] hover:border-[#10B981]/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1 line-clamp-2">Why Minimalist Set Loggers Beat Social Fitness Apps for Gains</p>
+              <p class="text-[11px] text-gray-500">2026-11-27 • Read Guide →</p>
+            </a>
+            <a href="/blog/architecting-pass-and-play-party-game-ux" class="block p-3 rounded-xl bg-[#08090C] hover:border-[#10B981]/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1 line-clamp-2">Architecting Zero-Friction Pass-and-Play UX for Group Party Games</p>
+              <p class="text-[11px] text-gray-500">2026-11-26 • Read Guide →</p>
+            </a>
+            <a href="/blog/designing-high-concurrency-pass-and-play-ui" class="block p-3 rounded-xl bg-[#08090C] hover:border-[#10B981]/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1 line-clamp-2">Designing High-Concurrency Pass-and-Play UI for Large Party Groups</p>
+              <p class="text-[11px] text-gray-500">2026-11-25 • Read Guide →</p>
+            </a>
+            <a href="/blog/event-qr-check-in-offline-google-sheets" class="block p-3 rounded-xl bg-[#08090C] hover:border-[#10B981]/40 border border-gray-800 transition">
+              <p class="font-bold text-white mb-1 line-clamp-2">Reliable Event QR Check-Ins in Zero-Wi-Fi Venues Using Google Sheets</p>
+              <p class="text-[11px] text-gray-500">2026-11-23 • Read Guide →</p>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8 bg-[#08090C] border-t border-gray-900 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 VanzaLabs Engineering Studio. All rights reserved.</p>
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="/" class="hover:text-white transition">VanzaLabs</a>
+        <a href="/blog" class="text-[#10B981] font-semibold">Blog</a>
+        <a href="/formgrid" class="hover:text-white transition">FormGrid</a>
+        <a href="/privacy/formgrid" class="hover:text-white transition">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = 'en';
+    function setArticleLang(lang, save = true) {
+      currentLang = lang;
+      const isUa = lang === 'uk';
+      document.documentElement.lang = isUa ? 'uk' : 'en';
+      document.getElementById('langLabel').textContent = isUa ? 'EN' : 'UA';
+      document.getElementById('lang-en').classList.toggle('hidden', isUa);
+      document.getElementById('lang-uk').classList.toggle('hidden', !isUa);
+      document.querySelectorAll('.ui-en').forEach(el => el.classList.toggle('hidden', isUa));
+      document.querySelectorAll('.ui-uk').forEach(el => el.classList.toggle('hidden', !isUa));
+      if (save) {
+        try { localStorage.setItem('vanza_lang', lang); } catch(e) {}
+      }
+    }
+    function toggleArticleLang() {
+      setArticleLang(currentLang === 'en' ? 'uk' : 'en', true);
+    }
+    (function init() {
+      try {
+        const saved = localStorage.getItem('vanza_lang');
+        if (saved === 'uk' || saved === 'en') {
+          if (saved === 'uk') setArticleLang('uk', false);
+          return;
+        }
+        const sysLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (sysLang.startsWith('uk') || sysLang.startsWith('ru')) setArticleLang('uk', false);
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>
